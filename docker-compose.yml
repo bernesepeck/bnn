@@ -1,0 +1,25 @@
+version: "3"
+services:
+  database:
+    image: postgres:16
+    volumes:
+      - ./data/database:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: "directus"
+      POSTGRES_PASSWORD: "directus"
+      POSTGRES_DB: "directus"
+  cache:
+    image: redis:6
+  directus:
+    image: directus/directus:10.8.3
+    ports:
+      - 8055:8055
+    volumes:
+      - ./uploads:/directus/uploads
+      # If you want to load extensions from the host
+      # - ./extensions:/directus/extensions
+    depends_on:
+      - cache
+      - database
+    env_file:
+      - .env
