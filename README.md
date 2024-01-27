@@ -34,3 +34,8 @@ http://localhost:8055/items/city/1?deep[translations][_filter][languages_code][_
 
 ##### Get all events for city with id=1 in german(de)
 http://localhost:8055/items/event/1?[_filter][city][_eq]=1&fields=*,translations.*&deep[translations][_filter][languages_code][_eq]=de
+
+### Fix image permissions
+```bash
+docker compose exec -u root directus chown -R node:node /directus/database /directus/extensions /directus/uploads
+```
