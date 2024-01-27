@@ -26,3 +26,11 @@ cat directus_db.sql | docker exec -i bnn-database-1 psql -U directus
 # Start directus
 docker-compose directus start
 ```
+
+### API Examples
+
+##### Get all data on city with id=1 in german(de)
+http://localhost:8055/items/city/1?deep[translations][_filter][languages_code][_eq]=de&fields=*,translations.*
+
+##### Get all events for city with id=1 in german(de)
+http://localhost:8055/items/event/1?[_filter][city][_eq]=1&fields=*,translations.*&deep[translations][_filter][languages_code][_eq]=de
