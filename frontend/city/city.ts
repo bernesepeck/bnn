@@ -1,7 +1,6 @@
-class City extends HTMLElement {
+export class City extends HTMLElement {
     constructor() {
         super();
-        console.log('constructor')
     }
     connectedCallback() {
         console.log('iwashere')
@@ -9,4 +8,4 @@ class City extends HTMLElement {
 
 }
 
-customElements.define("city",City);
+customElements.define("bnn-city",City);
