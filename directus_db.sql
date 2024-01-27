@@ -193,6 +193,41 @@ CREATE TABLE public.city (
 ALTER TABLE public.city OWNER TO directus;
 
 --
+-- Name: city_files; Type: TABLE; Schema: public; Owner: directus
+--
+
+CREATE TABLE public.city_files (
+    id integer NOT NULL,
+    city_id integer,
+    directus_files_id uuid
+);
+
+
+ALTER TABLE public.city_files OWNER TO directus;
+
+--
+-- Name: city_files_id_seq; Type: SEQUENCE; Schema: public; Owner: directus
+--
+
+CREATE SEQUENCE public.city_files_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.city_files_id_seq OWNER TO directus;
+
+--
+-- Name: city_files_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: directus
+--
+
+ALTER SEQUENCE public.city_files_id_seq OWNED BY public.city_files.id;
+
+
+--
 -- Name: city_id_seq; Type: SEQUENCE; Schema: public; Owner: directus
 --
 
@@ -1135,6 +1170,13 @@ ALTER TABLE ONLY public.city ALTER COLUMN id SET DEFAULT nextval('public.city_id
 
 
 --
+-- Name: city_files id; Type: DEFAULT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public.city_files ALTER COLUMN id SET DEFAULT nextval('public.city_files_id_seq'::regclass);
+
+
+--
 -- Name: city_translations id; Type: DEFAULT; Schema: public; Owner: directus
 --
 
@@ -1239,6 +1281,14 @@ ALTER TABLE ONLY public.event_translations ALTER COLUMN id SET DEFAULT nextval('
 COPY public.city (id, status, sort, date_updated) FROM stdin;
 1	draft	\N	2024-01-20 15:38:42.911+00
 2	draft	\N	2024-01-20 15:39:01.181+00
+\.
+
+
+--
+-- Data for Name: city_files; Type: TABLE DATA; Schema: public; Owner: directus
+--
+
+COPY public.city_files (id, city_id, directus_files_id) FROM stdin;
 \.
 
 
@@ -1505,6 +1555,20 @@ COPY public.directus_activity (id, action, "user", "timestamp", ip, user_agent, 
 225	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-01-20 15:48:37.335+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36	directus_collections	countries_translations	\N	http://localhost:8055
 226	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-01-20 15:51:21.921+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36	directus_fields	42	\N	http://localhost:8055
 227	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-01-20 15:53:47.499+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36	directus_fields	43	\N	http://localhost:8055
+228	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-01-27 13:59:43.06+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_permissions	42	\N	http://localhost:8055
+229	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-01-27 13:59:45.73+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_permissions	43	\N	http://localhost:8055
+230	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-01-27 13:59:47.763+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_permissions	44	\N	http://localhost:8055
+231	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-01-27 13:59:50.435+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_permissions	45	\N	http://localhost:8055
+232	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-01-27 13:59:51.724+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_permissions	46	\N	http://localhost:8055
+233	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-01-27 14:09:54.243+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	23	\N	http://localhost:8055
+234	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-01-27 14:23:21.551+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	44	\N	http://localhost:8055
+235	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-01-27 14:23:21.691+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	45	\N	http://localhost:8055
+236	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-01-27 14:23:21.699+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_collections	city_files	\N	http://localhost:8055
+237	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-01-27 14:23:21.822+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	46	\N	http://localhost:8055
+238	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-01-27 14:23:22.003+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	47	\N	http://localhost:8055
+239	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-01-27 14:24:11.688+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	f90ae2c5-682a-4fe8-8fbc-3f31a4257cf7	\N	http://localhost:8055
+240	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-01-27 14:24:11.705+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	f90ae2c5-682a-4fe8-8fbc-3f31a4257cf7	\N	http://localhost:8055
+241	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-01-27 14:27:54.446+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	239810f8-beac-4b54-b540-f84cb45ad0e6	\N	http://localhost:8055
 \.
 
 
@@ -1520,6 +1584,7 @@ city_translations	import_export	\N	{{name}}	t	f	\N	\N	t	\N	\N	\N	all	\N	\N	\N	\N
 city	\N	\N	{{translations.name}}	f	f	\N	\N	t	archived	draft	\N	all	\N	\N	1	\N	open	\N	f
 countries	\N	\N	{{translations.name}}	f	f	\N	\N	t	archived	draft	\N	all	\N	\N	\N	\N	open	\N	f
 countries_translations	import_export	\N	{{name}}	t	f	\N	\N	t	\N	\N	\N	all	\N	\N	\N	\N	open	\N	f
+city_files	import_export	\N	\N	t	f	\N	\N	t	\N	\N	\N	all	\N	\N	\N	\N	open	\N	f
 \.
 
 
@@ -1573,15 +1638,19 @@ COPY public.directus_fields (id, collection, field, special, interface, options,
 41	countries_translations	name	\N	input	\N	\N	\N	f	f	4	full	\N	\N	\N	f	\N	\N	\N
 37	countries	translations	translations	translations	{"defaultLanguage":"de"}	translations	{"template":"{{name}}","defaultLanguage":"de"}	f	f	6	full	\N	\N	\N	f	\N	\N	\N
 42	countries	cities	m2o	select-dropdown-m2o	\N	\N	\N	f	f	7	full	\N	\N	\N	f	\N	\N	\N
-23	city	translations	translations	translations	{"defaultLanguage":"de"}	translations	{"template":"{{name}}"}	f	f	7	full	\N	\N	\N	f	\N	\N	\N
 1	city	id	\N	input	\N	\N	\N	t	f	1	full	\N	\N	\N	f	\N	\N	\N
 43	event	start	\N	datetime	\N	\N	\N	f	f	8	full	\N	\N	\N	f	\N	\N	\N
+23	city	translations	translations	translations	{"defaultLanguage":"de"}	translations	{"template":"{{name}}","languageField":"code"}	f	f	7	full	\N	\N	\N	f	\N	\N	\N
+44	city	gallery	files	files	\N	\N	\N	f	f	8	full	\N	\N	\N	f	\N	\N	\N
+45	city_files	id	\N	\N	\N	\N	\N	f	t	1	full	\N	\N	\N	f	\N	\N	\N
+46	city_files	city_id	\N	\N	\N	\N	\N	f	t	2	full	\N	\N	\N	f	\N	\N	\N
 14	event	city	m2o	select-dropdown-m2o	{"template":"{{translations.name}}"}	related-values	{"template":"{{translations.name}}"}	f	f	2	full	\N	\N	\N	t	\N	\N	\N
 32	countries	id	\N	input	\N	\N	\N	t	t	1	full	\N	\N	\N	f	\N	\N	\N
 33	countries	status	\N	select-dropdown	{"choices":[{"text":"$t:published","value":"published"},{"text":"$t:draft","value":"draft"},{"text":"$t:archived","value":"archived"}]}	labels	{"showAsDot":true,"choices":[{"text":"$t:published","value":"published","foreground":"#FFFFFF","background":"var(--theme--primary)"},{"text":"$t:draft","value":"draft","foreground":"#18222F","background":"#D3DAE4"},{"text":"$t:archived","value":"archived","foreground":"#FFFFFF","background":"var(--theme--warning)"}]}	f	f	2	full	\N	\N	\N	f	\N	\N	\N
 34	countries	sort	\N	input	\N	\N	\N	f	t	3	full	\N	\N	\N	f	\N	\N	\N
 35	countries	date_created	date-created	datetime	\N	datetime	{"relative":true}	t	t	4	half	\N	\N	\N	f	\N	\N	\N
 36	countries	date_updated	date-updated	datetime	\N	datetime	{"relative":true}	t	t	5	half	\N	\N	\N	f	\N	\N	\N
+47	city_files	directus_files_id	\N	\N	\N	\N	\N	f	t	3	full	\N	\N	\N	f	\N	\N	\N
 \.
 
 
@@ -1590,6 +1659,7 @@ COPY public.directus_fields (id, collection, field, special, interface, options,
 --
 
 COPY public.directus_files (id, storage, filename_disk, filename_download, title, type, folder, uploaded_by, uploaded_on, modified_by, modified_on, charset, filesize, width, height, duration, embed, description, location, tags, metadata) FROM stdin;
+239810f8-beac-4b54-b540-f84cb45ad0e6	local	239810f8-beac-4b54-b540-f84cb45ad0e6.webp	0ab7b648-1665-4eff-bdf9-2a5b86da89ae.webp	0ab7b648 1665 4eff Bdf9 2a5b86da89ae	image/webp	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-01-27 14:27:54.4312+00	\N	2024-01-27 14:27:54.492+00	\N	177826	1024	1024	\N	\N	\N	\N	\N	{}
 \.
 
 
@@ -1748,6 +1818,11 @@ COPY public.directus_permissions (id, role, collection, action, permissions, val
 33	68c58399-f145-49aa-9db1-ee94c793b427	event	create	\N	{"_and":[{"city":{"_eq":"1"}}]}	\N	status,sort,description,name,teaser,city
 40	\N	city	read	{}	{}	\N	*
 41	\N	event	read	{}	{}	\N	*
+42	\N	city_translations	read	{}	{}	\N	*
+43	\N	countries	read	{}	{}	\N	*
+44	\N	countries_translations	read	{}	{}	\N	*
+45	\N	event_translations	read	{}	{}	\N	*
+46	\N	languages	read	{}	{}	\N	*
 \.
 
 
@@ -1756,8 +1831,8 @@ COPY public.directus_permissions (id, role, collection, action, permissions, val
 --
 
 COPY public.directus_presets (id, bookmark, "user", role, collection, search, layout, layout_query, layout_options, refresh_interval, filter, icon, color) FROM stdin;
-1	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	\N	languages	\N	\N	{"tabular":{"page":1}}	\N	\N	\N	bookmark	\N
 2	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	\N	event	\N	\N	{"tabular":{"page":1}}	\N	10	\N	bookmark	\N
+1	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	\N	languages	\N	\N	{"tabular":{"page":1}}	\N	\N	\N	bookmark	\N
 3	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	\N	countries	\N	\N	{"tabular":{"page":1}}	\N	\N	\N	bookmark	\N
 \.
 
@@ -1776,6 +1851,8 @@ COPY public.directus_relations (id, many_collection, many_field, one_collection,
 7	countries_translations	languages_code	languages	\N	\N	\N	countries_id	\N	nullify
 8	countries_translations	countries_id	countries	translations	\N	\N	languages_code	\N	nullify
 9	countries	cities	city	\N	\N	\N	\N	\N	nullify
+10	city_files	directus_files_id	directus_files	\N	\N	\N	city_id	\N	nullify
+11	city_files	city_id	city	gallery	\N	\N	directus_files_id	\N	nullify
 \.
 
 
@@ -1979,6 +2056,19 @@ COPY public.directus_revisions (id, activity, collection, item, data, delta, par
 193	225	directus_collections	countries_translations	{"collection":"countries_translations","icon":"import_export","note":null,"display_template":"{{name}}","hidden":true,"singleton":false,"translations":null,"archive_field":null,"archive_app_filter":true,"archive_value":null,"unarchive_value":null,"sort_field":null,"accountability":"all","color":null,"item_duplication_fields":null,"sort":null,"group":null,"collapse":"open","preview_url":null,"versioning":false}	{"display_template":"{{name}}"}	\N	\N
 194	226	directus_fields	42	{"sort":7,"interface":"select-dropdown-m2o","special":["m2o"],"collection":"countries","field":"cities"}	{"sort":7,"interface":"select-dropdown-m2o","special":["m2o"],"collection":"countries","field":"cities"}	\N	\N
 195	227	directus_fields	43	{"sort":8,"interface":"datetime","special":null,"collection":"event","field":"start"}	{"sort":8,"interface":"datetime","special":null,"collection":"event","field":"start"}	\N	\N
+196	228	directus_permissions	42	{"role":null,"collection":"city_translations","action":"read","fields":["*"],"permissions":{},"validation":{}}	{"role":null,"collection":"city_translations","action":"read","fields":["*"],"permissions":{},"validation":{}}	\N	\N
+197	229	directus_permissions	43	{"role":null,"collection":"countries","action":"read","fields":["*"],"permissions":{},"validation":{}}	{"role":null,"collection":"countries","action":"read","fields":["*"],"permissions":{},"validation":{}}	\N	\N
+198	230	directus_permissions	44	{"role":null,"collection":"countries_translations","action":"read","fields":["*"],"permissions":{},"validation":{}}	{"role":null,"collection":"countries_translations","action":"read","fields":["*"],"permissions":{},"validation":{}}	\N	\N
+199	231	directus_permissions	45	{"role":null,"collection":"event_translations","action":"read","fields":["*"],"permissions":{},"validation":{}}	{"role":null,"collection":"event_translations","action":"read","fields":["*"],"permissions":{},"validation":{}}	\N	\N
+200	232	directus_permissions	46	{"role":null,"collection":"languages","action":"read","fields":["*"],"permissions":{},"validation":{}}	{"role":null,"collection":"languages","action":"read","fields":["*"],"permissions":{},"validation":{}}	\N	\N
+201	233	directus_fields	23	{"id":23,"collection":"city","field":"translations","special":["translations"],"interface":"translations","options":{"defaultLanguage":"de"},"display":"translations","display_options":{"template":"{{name}}","languageField":"code"},"readonly":false,"hidden":false,"sort":7,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"city","field":"translations","special":["translations"],"interface":"translations","options":{"defaultLanguage":"de"},"display":"translations","display_options":{"template":"{{name}}","languageField":"code"},"readonly":false,"hidden":false,"sort":7,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	\N	\N
+202	234	directus_fields	44	{"sort":8,"interface":"files","special":["files"],"collection":"city","field":"gallery"}	{"sort":8,"interface":"files","special":["files"],"collection":"city","field":"gallery"}	\N	\N
+203	235	directus_fields	45	{"sort":1,"hidden":true,"field":"id","collection":"city_files"}	{"sort":1,"hidden":true,"field":"id","collection":"city_files"}	\N	\N
+204	236	directus_collections	city_files	{"hidden":true,"icon":"import_export","collection":"city_files"}	{"hidden":true,"icon":"import_export","collection":"city_files"}	\N	\N
+205	237	directus_fields	46	{"sort":2,"hidden":true,"collection":"city_files","field":"city_id"}	{"sort":2,"hidden":true,"collection":"city_files","field":"city_id"}	\N	\N
+206	238	directus_fields	47	{"sort":3,"hidden":true,"collection":"city_files","field":"directus_files_id"}	{"sort":3,"hidden":true,"collection":"city_files","field":"directus_files_id"}	\N	\N
+207	239	directus_files	f90ae2c5-682a-4fe8-8fbc-3f31a4257cf7	{"title":"0ab7b648 1665 4eff Bdf9 2a5b86da89ae","filename_download":"0ab7b648-1665-4eff-bdf9-2a5b86da89ae.webp","type":"image/webp","storage":"local"}	{"title":"0ab7b648 1665 4eff Bdf9 2a5b86da89ae","filename_download":"0ab7b648-1665-4eff-bdf9-2a5b86da89ae.webp","type":"image/webp","storage":"local"}	\N	\N
+208	241	directus_files	239810f8-beac-4b54-b540-f84cb45ad0e6	{"title":"0ab7b648 1665 4eff Bdf9 2a5b86da89ae","filename_download":"0ab7b648-1665-4eff-bdf9-2a5b86da89ae.webp","type":"image/webp","storage":"local"}	{"title":"0ab7b648 1665 4eff Bdf9 2a5b86da89ae","filename_download":"0ab7b648-1665-4eff-bdf9-2a5b86da89ae.webp","type":"image/webp","storage":"local"}	\N	\N
 \.
 
 
@@ -1997,7 +2087,7 @@ COPY public.directus_roles (id, name, icon, description, ip_access, enforce_tfa,
 --
 
 COPY public.directus_sessions (token, "user", expires, ip, user_agent, share, origin) FROM stdin;
-_62iOE-OUoyz9s7LXLd-9dBU56P3GPqLWOOI3Q1fhsSdaXvcPWGnRr7GMLd2AedH	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-01-27 16:30:05.024+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36	\N	http://localhost:8055
+C8EK1LNtErT7GNOQIxofTJyzlDhFKEcPKEyFYqCFFdWX3sCNL8NR_QtXnKjaN3bw	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:23:45.608+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36	\N	http://localhost:8055
 \.
 
 
@@ -2030,8 +2120,8 @@ COPY public.directus_translations (id, language, key, value) FROM stdin;
 --
 
 COPY public.directus_users (id, first_name, last_name, email, password, location, title, description, tags, avatar, language, tfa_secret, status, role, token, last_access, last_page, provider, external_identifier, auth_data, email_notifications, appearance, theme_dark, theme_light, theme_light_overrides, theme_dark_overrides) FROM stdin;
-db513aee-cd3a-47a9-95e5-a98f1cc92d13	Admin	User	gannonline90@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$8mOx4/9GjUaVmWJRCxhc1Q$O2PmAQbgGlqxaNAnsgyyJRQxPl+9HeBKZ5z7JMZjqbo	\N	\N	\N	\N	\N	\N	\N	active	878f0264-16f3-4a54-a79e-82c27313bacc	\N	2024-01-20 16:30:05.032+00	/content/event	default	\N	\N	t	\N	\N	\N	\N	\N
 507e3800-1c28-454b-bcd2-766cda54a162	Basel	Admin	mirjamthomet@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$rEXyXmboQoJtEolz1V+VwQ$0mpZ0yfRnbyl8LchcvwSg1zkRSH516jNbFYv2TCGJ0s	\N	\N	\N	\N	\N	\N	\N	active	68c58399-f145-49aa-9db1-ee94c793b427	\N	2024-01-20 14:42:17.91+00	/content/city	default	\N	\N	t	\N	\N	\N	\N	\N
+db513aee-cd3a-47a9-95e5-a98f1cc92d13	Admin	User	gannonline90@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$8mOx4/9GjUaVmWJRCxhc1Q$O2PmAQbgGlqxaNAnsgyyJRQxPl+9HeBKZ5z7JMZjqbo	\N	\N	\N	\N	\N	\N	\N	active	878f0264-16f3-4a54-a79e-82c27313bacc	\N	2024-01-27 14:23:45.619+00	/content/city/1	default	\N	\N	t	\N	\N	\N	\N	\N
 \.
 
 
@@ -2084,6 +2174,13 @@ fr	French
 
 
 --
+-- Name: city_files_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
+--
+
+SELECT pg_catalog.setval('public.city_files_id_seq', 1, false);
+
+
+--
 -- Name: city_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
 --
 
@@ -2115,14 +2212,14 @@ SELECT pg_catalog.setval('public.countries_translations_id_seq', 2, true);
 -- Name: directus_activity_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
 --
 
-SELECT pg_catalog.setval('public.directus_activity_id_seq', 227, true);
+SELECT pg_catalog.setval('public.directus_activity_id_seq', 241, true);
 
 
 --
 -- Name: directus_fields_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
 --
 
-SELECT pg_catalog.setval('public.directus_fields_id_seq', 43, true);
+SELECT pg_catalog.setval('public.directus_fields_id_seq', 47, true);
 
 
 --
@@ -2136,7 +2233,7 @@ SELECT pg_catalog.setval('public.directus_notifications_id_seq', 1, false);
 -- Name: directus_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
 --
 
-SELECT pg_catalog.setval('public.directus_permissions_id_seq', 41, true);
+SELECT pg_catalog.setval('public.directus_permissions_id_seq', 46, true);
 
 
 --
@@ -2150,14 +2247,14 @@ SELECT pg_catalog.setval('public.directus_presets_id_seq', 3, true);
 -- Name: directus_relations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
 --
 
-SELECT pg_catalog.setval('public.directus_relations_id_seq', 9, true);
+SELECT pg_catalog.setval('public.directus_relations_id_seq', 11, true);
 
 
 --
 -- Name: directus_revisions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
 --
 
-SELECT pg_catalog.setval('public.directus_revisions_id_seq', 195, true);
+SELECT pg_catalog.setval('public.directus_revisions_id_seq', 208, true);
 
 
 --
@@ -2186,6 +2283,14 @@ SELECT pg_catalog.setval('public.event_id_seq', 3, true);
 --
 
 SELECT pg_catalog.setval('public.event_translations_id_seq', 4, true);
+
+
+--
+-- Name: city_files city_files_pkey; Type: CONSTRAINT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public.city_files
+    ADD CONSTRAINT city_files_pkey PRIMARY KEY (id);
 
 
 --
@@ -2482,6 +2587,22 @@ ALTER TABLE ONLY public.event_translations
 
 ALTER TABLE ONLY public.languages
     ADD CONSTRAINT languages_pkey PRIMARY KEY (code);
+
+
+--
+-- Name: city_files city_files_city_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public.city_files
+    ADD CONSTRAINT city_files_city_id_foreign FOREIGN KEY (city_id) REFERENCES public.city(id) ON DELETE SET NULL;
+
+
+--
+-- Name: city_files city_files_directus_files_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public.city_files
+    ADD CONSTRAINT city_files_directus_files_id_foreign FOREIGN KEY (directus_files_id) REFERENCES public.directus_files(id) ON DELETE SET NULL;
 
 
 --
