@@ -1,6 +1,7 @@
+import { City } from "./city/city";
+
 function render() : void {
-    console.log('iamhered')
-    const city = document.createElement("city") as City;
+    const city = new City();
     document.body.appendChild(city);
 }
 render();
