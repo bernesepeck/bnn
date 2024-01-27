@@ -2,7 +2,7 @@
 Make sure to adjust the env values to something sensible after you copy the example env file
 ```bash
 # Copy env file
-cp env.example .env
+cp env.dist .env
 
 # Star with docker compose
 docker compose up
