@@ -18,6 +18,12 @@ export class City extends LitElement {
 
     connectedCallback() {
         super.connectedCallback();
+        this.cityService.getCities().then(cities => {
+            console.log(cities)
+        }).catch(error => {
+            console.error("Failed to fetch city data", error);
+            // Handle the error appropriately
+        });
         this.cityService.getCity().then(cityData => {
             this.city = cityData;
         }).catch(error => {

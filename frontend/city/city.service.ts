@@ -1,5 +1,5 @@
 import { CityModel } from "./city.models";
-import { createDirectus, readItem, rest } from '@directus/sdk';
+import { createDirectus, readItem, readItems, rest } from '@directus/sdk';
 const langFilter = {
     translations: {
         _filter: {
@@ -14,8 +14,6 @@ export class CityService {
 
     constructor() {
         this.client = createDirectus('http://localhost:8055').with(rest());
-        
-        this.getCity = this.getCity.bind(this);
     }
 
     getCity(): Promise<CityModel> {
@@ -34,6 +32,22 @@ export class CityService {
                 supportlinks: langFilter
             }
         })).then(this.convertToCity);
+    }
+
+    async getCities(): Promise<any> {
+        const response = await this.client.request(readItems('city', {
+            fields: [
+                'translations.city_id',
+                'translations.name',
+            ],
+            deep: {
+                ...langFilter,
+                events: langFilter,
+                supportlinks: langFilter
+            }
+        }))
+        
+        return response.map(this.convertToCity);
     }
 
     convertToCity(city: any): CityModel {
