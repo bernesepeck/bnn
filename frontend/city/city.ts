@@ -1,14 +1,16 @@
-import { LitElement, html } from "lit";
+import { html } from "lit";
 import { customElement, state } from "lit/decorators.js";
 import "../components/banner/banner";
 import "../components/language/languageSelector";
 import "../components/menu/nav-menu";
 import { CityModel } from "./city.models";
 import { CityService } from "./city.service";
+import { DefaultComponent } from "../components/default.component";
+import "../components/content-container/content-container";
 
 @customElement("bnn-city")
-export class City extends LitElement {
-    private cityService: CityService;
+export class City extends DefaultComponent {
+  private cityService: CityService;
 
     constructor() {
         super();
@@ -55,13 +57,13 @@ export class City extends LitElement {
         }
     }
 
-    public render() {
-        return html`
-            <bnn-banner .cityname="${this.city?.name}"></bnn-banner>
-            <div class="header">
-                <h2>${this.city?.page_title}</h2>
-                <p>${this.city?.description}</p>
-            </div>
-        `;
-    }
+  public render() {
+    return html`
+      <bnn-banner .cityname="${this.city?.name}"></bnn-banner>
+      <bnn-content-container>
+        <h2>${this.city?.page_title}</h2>
+        <p>${this.city?.description}</p>
+      </bnn-content-container>
+    `;
+  }
 }
