@@ -1,37 +1,48 @@
 import { CityModel } from "./city.models";
 import { createDirectus, readItem, rest } from '@directus/sdk';
+const langFilter = {
+    translations: {
+        _filter: {
+            languages_code: {_eq: "de"}
+        }
+    }
+}
 
 export class CityService {
-
-    private url = "http://localhost:8055/items/city/1?deep[translations][_filter][languages_code][_eq]=de&fields=*,translations.*";
-
     private client;
 
+
     constructor() {
-        const client = createDirectus('http://localhost:8055').with(rest());
-        client.request(readItem('city',2, {
-            fields: ['*', { translations: ['*'], events: ['*', {translations: ['*']}], supportlinks: ['*', {translations: ['*']}]}],
-        })).then(test => console.log(test));
+        this.client = createDirectus('http://localhost:8055').with(rest());
+        
+        this.getCity = this.getCity.bind(this);
     }
 
-
-    public fetchCityData(): Promise<CityModel> {
-        return fetch(this.url).then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-              }
-              return response.json()
-        }).then(city => this.convertToCity(city))
+    getCity(): Promise<CityModel> {
+        return this.client.request(readItem('city', 2, {
+            fields: [
+                '*',
+                'translations.*',
+                'events.*',
+                'events.translations.*',
+                'supportlinks.*',
+                'supportlinks.translations.*',
+            ],
+            deep: {
+                ...langFilter,
+                events: langFilter,
+                supportlinks: langFilter
+            }
+        })).then(this.convertToCity);
     }
 
-    convertToCity(originalObject: any): CityModel {
-        const dataObj = originalObject.data;
-        const translationObj = dataObj.translations[0];
+    convertToCity(city: any): CityModel {
+        const translationObj = city.translations[0];
     
         return {
             id: translationObj.city_id,
-            status: dataObj.status,
-            date_updated: dataObj.date_updated,
+            status: city.status,
+            date_updated: city.date_updated,
             languages_code: translationObj.languages_code,
             name: translationObj.name,
             page_title: translationObj.page_title,
@@ -40,3 +51,4 @@ export class CityService {
         };
     }
 }
+
