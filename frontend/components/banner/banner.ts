@@ -1,12 +1,14 @@
 import { LitElement, html, css } from "lit";
 import { customElement, property } from "lit/decorators.js";
+import { DefaultComponent } from "../default.component";
 
 @customElement("bnn-banner")
-export class Banner extends LitElement {
+export class Banner extends DefaultComponent {
   @property({ type: String })
   cityname?: string;
 
-  static styles = css`
+  static get componentStyles() {
+    return css`
     .header-wrapper {
         background-image: url("/bnn-banner.webp");
         height: 400px;
@@ -17,7 +19,8 @@ export class Banner extends LitElement {
         color: white;
         padding-top: 2em;
     }
-  `;
+  `
+  }
 
   public render() {
     return html`
