@@ -1,4 +1,4 @@
-import { LitElement, html, css } from 'lit';
+import { html, css } from 'lit';
 import { customElement, state } from 'lit/decorators.js';
 import { DefaultComponent } from '../default.component';
 
