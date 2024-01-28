@@ -1,6 +1,7 @@
 import { LitElement, html } from "lit";
 import { customElement, state } from "lit/decorators.js";
 import "../components/banner/banner";
+import "../components/language/languageSelector";
 import { CityModel } from "./city.models";
 import { CityService } from "./city.service";
 
@@ -10,7 +11,8 @@ export class City extends LitElement {
 
     constructor() {
         super();
-        this.cityService = new CityService();
+        const languageCode = sessionStorage.getItem('selectedLanguage')
+        this.cityService = new CityService(languageCode);
     }
 
     @state()
@@ -18,7 +20,8 @@ export class City extends LitElement {
 
     connectedCallback() {
         super.connectedCallback();
-        this.cityService.getCity().then(cityData => {
+        
+        this.cityService.getCity(2).then(cityData => {
             this.city = cityData;
         }).catch(error => {
             console.error("Failed to fetch city data", error);
