@@ -7,6 +7,7 @@ import { CityModel } from "./city.models";
 import { CityService } from "./city.service";
 import { DefaultComponent } from "../components/default.component";
 import "../components/content-container/content-container";
+import "./components/event-list/event-list"
 
 @customElement("bnn-city")
 export class City extends DefaultComponent {
@@ -58,12 +59,14 @@ export class City extends DefaultComponent {
     }
 
   public render() {
+    console.log(this.city?.events)
     return html`
       <bnn-banner .cityname="${this.city?.name}"></bnn-banner>
       <bnn-content-container>
         <h2>${this.city?.page_title}</h2>
         <p>${this.city?.description}</p>
       </bnn-content-container>
+      <bnn-event-list .events="${this.city?.events}"></bnn-event-list>
     `;
   }
 }
