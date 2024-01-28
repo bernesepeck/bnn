@@ -1,11 +1,11 @@
 {
-  "dependencies": {
-  },
   "scripts": {
-    "start": "parcel index.html",
-    "build": "parcel build index.html"
+    "start": "npm run build-img && parcel index.html city/index.html",
+    "build": "parcel build index.html",
+    "build-img": "parcel build assets/* --no-cache"
   },
   "devDependencies": {
+    "lit": "^3.1.1",
     "parcel": "^2.11.0",
     "typescript": "^5.3.3"
   }
