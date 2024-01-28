@@ -8,30 +8,31 @@ import { CityService } from "./city.service";
 export class City extends LitElement {
     private cityService: CityService;
 
-  constructor() {
-    super();
-    this.cityService = new CityService();
+    constructor() {
+        super();
+        this.cityService = new CityService();
+    }
 
-    this.cityService.fetchCityData()
-      .then((city) => {
-        console.log("City Data:", city);
-        this.city = city;
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
-  }
+    @state()
+    protected city: CityModel | undefined;
 
-  @state()
-  protected city: CityModel | undefined;
+    connectedCallback() {
+        super.connectedCallback();
+        this.cityService.getCity().then(cityData => {
+            this.city = cityData;
+        }).catch(error => {
+            console.error("Failed to fetch city data", error);
+            // Handle the error appropriately
+        });
+    }
 
-  public render() {
-    return html`
-      <bnn-banner .cityname="${this.city?.name}"></bnn-banner>
-      <div class="header">
-        <h2>${this.city?.page_title}</h2>
-        <p>${this.city?.description}</p>
-      </div>
-    `;
-  }
+    public render() {
+        return html`
+            <bnn-banner .cityname="${this.city?.name}"></bnn-banner>
+            <div class="header">
+                <h2>${this.city?.page_title}</h2>
+                <p>${this.city?.description}</p>
+            </div>
+        `;
+    }
 }
