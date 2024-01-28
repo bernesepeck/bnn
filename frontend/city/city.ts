@@ -23,6 +23,7 @@ export class City extends LitElement {
         
         this.cityService.getCity(2).then(cityData => {
             this.city = cityData;
+            console.log(cityData)
         }).catch(error => {
             console.error("Failed to fetch city data", error);
             // Handle the error appropriately
