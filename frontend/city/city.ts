@@ -2,6 +2,7 @@ import { LitElement, html } from "lit";
 import { customElement, state } from "lit/decorators.js";
 import "../components/banner/banner";
 import "../components/language/languageSelector";
+import "../components/menu/nav-menu";
 import { CityModel } from "./city.models";
 import { CityService } from "./city.service";
 
@@ -11,23 +12,47 @@ export class City extends LitElement {
 
     constructor() {
         super();
-        const languageCode = sessionStorage.getItem('selectedLanguage')
-        this.cityService = new CityService(languageCode);
+        this.cityService = new CityService();
+        this.handleCitySelection = this.handleCitySelection.bind(this);
+        this.initializeSelectedCityFromURL();
     }
 
     @state()
     protected city: CityModel | undefined;
+    @state()
+    protected selectedCity!: number;
 
     connectedCallback() {
         super.connectedCallback();
-        
-        this.cityService.getCity(2).then(cityData => {
-            this.city = cityData;
-            console.log(cityData)
-        }).catch(error => {
-            console.error("Failed to fetch city data", error);
-            // Handle the error appropriately
-        });
+        window.addEventListener('city-selected', this.handleCitySelection);
+        this.fetchCityData();
+    }
+
+    initializeSelectedCityFromURL() {
+        const pathSegments = window.location.pathname.split('/');
+        const cityIndex = pathSegments.findIndex(segment => segment === 'city');
+        if (cityIndex !== -1 && pathSegments.length > cityIndex + 1) {
+            const cityId = parseInt(pathSegments[cityIndex + 1]);
+            if (!isNaN(cityId)) {
+                this.selectedCity = cityId;
+            }
+        }
+    }
+
+    handleCitySelection(e) {
+        console.log("handleCitySelection", e)
+        this.selectedCity = e.detail.cityId;
+        this.fetchCityData();
+    }
+
+    fetchCityData() {
+        if (this.selectedCity !== null) {
+            this.cityService.getCity(this.selectedCity).then(cityData => {
+                this.city = cityData;
+            }).catch(error => {
+                console.error("Failed to fetch city data", error);
+            });
+        }
     }
 
     public render() {
