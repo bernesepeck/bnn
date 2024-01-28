@@ -20,8 +20,12 @@ docker exec -t bnn-database-1 pg_dumpall -c -U directus > backend/directus_db.sq
 # Stop directus
 docker compose stop directus
 
+# Connect to an alternate database to drop and recreate the directus database
+docker exec -i bnn-database-1 psql -U directus -d postgres -c "DROP DATABASE IF EXISTS directus;"
+docker exec -i bnn-database-1 psql -U directus -d postgres -c "CREATE DATABASE directus;"
+
 # Restore dump
-cat backend/directus_db.sql | docker exec -i bnn-database-1 psql -U directus
+cat backend/directus_db.sql | docker exec -i bnn-database-1 psql -U directus -d directus
 
 # Start directus
 docker compose start directus
