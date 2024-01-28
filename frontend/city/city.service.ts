@@ -6,8 +6,9 @@ export class CityService {
     private langFilter;
 
 
-    constructor(languageCode: string) {
+    constructor() {
         this.client = createDirectus('http://localhost:8055').with(rest());
+        const languageCode = sessionStorage.getItem('selectedLanguage') || 'de';
         this.langFilter = {
             translations: {
                 _filter: {
@@ -38,6 +39,7 @@ export class CityService {
     async getCities(): Promise<any> {
         const response = await this.client.request(readItems('city', {
             fields: [
+                'id',
                 'translations.city_id',
                 'translations.name',
             ],
