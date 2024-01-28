@@ -1,5 +1,6 @@
 import { LitElement, html } from "lit";
 import { customElement } from "lit/decorators.js";
+import "../components/banner/banner";
 
 @customElement("bnn-city")
 export class City extends LitElement {
@@ -19,7 +20,7 @@ export class City extends LitElement {
   // Render the UI as a function of component state
   public render() {
     return html`
-      <div class="banner"></div>
+      <bnn-banner .cityname="${'Bern'}"></bnn-banner>
       <div class="content"></div>
     `;
   }
