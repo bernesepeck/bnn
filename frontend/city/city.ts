@@ -1,44 +1,37 @@
 import { LitElement, html } from "lit";
-import { customElement } from "lit/decorators.js";
+import { customElement, state } from "lit/decorators.js";
 import "../components/banner/banner";
+import { CityModel } from "./city.models";
+import { CityService } from "./city.service";
 
 @customElement("bnn-city")
 export class City extends LitElement {
+    private cityService: CityService;
+
   constructor() {
     super();
+    this.cityService = new CityService();
 
-    this.fetchCityData()
+    this.cityService.fetchCityData()
       .then((city) => {
         console.log("City Data:", city);
+        this.city = city;
       })
       .catch((error) => {
         console.error("Error:", error);
       });
   }
 
+  @state()
+  protected city: CityModel | undefined;
 
-  // Render the UI as a function of component state
   public render() {
     return html`
-      <bnn-banner .cityname="${'Bern'}"></bnn-banner>
-      <div class="content"></div>
+      <bnn-banner .cityname="${this.city?.name}"></bnn-banner>
+      <div class="header">
+        <h2>${this.city?.page_title}</h2>
+        <p>${this.city?.description}</p>
+      </div>
     `;
-  }
-
-  private async fetchCityData(): Promise<any> {
-    const url =
-      "http://localhost:8055/items/city/1?deep[translations][_filter][languages_code][_eq]=de&fields=*,translations.*";
-
-    try {
-      const response = await fetch(url);
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      console.error("Error fetching city data:", error);
-      throw error;
-    }
   }
 }
