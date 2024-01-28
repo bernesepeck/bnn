@@ -1,13 +1,22 @@
-import { LitElement, html } from "lit";
+import { LitElement, html, css } from "lit";
 import { customElement, state } from "lit/decorators.js";
 import "../components/banner/banner";
 import "../components/language/languageSelector";
 import { CityModel } from "./city.models";
 import { CityService } from "./city.service";
+import { DefaultComponent } from "../components/default.component";
 
 @customElement("bnn-city")
-export class City extends LitElement {
+export class City extends DefaultComponent {
     private cityService: CityService;
+
+    static get componentStyles() {
+        return css`
+            h1 {
+              color: blue;
+            }
+          `; 
+    }
 
     constructor() {
         super();
