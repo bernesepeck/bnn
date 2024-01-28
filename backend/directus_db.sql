@@ -179,6 +179,82 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
+-- Name: SupportLinks; Type: TABLE; Schema: public; Owner: directus
+--
+
+CREATE TABLE public."SupportLinks" (
+    id integer NOT NULL,
+    status character varying(255) DEFAULT 'draft'::character varying NOT NULL,
+    sort integer,
+    date_created timestamp with time zone,
+    link character varying(255),
+    city integer NOT NULL
+);
+
+
+ALTER TABLE public."SupportLinks" OWNER TO directus;
+
+--
+-- Name: SupportLinks_id_seq; Type: SEQUENCE; Schema: public; Owner: directus
+--
+
+CREATE SEQUENCE public."SupportLinks_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."SupportLinks_id_seq" OWNER TO directus;
+
+--
+-- Name: SupportLinks_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: directus
+--
+
+ALTER SEQUENCE public."SupportLinks_id_seq" OWNED BY public."SupportLinks".id;
+
+
+--
+-- Name: SupportLinks_translations; Type: TABLE; Schema: public; Owner: directus
+--
+
+CREATE TABLE public."SupportLinks_translations" (
+    id integer NOT NULL,
+    "SupportLinks_id" integer,
+    languages_code character varying(255),
+    title character varying(255),
+    description text,
+    "linkText" character varying(255) DEFAULT 'Einschreiben'::character varying
+);
+
+
+ALTER TABLE public."SupportLinks_translations" OWNER TO directus;
+
+--
+-- Name: SupportLinks_translations_id_seq; Type: SEQUENCE; Schema: public; Owner: directus
+--
+
+CREATE SEQUENCE public."SupportLinks_translations_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."SupportLinks_translations_id_seq" OWNER TO directus;
+
+--
+-- Name: SupportLinks_translations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: directus
+--
+
+ALTER SEQUENCE public."SupportLinks_translations_id_seq" OWNED BY public."SupportLinks_translations".id;
+
+
+--
 -- Name: city; Type: TABLE; Schema: public; Owner: directus
 --
 
@@ -1163,6 +1239,20 @@ CREATE TABLE public.languages (
 ALTER TABLE public.languages OWNER TO directus;
 
 --
+-- Name: SupportLinks id; Type: DEFAULT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public."SupportLinks" ALTER COLUMN id SET DEFAULT nextval('public."SupportLinks_id_seq"'::regclass);
+
+
+--
+-- Name: SupportLinks_translations id; Type: DEFAULT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public."SupportLinks_translations" ALTER COLUMN id SET DEFAULT nextval('public."SupportLinks_translations_id_seq"'::regclass);
+
+
+--
 -- Name: city id; Type: DEFAULT; Schema: public; Owner: directus
 --
 
@@ -1272,6 +1362,40 @@ ALTER TABLE ONLY public.event ALTER COLUMN id SET DEFAULT nextval('public.event_
 --
 
 ALTER TABLE ONLY public.event_translations ALTER COLUMN id SET DEFAULT nextval('public.event_translations_id_seq'::regclass);
+
+
+--
+-- Data for Name: SupportLinks; Type: TABLE DATA; Schema: public; Owner: directus
+--
+
+COPY public."SupportLinks" (id, status, sort, date_created, link, city) FROM stdin;
+1	draft	\N	2024-01-28 09:24:48.935+00	https://schichtplan.immerda.ch/plans/show/20faf8ea45acb5a5fd12f40d20cebe53c6ef6d62	2
+2	draft	\N	2024-01-28 09:32:51.312+00	https://turno.immerda.ch/	2
+3	draft	\N	2024-01-28 09:33:36.084+00	https://turno.immerda.ch/	2
+4	draft	\N	2024-01-28 09:35:30.573+00	https://turno.immerda.ch/	2
+5	draft	\N	2024-01-28 09:36:15.444+00	https://turno.immerda.ch/	2
+6	draft	\N	2024-01-28 09:37:29.831+00	https://turno.immerda.ch/	2
+7	draft	\N	2024-01-28 09:45:16.187+00	https://turno.immerda.ch/	2
+8	draft	\N	2024-01-28 09:45:45.607+00	https://turno.immerda.ch/	2
+\.
+
+
+--
+-- Data for Name: SupportLinks_translations; Type: TABLE DATA; Schema: public; Owner: directus
+--
+
+COPY public."SupportLinks_translations" (id, "SupportLinks_id", languages_code, title, description, "linkText") FROM stdin;
+1	1	de	Abbau 30. Juni	\N	Einschreiben
+2	1	fr	Démontage 30 juin	\N	commencez maintenant
+3	2	de	Namen aufhängen	\N	Einschreiben
+4	2	fr	\N	\N	Einschreiben
+5	3	de	Namen schreiben	\N	Einschreiben
+6	4	de	Namen lesen	\N	Einschreiben
+7	5	de	Beitrag zur vollen Stunde	\N	Einschreiben
+8	6	de	Info und Einführung	\N	Einschreiben
+9	7	de	Info für Passant*innen	\N	Einschreiben
+10	8	de	Aufbau 16. Juni 2023	\N	Einschreiben
+\.
 
 
 --
@@ -1569,6 +1693,47 @@ COPY public.directus_activity (id, action, "user", "timestamp", ip, user_agent, 
 239	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-01-27 14:24:11.688+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	f90ae2c5-682a-4fe8-8fbc-3f31a4257cf7	\N	http://localhost:8055
 240	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-01-27 14:24:11.705+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	f90ae2c5-682a-4fe8-8fbc-3f31a4257cf7	\N	http://localhost:8055
 241	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-01-27 14:27:54.446+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	239810f8-beac-4b54-b540-f84cb45ad0e6	\N	http://localhost:8055
+242	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-01-28 09:15:28.449+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	48	\N	http://localhost:8055
+243	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-01-28 09:15:28.486+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	49	\N	http://localhost:8055
+244	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-01-28 09:15:28.508+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	50	\N	http://localhost:8055
+245	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-01-28 09:15:28.52+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	51	\N	http://localhost:8055
+246	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-01-28 09:15:28.529+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_collections	SupportLinks	\N	http://localhost:8055
+247	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-01-28 09:17:19.201+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	52	\N	http://localhost:8055
+248	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-01-28 09:17:49.48+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	53	\N	http://localhost:8055
+249	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-01-28 09:17:49.725+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	54	\N	http://localhost:8055
+250	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-01-28 09:17:49.747+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_collections	SupportLinks_translations	\N	http://localhost:8055
+251	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-01-28 09:17:49.916+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	55	\N	http://localhost:8055
+252	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-01-28 09:17:50.029+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	56	\N	http://localhost:8055
+255	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-01-28 09:18:36.52+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	58	\N	http://localhost:8055
+253	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-01-28 09:18:02.156+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_collections	SupportLinks	\N	http://localhost:8055
+254	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-01-28 09:18:27.712+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	57	\N	http://localhost:8055
+256	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-01-28 09:19:26.784+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	59	\N	http://localhost:8055
+257	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-01-28 09:22:53.474+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	60	\N	http://localhost:8055
+258	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-01-28 09:24:48.953+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	SupportLinks_translations	1	\N	http://localhost:8055
+259	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-01-28 09:24:48.972+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	SupportLinks_translations	2	\N	http://localhost:8055
+260	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-01-28 09:24:48.99+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	SupportLinks	1	\N	http://localhost:8055
+261	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-01-28 09:25:19.292+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	60	\N	http://localhost:8055
+262	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-01-28 09:32:51.331+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	SupportLinks_translations	3	\N	http://localhost:8055
+263	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-01-28 09:32:51.353+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	SupportLinks_translations	4	\N	http://localhost:8055
+264	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-01-28 09:32:51.371+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	SupportLinks	2	\N	http://localhost:8055
+265	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-01-28 09:33:36.104+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	SupportLinks_translations	5	\N	http://localhost:8055
+266	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-01-28 09:33:36.122+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	SupportLinks	3	\N	http://localhost:8055
+267	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-01-28 09:35:30.588+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	SupportLinks_translations	6	\N	http://localhost:8055
+268	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-01-28 09:35:30.605+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	SupportLinks	4	\N	http://localhost:8055
+269	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-01-28 09:36:15.461+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	SupportLinks_translations	7	\N	http://localhost:8055
+270	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-01-28 09:36:15.476+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	SupportLinks	5	\N	http://localhost:8055
+271	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-01-28 09:37:29.85+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	SupportLinks_translations	8	\N	http://localhost:8055
+272	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-01-28 09:37:29.868+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	SupportLinks	6	\N	http://localhost:8055
+273	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-01-28 09:40:36.332+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_collections	SupportLinks	\N	http://localhost:8055
+274	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-01-28 09:41:27.868+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	53	\N	http://localhost:8055
+275	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-01-28 09:42:10.674+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	53	\N	http://localhost:8055
+276	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-01-28 09:42:56.06+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	59	\N	http://localhost:8055
+277	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-01-28 09:44:17.911+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	59	\N	http://localhost:8055
+278	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-01-28 09:44:28.787+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	59	\N	http://localhost:8055
+279	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-01-28 09:45:16.204+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	SupportLinks_translations	9	\N	http://localhost:8055
+280	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-01-28 09:45:16.222+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	SupportLinks	7	\N	http://localhost:8055
+281	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-01-28 09:45:45.62+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	SupportLinks_translations	10	\N	http://localhost:8055
+282	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-01-28 09:45:45.636+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	SupportLinks	8	\N	http://localhost:8055
 \.
 
 
@@ -1585,6 +1750,8 @@ city	\N	\N	{{translations.name}}	f	f	\N	\N	t	archived	draft	\N	all	\N	\N	1	\N	op
 countries	\N	\N	{{translations.name}}	f	f	\N	\N	t	archived	draft	\N	all	\N	\N	\N	\N	open	\N	f
 countries_translations	import_export	\N	{{name}}	t	f	\N	\N	t	\N	\N	\N	all	\N	\N	\N	\N	open	\N	f
 city_files	import_export	\N	\N	t	f	\N	\N	t	\N	\N	\N	all	\N	\N	\N	\N	open	\N	f
+SupportLinks_translations	import_export	\N	\N	t	f	\N	\N	t	\N	\N	\N	all	\N	\N	\N	\N	open	\N	f
+SupportLinks	\N	\N	{{translations.title}}	f	f	\N	\N	t	archived	draft	\N	all	\N	\N	\N	\N	open	\N	f
 \.
 
 
@@ -1636,8 +1803,10 @@ COPY public.directus_fields (id, collection, field, special, interface, options,
 30	city_translations	description	\N	input-rich-text-html	\N	\N	\N	f	f	7	full	\N	\N	\N	f	\N	\N	\N
 31	city_translations	sponsors	\N	input-multiline	\N	\N	\N	f	f	8	full	\N	\N	\N	f	\N	\N	\N
 41	countries_translations	name	\N	input	\N	\N	\N	f	f	4	full	\N	\N	\N	f	\N	\N	\N
+56	SupportLinks_translations	languages_code	\N	\N	\N	\N	\N	f	t	3	full	\N	\N	\N	f	\N	\N	\N
 37	countries	translations	translations	translations	{"defaultLanguage":"de"}	translations	{"template":"{{name}}","defaultLanguage":"de"}	f	f	6	full	\N	\N	\N	f	\N	\N	\N
 42	countries	cities	m2o	select-dropdown-m2o	\N	\N	\N	f	f	7	full	\N	\N	\N	f	\N	\N	\N
+57	SupportLinks_translations	title	\N	input	\N	\N	\N	f	f	4	full	\N	\N	\N	f	\N	\N	\N
 1	city	id	\N	input	\N	\N	\N	t	f	1	full	\N	\N	\N	f	\N	\N	\N
 43	event	start	\N	datetime	\N	\N	\N	f	f	8	full	\N	\N	\N	f	\N	\N	\N
 23	city	translations	translations	translations	{"defaultLanguage":"de"}	translations	{"template":"{{name}}","languageField":"code"}	f	f	7	full	\N	\N	\N	f	\N	\N	\N
@@ -1651,6 +1820,17 @@ COPY public.directus_fields (id, collection, field, special, interface, options,
 35	countries	date_created	date-created	datetime	\N	datetime	{"relative":true}	t	t	4	half	\N	\N	\N	f	\N	\N	\N
 36	countries	date_updated	date-updated	datetime	\N	datetime	{"relative":true}	t	t	5	half	\N	\N	\N	f	\N	\N	\N
 47	city_files	directus_files_id	\N	\N	\N	\N	\N	f	t	3	full	\N	\N	\N	f	\N	\N	\N
+48	SupportLinks	id	\N	input	\N	\N	\N	t	t	1	full	\N	\N	\N	f	\N	\N	\N
+49	SupportLinks	status	\N	select-dropdown	{"choices":[{"text":"$t:published","value":"published"},{"text":"$t:draft","value":"draft"},{"text":"$t:archived","value":"archived"}]}	labels	{"showAsDot":true,"choices":[{"text":"$t:published","value":"published","foreground":"#FFFFFF","background":"var(--theme--primary)"},{"text":"$t:draft","value":"draft","foreground":"#18222F","background":"#D3DAE4"},{"text":"$t:archived","value":"archived","foreground":"#FFFFFF","background":"var(--theme--warning)"}]}	f	f	2	full	\N	\N	\N	f	\N	\N	\N
+50	SupportLinks	sort	\N	input	\N	\N	\N	f	t	3	full	\N	\N	\N	f	\N	\N	\N
+51	SupportLinks	date_created	date-created	datetime	\N	datetime	{"relative":true}	t	t	4	half	\N	\N	\N	f	\N	\N	\N
+52	SupportLinks	link	\N	input	\N	\N	\N	f	f	5	full	\N	\N	\N	t	\N	\N	\N
+54	SupportLinks_translations	id	\N	\N	\N	\N	\N	f	t	1	full	\N	\N	\N	f	\N	\N	\N
+55	SupportLinks_translations	SupportLinks_id	\N	\N	\N	\N	\N	f	t	2	full	\N	\N	\N	f	\N	\N	\N
+58	SupportLinks_translations	description	\N	input-multiline	\N	\N	\N	f	f	5	full	\N	\N	\N	f	\N	\N	\N
+60	SupportLinks_translations	linkText	\N	input	\N	\N	\N	f	f	6	full	\N	\N	\N	f	\N	\N	\N
+59	SupportLinks	city	m2o	select-dropdown-m2o	\N	related-values	{"template":"{{translations.name}}"}	f	f	7	full	\N	\N	\N	t	\N	\N	\N
+53	SupportLinks	translations	translations	translations	{"languageField":"code","defaultLanguage":"de"}	translations	{"template":"{{title}}","defaultLanguage":"de","languageField":"code"}	f	f	6	full	\N	\N	\N	f	\N	\N	\N
 \.
 
 
@@ -1853,6 +2033,9 @@ COPY public.directus_relations (id, many_collection, many_field, one_collection,
 9	countries	cities	city	\N	\N	\N	\N	\N	nullify
 10	city_files	directus_files_id	directus_files	\N	\N	\N	city_id	\N	nullify
 11	city_files	city_id	city	gallery	\N	\N	directus_files_id	\N	nullify
+12	SupportLinks_translations	languages_code	languages	\N	\N	\N	SupportLinks_id	\N	nullify
+13	SupportLinks_translations	SupportLinks_id	SupportLinks	translations	\N	\N	languages_code	\N	nullify
+14	SupportLinks	city	city	\N	\N	\N	\N	\N	nullify
 \.
 
 
@@ -2069,6 +2252,47 @@ COPY public.directus_revisions (id, activity, collection, item, data, delta, par
 206	238	directus_fields	47	{"sort":3,"hidden":true,"collection":"city_files","field":"directus_files_id"}	{"sort":3,"hidden":true,"collection":"city_files","field":"directus_files_id"}	\N	\N
 207	239	directus_files	f90ae2c5-682a-4fe8-8fbc-3f31a4257cf7	{"title":"0ab7b648 1665 4eff Bdf9 2a5b86da89ae","filename_download":"0ab7b648-1665-4eff-bdf9-2a5b86da89ae.webp","type":"image/webp","storage":"local"}	{"title":"0ab7b648 1665 4eff Bdf9 2a5b86da89ae","filename_download":"0ab7b648-1665-4eff-bdf9-2a5b86da89ae.webp","type":"image/webp","storage":"local"}	\N	\N
 208	241	directus_files	239810f8-beac-4b54-b540-f84cb45ad0e6	{"title":"0ab7b648 1665 4eff Bdf9 2a5b86da89ae","filename_download":"0ab7b648-1665-4eff-bdf9-2a5b86da89ae.webp","type":"image/webp","storage":"local"}	{"title":"0ab7b648 1665 4eff Bdf9 2a5b86da89ae","filename_download":"0ab7b648-1665-4eff-bdf9-2a5b86da89ae.webp","type":"image/webp","storage":"local"}	\N	\N
+209	242	directus_fields	48	{"sort":1,"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"SupportLinks"}	{"sort":1,"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"SupportLinks"}	\N	\N
+210	243	directus_fields	49	{"sort":2,"width":"full","options":{"choices":[{"text":"$t:published","value":"published"},{"text":"$t:draft","value":"draft"},{"text":"$t:archived","value":"archived"}]},"interface":"select-dropdown","display":"labels","display_options":{"showAsDot":true,"choices":[{"text":"$t:published","value":"published","foreground":"#FFFFFF","background":"var(--theme--primary)"},{"text":"$t:draft","value":"draft","foreground":"#18222F","background":"#D3DAE4"},{"text":"$t:archived","value":"archived","foreground":"#FFFFFF","background":"var(--theme--warning)"}]},"field":"status","collection":"SupportLinks"}	{"sort":2,"width":"full","options":{"choices":[{"text":"$t:published","value":"published"},{"text":"$t:draft","value":"draft"},{"text":"$t:archived","value":"archived"}]},"interface":"select-dropdown","display":"labels","display_options":{"showAsDot":true,"choices":[{"text":"$t:published","value":"published","foreground":"#FFFFFF","background":"var(--theme--primary)"},{"text":"$t:draft","value":"draft","foreground":"#18222F","background":"#D3DAE4"},{"text":"$t:archived","value":"archived","foreground":"#FFFFFF","background":"var(--theme--warning)"}]},"field":"status","collection":"SupportLinks"}	\N	\N
+211	244	directus_fields	50	{"sort":3,"interface":"input","hidden":true,"field":"sort","collection":"SupportLinks"}	{"sort":3,"interface":"input","hidden":true,"field":"sort","collection":"SupportLinks"}	\N	\N
+212	245	directus_fields	51	{"sort":4,"special":["date-created"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_created","collection":"SupportLinks"}	{"sort":4,"special":["date-created"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_created","collection":"SupportLinks"}	\N	\N
+213	246	directus_collections	SupportLinks	{"sort_field":"sort","archive_field":"status","archive_value":"archived","unarchive_value":"draft","singleton":false,"collection":"SupportLinks"}	{"sort_field":"sort","archive_field":"status","archive_value":"archived","unarchive_value":"draft","singleton":false,"collection":"SupportLinks"}	\N	\N
+214	247	directus_fields	52	{"sort":5,"interface":"input","special":null,"required":true,"collection":"SupportLinks","field":"link"}	{"sort":5,"interface":"input","special":null,"required":true,"collection":"SupportLinks","field":"link"}	\N	\N
+215	248	directus_fields	53	{"sort":6,"interface":"translations","special":["translations"],"options":{"languageField":"code","defaultLanguage":"de"},"collection":"SupportLinks","field":"translations"}	{"sort":6,"interface":"translations","special":["translations"],"options":{"languageField":"code","defaultLanguage":"de"},"collection":"SupportLinks","field":"translations"}	\N	\N
+216	249	directus_fields	54	{"sort":1,"hidden":true,"field":"id","collection":"SupportLinks_translations"}	{"sort":1,"hidden":true,"field":"id","collection":"SupportLinks_translations"}	\N	\N
+217	250	directus_collections	SupportLinks_translations	{"hidden":true,"icon":"import_export","collection":"SupportLinks_translations"}	{"hidden":true,"icon":"import_export","collection":"SupportLinks_translations"}	\N	\N
+218	251	directus_fields	55	{"sort":2,"hidden":true,"collection":"SupportLinks_translations","field":"SupportLinks_id"}	{"sort":2,"hidden":true,"collection":"SupportLinks_translations","field":"SupportLinks_id"}	\N	\N
+219	252	directus_fields	56	{"sort":3,"hidden":true,"collection":"SupportLinks_translations","field":"languages_code"}	{"sort":3,"hidden":true,"collection":"SupportLinks_translations","field":"languages_code"}	\N	\N
+220	253	directus_collections	SupportLinks	{"collection":"SupportLinks","icon":null,"note":null,"display_template":null,"hidden":false,"singleton":false,"translations":null,"archive_field":null,"archive_app_filter":true,"archive_value":"archived","unarchive_value":"draft","sort_field":null,"accountability":"all","color":null,"item_duplication_fields":null,"sort":null,"group":null,"collapse":"open","preview_url":null,"versioning":false}	{"archive_field":null,"sort_field":null}	\N	\N
+221	254	directus_fields	57	{"sort":4,"interface":"input","special":null,"collection":"SupportLinks_translations","field":"title"}	{"sort":4,"interface":"input","special":null,"collection":"SupportLinks_translations","field":"title"}	\N	\N
+222	255	directus_fields	58	{"sort":5,"interface":"input-multiline","special":null,"collection":"SupportLinks_translations","field":"description"}	{"sort":5,"interface":"input-multiline","special":null,"collection":"SupportLinks_translations","field":"description"}	\N	\N
+223	256	directus_fields	59	{"sort":7,"interface":"select-dropdown-m2o","special":["m2o"],"collection":"SupportLinks","field":"city"}	{"sort":7,"interface":"select-dropdown-m2o","special":["m2o"],"collection":"SupportLinks","field":"city"}	\N	\N
+224	257	directus_fields	60	{"sort":6,"interface":"input","special":null,"collection":"SupportLinks_translations","field":"linkText"}	{"sort":6,"interface":"input","special":null,"collection":"SupportLinks_translations","field":"linkText"}	\N	\N
+227	260	SupportLinks	1	{"link":"https://schichtplan.immerda.ch/plans/show/20faf8ea45acb5a5fd12f40d20cebe53c6ef6d62","translations":{"create":[{"title":"Abbau 30. Juni","languages_code":{"code":"de"},"linkText":"Einschreiben"},{"title":"Démontage 30 juin","languages_code":{"code":"fr"},"linkText":"commencez maintenant"}],"update":[],"delete":[]},"city":2}	{"link":"https://schichtplan.immerda.ch/plans/show/20faf8ea45acb5a5fd12f40d20cebe53c6ef6d62","translations":{"create":[{"title":"Abbau 30. Juni","languages_code":{"code":"de"},"linkText":"Einschreiben"},{"title":"Démontage 30 juin","languages_code":{"code":"fr"},"linkText":"commencez maintenant"}],"update":[],"delete":[]},"city":2}	\N	\N
+225	258	SupportLinks_translations	1	{"title":"Abbau 30. Juni","languages_code":{"code":"de"},"linkText":"Einschreiben","SupportLinks_id":1}	{"title":"Abbau 30. Juni","languages_code":{"code":"de"},"linkText":"Einschreiben","SupportLinks_id":1}	227	\N
+226	259	SupportLinks_translations	2	{"title":"Démontage 30 juin","languages_code":{"code":"fr"},"linkText":"commencez maintenant","SupportLinks_id":1}	{"title":"Démontage 30 juin","languages_code":{"code":"fr"},"linkText":"commencez maintenant","SupportLinks_id":1}	227	\N
+228	261	directus_fields	60	{"id":60,"collection":"SupportLinks_translations","field":"linkText","special":null,"interface":"input","options":null,"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":6,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"SupportLinks_translations","field":"linkText","special":null,"interface":"input","options":null,"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":6,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	\N	\N
+231	264	SupportLinks	2	{"link":"https://turno.immerda.ch/","translations":{"create":[{"title":"Namen aufhängen","languages_code":{"code":"de"},"linkText":"Einschreiben"},{"languages_code":{"code":"fr"}}],"update":[],"delete":[]},"city":2}	{"link":"https://turno.immerda.ch/","translations":{"create":[{"title":"Namen aufhängen","languages_code":{"code":"de"},"linkText":"Einschreiben"},{"languages_code":{"code":"fr"}}],"update":[],"delete":[]},"city":2}	\N	\N
+229	262	SupportLinks_translations	3	{"title":"Namen aufhängen","languages_code":{"code":"de"},"linkText":"Einschreiben","SupportLinks_id":2}	{"title":"Namen aufhängen","languages_code":{"code":"de"},"linkText":"Einschreiben","SupportLinks_id":2}	231	\N
+230	263	SupportLinks_translations	4	{"languages_code":{"code":"fr"},"SupportLinks_id":2}	{"languages_code":{"code":"fr"},"SupportLinks_id":2}	231	\N
+233	266	SupportLinks	3	{"translations":{"create":[{"title":"Namen schreiben","languages_code":{"code":"de"},"linkText":"Einschreiben"}],"update":[],"delete":[]},"link":"https://turno.immerda.ch/","city":2}	{"translations":{"create":[{"title":"Namen schreiben","languages_code":{"code":"de"},"linkText":"Einschreiben"}],"update":[],"delete":[]},"link":"https://turno.immerda.ch/","city":2}	\N	\N
+232	265	SupportLinks_translations	5	{"title":"Namen schreiben","languages_code":{"code":"de"},"linkText":"Einschreiben","SupportLinks_id":3}	{"title":"Namen schreiben","languages_code":{"code":"de"},"linkText":"Einschreiben","SupportLinks_id":3}	233	\N
+235	268	SupportLinks	4	{"link":"https://turno.immerda.ch/","translations":{"create":[{"linkText":"Einschreiben","languages_code":{"code":"de"},"title":"Namen lesen"}],"update":[],"delete":[]},"city":2}	{"link":"https://turno.immerda.ch/","translations":{"create":[{"linkText":"Einschreiben","languages_code":{"code":"de"},"title":"Namen lesen"}],"update":[],"delete":[]},"city":2}	\N	\N
+234	267	SupportLinks_translations	6	{"linkText":"Einschreiben","languages_code":{"code":"de"},"title":"Namen lesen","SupportLinks_id":4}	{"linkText":"Einschreiben","languages_code":{"code":"de"},"title":"Namen lesen","SupportLinks_id":4}	235	\N
+237	270	SupportLinks	5	{"translations":{"create":[{"linkText":"Einschreiben","languages_code":{"code":"de"},"title":"Beitrag zur vollen Stunde"}],"update":[],"delete":[]},"link":"https://turno.immerda.ch/","city":2}	{"translations":{"create":[{"linkText":"Einschreiben","languages_code":{"code":"de"},"title":"Beitrag zur vollen Stunde"}],"update":[],"delete":[]},"link":"https://turno.immerda.ch/","city":2}	\N	\N
+236	269	SupportLinks_translations	7	{"linkText":"Einschreiben","languages_code":{"code":"de"},"title":"Beitrag zur vollen Stunde","SupportLinks_id":5}	{"linkText":"Einschreiben","languages_code":{"code":"de"},"title":"Beitrag zur vollen Stunde","SupportLinks_id":5}	237	\N
+239	272	SupportLinks	6	{"translations":{"create":[{"linkText":"Einschreiben","languages_code":{"code":"de"},"title":"Info und Einführung"}],"update":[],"delete":[]},"link":"https://turno.immerda.ch/","city":2}	{"translations":{"create":[{"linkText":"Einschreiben","languages_code":{"code":"de"},"title":"Info und Einführung"}],"update":[],"delete":[]},"link":"https://turno.immerda.ch/","city":2}	\N	\N
+238	271	SupportLinks_translations	8	{"linkText":"Einschreiben","languages_code":{"code":"de"},"title":"Info und Einführung","SupportLinks_id":6}	{"linkText":"Einschreiben","languages_code":{"code":"de"},"title":"Info und Einführung","SupportLinks_id":6}	239	\N
+240	273	directus_collections	SupportLinks	{"collection":"SupportLinks","icon":null,"note":null,"display_template":"{{translations.title}}","hidden":false,"singleton":false,"translations":null,"archive_field":null,"archive_app_filter":true,"archive_value":"archived","unarchive_value":"draft","sort_field":null,"accountability":"all","color":null,"item_duplication_fields":null,"sort":null,"group":null,"collapse":"open","preview_url":null,"versioning":false}	{"display_template":"{{translations.title}}"}	\N	\N
+241	274	directus_fields	53	{"id":53,"collection":"SupportLinks","field":"translations","special":["translations"],"interface":"translations","options":{"languageField":"code","defaultLanguage":"de"},"display":"related-values","display_options":{"template":"{{title}}"},"readonly":false,"hidden":false,"sort":6,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"SupportLinks","field":"translations","special":["translations"],"interface":"translations","options":{"languageField":"code","defaultLanguage":"de"},"display":"related-values","display_options":{"template":"{{title}}"},"readonly":false,"hidden":false,"sort":6,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	\N	\N
+242	275	directus_fields	53	{"id":53,"collection":"SupportLinks","field":"translations","special":["translations"],"interface":"translations","options":{"languageField":"code","defaultLanguage":"de"},"display":"translations","display_options":{"template":"{{title}}","defaultLanguage":"de","languageField":"code"},"readonly":false,"hidden":false,"sort":6,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"SupportLinks","field":"translations","special":["translations"],"interface":"translations","options":{"languageField":"code","defaultLanguage":"de"},"display":"translations","display_options":{"template":"{{title}}","defaultLanguage":"de","languageField":"code"},"readonly":false,"hidden":false,"sort":6,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	\N	\N
+243	276	directus_fields	59	{"id":59,"collection":"SupportLinks","field":"city","special":["m2o"],"interface":"select-dropdown-m2o","options":null,"display":"related-values","display_options":{"template":"{{translations.name}}"},"readonly":false,"hidden":false,"sort":7,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"SupportLinks","field":"city","special":["m2o"],"interface":"select-dropdown-m2o","options":null,"display":"related-values","display_options":{"template":"{{translations.name}}"},"readonly":false,"hidden":false,"sort":7,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	\N	\N
+244	277	directus_fields	59	{"id":59,"collection":"SupportLinks","field":"city","special":["m2o"],"interface":"select-dropdown-m2o","options":null,"display":"related-values","display_options":{"template":"{{translations.name}}"},"readonly":false,"hidden":false,"sort":7,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"SupportLinks","field":"city","special":["m2o"],"interface":"select-dropdown-m2o","options":null,"display":"related-values","display_options":{"template":"{{translations.name}}"},"readonly":false,"hidden":false,"sort":7,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	\N	\N
+245	278	directus_fields	59	{"id":59,"collection":"SupportLinks","field":"city","special":["m2o"],"interface":"select-dropdown-m2o","options":null,"display":"related-values","display_options":{"template":"{{translations.name}}"},"readonly":false,"hidden":false,"sort":7,"width":"full","translations":null,"note":null,"conditions":null,"required":true,"group":null,"validation":null,"validation_message":null}	{"collection":"SupportLinks","field":"city","special":["m2o"],"interface":"select-dropdown-m2o","options":null,"display":"related-values","display_options":{"template":"{{translations.name}}"},"readonly":false,"hidden":false,"sort":7,"width":"full","translations":null,"note":null,"conditions":null,"required":true,"group":null,"validation":null,"validation_message":null}	\N	\N
+247	280	SupportLinks	7	{"translations":{"create":[{"title":"Info für Passant*innen","languages_code":{"code":"de"}}],"update":[],"delete":[]},"link":"https://turno.immerda.ch/","city":2}	{"translations":{"create":[{"title":"Info für Passant*innen","languages_code":{"code":"de"}}],"update":[],"delete":[]},"link":"https://turno.immerda.ch/","city":2}	\N	\N
+246	279	SupportLinks_translations	9	{"title":"Info für Passant*innen","languages_code":{"code":"de"},"SupportLinks_id":7}	{"title":"Info für Passant*innen","languages_code":{"code":"de"},"SupportLinks_id":7}	247	\N
+249	282	SupportLinks	8	{"translations":{"create":[{"title":"Aufbau 16. Juni 2023","languages_code":{"code":"de"}}],"update":[],"delete":[]},"link":"https://turno.immerda.ch/","city":2}	{"translations":{"create":[{"title":"Aufbau 16. Juni 2023","languages_code":{"code":"de"}}],"update":[],"delete":[]},"link":"https://turno.immerda.ch/","city":2}	\N	\N
+248	281	SupportLinks_translations	10	{"title":"Aufbau 16. Juni 2023","languages_code":{"code":"de"},"SupportLinks_id":8}	{"title":"Aufbau 16. Juni 2023","languages_code":{"code":"de"},"SupportLinks_id":8}	249	\N
 \.
 
 
@@ -2087,7 +2311,7 @@ COPY public.directus_roles (id, name, icon, description, ip_access, enforce_tfa,
 --
 
 COPY public.directus_sessions (token, "user", expires, ip, user_agent, share, origin) FROM stdin;
-C8EK1LNtErT7GNOQIxofTJyzlDhFKEcPKEyFYqCFFdWX3sCNL8NR_QtXnKjaN3bw	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:23:45.608+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36	\N	http://localhost:8055
+-yi4lb2cnXWvXZRLDU9ocLmTnb6w57RKVPGdI0FW_uLFhqGywnhYbYl7o3gD7I1n	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-04 10:40:51.02+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36	\N	http://localhost:8055
 \.
 
 
@@ -2121,7 +2345,7 @@ COPY public.directus_translations (id, language, key, value) FROM stdin;
 
 COPY public.directus_users (id, first_name, last_name, email, password, location, title, description, tags, avatar, language, tfa_secret, status, role, token, last_access, last_page, provider, external_identifier, auth_data, email_notifications, appearance, theme_dark, theme_light, theme_light_overrides, theme_dark_overrides) FROM stdin;
 507e3800-1c28-454b-bcd2-766cda54a162	Basel	Admin	mirjamthomet@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$rEXyXmboQoJtEolz1V+VwQ$0mpZ0yfRnbyl8LchcvwSg1zkRSH516jNbFYv2TCGJ0s	\N	\N	\N	\N	\N	\N	\N	active	68c58399-f145-49aa-9db1-ee94c793b427	\N	2024-01-20 14:42:17.91+00	/content/city	default	\N	\N	t	\N	\N	\N	\N	\N
-db513aee-cd3a-47a9-95e5-a98f1cc92d13	Admin	User	gannonline90@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$8mOx4/9GjUaVmWJRCxhc1Q$O2PmAQbgGlqxaNAnsgyyJRQxPl+9HeBKZ5z7JMZjqbo	\N	\N	\N	\N	\N	\N	\N	active	878f0264-16f3-4a54-a79e-82c27313bacc	\N	2024-01-27 14:23:45.619+00	/content/city/1	default	\N	\N	t	\N	\N	\N	\N	\N
+db513aee-cd3a-47a9-95e5-a98f1cc92d13	Admin	User	gannonline90@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$8mOx4/9GjUaVmWJRCxhc1Q$O2PmAQbgGlqxaNAnsgyyJRQxPl+9HeBKZ5z7JMZjqbo	\N	\N	\N	\N	\N	\N	\N	active	878f0264-16f3-4a54-a79e-82c27313bacc	\N	2024-01-28 10:40:51.029+00	/settings/data-model	default	\N	\N	t	\N	\N	\N	\N	\N
 \.
 
 
@@ -2174,6 +2398,20 @@ fr	French
 
 
 --
+-- Name: SupportLinks_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
+--
+
+SELECT pg_catalog.setval('public."SupportLinks_id_seq"', 8, true);
+
+
+--
+-- Name: SupportLinks_translations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
+--
+
+SELECT pg_catalog.setval('public."SupportLinks_translations_id_seq"', 10, true);
+
+
+--
 -- Name: city_files_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
 --
 
@@ -2212,14 +2450,14 @@ SELECT pg_catalog.setval('public.countries_translations_id_seq', 2, true);
 -- Name: directus_activity_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
 --
 
-SELECT pg_catalog.setval('public.directus_activity_id_seq', 241, true);
+SELECT pg_catalog.setval('public.directus_activity_id_seq', 282, true);
 
 
 --
 -- Name: directus_fields_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
 --
 
-SELECT pg_catalog.setval('public.directus_fields_id_seq', 47, true);
+SELECT pg_catalog.setval('public.directus_fields_id_seq', 60, true);
 
 
 --
@@ -2247,14 +2485,14 @@ SELECT pg_catalog.setval('public.directus_presets_id_seq', 3, true);
 -- Name: directus_relations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
 --
 
-SELECT pg_catalog.setval('public.directus_relations_id_seq', 11, true);
+SELECT pg_catalog.setval('public.directus_relations_id_seq', 14, true);
 
 
 --
 -- Name: directus_revisions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
 --
 
-SELECT pg_catalog.setval('public.directus_revisions_id_seq', 208, true);
+SELECT pg_catalog.setval('public.directus_revisions_id_seq', 249, true);
 
 
 --
@@ -2283,6 +2521,22 @@ SELECT pg_catalog.setval('public.event_id_seq', 3, true);
 --
 
 SELECT pg_catalog.setval('public.event_translations_id_seq', 4, true);
+
+
+--
+-- Name: SupportLinks SupportLinks_pkey; Type: CONSTRAINT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public."SupportLinks"
+    ADD CONSTRAINT "SupportLinks_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: SupportLinks_translations SupportLinks_translations_pkey; Type: CONSTRAINT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public."SupportLinks_translations"
+    ADD CONSTRAINT "SupportLinks_translations_pkey" PRIMARY KEY (id);
 
 
 --
@@ -2955,6 +3209,30 @@ ALTER TABLE ONLY public.event_translations
 
 ALTER TABLE ONLY public.event_translations
     ADD CONSTRAINT event_translations_languages_code_foreign FOREIGN KEY (languages_code) REFERENCES public.languages(code) ON DELETE SET NULL;
+
+
+--
+-- Name: SupportLinks supportlinks_city_foreign; Type: FK CONSTRAINT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public."SupportLinks"
+    ADD CONSTRAINT supportlinks_city_foreign FOREIGN KEY (city) REFERENCES public.city(id);
+
+
+--
+-- Name: SupportLinks_translations supportlinks_translations_languages_code_foreign; Type: FK CONSTRAINT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public."SupportLinks_translations"
+    ADD CONSTRAINT supportlinks_translations_languages_code_foreign FOREIGN KEY (languages_code) REFERENCES public.languages(code) ON DELETE SET NULL;
+
+
+--
+-- Name: SupportLinks_translations supportlinks_translations_supportlinks_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public."SupportLinks_translations"
+    ADD CONSTRAINT supportlinks_translations_supportlinks_id_foreign FOREIGN KEY ("SupportLinks_id") REFERENCES public."SupportLinks"(id) ON DELETE SET NULL;
 
 
 --
