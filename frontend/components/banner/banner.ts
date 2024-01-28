@@ -12,7 +12,7 @@ export class Banner extends DefaultComponent {
     .header-wrapper {
         background-image: url("/bnn-banner.webp");
         height: 400px;
-        padding: 0px 15%;
+        padding: 0px var(--content-padding);
     }
     h1 {
         margin-top: 0;
