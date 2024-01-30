@@ -13,7 +13,7 @@ export class EventList extends DefaultComponent {
     render() {
         console.log(this.events)
         return html`
-            <bnn-content-container>
+            <bnn-content-container .backgroundColor="${'grey'}">
                 <h2>Veranstaltungen</h2>
                 <div class="events">
                 ${this.events?.map(e => this.renderEvent(e))}
@@ -26,7 +26,7 @@ export class EventList extends DefaultComponent {
         console.log(event)
         return html`
             <h3>${event.name}</h3>
-            <p>${event.description}</p>
+            <p .innerHTML="${event.description}"></p>
         `
     }
 
