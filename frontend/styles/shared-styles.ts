@@ -5,6 +5,9 @@ export default css`
     --color-primary: #940d0d;
     --color-highlight: #efe9b0;
     --color-grey: #f3f3f3;
+    --color-secondary: #121351;
+    --color-white: white;
+    --color-black: black;
     --content-padding: 10%;
     --font-size-s: 16px;
     --font-size-m: 20px;
