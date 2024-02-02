@@ -13,20 +13,23 @@ export class ContentContainer extends DefaultComponent {
     }
 
     @property()
-    backgroundColor:  'grey' | 'highlight' | undefined
+    backgroundColor:  'grey' | 'highlight' | 'blue' | undefined
 
-    get backgroundColorClass() {
+    get colorStyles() {
         if(this.backgroundColor === 'grey') {
-            return '--color-grey'
+            return `background-color: var(--color-grey)`
         } 
         if(this.backgroundColor === 'highlight') {
-            return '--color-highlight'
+            return `background-color: var(--color-highlight)`
+        }
+        if(this.backgroundColor === 'blue') {
+            return `background-color: var(--color-secondary);`
         }
     }
 
     render() {
         return html`
-            <div class="container" .style="${this.backgroundColor?.length ? `background-color: var(${this.backgroundColorClass})` : ''}" >
+            <div class="container" .style="${this.colorStyles?.length ? this.colorStyles : ''}" >
                 <slot></slot>
             </div>
         `
