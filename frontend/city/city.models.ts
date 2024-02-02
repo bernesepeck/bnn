@@ -17,12 +17,24 @@ export interface EventModel {
     date_updated: string;
     teaser: string | null;
     city: number;
-    start: string | null; // Assuming it's a string, adjust if it's a different type
+    start: string | null;
     languages_code: string;
     name: string;
     description: string | null;
     customDates: string | null;
     location: string | null;
+}
+export interface CustomSectionModel {
+    id: number;
+    status: string;
+    sort: number | null;
+    date_updated: string;
+    link: string;
+    city: number;
+    languages_code: string;
+    title: string;
+    description: string | null;
+    linkText: string;
 }
 export interface CityModel {
     id: number;
@@ -33,6 +45,7 @@ export interface CityModel {
     page_title: string | null;
     description: string | null;
     sponsors: string | null;
-    events: EventModel[]; // Array of EventModel
-    supportlinks: SupportLinkModel[]; // Array of SupportLinkModel
+    events: EventModel[];
+    supportlinks: SupportLinkModel[];
+    customSections: CustomSectionModel[];
 }

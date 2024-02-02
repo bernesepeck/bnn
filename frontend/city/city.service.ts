@@ -27,6 +27,8 @@ export class CityService {
                 'events.translations.*',
                 'supportlinks.*',
                 'supportlinks.translations.*',
+                'customSections.*',
+                'customSections.translations.*',
             ],
             deep: {
                 ...this.langFilter,
@@ -54,22 +56,25 @@ export class CityService {
     }
 
     convertToCity(city: any): CityModel {
-        // Handle missing translations
+        console.log("FetchedData", city)
+        // Flatten city translations
         const translationObj = city.translations?.[0] || {};
-    
-        // Flatten events translations
-        const events = city.events?.map((event: any) => ({
-            ...event,
-            ...event.translations?.[0]
+
+        // Flatten translations of related models
+        const events = city.events?.map((item: any) => ({
+            ...item,
+            ...item.translations?.[0]
         })) || [];
-    
-        // Flatten supportlinks translations
-        const supportlinks = city.supportlinks?.map((link: any) => ({
-            ...link,
-            ...link.translations?.[0]
+        const supportlinks = city.supportlinks?.map((item: any) => ({
+            ...item,
+            ...item.translations?.[0]
         })) || [];
-    
-        return {
+        const customSections = city.customSections?.map((item: any) => ({
+            ...item,
+            ...item.translations?.[0]
+        })) || [];
+
+        const cityObj = {
             id: city.id || null,
             status: city.status || null,
             date_updated: city.date_updated || null,
@@ -79,8 +84,10 @@ export class CityService {
             description: translationObj.description || '',
             sponsors: translationObj.sponsors || '',
             events: events,
-            supportlinks: supportlinks
-        };
+            supportlinks: supportlinks,
+            customSections: customSections
+        }
+        console.log("ParsedCityObj", cityObj)
+        return cityObj;
     }
 }
-
