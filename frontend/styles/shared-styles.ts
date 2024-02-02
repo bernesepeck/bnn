@@ -3,6 +3,8 @@ import {css} from 'lit';
 export default css`
     :host {
         --color-primary: #940D0D;
+        --color-highlight: #efe9b0;
+        --color-grey: #e3e3e3;
         --content-padding: 10%;
     }
     * {
