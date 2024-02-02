@@ -48,4 +48,5 @@ export interface CityModel {
     events: EventModel[];
     supportlinks: SupportLinkModel[];
     customSections: CustomSectionModel[];
+    [key: string]: any;
 }
