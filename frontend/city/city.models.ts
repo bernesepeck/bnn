@@ -50,3 +50,7 @@ export interface CityModel {
     customSections: CustomSectionModel[];
     [key: string]: any;
 }
+export interface GalleryModel {
+    id: number;
+    directus_files_id: string;
+}

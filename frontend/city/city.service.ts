@@ -22,6 +22,7 @@ export class CityService {
         const fields = [
             '*',
             'translations.*',
+            'gallery.*',
             ...this.modelsToTranslate.map(model => `${model}.*`),
             ...this.modelsToTranslate.map(model => `${model}.translations.*`),
         ];
@@ -68,6 +69,7 @@ export class CityService {
             id: city.id || null,
             status: city.status || null,
             date_updated: city.date_updated || null,
+            gallery: city.gallery || null,
             languages_code: translationObj.languages_code || null,
             name: translationObj.name || '',
             page_title: translationObj.page_title || '',
