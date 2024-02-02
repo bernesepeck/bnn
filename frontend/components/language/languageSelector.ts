@@ -2,7 +2,7 @@ import { html, css } from 'lit';
 import { customElement, state } from 'lit/decorators.js';
 import { DefaultComponent } from '../default.component';
 
-@customElement('language-selector')
+@customElement('bnn-language-selector')
 export class LanguageSelector extends DefaultComponent {
     @state()
     private language: string;
