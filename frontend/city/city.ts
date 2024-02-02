@@ -9,6 +9,7 @@ import { DefaultComponent } from "../components/default.component";
 import "../components/content-container/content-container";
 import "./components/event-list/event-list"
 import "./components/support-links-list/support-links-list"
+import "./components/custom-section-list/custom-section-list"
 import "../components/footer/footer"
 
 @customElement("bnn-city")
@@ -68,6 +69,7 @@ export class City extends DefaultComponent {
         <p .innerHTML="${this.city?.description}"></p>
       </bnn-content-container>
       <bnn-event-list .events="${this.city?.events}"></bnn-event-list>
+      <bnn-custom-section-list .customSections="${this.city?.customSections}"></bnn-custom-section-list>
       <bnn-support-link-list .supportLinks="${this.city?.supportlinks}"></bnn-support-link-list>
       <bnn-footer></bnn-footer>
     `;

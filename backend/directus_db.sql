@@ -179,6 +179,83 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
+-- Name: CustomSections; Type: TABLE; Schema: public; Owner: directus
+--
+
+CREATE TABLE public."CustomSections" (
+    id integer NOT NULL,
+    status character varying(255) DEFAULT 'draft'::character varying NOT NULL,
+    sort integer,
+    date_created timestamp with time zone,
+    date_updated timestamp with time zone,
+    link character varying(255),
+    city integer
+);
+
+
+ALTER TABLE public."CustomSections" OWNER TO directus;
+
+--
+-- Name: CustomSections_id_seq; Type: SEQUENCE; Schema: public; Owner: directus
+--
+
+CREATE SEQUENCE public."CustomSections_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."CustomSections_id_seq" OWNER TO directus;
+
+--
+-- Name: CustomSections_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: directus
+--
+
+ALTER SEQUENCE public."CustomSections_id_seq" OWNED BY public."CustomSections".id;
+
+
+--
+-- Name: CustomSections_translations; Type: TABLE; Schema: public; Owner: directus
+--
+
+CREATE TABLE public."CustomSections_translations" (
+    id integer NOT NULL,
+    "CustomSections_id" integer,
+    languages_code character varying(255),
+    title character varying(255),
+    description text,
+    "linkText" character varying(255)
+);
+
+
+ALTER TABLE public."CustomSections_translations" OWNER TO directus;
+
+--
+-- Name: CustomSections_translations_id_seq; Type: SEQUENCE; Schema: public; Owner: directus
+--
+
+CREATE SEQUENCE public."CustomSections_translations_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."CustomSections_translations_id_seq" OWNER TO directus;
+
+--
+-- Name: CustomSections_translations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: directus
+--
+
+ALTER SEQUENCE public."CustomSections_translations_id_seq" OWNED BY public."CustomSections_translations".id;
+
+
+--
 -- Name: SupportLinks; Type: TABLE; Schema: public; Owner: directus
 --
 
@@ -1241,6 +1318,20 @@ CREATE TABLE public.languages (
 ALTER TABLE public.languages OWNER TO directus;
 
 --
+-- Name: CustomSections id; Type: DEFAULT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public."CustomSections" ALTER COLUMN id SET DEFAULT nextval('public."CustomSections_id_seq"'::regclass);
+
+
+--
+-- Name: CustomSections_translations id; Type: DEFAULT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public."CustomSections_translations" ALTER COLUMN id SET DEFAULT nextval('public."CustomSections_translations_id_seq"'::regclass);
+
+
+--
 -- Name: SupportLinks id; Type: DEFAULT; Schema: public; Owner: directus
 --
 
@@ -1364,6 +1455,25 @@ ALTER TABLE ONLY public.event ALTER COLUMN id SET DEFAULT nextval('public.event_
 --
 
 ALTER TABLE ONLY public.event_translations ALTER COLUMN id SET DEFAULT nextval('public.event_translations_id_seq'::regclass);
+
+
+--
+-- Data for Name: CustomSections; Type: TABLE DATA; Schema: public; Owner: directus
+--
+
+COPY public."CustomSections" (id, status, sort, date_created, date_updated, link, city) FROM stdin;
+1	draft	\N	2024-02-02 10:24:56.021+00	2024-02-02 10:25:53.9+00	https://www.beimnamennennen.ch/fr/_files/ugd/760542_d48074e289cc44c780c31302e44e150e.pdf	2
+\.
+
+
+--
+-- Data for Name: CustomSections_translations; Type: TABLE DATA; Schema: public; Owner: directus
+--
+
+COPY public."CustomSections_translations" (id, "CustomSections_id", languages_code, title, description, "linkText") FROM stdin;
+1	1	de	 Petition im Rahmen der Aktion „Beim Namen nennen“ 2023: Wiederaufnahme des Resettlement-Programms der Schweiz ermöglichen	<p>Im Juni werden in zehn verschiedenen Schweizer St&auml;dten die Namen von &uuml;ber 51&lsquo;000 M&auml;nner, Frauen und Kinder gelesen und aufgeschrieben, die auf der Flucht nach Europa ums Leben gekommen sind. Die europ&auml;ische und schweizerische Migrationspolitik ist mitverantwortlich f&uuml;r dieses entsetzliche Sterben an den Grenzen Europas. Es braucht sichere Fluchtwege.<br>Als erstes sollte die Schweiz so schnell wie m&ouml;glich, das von BR Karin Keller-Suter vor Weihnachten 2022 ausgesetzte Resettlement-Programm wieder aufnehmen. In diesem Programm nimmt die Schweiz vom UNHCR anerkannte Fl&uuml;chtlinge zum Beispiel aus den Lagern im Nahen Osten direkt in die Schweiz auf. Der gef&auml;hrliche Fluchtweg entf&auml;llt.<br>Die Schweiz hat sich verpflichtet bis Ende 2023 insgesamt 1600 besonders verletzliche Personen aufzunehmen (zum Beispiel: Frauen, Kinder und UMA, die Opfer von Folter, sexueller Gewalt, Menschenhandel und Sklaverei sind oder unter der Bedrohung solcher Gewalttaten gelebt haben.) Noch immer warten 800 Menschen sehnlichst darauf, aus den<br>prek&auml;ren Verh&auml;ltnissen direkt in die Schweiz aufgenommen zu werden.<br>Nun m&ouml;chte der Bundesrat die Einreisen wieder erm&ouml;glichen. Er ist dabei aber auf die Unterst&uuml;tzung der Kantone angewiesen.<br>Wir bitten den Regierungsrat des Kantons Bern: Senden Sie ein positives Signal an den Bundesrat und sichern Sie die Bereitschaft des Kantons zu, die Menschen, die dem Kanton Bern zugeteilt w&uuml;rden, aufzunehmen mit allem, was dazu geh&ouml;rt.<br>Viele Freiwillige in NGOs, in den Kirchen und auch die St&auml;dte bieten Hand, um bei der Betreuung, Unterbringung und Integration dieser Menschen zu helfen.</p>	Petition unterschreiben
+2	1	fr	Pétition dans le cadre de l'action "Appeler un chat un chat" 2023 : Permettre la reprise du programme de réinstallation de la Suisse	<p>En juin, dans dix villes suisses diff&eacute;rentes, les noms de plus de 51'000 hommes, femmes et enfants qui ont perdu la vie en fuyant vers l'Europe seront lus et &eacute;crits. La politique migratoire europ&eacute;enne et suisse est en partie responsable de cette mort horrible aux fronti&egrave;res de l'Europe. Il faut des voies de fuite s&ucirc;res.<br>En premier lieu, la Suisse devrait reprendre le plus rapidement possible le programme de r&eacute;installation suspendu par la conseill&egrave;re f&eacute;d&eacute;rale Karin Keller-Suter avant No&euml;l 2022. Dans le cadre de ce programme, la Suisse accueille directement en Suisse des r&eacute;fugi&eacute;s reconnus par le HCR, par exemple en provenance des camps du Proche-Orient. La voie de fuite dangereuse est ainsi supprim&eacute;e.<br>La Suisse s'est engag&eacute;e &agrave; accueillir au total 1600 personnes particuli&egrave;rement vuln&eacute;rables d'ici fin 2023 (par exemple : des femmes, des enfants et des MNA qui sont victimes de torture, de violences sexuelles, de la traite des &ecirc;tres humains et de l'esclavage ou qui ont v&eacute;cu sous la menace de tels actes de violence). Aujourd'hui encore, 800 personnes attendent avec impatience de pouvoir sortir des<br>&ecirc;tre admises directement en Suisse dans des conditions pr&eacute;caires.<br>Le Conseil f&eacute;d&eacute;ral souhaite &agrave; pr&eacute;sent permettre &agrave; nouveau ces entr&eacute;es. Mais pour cela, il a besoin du soutien des cantons.<br>Nous demandons au Conseil d'Etat du canton de Berne : envoyez un signal positif au Conseil f&eacute;d&eacute;ral et assurez la disponibilit&eacute; du canton &agrave; accueillir les personnes qui seraient attribu&eacute;es au canton de Berne, avec tout ce que cela implique.<br>De nombreux b&eacute;n&eacute;voles dans les ONG, les &eacute;glises et d'autres organisations sont pr&ecirc;ts &agrave; s'engager.</p>	Signer la pétition
+\.
 
 
 --
@@ -1774,14 +1884,45 @@ COPY public.directus_activity (id, action, "user", "timestamp", ip, user_agent, 
 318	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 09:12:22.264+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	65	\N	http://localhost:8055
 319	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 09:13:19.252+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	66	\N	http://localhost:8055
 321	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 09:22:24.369+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	68	\N	http://localhost:8055
+329	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 09:52:05.882+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	62	\N	http://localhost:8055
+330	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 10:12:39.706+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	69	\N	http://localhost:8055
+331	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 10:12:39.739+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	70	\N	http://localhost:8055
+332	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 10:12:39.764+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	71	\N	http://localhost:8055
+333	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 10:12:39.789+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	72	\N	http://localhost:8055
+334	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 10:12:39.8+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	73	\N	http://localhost:8055
+335	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 10:12:39.809+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_collections	CustomSections	\N	http://localhost:8055
+355	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 10:39:59.78+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	83	\N	http://localhost:8055
+356	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 10:40:29.852+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	83	\N	http://localhost:8055
 320	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 09:16:59.552+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	67	\N	http://localhost:8055
+336	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 10:14:10.082+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	74	\N	http://localhost:8055
+338	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 10:14:44.147+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	76	\N	http://localhost:8055
+339	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 10:14:44.17+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_collections	CustomSections_translations	\N	http://localhost:8055
+340	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 10:14:44.354+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	77	\N	http://localhost:8055
+342	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 10:14:55.426+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	79	\N	http://localhost:8055
+357	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 10:41:29.211+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	83	\N	http://localhost:8055
 322	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 09:27:55.31+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	5556b0ea-7025-40a9-aaaf-b55713639b87	\N	http://localhost:8055
+337	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 10:14:43.89+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	75	\N	http://localhost:8055
+341	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 10:14:44.588+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	78	\N	http://localhost:8055
+343	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 10:15:12.988+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	80	\N	http://localhost:8055
+345	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 10:16:43.359+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_collections	CustomSections	\N	http://localhost:8055
+358	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 10:45:58.899+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_permissions	50	\N	http://localhost:8055
+359	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 10:46:00.127+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_permissions	51	\N	http://localhost:8055
 323	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 09:28:54.057+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	event_translations	5	\N	http://localhost:8055
 324	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 09:28:54.066+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	event_translations	6	\N	http://localhost:8055
 325	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 09:28:54.072+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	event	4	\N	http://localhost:8055
+344	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 10:15:28.247+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	81	\N	http://localhost:8055
 326	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 09:37:27.11+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	event_translations	7	\N	http://localhost:8055
 327	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 09:37:27.12+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	event_translations	8	\N	http://localhost:8055
 328	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 09:37:27.129+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	event	5	\N	http://localhost:8055
+346	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 10:19:32.535+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	82	\N	http://localhost:8055
+347	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 10:20:00.809+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	83	\N	http://localhost:8055
+348	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 10:24:56.028+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	CustomSections_translations	1	\N	http://localhost:8055
+349	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 10:24:56.036+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	CustomSections_translations	2	\N	http://localhost:8055
+350	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 10:24:56.044+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	CustomSections	1	\N	http://localhost:8055
+351	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 10:25:16.723+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	84	\N	http://localhost:8055
+352	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 10:25:53.92+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	CustomSections_translations	1	\N	http://localhost:8055
+353	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 10:25:53.951+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	CustomSections_translations	2	\N	http://localhost:8055
+354	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 10:25:53.976+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	CustomSections	1	\N	http://localhost:8055
 \.
 
 
@@ -1800,6 +1941,8 @@ countries_translations	import_export	\N	{{name}}	t	f	\N	\N	t	\N	\N	\N	all	\N	\N	
 city_files	import_export	\N	\N	t	f	\N	\N	t	\N	\N	\N	all	\N	\N	\N	\N	open	\N	f
 SupportLinks_translations	import_export	\N	\N	t	f	\N	\N	t	\N	\N	\N	all	\N	\N	\N	\N	open	\N	f
 SupportLinks	\N	\N	{{translations.title}}	f	f	\N	\N	t	archived	draft	\N	all	\N	\N	\N	\N	open	\N	f
+CustomSections_translations	import_export	\N	\N	t	f	\N	\N	t	\N	\N	\N	all	\N	\N	\N	\N	open	\N	f
+CustomSections	\N	\N	\N	f	f	\N	\N	t	archived	draft	\N	all	\N	\N	\N	\N	open	\N	f
 \.
 
 
@@ -1876,13 +2019,28 @@ COPY public.directus_fields (id, collection, field, special, interface, options,
 55	SupportLinks_translations	SupportLinks_id	\N	\N	\N	\N	\N	f	t	2	full	\N	\N	\N	f	\N	\N	\N
 58	SupportLinks_translations	description	\N	input-multiline	\N	\N	\N	f	f	5	full	\N	\N	\N	f	\N	\N	\N
 60	SupportLinks_translations	linkText	\N	input	\N	\N	\N	f	f	6	full	\N	\N	\N	f	\N	\N	\N
-62	SupportLinks	city	m2o	select-dropdown-m2o	\N	\N	\N	f	f	7	full	\N	\N	\N	f	\N	\N	\N
 53	SupportLinks	translations	translations	translations	{"languageField":"code","defaultLanguage":"de"}	translations	{"template":"{{title}}","defaultLanguage":"de","languageField":"code"}	f	f	6	full	\N	\N	\N	f	\N	\N	\N
 63	city	supportlinks	o2m	list-o2m	\N	\N	\N	f	f	9	full	\N	\N	\N	f	\N	\N	\N
 64	city	events	o2m	list-o2m	\N	\N	\N	f	f	10	full	\N	\N	\N	f	\N	\N	\N
 66	event	link	\N	input	\N	\N	\N	f	f	10	full	\N	\N	\N	f	\N	\N	\N
 67	event_translations	location	\N	input	\N	\N	\N	f	f	6	full	\N	\N	\N	f	\N	\N	\N
 68	event_translations	customDates	\N	input-multiline	\N	\N	\N	f	f	7	full	\N	\N	\N	t	\N	\N	\N
+62	SupportLinks	city	m2o	select-dropdown-m2o	\N	related-values	{"template":"{{translations.name}}"}	f	f	7	full	\N	\N	\N	f	\N	\N	\N
+69	CustomSections	id	\N	input	\N	\N	\N	t	t	1	full	\N	\N	\N	f	\N	\N	\N
+70	CustomSections	status	\N	select-dropdown	{"choices":[{"text":"$t:published","value":"published"},{"text":"$t:draft","value":"draft"},{"text":"$t:archived","value":"archived"}]}	labels	{"showAsDot":true,"choices":[{"text":"$t:published","value":"published","foreground":"#FFFFFF","background":"var(--theme--primary)"},{"text":"$t:draft","value":"draft","foreground":"#18222F","background":"#D3DAE4"},{"text":"$t:archived","value":"archived","foreground":"#FFFFFF","background":"var(--theme--warning)"}]}	f	f	2	full	\N	\N	\N	f	\N	\N	\N
+71	CustomSections	sort	\N	input	\N	\N	\N	f	t	3	full	\N	\N	\N	f	\N	\N	\N
+72	CustomSections	date_created	date-created	datetime	\N	datetime	{"relative":true}	t	t	4	half	\N	\N	\N	f	\N	\N	\N
+73	CustomSections	date_updated	date-updated	datetime	\N	datetime	{"relative":true}	t	t	5	half	\N	\N	\N	f	\N	\N	\N
+75	CustomSections	translations	translations	translations	{"languageField":"code","defaultLanguage":"de"}	\N	\N	f	f	6	full	\N	\N	\N	f	\N	\N	\N
+76	CustomSections_translations	id	\N	\N	\N	\N	\N	f	t	1	full	\N	\N	\N	f	\N	\N	\N
+77	CustomSections_translations	CustomSections_id	\N	\N	\N	\N	\N	f	t	2	full	\N	\N	\N	f	\N	\N	\N
+78	CustomSections_translations	languages_code	\N	\N	\N	\N	\N	f	t	3	full	\N	\N	\N	f	\N	\N	\N
+79	CustomSections_translations	title	\N	input	\N	\N	\N	f	f	4	full	\N	\N	\N	f	\N	\N	\N
+80	CustomSections_translations	description	\N	input-rich-text-html	\N	\N	\N	f	f	5	full	\N	\N	\N	f	\N	\N	\N
+81	CustomSections	link	\N	input	\N	\N	\N	f	f	7	full	\N	\N	\N	f	\N	\N	\N
+82	CustomSections	city	m2o	select-dropdown-m2o	\N	\N	\N	f	f	8	full	\N	\N	\N	f	\N	\N	\N
+84	CustomSections_translations	linkText	\N	input	\N	\N	\N	f	f	6	full	\N	\N	\N	f	\N	\N	\N
+83	city	customSections	o2m	list-o2m	{"template":"{{translations.title}}"}	related-values	{"template":"{{translations.title}}"}	f	f	11	full	\N	\N	\N	f	\N	\N	\N
 \.
 
 
@@ -2059,6 +2217,8 @@ COPY public.directus_permissions (id, role, collection, action, permissions, val
 47	\N	SupportLinks	read	{}	{}	\N	*
 48	\N	SupportLinks_translations	read	{}	{}	\N	*
 49	\N	city_files	read	{}	{}	\N	*
+50	\N	CustomSections	read	{}	{}	\N	*
+51	\N	CustomSections_translations	read	{}	{}	\N	*
 \.
 
 
@@ -2070,6 +2230,7 @@ COPY public.directus_presets (id, bookmark, "user", role, collection, search, la
 2	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	\N	event	\N	\N	{"tabular":{"page":1}}	\N	10	\N	bookmark	\N
 1	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	\N	languages	\N	\N	{"tabular":{"page":1}}	\N	\N	\N	bookmark	\N
 3	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	\N	countries	\N	\N	{"tabular":{"page":1}}	\N	\N	\N	bookmark	\N
+4	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	\N	SupportLinks	\N	\N	{"tabular":{"fields":["city","link","status","translations"]}}	{"tabular":{"widths":{"link":250}}}	\N	\N	bookmark	\N
 \.
 
 
@@ -2092,6 +2253,9 @@ COPY public.directus_relations (id, many_collection, many_field, one_collection,
 13	SupportLinks_translations	SupportLinks_id	SupportLinks	translations	\N	\N	languages_code	\N	nullify
 15	SupportLinks	city	city	supportlinks	\N	\N	\N	\N	nullify
 2	event	city	city	events	\N	\N	\N	\N	nullify
+16	CustomSections_translations	languages_code	languages	\N	\N	\N	CustomSections_id	\N	nullify
+17	CustomSections_translations	CustomSections_id	CustomSections	translations	\N	\N	languages_code	\N	nullify
+18	CustomSections	city	city	customSections	\N	\N	\N	\N	nullify
 \.
 
 
@@ -2244,6 +2408,7 @@ COPY public.directus_revisions (id, activity, collection, item, data, delta, par
 139	171	directus_fields	14	{"id":14,"collection":"event","field":"city","special":["m2o"],"interface":"select-dropdown-m2o","options":{"template":"{{name}}"},"display":"related-values","display_options":{"template":"{{name}}"},"readonly":false,"hidden":false,"sort":1,"width":"full","translations":null,"note":null,"conditions":null,"required":true,"group":null,"validation":null,"validation_message":null}	{"collection":"event","field":"city","sort":1,"group":null}	\N	\N
 140	172	directus_fields	7	{"id":7,"collection":"event","field":"id","special":null,"interface":"input","options":null,"display":null,"display_options":null,"readonly":true,"hidden":false,"sort":2,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"event","field":"id","sort":2,"group":null}	\N	\N
 141	173	directus_fields	17	{"id":17,"collection":"event","field":"translations","special":["translations"],"interface":"translations","options":{"defaultLanguage":"de","languageField":"name"},"display":"translations","display_options":{"template":"{{name}}"},"readonly":false,"hidden":false,"sort":3,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"event","field":"translations","sort":3,"group":null}	\N	\N
+311	344	directus_fields	81	{"sort":7,"interface":"input","special":null,"collection":"CustomSections","field":"link"}	{"sort":7,"interface":"input","special":null,"collection":"CustomSections","field":"link"}	\N	\N
 142	174	directus_fields	8	{"id":8,"collection":"event","field":"status","special":null,"interface":"select-dropdown","options":{"choices":[{"text":"$t:published","value":"published"},{"text":"$t:draft","value":"draft"},{"text":"$t:archived","value":"archived"}]},"display":"labels","display_options":{"showAsDot":true,"choices":[{"text":"$t:published","value":"published","foreground":"#FFFFFF","background":"var(--theme--primary)"},{"text":"$t:draft","value":"draft","foreground":"#18222F","background":"#D3DAE4"},{"text":"$t:archived","value":"archived","foreground":"#FFFFFF","background":"var(--theme--warning)"}]},"readonly":false,"hidden":false,"sort":4,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"event","field":"status","sort":4,"group":null}	\N	\N
 143	175	directus_fields	9	{"id":9,"collection":"event","field":"sort","special":null,"interface":"input","options":null,"display":null,"display_options":null,"readonly":false,"hidden":true,"sort":5,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"event","field":"sort","sort":5,"group":null}	\N	\N
 144	176	directus_fields	10	{"id":10,"collection":"event","field":"date_updated","special":["date-updated"],"interface":"datetime","options":null,"display":"datetime","display_options":{"relative":true},"readonly":true,"hidden":true,"sort":6,"width":"half","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"event","field":"date_updated","sort":6,"group":null}	\N	\N
@@ -2390,11 +2555,41 @@ COPY public.directus_revisions (id, activity, collection, item, data, delta, par
 295	328	event	5	{"translations":{"create":[{"location":"Bovetstrasse 1, 3007 Bern","languages_code":{"code":"de"},"name":"Gottesdienste und Gedenkaktionen auf Italienisch in der Missione Cattolica di Lingua Italiana","description":"<p>&lt;p class=\\"font_8\\"&gt;Sabato, 17 giugno 2023 Ore 18.30 Santa Messa Ore 19.30 - 22.00 lettura dei nomi e adorazione Domenica 18 giugno 2023 Ore 9.30 - 10.45 lettura dei nomi e adorazione Ore 11.00 Santa Messa Affissione dei nomi dal 17-26 giugno 2023&lt;/p&gt;</p>","customDates":"2023-06-17"},{"location":"Bovetstrasse 1, 3007 Bern","languages_code":{"code":"fr"},"name":"Services religieux et actions commémoratives en italien à la Missione Cattolica di Lingua Italiana","description":"<p>&lt;p class=\\"font_8\\"&gt;Sabato, 17 giugno 2023 Ore 18.30 Santa Messa Ore 19.30 - 22.00 lettura dei nomi e adorazione Domenica 18 giugno 2023 Ore 9.30 - 10.45 lettura dei nomi e adorazione Ore 11.00 Santa Messa Affissione dei nomi dal 17-26 giugno 2023&lt;/p&gt;</p>","customDates":"2023-06-17"}],"update":[],"delete":[]},"city":2}	{"translations":{"create":[{"location":"Bovetstrasse 1, 3007 Bern","languages_code":{"code":"de"},"name":"Gottesdienste und Gedenkaktionen auf Italienisch in der Missione Cattolica di Lingua Italiana","description":"<p>&lt;p class=\\"font_8\\"&gt;Sabato, 17 giugno 2023 Ore 18.30 Santa Messa Ore 19.30 - 22.00 lettura dei nomi e adorazione Domenica 18 giugno 2023 Ore 9.30 - 10.45 lettura dei nomi e adorazione Ore 11.00 Santa Messa Affissione dei nomi dal 17-26 giugno 2023&lt;/p&gt;</p>","customDates":"2023-06-17"},{"location":"Bovetstrasse 1, 3007 Bern","languages_code":{"code":"fr"},"name":"Services religieux et actions commémoratives en italien à la Missione Cattolica di Lingua Italiana","description":"<p>&lt;p class=\\"font_8\\"&gt;Sabato, 17 giugno 2023 Ore 18.30 Santa Messa Ore 19.30 - 22.00 lettura dei nomi e adorazione Domenica 18 giugno 2023 Ore 9.30 - 10.45 lettura dei nomi e adorazione Ore 11.00 Santa Messa Affissione dei nomi dal 17-26 giugno 2023&lt;/p&gt;</p>","customDates":"2023-06-17"}],"update":[],"delete":[]},"city":2}	\N	\N
 293	326	event_translations	7	{"location":"Bovetstrasse 1, 3007 Bern","languages_code":{"code":"de"},"name":"Gottesdienste und Gedenkaktionen auf Italienisch in der Missione Cattolica di Lingua Italiana","description":"<p>&lt;p class=\\"font_8\\"&gt;Sabato, 17 giugno 2023 Ore 18.30 Santa Messa Ore 19.30 - 22.00 lettura dei nomi e adorazione Domenica 18 giugno 2023 Ore 9.30 - 10.45 lettura dei nomi e adorazione Ore 11.00 Santa Messa Affissione dei nomi dal 17-26 giugno 2023&lt;/p&gt;</p>","customDates":"2023-06-17","event_id":5}	{"location":"Bovetstrasse 1, 3007 Bern","languages_code":{"code":"de"},"name":"Gottesdienste und Gedenkaktionen auf Italienisch in der Missione Cattolica di Lingua Italiana","description":"<p>&lt;p class=\\"font_8\\"&gt;Sabato, 17 giugno 2023 Ore 18.30 Santa Messa Ore 19.30 - 22.00 lettura dei nomi e adorazione Domenica 18 giugno 2023 Ore 9.30 - 10.45 lettura dei nomi e adorazione Ore 11.00 Santa Messa Affissione dei nomi dal 17-26 giugno 2023&lt;/p&gt;</p>","customDates":"2023-06-17","event_id":5}	295	\N
 294	327	event_translations	8	{"location":"Bovetstrasse 1, 3007 Bern","languages_code":{"code":"fr"},"name":"Services religieux et actions commémoratives en italien à la Missione Cattolica di Lingua Italiana","description":"<p>&lt;p class=\\"font_8\\"&gt;Sabato, 17 giugno 2023 Ore 18.30 Santa Messa Ore 19.30 - 22.00 lettura dei nomi e adorazione Domenica 18 giugno 2023 Ore 9.30 - 10.45 lettura dei nomi e adorazione Ore 11.00 Santa Messa Affissione dei nomi dal 17-26 giugno 2023&lt;/p&gt;</p>","customDates":"2023-06-17","event_id":5}	{"location":"Bovetstrasse 1, 3007 Bern","languages_code":{"code":"fr"},"name":"Services religieux et actions commémoratives en italien à la Missione Cattolica di Lingua Italiana","description":"<p>&lt;p class=\\"font_8\\"&gt;Sabato, 17 giugno 2023 Ore 18.30 Santa Messa Ore 19.30 - 22.00 lettura dei nomi e adorazione Domenica 18 giugno 2023 Ore 9.30 - 10.45 lettura dei nomi e adorazione Ore 11.00 Santa Messa Affissione dei nomi dal 17-26 giugno 2023&lt;/p&gt;</p>","customDates":"2023-06-17","event_id":5}	295	\N
+296	329	directus_fields	62	{"id":62,"collection":"SupportLinks","field":"city","special":["m2o"],"interface":"select-dropdown-m2o","options":null,"display":"related-values","display_options":{"template":"{{translations.name}}"},"readonly":false,"hidden":false,"sort":7,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"SupportLinks","field":"city","special":["m2o"],"interface":"select-dropdown-m2o","options":null,"display":"related-values","display_options":{"template":"{{translations.name}}"},"readonly":false,"hidden":false,"sort":7,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	\N	\N
 287	320	directus_fields	67	{"sort":6,"interface":"input","special":null,"collection":"event_translations","field":"location"}	{"sort":6,"interface":"input","special":null,"collection":"event_translations","field":"location"}	\N	\N
+297	330	directus_fields	69	{"sort":1,"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"CustomSections"}	{"sort":1,"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"CustomSections"}	\N	\N
+298	331	directus_fields	70	{"sort":2,"width":"full","options":{"choices":[{"text":"$t:published","value":"published"},{"text":"$t:draft","value":"draft"},{"text":"$t:archived","value":"archived"}]},"interface":"select-dropdown","display":"labels","display_options":{"showAsDot":true,"choices":[{"text":"$t:published","value":"published","foreground":"#FFFFFF","background":"var(--theme--primary)"},{"text":"$t:draft","value":"draft","foreground":"#18222F","background":"#D3DAE4"},{"text":"$t:archived","value":"archived","foreground":"#FFFFFF","background":"var(--theme--warning)"}]},"field":"status","collection":"CustomSections"}	{"sort":2,"width":"full","options":{"choices":[{"text":"$t:published","value":"published"},{"text":"$t:draft","value":"draft"},{"text":"$t:archived","value":"archived"}]},"interface":"select-dropdown","display":"labels","display_options":{"showAsDot":true,"choices":[{"text":"$t:published","value":"published","foreground":"#FFFFFF","background":"var(--theme--primary)"},{"text":"$t:draft","value":"draft","foreground":"#18222F","background":"#D3DAE4"},{"text":"$t:archived","value":"archived","foreground":"#FFFFFF","background":"var(--theme--warning)"}]},"field":"status","collection":"CustomSections"}	\N	\N
+299	332	directus_fields	71	{"sort":3,"interface":"input","hidden":true,"field":"sort","collection":"CustomSections"}	{"sort":3,"interface":"input","hidden":true,"field":"sort","collection":"CustomSections"}	\N	\N
+300	333	directus_fields	72	{"sort":4,"special":["date-created"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_created","collection":"CustomSections"}	{"sort":4,"special":["date-created"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_created","collection":"CustomSections"}	\N	\N
+301	334	directus_fields	73	{"sort":5,"special":["date-updated"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_updated","collection":"CustomSections"}	{"sort":5,"special":["date-updated"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_updated","collection":"CustomSections"}	\N	\N
+302	335	directus_collections	CustomSections	{"sort_field":"sort","archive_field":"status","archive_value":"archived","unarchive_value":"draft","singleton":false,"collection":"CustomSections"}	{"sort_field":"sort","archive_field":"status","archive_value":"archived","unarchive_value":"draft","singleton":false,"collection":"CustomSections"}	\N	\N
+312	345	directus_collections	CustomSections	{"collection":"CustomSections","icon":null,"note":null,"display_template":null,"hidden":false,"singleton":false,"translations":null,"archive_field":null,"archive_app_filter":true,"archive_value":"archived","unarchive_value":"draft","sort_field":null,"accountability":"all","color":null,"item_duplication_fields":null,"sort":null,"group":null,"collapse":"open","preview_url":null,"versioning":false}	{"archive_field":null,"sort_field":null}	\N	\N
+317	350	CustomSections	1	{"translations":{"create":[{"title":" Petition im Rahmen der Aktion „Beim Namen nennen“ 2023: Wiederaufnahme des Resettlement-Programms der Schweiz ermöglichen","languages_code":{"code":"de"},"description":"<p>Im Juni werden in zehn verschiedenen Schweizer St&auml;dten die Namen von &uuml;ber 51&lsquo;000 M&auml;nner, Frauen und Kinder gelesen und aufgeschrieben, die auf der Flucht nach Europa ums Leben gekommen sind. Die europ&auml;ische und schweizerische Migrationspolitik ist mitverantwortlich f&uuml;r dieses entsetzliche Sterben an den Grenzen Europas. Es braucht sichere Fluchtwege.<br>Als erstes sollte die Schweiz so schnell wie m&ouml;glich, das von BR Karin Keller-Suter vor Weihnachten 2022 ausgesetzte Resettlement-Programm wieder aufnehmen. In diesem Programm nimmt die Schweiz vom UNHCR anerkannte Fl&uuml;chtlinge zum Beispiel aus den Lagern im Nahen Osten direkt in die Schweiz auf. Der gef&auml;hrliche Fluchtweg entf&auml;llt.<br>Die Schweiz hat sich verpflichtet bis Ende 2023 insgesamt 1600 besonders verletzliche Personen aufzunehmen (zum Beispiel: Frauen, Kinder und UMA, die Opfer von Folter, sexueller Gewalt, Menschenhandel und Sklaverei sind oder unter der Bedrohung solcher Gewalttaten gelebt haben.) Noch immer warten 800 Menschen sehnlichst darauf, aus den<br>prek&auml;ren Verh&auml;ltnissen direkt in die Schweiz aufgenommen zu werden.<br>Nun m&ouml;chte der Bundesrat die Einreisen wieder erm&ouml;glichen. Er ist dabei aber auf die Unterst&uuml;tzung der Kantone angewiesen.<br>Wir bitten den Regierungsrat des Kantons Bern: Senden Sie ein positives Signal an den Bundesrat und sichern Sie die Bereitschaft des Kantons zu, die Menschen, die dem Kanton Bern zugeteilt w&uuml;rden, aufzunehmen mit allem, was dazu geh&ouml;rt.<br>Viele Freiwillige in NGOs, in den Kirchen und auch die St&auml;dte bieten Hand, um bei der Betreuung, Unterbringung und Integration dieser Menschen zu helfen.</p>"},{"title":"Pétition dans le cadre de l'action \\"Appeler un chat un chat\\" 2023 : Permettre la reprise du programme de réinstallation de la Suisse","languages_code":{"code":"fr"},"description":"<p>En juin, dans dix villes suisses diff&eacute;rentes, les noms de plus de 51'000 hommes, femmes et enfants qui ont perdu la vie en fuyant vers l'Europe seront lus et &eacute;crits. La politique migratoire europ&eacute;enne et suisse est en partie responsable de cette mort horrible aux fronti&egrave;res de l'Europe. Il faut des voies de fuite s&ucirc;res.<br>En premier lieu, la Suisse devrait reprendre le plus rapidement possible le programme de r&eacute;installation suspendu par la conseill&egrave;re f&eacute;d&eacute;rale Karin Keller-Suter avant No&euml;l 2022. Dans le cadre de ce programme, la Suisse accueille directement en Suisse des r&eacute;fugi&eacute;s reconnus par le HCR, par exemple en provenance des camps du Proche-Orient. La voie de fuite dangereuse est ainsi supprim&eacute;e.<br>La Suisse s'est engag&eacute;e &agrave; accueillir au total 1600 personnes particuli&egrave;rement vuln&eacute;rables d'ici fin 2023 (par exemple : des femmes, des enfants et des MNA qui sont victimes de torture, de violences sexuelles, de la traite des &ecirc;tres humains et de l'esclavage ou qui ont v&eacute;cu sous la menace de tels actes de violence). Aujourd'hui encore, 800 personnes attendent avec impatience de pouvoir sortir des<br>&ecirc;tre admises directement en Suisse dans des conditions pr&eacute;caires.<br>Le Conseil f&eacute;d&eacute;ral souhaite &agrave; pr&eacute;sent permettre &agrave; nouveau ces entr&eacute;es. Mais pour cela, il a besoin du soutien des cantons.<br>Nous demandons au Conseil d'Etat du canton de Berne : envoyez un signal positif au Conseil f&eacute;d&eacute;ral et assurez la disponibilit&eacute; du canton &agrave; accueillir les personnes qui seraient attribu&eacute;es au canton de Berne, avec tout ce que cela implique.<br>De nombreux b&eacute;n&eacute;voles dans les ONG, les &eacute;glises et d'autres organisations sont pr&ecirc;ts &agrave; s'engager.</p>"}],"update":[],"delete":[]},"link":"https://www.beimnamennennen.ch/fr/_files/ugd/760542_d48074e289cc44c780c31302e44e150e.pdf","city":2}	{"translations":{"create":[{"title":" Petition im Rahmen der Aktion „Beim Namen nennen“ 2023: Wiederaufnahme des Resettlement-Programms der Schweiz ermöglichen","languages_code":{"code":"de"},"description":"<p>Im Juni werden in zehn verschiedenen Schweizer St&auml;dten die Namen von &uuml;ber 51&lsquo;000 M&auml;nner, Frauen und Kinder gelesen und aufgeschrieben, die auf der Flucht nach Europa ums Leben gekommen sind. Die europ&auml;ische und schweizerische Migrationspolitik ist mitverantwortlich f&uuml;r dieses entsetzliche Sterben an den Grenzen Europas. Es braucht sichere Fluchtwege.<br>Als erstes sollte die Schweiz so schnell wie m&ouml;glich, das von BR Karin Keller-Suter vor Weihnachten 2022 ausgesetzte Resettlement-Programm wieder aufnehmen. In diesem Programm nimmt die Schweiz vom UNHCR anerkannte Fl&uuml;chtlinge zum Beispiel aus den Lagern im Nahen Osten direkt in die Schweiz auf. Der gef&auml;hrliche Fluchtweg entf&auml;llt.<br>Die Schweiz hat sich verpflichtet bis Ende 2023 insgesamt 1600 besonders verletzliche Personen aufzunehmen (zum Beispiel: Frauen, Kinder und UMA, die Opfer von Folter, sexueller Gewalt, Menschenhandel und Sklaverei sind oder unter der Bedrohung solcher Gewalttaten gelebt haben.) Noch immer warten 800 Menschen sehnlichst darauf, aus den<br>prek&auml;ren Verh&auml;ltnissen direkt in die Schweiz aufgenommen zu werden.<br>Nun m&ouml;chte der Bundesrat die Einreisen wieder erm&ouml;glichen. Er ist dabei aber auf die Unterst&uuml;tzung der Kantone angewiesen.<br>Wir bitten den Regierungsrat des Kantons Bern: Senden Sie ein positives Signal an den Bundesrat und sichern Sie die Bereitschaft des Kantons zu, die Menschen, die dem Kanton Bern zugeteilt w&uuml;rden, aufzunehmen mit allem, was dazu geh&ouml;rt.<br>Viele Freiwillige in NGOs, in den Kirchen und auch die St&auml;dte bieten Hand, um bei der Betreuung, Unterbringung und Integration dieser Menschen zu helfen.</p>"},{"title":"Pétition dans le cadre de l'action \\"Appeler un chat un chat\\" 2023 : Permettre la reprise du programme de réinstallation de la Suisse","languages_code":{"code":"fr"},"description":"<p>En juin, dans dix villes suisses diff&eacute;rentes, les noms de plus de 51'000 hommes, femmes et enfants qui ont perdu la vie en fuyant vers l'Europe seront lus et &eacute;crits. La politique migratoire europ&eacute;enne et suisse est en partie responsable de cette mort horrible aux fronti&egrave;res de l'Europe. Il faut des voies de fuite s&ucirc;res.<br>En premier lieu, la Suisse devrait reprendre le plus rapidement possible le programme de r&eacute;installation suspendu par la conseill&egrave;re f&eacute;d&eacute;rale Karin Keller-Suter avant No&euml;l 2022. Dans le cadre de ce programme, la Suisse accueille directement en Suisse des r&eacute;fugi&eacute;s reconnus par le HCR, par exemple en provenance des camps du Proche-Orient. La voie de fuite dangereuse est ainsi supprim&eacute;e.<br>La Suisse s'est engag&eacute;e &agrave; accueillir au total 1600 personnes particuli&egrave;rement vuln&eacute;rables d'ici fin 2023 (par exemple : des femmes, des enfants et des MNA qui sont victimes de torture, de violences sexuelles, de la traite des &ecirc;tres humains et de l'esclavage ou qui ont v&eacute;cu sous la menace de tels actes de violence). Aujourd'hui encore, 800 personnes attendent avec impatience de pouvoir sortir des<br>&ecirc;tre admises directement en Suisse dans des conditions pr&eacute;caires.<br>Le Conseil f&eacute;d&eacute;ral souhaite &agrave; pr&eacute;sent permettre &agrave; nouveau ces entr&eacute;es. Mais pour cela, il a besoin du soutien des cantons.<br>Nous demandons au Conseil d'Etat du canton de Berne : envoyez un signal positif au Conseil f&eacute;d&eacute;ral et assurez la disponibilit&eacute; du canton &agrave; accueillir les personnes qui seraient attribu&eacute;es au canton de Berne, avec tout ce que cela implique.<br>De nombreux b&eacute;n&eacute;voles dans les ONG, les &eacute;glises et d'autres organisations sont pr&ecirc;ts &agrave; s'engager.</p>"}],"update":[],"delete":[]},"link":"https://www.beimnamennennen.ch/fr/_files/ugd/760542_d48074e289cc44c780c31302e44e150e.pdf","city":2}	\N	\N
+322	355	directus_fields	83	{"id":83,"collection":"city","field":"customSections","special":["o2m"],"interface":"list-o2m","options":null,"display":"related-values","display_options":null,"readonly":false,"hidden":false,"sort":11,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"city","field":"customSections","special":["o2m"],"interface":"list-o2m","options":null,"display":"related-values","display_options":null,"readonly":false,"hidden":false,"sort":11,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	\N	\N
+323	356	directus_fields	83	{"id":83,"collection":"city","field":"customSections","special":["o2m"],"interface":"list-o2m","options":{"template":"{{translations.title}}"},"display":"related-values","display_options":null,"readonly":false,"hidden":false,"sort":11,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"city","field":"customSections","special":["o2m"],"interface":"list-o2m","options":{"template":"{{translations.title}}"},"display":"related-values","display_options":null,"readonly":false,"hidden":false,"sort":11,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	\N	\N
 289	322	directus_files	5556b0ea-7025-40a9-aaaf-b55713639b87	{"title":"Cds Bpan 15 06 20 800","filename_download":"Cds_BPAN_15_06_20_800.jpg","type":"image/jpeg","storage":"local"}	{"title":"Cds Bpan 15 06 20 800","filename_download":"Cds_BPAN_15_06_20_800.jpg","type":"image/jpeg","storage":"local"}	\N	\N
+303	336	directus_fields	74	{"sort":6,"interface":"input","special":null,"collection":"CustomSections","field":"title"}	{"sort":6,"interface":"input","special":null,"collection":"CustomSections","field":"title"}	\N	\N
+305	338	directus_fields	76	{"sort":1,"hidden":true,"field":"id","collection":"CustomSections_translations"}	{"sort":1,"hidden":true,"field":"id","collection":"CustomSections_translations"}	\N	\N
+306	339	directus_collections	CustomSections_translations	{"hidden":true,"icon":"import_export","collection":"CustomSections_translations"}	{"hidden":true,"icon":"import_export","collection":"CustomSections_translations"}	\N	\N
+307	340	directus_fields	77	{"sort":2,"hidden":true,"collection":"CustomSections_translations","field":"CustomSections_id"}	{"sort":2,"hidden":true,"collection":"CustomSections_translations","field":"CustomSections_id"}	\N	\N
+309	342	directus_fields	79	{"sort":4,"interface":"input","special":null,"collection":"CustomSections_translations","field":"title"}	{"sort":4,"interface":"input","special":null,"collection":"CustomSections_translations","field":"title"}	\N	\N
+313	346	directus_fields	82	{"sort":8,"interface":"select-dropdown-m2o","special":["m2o"],"collection":"CustomSections","field":"city"}	{"sort":8,"interface":"select-dropdown-m2o","special":["m2o"],"collection":"CustomSections","field":"city"}	\N	\N
+314	347	directus_fields	83	{"sort":11,"interface":"list-o2m","special":["o2m"],"collection":"city","field":"customSections"}	{"sort":11,"interface":"list-o2m","special":["o2m"],"collection":"city","field":"customSections"}	\N	\N
+315	348	CustomSections_translations	1	{"title":" Petition im Rahmen der Aktion „Beim Namen nennen“ 2023: Wiederaufnahme des Resettlement-Programms der Schweiz ermöglichen","languages_code":{"code":"de"},"description":"<p>Im Juni werden in zehn verschiedenen Schweizer St&auml;dten die Namen von &uuml;ber 51&lsquo;000 M&auml;nner, Frauen und Kinder gelesen und aufgeschrieben, die auf der Flucht nach Europa ums Leben gekommen sind. Die europ&auml;ische und schweizerische Migrationspolitik ist mitverantwortlich f&uuml;r dieses entsetzliche Sterben an den Grenzen Europas. Es braucht sichere Fluchtwege.<br>Als erstes sollte die Schweiz so schnell wie m&ouml;glich, das von BR Karin Keller-Suter vor Weihnachten 2022 ausgesetzte Resettlement-Programm wieder aufnehmen. In diesem Programm nimmt die Schweiz vom UNHCR anerkannte Fl&uuml;chtlinge zum Beispiel aus den Lagern im Nahen Osten direkt in die Schweiz auf. Der gef&auml;hrliche Fluchtweg entf&auml;llt.<br>Die Schweiz hat sich verpflichtet bis Ende 2023 insgesamt 1600 besonders verletzliche Personen aufzunehmen (zum Beispiel: Frauen, Kinder und UMA, die Opfer von Folter, sexueller Gewalt, Menschenhandel und Sklaverei sind oder unter der Bedrohung solcher Gewalttaten gelebt haben.) Noch immer warten 800 Menschen sehnlichst darauf, aus den<br>prek&auml;ren Verh&auml;ltnissen direkt in die Schweiz aufgenommen zu werden.<br>Nun m&ouml;chte der Bundesrat die Einreisen wieder erm&ouml;glichen. Er ist dabei aber auf die Unterst&uuml;tzung der Kantone angewiesen.<br>Wir bitten den Regierungsrat des Kantons Bern: Senden Sie ein positives Signal an den Bundesrat und sichern Sie die Bereitschaft des Kantons zu, die Menschen, die dem Kanton Bern zugeteilt w&uuml;rden, aufzunehmen mit allem, was dazu geh&ouml;rt.<br>Viele Freiwillige in NGOs, in den Kirchen und auch die St&auml;dte bieten Hand, um bei der Betreuung, Unterbringung und Integration dieser Menschen zu helfen.</p>","CustomSections_id":1}	{"title":" Petition im Rahmen der Aktion „Beim Namen nennen“ 2023: Wiederaufnahme des Resettlement-Programms der Schweiz ermöglichen","languages_code":{"code":"de"},"description":"<p>Im Juni werden in zehn verschiedenen Schweizer St&auml;dten die Namen von &uuml;ber 51&lsquo;000 M&auml;nner, Frauen und Kinder gelesen und aufgeschrieben, die auf der Flucht nach Europa ums Leben gekommen sind. Die europ&auml;ische und schweizerische Migrationspolitik ist mitverantwortlich f&uuml;r dieses entsetzliche Sterben an den Grenzen Europas. Es braucht sichere Fluchtwege.<br>Als erstes sollte die Schweiz so schnell wie m&ouml;glich, das von BR Karin Keller-Suter vor Weihnachten 2022 ausgesetzte Resettlement-Programm wieder aufnehmen. In diesem Programm nimmt die Schweiz vom UNHCR anerkannte Fl&uuml;chtlinge zum Beispiel aus den Lagern im Nahen Osten direkt in die Schweiz auf. Der gef&auml;hrliche Fluchtweg entf&auml;llt.<br>Die Schweiz hat sich verpflichtet bis Ende 2023 insgesamt 1600 besonders verletzliche Personen aufzunehmen (zum Beispiel: Frauen, Kinder und UMA, die Opfer von Folter, sexueller Gewalt, Menschenhandel und Sklaverei sind oder unter der Bedrohung solcher Gewalttaten gelebt haben.) Noch immer warten 800 Menschen sehnlichst darauf, aus den<br>prek&auml;ren Verh&auml;ltnissen direkt in die Schweiz aufgenommen zu werden.<br>Nun m&ouml;chte der Bundesrat die Einreisen wieder erm&ouml;glichen. Er ist dabei aber auf die Unterst&uuml;tzung der Kantone angewiesen.<br>Wir bitten den Regierungsrat des Kantons Bern: Senden Sie ein positives Signal an den Bundesrat und sichern Sie die Bereitschaft des Kantons zu, die Menschen, die dem Kanton Bern zugeteilt w&uuml;rden, aufzunehmen mit allem, was dazu geh&ouml;rt.<br>Viele Freiwillige in NGOs, in den Kirchen und auch die St&auml;dte bieten Hand, um bei der Betreuung, Unterbringung und Integration dieser Menschen zu helfen.</p>","CustomSections_id":1}	317	\N
+316	349	CustomSections_translations	2	{"title":"Pétition dans le cadre de l'action \\"Appeler un chat un chat\\" 2023 : Permettre la reprise du programme de réinstallation de la Suisse","languages_code":{"code":"fr"},"description":"<p>En juin, dans dix villes suisses diff&eacute;rentes, les noms de plus de 51'000 hommes, femmes et enfants qui ont perdu la vie en fuyant vers l'Europe seront lus et &eacute;crits. La politique migratoire europ&eacute;enne et suisse est en partie responsable de cette mort horrible aux fronti&egrave;res de l'Europe. Il faut des voies de fuite s&ucirc;res.<br>En premier lieu, la Suisse devrait reprendre le plus rapidement possible le programme de r&eacute;installation suspendu par la conseill&egrave;re f&eacute;d&eacute;rale Karin Keller-Suter avant No&euml;l 2022. Dans le cadre de ce programme, la Suisse accueille directement en Suisse des r&eacute;fugi&eacute;s reconnus par le HCR, par exemple en provenance des camps du Proche-Orient. La voie de fuite dangereuse est ainsi supprim&eacute;e.<br>La Suisse s'est engag&eacute;e &agrave; accueillir au total 1600 personnes particuli&egrave;rement vuln&eacute;rables d'ici fin 2023 (par exemple : des femmes, des enfants et des MNA qui sont victimes de torture, de violences sexuelles, de la traite des &ecirc;tres humains et de l'esclavage ou qui ont v&eacute;cu sous la menace de tels actes de violence). Aujourd'hui encore, 800 personnes attendent avec impatience de pouvoir sortir des<br>&ecirc;tre admises directement en Suisse dans des conditions pr&eacute;caires.<br>Le Conseil f&eacute;d&eacute;ral souhaite &agrave; pr&eacute;sent permettre &agrave; nouveau ces entr&eacute;es. Mais pour cela, il a besoin du soutien des cantons.<br>Nous demandons au Conseil d'Etat du canton de Berne : envoyez un signal positif au Conseil f&eacute;d&eacute;ral et assurez la disponibilit&eacute; du canton &agrave; accueillir les personnes qui seraient attribu&eacute;es au canton de Berne, avec tout ce que cela implique.<br>De nombreux b&eacute;n&eacute;voles dans les ONG, les &eacute;glises et d'autres organisations sont pr&ecirc;ts &agrave; s'engager.</p>","CustomSections_id":1}	{"title":"Pétition dans le cadre de l'action \\"Appeler un chat un chat\\" 2023 : Permettre la reprise du programme de réinstallation de la Suisse","languages_code":{"code":"fr"},"description":"<p>En juin, dans dix villes suisses diff&eacute;rentes, les noms de plus de 51'000 hommes, femmes et enfants qui ont perdu la vie en fuyant vers l'Europe seront lus et &eacute;crits. La politique migratoire europ&eacute;enne et suisse est en partie responsable de cette mort horrible aux fronti&egrave;res de l'Europe. Il faut des voies de fuite s&ucirc;res.<br>En premier lieu, la Suisse devrait reprendre le plus rapidement possible le programme de r&eacute;installation suspendu par la conseill&egrave;re f&eacute;d&eacute;rale Karin Keller-Suter avant No&euml;l 2022. Dans le cadre de ce programme, la Suisse accueille directement en Suisse des r&eacute;fugi&eacute;s reconnus par le HCR, par exemple en provenance des camps du Proche-Orient. La voie de fuite dangereuse est ainsi supprim&eacute;e.<br>La Suisse s'est engag&eacute;e &agrave; accueillir au total 1600 personnes particuli&egrave;rement vuln&eacute;rables d'ici fin 2023 (par exemple : des femmes, des enfants et des MNA qui sont victimes de torture, de violences sexuelles, de la traite des &ecirc;tres humains et de l'esclavage ou qui ont v&eacute;cu sous la menace de tels actes de violence). Aujourd'hui encore, 800 personnes attendent avec impatience de pouvoir sortir des<br>&ecirc;tre admises directement en Suisse dans des conditions pr&eacute;caires.<br>Le Conseil f&eacute;d&eacute;ral souhaite &agrave; pr&eacute;sent permettre &agrave; nouveau ces entr&eacute;es. Mais pour cela, il a besoin du soutien des cantons.<br>Nous demandons au Conseil d'Etat du canton de Berne : envoyez un signal positif au Conseil f&eacute;d&eacute;ral et assurez la disponibilit&eacute; du canton &agrave; accueillir les personnes qui seraient attribu&eacute;es au canton de Berne, avec tout ce que cela implique.<br>De nombreux b&eacute;n&eacute;voles dans les ONG, les &eacute;glises et d'autres organisations sont pr&ecirc;ts &agrave; s'engager.</p>","CustomSections_id":1}	317	\N
+324	357	directus_fields	83	{"id":83,"collection":"city","field":"customSections","special":["o2m"],"interface":"list-o2m","options":{"template":"{{translations.title}}"},"display":"related-values","display_options":{"template":"{{translations.title}}"},"readonly":false,"hidden":false,"sort":11,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"city","field":"customSections","special":["o2m"],"interface":"list-o2m","options":{"template":"{{translations.title}}"},"display":"related-values","display_options":{"template":"{{translations.title}}"},"readonly":false,"hidden":false,"sort":11,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	\N	\N
 292	325	event	4	{"translations":{"create":[{"name":"Kreis der Stille","languages_code":{"code":"de"},"description":"<p>&nbsp;</p>\\n<table cellspacing=\\"0\\" cellpadding=\\"3\\">\\n<tbody>\\n<tr>\\n<td colspan=\\"35\\" align=\\"left\\" valign=\\"bottom\\">&lt;p class=\\"font_8\\"&gt;Wir, Gefl&uuml;chtete und Nicht-Gefl&uuml;chtete gemeinsam, wollen in diesem Kreis ein Zeichen der Solidarit&auml;t setzen und auf die sehr schwierige Situation von abgelehnten Asylsuchenden und Menschen ohne Papiere in der Schweiz aufmerksam machen und derer gedenken, die auf der Flucht ihr Leben verloren haben.&lt;/p&gt;</td>\\n</tr>\\n</tbody>\\n</table>","location":"Bahnhofplatz Bern, neben Heiliggeistkirche","customDates":"2023-06-17"},{"name":"Cercle de Silence","languages_code":{"code":"fr"},"description":"<p>&lt;p class=\\"font_8\\"&gt;Nous, r&eacute;fugi&eacute;s et non-r&eacute;fugi&eacute;s ensemble, voulons dans ce cercle donner un signe de solidarit&eacute; et attirer l'attention sur la situation tr&egrave;s difficile des requ&eacute;rants d'asile d&eacute;bout&eacute;s et des personnes sans papiers en Suisse, et rendre hommage &agrave; ceux qui ont perdu la vie en fuyant.&lt;/p&gt;</p>","location":"Place de la gare de Berne, à côté de l'église du Saint-Esprit","customDates":"2023-06-17"}],"update":[],"delete":[]},"city":2,"teaser":"5556b0ea-7025-40a9-aaaf-b55713639b87","link":"https://www.kathbern.ch/fasa/sozialpolitisches-engagement/cercle-de-silence"}	{"translations":{"create":[{"name":"Kreis der Stille","languages_code":{"code":"de"},"description":"<p>&nbsp;</p>\\n<table cellspacing=\\"0\\" cellpadding=\\"3\\">\\n<tbody>\\n<tr>\\n<td colspan=\\"35\\" align=\\"left\\" valign=\\"bottom\\">&lt;p class=\\"font_8\\"&gt;Wir, Gefl&uuml;chtete und Nicht-Gefl&uuml;chtete gemeinsam, wollen in diesem Kreis ein Zeichen der Solidarit&auml;t setzen und auf die sehr schwierige Situation von abgelehnten Asylsuchenden und Menschen ohne Papiere in der Schweiz aufmerksam machen und derer gedenken, die auf der Flucht ihr Leben verloren haben.&lt;/p&gt;</td>\\n</tr>\\n</tbody>\\n</table>","location":"Bahnhofplatz Bern, neben Heiliggeistkirche","customDates":"2023-06-17"},{"name":"Cercle de Silence","languages_code":{"code":"fr"},"description":"<p>&lt;p class=\\"font_8\\"&gt;Nous, r&eacute;fugi&eacute;s et non-r&eacute;fugi&eacute;s ensemble, voulons dans ce cercle donner un signe de solidarit&eacute; et attirer l'attention sur la situation tr&egrave;s difficile des requ&eacute;rants d'asile d&eacute;bout&eacute;s et des personnes sans papiers en Suisse, et rendre hommage &agrave; ceux qui ont perdu la vie en fuyant.&lt;/p&gt;</p>","location":"Place de la gare de Berne, à côté de l'église du Saint-Esprit","customDates":"2023-06-17"}],"update":[],"delete":[]},"city":2,"teaser":"5556b0ea-7025-40a9-aaaf-b55713639b87","link":"https://www.kathbern.ch/fasa/sozialpolitisches-engagement/cercle-de-silence"}	\N	\N
 290	323	event_translations	5	{"name":"Kreis der Stille","languages_code":{"code":"de"},"description":"<p>&nbsp;</p>\\n<table cellspacing=\\"0\\" cellpadding=\\"3\\">\\n<tbody>\\n<tr>\\n<td colspan=\\"35\\" align=\\"left\\" valign=\\"bottom\\">&lt;p class=\\"font_8\\"&gt;Wir, Gefl&uuml;chtete und Nicht-Gefl&uuml;chtete gemeinsam, wollen in diesem Kreis ein Zeichen der Solidarit&auml;t setzen und auf die sehr schwierige Situation von abgelehnten Asylsuchenden und Menschen ohne Papiere in der Schweiz aufmerksam machen und derer gedenken, die auf der Flucht ihr Leben verloren haben.&lt;/p&gt;</td>\\n</tr>\\n</tbody>\\n</table>","location":"Bahnhofplatz Bern, neben Heiliggeistkirche","customDates":"2023-06-17","event_id":4}	{"name":"Kreis der Stille","languages_code":{"code":"de"},"description":"<p>&nbsp;</p>\\n<table cellspacing=\\"0\\" cellpadding=\\"3\\">\\n<tbody>\\n<tr>\\n<td colspan=\\"35\\" align=\\"left\\" valign=\\"bottom\\">&lt;p class=\\"font_8\\"&gt;Wir, Gefl&uuml;chtete und Nicht-Gefl&uuml;chtete gemeinsam, wollen in diesem Kreis ein Zeichen der Solidarit&auml;t setzen und auf die sehr schwierige Situation von abgelehnten Asylsuchenden und Menschen ohne Papiere in der Schweiz aufmerksam machen und derer gedenken, die auf der Flucht ihr Leben verloren haben.&lt;/p&gt;</td>\\n</tr>\\n</tbody>\\n</table>","location":"Bahnhofplatz Bern, neben Heiliggeistkirche","customDates":"2023-06-17","event_id":4}	292	\N
 291	324	event_translations	6	{"name":"Cercle de Silence","languages_code":{"code":"fr"},"description":"<p>&lt;p class=\\"font_8\\"&gt;Nous, r&eacute;fugi&eacute;s et non-r&eacute;fugi&eacute;s ensemble, voulons dans ce cercle donner un signe de solidarit&eacute; et attirer l'attention sur la situation tr&egrave;s difficile des requ&eacute;rants d'asile d&eacute;bout&eacute;s et des personnes sans papiers en Suisse, et rendre hommage &agrave; ceux qui ont perdu la vie en fuyant.&lt;/p&gt;</p>","location":"Place de la gare de Berne, à côté de l'église du Saint-Esprit","customDates":"2023-06-17","event_id":4}	{"name":"Cercle de Silence","languages_code":{"code":"fr"},"description":"<p>&lt;p class=\\"font_8\\"&gt;Nous, r&eacute;fugi&eacute;s et non-r&eacute;fugi&eacute;s ensemble, voulons dans ce cercle donner un signe de solidarit&eacute; et attirer l'attention sur la situation tr&egrave;s difficile des requ&eacute;rants d'asile d&eacute;bout&eacute;s et des personnes sans papiers en Suisse, et rendre hommage &agrave; ceux qui ont perdu la vie en fuyant.&lt;/p&gt;</p>","location":"Place de la gare de Berne, à côté de l'église du Saint-Esprit","customDates":"2023-06-17","event_id":4}	292	\N
+304	337	directus_fields	75	{"sort":6,"interface":"translations","special":["translations"],"options":{"languageField":"code","defaultLanguage":"de"},"collection":"CustomSections","field":"translations"}	{"sort":6,"interface":"translations","special":["translations"],"options":{"languageField":"code","defaultLanguage":"de"},"collection":"CustomSections","field":"translations"}	\N	\N
+308	341	directus_fields	78	{"sort":3,"hidden":true,"collection":"CustomSections_translations","field":"languages_code"}	{"sort":3,"hidden":true,"collection":"CustomSections_translations","field":"languages_code"}	\N	\N
+310	343	directus_fields	80	{"sort":5,"interface":"input-rich-text-html","special":null,"collection":"CustomSections_translations","field":"description"}	{"sort":5,"interface":"input-rich-text-html","special":null,"collection":"CustomSections_translations","field":"description"}	\N	\N
+318	351	directus_fields	84	{"sort":6,"interface":"input","special":null,"collection":"CustomSections_translations","field":"linkText"}	{"sort":6,"interface":"input","special":null,"collection":"CustomSections_translations","field":"linkText"}	\N	\N
+325	358	directus_permissions	50	{"role":null,"collection":"CustomSections","action":"read","fields":["*"],"permissions":{},"validation":{}}	{"role":null,"collection":"CustomSections","action":"read","fields":["*"],"permissions":{},"validation":{}}	\N	\N
+326	359	directus_permissions	51	{"role":null,"collection":"CustomSections_translations","action":"read","fields":["*"],"permissions":{},"validation":{}}	{"role":null,"collection":"CustomSections_translations","action":"read","fields":["*"],"permissions":{},"validation":{}}	\N	\N
+321	354	CustomSections	1	{"id":1,"status":"draft","sort":null,"date_created":"2024-02-02T10:24:56.021Z","date_updated":"2024-02-02T10:25:53.900Z","link":"https://www.beimnamennennen.ch/fr/_files/ugd/760542_d48074e289cc44c780c31302e44e150e.pdf","city":2,"translations":[1,2]}	{"date_updated":"2024-02-02T10:25:53.900Z"}	\N	\N
+319	352	CustomSections_translations	1	{"id":1,"CustomSections_id":1,"languages_code":"de","title":" Petition im Rahmen der Aktion „Beim Namen nennen“ 2023: Wiederaufnahme des Resettlement-Programms der Schweiz ermöglichen","description":"<p>Im Juni werden in zehn verschiedenen Schweizer St&auml;dten die Namen von &uuml;ber 51&lsquo;000 M&auml;nner, Frauen und Kinder gelesen und aufgeschrieben, die auf der Flucht nach Europa ums Leben gekommen sind. Die europ&auml;ische und schweizerische Migrationspolitik ist mitverantwortlich f&uuml;r dieses entsetzliche Sterben an den Grenzen Europas. Es braucht sichere Fluchtwege.<br>Als erstes sollte die Schweiz so schnell wie m&ouml;glich, das von BR Karin Keller-Suter vor Weihnachten 2022 ausgesetzte Resettlement-Programm wieder aufnehmen. In diesem Programm nimmt die Schweiz vom UNHCR anerkannte Fl&uuml;chtlinge zum Beispiel aus den Lagern im Nahen Osten direkt in die Schweiz auf. Der gef&auml;hrliche Fluchtweg entf&auml;llt.<br>Die Schweiz hat sich verpflichtet bis Ende 2023 insgesamt 1600 besonders verletzliche Personen aufzunehmen (zum Beispiel: Frauen, Kinder und UMA, die Opfer von Folter, sexueller Gewalt, Menschenhandel und Sklaverei sind oder unter der Bedrohung solcher Gewalttaten gelebt haben.) Noch immer warten 800 Menschen sehnlichst darauf, aus den<br>prek&auml;ren Verh&auml;ltnissen direkt in die Schweiz aufgenommen zu werden.<br>Nun m&ouml;chte der Bundesrat die Einreisen wieder erm&ouml;glichen. Er ist dabei aber auf die Unterst&uuml;tzung der Kantone angewiesen.<br>Wir bitten den Regierungsrat des Kantons Bern: Senden Sie ein positives Signal an den Bundesrat und sichern Sie die Bereitschaft des Kantons zu, die Menschen, die dem Kanton Bern zugeteilt w&uuml;rden, aufzunehmen mit allem, was dazu geh&ouml;rt.<br>Viele Freiwillige in NGOs, in den Kirchen und auch die St&auml;dte bieten Hand, um bei der Betreuung, Unterbringung und Integration dieser Menschen zu helfen.</p>","linkText":"Petition unterschreiben"}	{"CustomSections_id":"1","languages_code":"de","linkText":"Petition unterschreiben"}	321	\N
+320	353	CustomSections_translations	2	{"id":2,"CustomSections_id":1,"languages_code":"fr","title":"Pétition dans le cadre de l'action \\"Appeler un chat un chat\\" 2023 : Permettre la reprise du programme de réinstallation de la Suisse","description":"<p>En juin, dans dix villes suisses diff&eacute;rentes, les noms de plus de 51'000 hommes, femmes et enfants qui ont perdu la vie en fuyant vers l'Europe seront lus et &eacute;crits. La politique migratoire europ&eacute;enne et suisse est en partie responsable de cette mort horrible aux fronti&egrave;res de l'Europe. Il faut des voies de fuite s&ucirc;res.<br>En premier lieu, la Suisse devrait reprendre le plus rapidement possible le programme de r&eacute;installation suspendu par la conseill&egrave;re f&eacute;d&eacute;rale Karin Keller-Suter avant No&euml;l 2022. Dans le cadre de ce programme, la Suisse accueille directement en Suisse des r&eacute;fugi&eacute;s reconnus par le HCR, par exemple en provenance des camps du Proche-Orient. La voie de fuite dangereuse est ainsi supprim&eacute;e.<br>La Suisse s'est engag&eacute;e &agrave; accueillir au total 1600 personnes particuli&egrave;rement vuln&eacute;rables d'ici fin 2023 (par exemple : des femmes, des enfants et des MNA qui sont victimes de torture, de violences sexuelles, de la traite des &ecirc;tres humains et de l'esclavage ou qui ont v&eacute;cu sous la menace de tels actes de violence). Aujourd'hui encore, 800 personnes attendent avec impatience de pouvoir sortir des<br>&ecirc;tre admises directement en Suisse dans des conditions pr&eacute;caires.<br>Le Conseil f&eacute;d&eacute;ral souhaite &agrave; pr&eacute;sent permettre &agrave; nouveau ces entr&eacute;es. Mais pour cela, il a besoin du soutien des cantons.<br>Nous demandons au Conseil d'Etat du canton de Berne : envoyez un signal positif au Conseil f&eacute;d&eacute;ral et assurez la disponibilit&eacute; du canton &agrave; accueillir les personnes qui seraient attribu&eacute;es au canton de Berne, avec tout ce que cela implique.<br>De nombreux b&eacute;n&eacute;voles dans les ONG, les &eacute;glises et d'autres organisations sont pr&ecirc;ts &agrave; s'engager.</p>","linkText":"Signer la pétition"}	{"CustomSections_id":"1","languages_code":"fr","linkText":"Signer la pétition"}	321	\N
 \.
 
 
@@ -2413,7 +2608,7 @@ COPY public.directus_roles (id, name, icon, description, ip_access, enforce_tfa,
 --
 
 COPY public.directus_sessions (token, "user", expires, ip, user_agent, share, origin) FROM stdin;
-VCpnIv8A3tCaB5cfvF0zna_G8hcLRdfIHRVOBCh-bybWY5OIibjUKdkk0B3LjaGG	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-09 09:25:24.476+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36	\N	http://localhost:8055
+ccm0fLqzz7WT6JU0oBAu4j-ED04kcME8RBLM5V0Pa2Dhu-xHKZQPCKXkzLwK46_e	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-09 10:44:41.09+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36	\N	http://localhost:8055
 \.
 
 
@@ -2447,7 +2642,7 @@ COPY public.directus_translations (id, language, key, value) FROM stdin;
 
 COPY public.directus_users (id, first_name, last_name, email, password, location, title, description, tags, avatar, language, tfa_secret, status, role, token, last_access, last_page, provider, external_identifier, auth_data, email_notifications, appearance, theme_dark, theme_light, theme_light_overrides, theme_dark_overrides) FROM stdin;
 507e3800-1c28-454b-bcd2-766cda54a162	Basel	Admin	mirjamthomet@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$rEXyXmboQoJtEolz1V+VwQ$0mpZ0yfRnbyl8LchcvwSg1zkRSH516jNbFYv2TCGJ0s	\N	\N	\N	\N	\N	\N	\N	active	68c58399-f145-49aa-9db1-ee94c793b427	\N	2024-01-20 14:42:17.91+00	/content/city	default	\N	\N	t	\N	\N	\N	\N	\N
-db513aee-cd3a-47a9-95e5-a98f1cc92d13	Admin	User	gannonline90@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$8mOx4/9GjUaVmWJRCxhc1Q$O2PmAQbgGlqxaNAnsgyyJRQxPl+9HeBKZ5z7JMZjqbo	\N	\N	\N	\N	\N	\N	\N	active	878f0264-16f3-4a54-a79e-82c27313bacc	\N	2024-02-02 09:25:24.479+00	/content/event	default	\N	\N	t	\N	\N	\N	\N	\N
+db513aee-cd3a-47a9-95e5-a98f1cc92d13	Admin	User	gannonline90@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$8mOx4/9GjUaVmWJRCxhc1Q$O2PmAQbgGlqxaNAnsgyyJRQxPl+9HeBKZ5z7JMZjqbo	\N	\N	\N	\N	\N	\N	\N	active	878f0264-16f3-4a54-a79e-82c27313bacc	\N	2024-02-02 10:44:41.101+00	/settings/roles/public	default	\N	\N	t	\N	\N	\N	\N	\N
 \.
 
 
@@ -2506,6 +2701,20 @@ fr	French
 
 
 --
+-- Name: CustomSections_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
+--
+
+SELECT pg_catalog.setval('public."CustomSections_id_seq"', 1, true);
+
+
+--
+-- Name: CustomSections_translations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
+--
+
+SELECT pg_catalog.setval('public."CustomSections_translations_id_seq"', 2, true);
+
+
+--
 -- Name: SupportLinks_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
 --
 
@@ -2558,14 +2767,14 @@ SELECT pg_catalog.setval('public.countries_translations_id_seq', 2, true);
 -- Name: directus_activity_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
 --
 
-SELECT pg_catalog.setval('public.directus_activity_id_seq', 328, true);
+SELECT pg_catalog.setval('public.directus_activity_id_seq', 359, true);
 
 
 --
 -- Name: directus_fields_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
 --
 
-SELECT pg_catalog.setval('public.directus_fields_id_seq', 68, true);
+SELECT pg_catalog.setval('public.directus_fields_id_seq', 84, true);
 
 
 --
@@ -2579,28 +2788,28 @@ SELECT pg_catalog.setval('public.directus_notifications_id_seq', 1, false);
 -- Name: directus_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
 --
 
-SELECT pg_catalog.setval('public.directus_permissions_id_seq', 49, true);
+SELECT pg_catalog.setval('public.directus_permissions_id_seq', 51, true);
 
 
 --
 -- Name: directus_presets_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
 --
 
-SELECT pg_catalog.setval('public.directus_presets_id_seq', 3, true);
+SELECT pg_catalog.setval('public.directus_presets_id_seq', 4, true);
 
 
 --
 -- Name: directus_relations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
 --
 
-SELECT pg_catalog.setval('public.directus_relations_id_seq', 15, true);
+SELECT pg_catalog.setval('public.directus_relations_id_seq', 18, true);
 
 
 --
 -- Name: directus_revisions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
 --
 
-SELECT pg_catalog.setval('public.directus_revisions_id_seq', 295, true);
+SELECT pg_catalog.setval('public.directus_revisions_id_seq', 326, true);
 
 
 --
@@ -2629,6 +2838,22 @@ SELECT pg_catalog.setval('public.event_id_seq', 5, true);
 --
 
 SELECT pg_catalog.setval('public.event_translations_id_seq', 8, true);
+
+
+--
+-- Name: CustomSections CustomSections_pkey; Type: CONSTRAINT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public."CustomSections"
+    ADD CONSTRAINT "CustomSections_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: CustomSections_translations CustomSections_translations_pkey; Type: CONSTRAINT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public."CustomSections_translations"
+    ADD CONSTRAINT "CustomSections_translations_pkey" PRIMARY KEY (id);
 
 
 --
@@ -3005,6 +3230,30 @@ ALTER TABLE ONLY public.countries_translations
 
 ALTER TABLE ONLY public.countries_translations
     ADD CONSTRAINT countries_translations_languages_code_foreign FOREIGN KEY (languages_code) REFERENCES public.languages(code) ON DELETE SET NULL;
+
+
+--
+-- Name: CustomSections customsections_city_foreign; Type: FK CONSTRAINT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public."CustomSections"
+    ADD CONSTRAINT customsections_city_foreign FOREIGN KEY (city) REFERENCES public.city(id) ON DELETE SET NULL;
+
+
+--
+-- Name: CustomSections_translations customsections_translations_customsections_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public."CustomSections_translations"
+    ADD CONSTRAINT customsections_translations_customsections_id_foreign FOREIGN KEY ("CustomSections_id") REFERENCES public."CustomSections"(id) ON DELETE SET NULL;
+
+
+--
+-- Name: CustomSections_translations customsections_translations_languages_code_foreign; Type: FK CONSTRAINT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public."CustomSections_translations"
+    ADD CONSTRAINT customsections_translations_languages_code_foreign FOREIGN KEY (languages_code) REFERENCES public.languages(code) ON DELETE SET NULL;
 
 
 --
