@@ -12,6 +12,7 @@ import "./components/support-links-list/support-links-list"
 import "./components/custom-section-list/custom-section-list"
 import "./components/gallery/gallery"
 import "../components/footer/footer"
+import "../components/text-content/text-content"
 
 @customElement("bnn-city")
 export class City extends DefaultComponent {
@@ -73,6 +74,7 @@ export class City extends DefaultComponent {
       <bnn-gallery .gallery="${this.city?.gallery}"></bnn-gallery>
       <bnn-custom-section-list .customSections="${this.city?.customSections}"></bnn-custom-section-list>
       <bnn-support-link-list .supportLinks="${this.city?.supportlinks}"></bnn-support-link-list>
+      <bnn-text-content .title="${"Organisation | Trägerschaft"}" .text="${this.city?.sponsors}" .backgroundColor="${"blue"}"></bnn-text-content>
       <bnn-footer></bnn-footer>
     `;
   }
