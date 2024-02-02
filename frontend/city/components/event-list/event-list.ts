@@ -11,7 +11,6 @@ export class EventList extends DefaultComponent {
     events: EventModel[] | undefined;
 
     render() {
-        console.log(this.events)
         return html`
             <bnn-content-container>
                 <h2>Veranstaltungen</h2>
@@ -23,7 +22,6 @@ export class EventList extends DefaultComponent {
     }
 
     renderEvent(event: EventModel) {
-        console.log(event)
         return html`
             <h3>${event.name}</h3>
             <p>${event.description}</p>

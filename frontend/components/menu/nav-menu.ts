@@ -12,7 +12,6 @@ export class NavMenu extends LitElement {
 
     constructor() {
         super();
-        console.log(this.menuItems)
     }
 
     render() {
@@ -32,6 +31,6 @@ export class NavMenu extends LitElement {
     }
 
     toggleSubMenu(item: any) {
-        console.log(item)
+        console.log("toggleSubMenu", item)
     }
 }
