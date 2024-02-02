@@ -43,7 +43,6 @@ export class City extends DefaultComponent {
     }
 
     handleCitySelection(e) {
-        console.log("handleCitySelection", e)
         this.selectedCity = e.detail.cityId;
         this.fetchCityData();
     }
@@ -52,6 +51,7 @@ export class City extends DefaultComponent {
         if (this.selectedCity !== null) {
             this.cityService.getCity(this.selectedCity).then(cityData => {
                 this.city = cityData;
+                console.log("render", cityData)
             }).catch(error => {
                 console.error("Failed to fetch city data", error);
             });
@@ -59,7 +59,6 @@ export class City extends DefaultComponent {
     }
 
   public render() {
-    console.log(this.city?.events)
     return html`
       <bnn-banner .cityname="${this.city?.name}"></bnn-banner>
       <bnn-content-container>
