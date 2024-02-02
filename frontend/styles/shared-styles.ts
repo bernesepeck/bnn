@@ -6,6 +6,11 @@ export default css`
         --color-highlight: #efe9b0;
         --color-grey: #e3e3e3;
         --content-padding: 10%;
+        --font-size-s: 16px;
+        --font-size-m: 20px;
+        --font-size-l: 36px;
+        --font-size-xl: 40px;
+        --font-size-xxl: 48px;
     }
     * {
     font-family: 'Roboto', sans-serif;
@@ -16,9 +21,9 @@ export default css`
 
     }
     h2 {
-        font-size: 40px;
+        font-size: var(--font-size-xl);
     }
     h1 {
-        font-size: 48px;
+        font-size: var(--font-size-xxl);
     }
 `;
