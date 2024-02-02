@@ -12,6 +12,8 @@ export default css`
         --font-size-xl: 40px;
         --font-size-xxl: 48px;
         --header-size: 400px;
+        --gutter-s: 16px;
+        --gutter-m: 32px;
         --breakpoint-medium: 768px;
         --breakpoint-large: 1024px;
     }
@@ -22,6 +24,9 @@ export default css`
     h1, h2, h3, h4, h5 {
         color: var(--color-primary);
 
+    }
+    h3 {
+        font-size: var(--font-size-m);
     }
     h2 {
         font-size: var(--font-size-xl);
@@ -35,6 +40,8 @@ export default css`
     @media screen and (max-width: 768px) {
         :host {
             --header-size: auto;
+            --gutter-s: 8px;
+            --gutter-m: 16px;
         }
     }
 `;
