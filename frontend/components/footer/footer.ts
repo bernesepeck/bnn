@@ -10,8 +10,18 @@ export class Footer extends DefaultComponent {
     return css`
       .footer-content {
         display: flex;
-        gap: 16px;
+        gap: var(--gutter-m);
         justify-content: space-between;
+        flex-wrap: wrap;
+        & div {
+          gap: var(--gutter-s);
+          display: flex;
+          flex-direction: column;
+          & a {
+            padding-bottom: 6px;
+            cursor: pointer;
+          }
+        }
       }
     `;
   }

@@ -30,6 +30,7 @@ export default css`
   }
   h3 {
     font-size: var(--font-size-m);
+    color: black;
   }
   h2 {
     font-size: var(--font-size-xl);
@@ -51,7 +52,6 @@ export default css`
         bottom: -6px;
         width: calc(100% - 8px);
         height: calc(100% - 8px);
-        z-index: -1;
         transition: 0.35s cubic-bezier(0.25, 0.1, 0, 2.05);
     }
     &:hover:after {
