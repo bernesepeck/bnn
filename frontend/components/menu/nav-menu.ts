@@ -42,6 +42,9 @@ export class NavMenu extends DefaultComponent {
                 list-style: none;
                 display: flex;
                 gap: 32px;
+                & .main-link::after {
+                  content: none;
+                }
                 & li, a {
                     font-size: var(--font-size-l);
                     text-decoration: none;
@@ -70,7 +73,7 @@ export class NavMenu extends DefaultComponent {
     return html`
       <nav class="menu">
         ${this.menuItems.map(
-          (item) => item.submenu ? this.renderMenuItemWithSubmenu(item) : html `<a href="${item.link}">${item.title}</a>`
+          (item) => item.submenu ? this.renderMenuItemWithSubmenu(item) : html `<a class="main-link" href="${item.link}">${item.title}</a>`
         )}
       </nav>
     `;

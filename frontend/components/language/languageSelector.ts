@@ -17,6 +17,7 @@ export class LanguageSelector extends DefaultComponent {
             select {
                 padding: 5px;
                 margin: 10px;
+                margin-left: 0;
             }
         `;
     }
