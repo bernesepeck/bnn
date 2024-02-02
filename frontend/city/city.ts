@@ -63,7 +63,7 @@ export class City extends DefaultComponent {
       <bnn-banner .cityname="${this.city?.name}"></bnn-banner>
       <bnn-content-container>
         <h2>${this.city?.page_title}</h2>
-        <p>${this.city?.description}</p>
+        <p .innerHTML="${this.city?.description}"></p>
       </bnn-content-container>
       <bnn-event-list .events="${this.city?.events}"></bnn-event-list>
     `;
