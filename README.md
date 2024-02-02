@@ -9,6 +9,16 @@ docker compose up
 
 ```
 
+### Backup directus uploads
+```bash
+zip -r uploads.zip backend/uploads
+```
+
+### Restore directus uploads
+```bash
+unzip backend/uploads.zip -d backend/uploads
+```
+
 ### Backup directus DB
 ```bash
 # Create pg dump
