@@ -47,7 +47,6 @@ export class EventList extends DefaultComponent {
   }
 
   renderEvent(event: EventModel) {
-    console.log(event)
     return html`
       <div class="event">
         <h3>${event.name}</h3>
