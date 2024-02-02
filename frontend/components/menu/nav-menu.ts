@@ -9,12 +9,13 @@ type MenuItem = {
   submenu: boolean;
   submenuSlotName?: string;
   submenuVisible?: boolean;
+  link?: string;
 };
 
 @customElement("bnn-nav-menu")
 export class NavMenu extends DefaultComponent {
   @property({ type: Array<MenuItem> }) menuItems: MenuItem[] = [
-    { title: "Home", submenu: false },
+    { title: "Home", submenu: false, link: '/' },
     {
       title: "Cities",
       submenu: true,
@@ -40,10 +41,13 @@ export class NavMenu extends DefaultComponent {
             .menu {
                 list-style: none;
                 display: flex;
-                gap: 16px;
-                color: var(--color-primary);
-                & li {
+                gap: 32px;
+                & li, a {
                     font-size: var(--font-size-l);
+                    text-decoration: none;
+                    color: white;
+                    cursor: pointer;
+                    font-weight: bold;
                 }
                 & .submenu {
                     position: absolute;
@@ -52,7 +56,7 @@ export class NavMenu extends DefaultComponent {
                     opacity: 0; /* Start from invisible */
                     animation: slideDownFadeIn 0.5s ease-out forwards; /* Apply the animation */
                 }
-                }
+              }
             }
             }
         `;
@@ -64,10 +68,17 @@ export class NavMenu extends DefaultComponent {
 
   render() {
     return html`
-      <ul class="menu">
+      <nav class="menu">
         ${this.menuItems.map(
-          (item) => html`
-            <li @click="${() => this.toggleSubMenu(item)}">
+          (item) => item.submenu ? this.renderMenuItemWithSubmenu(item) : html `<a href="${item.link}">${item.title}</a>`
+        )}
+      </nav>
+    `;
+  }
+
+  renderMenuItemWithSubmenu(item: MenuItem) {
+    return html`
+      <li @click="${() => this.toggleSubMenu(item)}">
               ${item.title}
               ${item.submenu && item.submenuVisible
                 ? html`
@@ -79,16 +90,12 @@ export class NavMenu extends DefaultComponent {
                   `
                 : ""}
             </li>
-          `
-        )}
-      </ul>
-    `;
+    `
   }
 
   toggleSubMenu(item: MenuItem) {
     this.menuItems = this.menuItems.map((i) =>
       i === item ? { ...i, submenuVisible: !i.submenuVisible } : i
     );
-    console.log("toggleSubMenu", item);
   }
 }

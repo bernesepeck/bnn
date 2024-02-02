@@ -11,11 +11,13 @@ export class Banner extends DefaultComponent {
   static get componentStyles() {
     return css`
     .header-wrapper {
-        background-image: url("/bnn-banner.webp");
-        height: 400px;
+        background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(165, 147, 160, 0.73)), url(/bnn-banner.webp);
+        height: var(--header-size);
         padding: 0px var(--content-padding);
+        padding-top: 16px;
         display: flex;
         flex-direction: column;
+        background-size: 100%;
     }
     bnn-nav-menu {
       margin-left: auto;
