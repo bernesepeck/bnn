@@ -40,17 +40,6 @@ export class CitySelector extends DefaultComponent {
     }
   }
 
-  handleCityChange(cityId: number) {
-    // Dispatch an event or perform actions based on the selected city
-    this.dispatchEvent(
-      new CustomEvent("city-selected", {
-        detail: { cityId },
-        bubbles: true,
-        composed: true,
-      })
-    );
-  }
-
   render() {
     return html`
       <nav>
