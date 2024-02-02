@@ -23,10 +23,10 @@ export class EventList extends DefaultComponent {
 
     renderEvent(event: EventModel) {
         return html`
+            <p>${event.location}</p>
             <h3>${event.name}</h3>
+            <p>${event.customDates}</p>
             <p .innerHTML="${event.description}"></p>
         `
     }
-
-
 }

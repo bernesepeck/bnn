@@ -21,6 +21,8 @@ export interface EventModel {
     languages_code: string;
     name: string;
     description: string | null;
+    customDates: string | null;
+    location: string | null;
 }
 export interface CityModel {
     id: number;
