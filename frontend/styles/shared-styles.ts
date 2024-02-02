@@ -36,10 +36,10 @@ export default css`
     color: black;
   }
   h2 {
-    font-size: var(--font-size-xl);
+    font-size: var(--font-size-l);
   }
   h1 {
-    font-size: var(--font-size-xxl);
+    font-size: var(--font-size-xl);
   }
   a {
     position: relative;

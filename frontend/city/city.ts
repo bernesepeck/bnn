@@ -73,20 +73,31 @@ export class City extends DefaultComponent {
         <h2>${this.city?.page_title}</h2>
         <p .innerHTML="${this.city?.description}"></p>
       </bnn-content-container>
-      <bnn-event-list .events="${this.city?.events}"></bnn-event-list>
-      ${this.renderGallery()}
-      <bnn-custom-section-list
-        .customSections="${this.city?.customSections}"
-      ></bnn-custom-section-list>
-      ${this.renderSponsors()}
-      ${this.renderSponsors()}
+      ${this.renderEventList()}
+      ${this.renderGallery()} ${this.renderCustomSection()}
+      ${this.renderSupportLinks()} ${this.renderSponsors()}
       <bnn-footer></bnn-footer>
     `;
   }
 
+  renderEventList() {
+    return this.city?.events?.length
+      ? html`<bnn-event-list .events="${this.city?.events}"></bnn-event-list>`
+      : ``;
+  }
+
   renderGallery() {
-    return this.city?.gallery.length ?
-      html`<bnn-gallery .gallery="${this.city?.gallery}"></bnn-gallery>` : ``;
+    return this.city?.gallery?.length
+      ? html`<bnn-gallery .gallery="${this.city?.gallery}"></bnn-gallery>`
+      : ``;
+  }
+
+  renderCustomSection() {
+    return this.city?.customSections?.length
+      ? html` <bnn-custom-section-list
+          .customSections="${this.city?.customSections}"
+        ></bnn-custom-section-list>`
+      : ``;
   }
 
   renderSponsors() {
@@ -100,7 +111,7 @@ export class City extends DefaultComponent {
   }
 
   renderSupportLinks() {
-    return this.city?.supportLinks.length
+    return this.city?.supportLinks?.length
       ? html` <bnn-support-link-list
           .supportLinks="${this.city?.supportlinks}"
         ></bnn-support-link-list>`
