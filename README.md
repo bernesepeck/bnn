@@ -11,7 +11,8 @@ docker compose up
 
 ### Backup directus uploads
 ```bash
-zip -r uploads.zip backend/uploads
+cd backend/uploads
+zip -r ../uploads.zip *
 ```
 
 ### Restore directus uploads
