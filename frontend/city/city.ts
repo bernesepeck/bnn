@@ -13,27 +13,7 @@ import "./components/custom-section-list/custom-section-list";
 import "./components/gallery/gallery";
 import "../components/footer/footer";
 import "../components/text-content/text-content";
-import { FormType } from "../components/form/form";
 import "../components/form/form";
-
-//Mock Stofflagen Formular
-const stoffflagenForm: FormType = {
-  title: "Stoffflagen bestellen",
-  description:
-    "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et",
-  fields: [
-    { type: "text", label: "vorname" },
-    { type: "text", label: "nachname" },
-    { type: "text", label: "organisation" },
-    { type: "text", label: "adresse" },
-    { type: "number", label: "Anzahl Flaggen" },
-    { type: "textarea", label: "Bemerkung" },
-    { type: "checkbox", label: "Akzeptiere etwas" },
-  ],
-  submitLabel: "Bestellen",
-  email: "mirjamthomet@gmail.com",
-  emailSubject: "Neue Stoffflagge Bestellung",
-};
 
 @customElement("bnn-city")
 export class City extends DefaultComponent {
@@ -102,9 +82,9 @@ export class City extends DefaultComponent {
   }
 
   renderForm() {
-    return stoffflagenForm
-      ? html` <bnn-form .form=${stoffflagenForm}></bnn-form> `
-      : ``;
+    return html`${this.city?.emailForm.map(form => {
+      return html`<bnn-form .form=${form}></bnn-form>`;
+    })}`;
   }
 
   renderEventList() {

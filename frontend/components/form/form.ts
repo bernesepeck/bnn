@@ -6,15 +6,16 @@ import "../content-container/content-container";
 type Field = {
   type: "text" | "textarea" | "number" | "checkbox";
   label: string;
+  FormFields_id: any;
 };
 
 export type FormType = {
   fields: Field[];
-  submitLabel: string;
+  submitText: string;
   title: string;
   description: string;
-  email: string;
-  emailSubject: string;
+  emailTo: string;
+  subject: string;
 };
 
 @customElement("bnn-form")
@@ -43,7 +44,7 @@ export class Form extends DefaultComponent {
         <p>${this.form?.description}</p>
         <form id="form" @submit="${(e) => this.submitForm(e)}">
           ${this.form?.fields.map((field) => this.renderField(field))}
-          <button type="submit">${this.form?.submitLabel}</button>
+          <button type="submit">${this.form?.submitText}</button>
         </form>
       </bnn-content-container>
     `;
@@ -69,7 +70,7 @@ export class Form extends DefaultComponent {
   }
 
   renderField(field: Field) {
-    switch (field.type) {
+    switch (field.FormFields_id.type) {
       case "text":
         return html` ${this.renderLabel(field.label)}
           <input type="text" id="${field.label}" name="${field.label}" />`;
