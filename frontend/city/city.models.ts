@@ -1,3 +1,5 @@
+import {  FormType } from "../components/form/form";
+
 export interface SupportLinkModel {
     id: number;
     status: string;
@@ -50,6 +52,7 @@ export interface CityModel {
     customSections: CustomSectionModel[];
     emailForm: [];
     [key: string]: any;
+    form: FormType;
 }
 export interface GalleryModel {
     id: number;
