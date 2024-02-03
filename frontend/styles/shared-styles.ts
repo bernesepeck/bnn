@@ -41,6 +41,28 @@ export default css`
   h1 {
     font-size: var(--font-size-xl);
   }
+  input,
+  textarea {
+    padding: 16px;
+    background-color: var(--color-grey);
+    border: none;
+  }
+  input:focus,
+  textarea:focus {
+    outline-color: var(--color-primary);
+  }
+  button {
+    border: none;
+    padding: 16px;
+    max-width: 200px;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    opacity: 0.9;
+    cursor: pointer;
+    &:hover {
+      opacity: 1;
+    }
+  }
   a {
     position: relative;
     overflow: hidden;
@@ -48,20 +70,20 @@ export default css`
     color: var(--color-primary);
     font-weight: bold;
     &::after {
-        content: "";
-        background: rgba(200, 130, 130, 0.4);
-        position: absolute;
-        left: 12px;
-        bottom: -6px;
-        width: calc(100% - 8px);
-        height: calc(100% - 8px);
-        transition: 0.35s cubic-bezier(0.25, 0.1, 0, 2.05);
+      content: "";
+      background: rgba(200, 130, 130, 0.4);
+      position: absolute;
+      left: 12px;
+      bottom: -6px;
+      width: calc(100% - 8px);
+      height: calc(100% - 8px);
+      transition: 0.35s cubic-bezier(0.25, 0.1, 0, 2.05);
     }
     &:hover:after {
-        left: 0;
-        bottom: -2px;
-        width: 100%;
-        height: 100%;
+      left: 0;
+      bottom: -2px;
+      width: 100%;
+      height: 100%;
     }
   }
   @media screen and (max-width: 480px) {
