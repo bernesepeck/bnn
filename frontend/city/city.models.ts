@@ -48,6 +48,7 @@ export interface CityModel {
     events: EventModel[];
     supportlinks: SupportLinkModel[];
     customSections: CustomSectionModel[];
+    emailForm: [];
     [key: string]: any;
 }
 export interface GalleryModel {

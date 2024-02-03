@@ -256,6 +256,189 @@ ALTER SEQUENCE public."CustomSections_translations_id_seq" OWNED BY public."Cust
 
 
 --
+-- Name: EmailForm; Type: TABLE; Schema: public; Owner: directus
+--
+
+CREATE TABLE public."EmailForm" (
+    id integer NOT NULL,
+    status character varying(255) DEFAULT 'draft'::character varying NOT NULL,
+    sort integer,
+    date_created timestamp with time zone,
+    date_updated timestamp with time zone,
+    "emailTo" character varying(255),
+    city integer
+);
+
+
+ALTER TABLE public."EmailForm" OWNER TO directus;
+
+--
+-- Name: EmailForm_FormFields; Type: TABLE; Schema: public; Owner: directus
+--
+
+CREATE TABLE public."EmailForm_FormFields" (
+    id integer NOT NULL,
+    "EmailForm_id" integer,
+    "FormFields_id" integer
+);
+
+
+ALTER TABLE public."EmailForm_FormFields" OWNER TO directus;
+
+--
+-- Name: EmailForm_FormFields_id_seq; Type: SEQUENCE; Schema: public; Owner: directus
+--
+
+CREATE SEQUENCE public."EmailForm_FormFields_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."EmailForm_FormFields_id_seq" OWNER TO directus;
+
+--
+-- Name: EmailForm_FormFields_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: directus
+--
+
+ALTER SEQUENCE public."EmailForm_FormFields_id_seq" OWNED BY public."EmailForm_FormFields".id;
+
+
+--
+-- Name: EmailForm_FormFields_translations; Type: TABLE; Schema: public; Owner: directus
+--
+
+CREATE TABLE public."EmailForm_FormFields_translations" (
+    id integer NOT NULL,
+    "EmailForm_FormFields_id" integer,
+    languages_code character varying(255),
+    label character varying(255)
+);
+
+
+ALTER TABLE public."EmailForm_FormFields_translations" OWNER TO directus;
+
+--
+-- Name: EmailForm_FormFields_translations_id_seq; Type: SEQUENCE; Schema: public; Owner: directus
+--
+
+CREATE SEQUENCE public."EmailForm_FormFields_translations_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."EmailForm_FormFields_translations_id_seq" OWNER TO directus;
+
+--
+-- Name: EmailForm_FormFields_translations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: directus
+--
+
+ALTER SEQUENCE public."EmailForm_FormFields_translations_id_seq" OWNED BY public."EmailForm_FormFields_translations".id;
+
+
+--
+-- Name: EmailForm_id_seq; Type: SEQUENCE; Schema: public; Owner: directus
+--
+
+CREATE SEQUENCE public."EmailForm_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."EmailForm_id_seq" OWNER TO directus;
+
+--
+-- Name: EmailForm_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: directus
+--
+
+ALTER SEQUENCE public."EmailForm_id_seq" OWNED BY public."EmailForm".id;
+
+
+--
+-- Name: EmailForm_translations; Type: TABLE; Schema: public; Owner: directus
+--
+
+CREATE TABLE public."EmailForm_translations" (
+    id integer NOT NULL,
+    "EmailForm_id" integer,
+    languages_code character varying(255),
+    subject character varying(255),
+    title character varying(255),
+    description text,
+    "submitText" character varying(255)
+);
+
+
+ALTER TABLE public."EmailForm_translations" OWNER TO directus;
+
+--
+-- Name: EmailForm_translations_id_seq; Type: SEQUENCE; Schema: public; Owner: directus
+--
+
+CREATE SEQUENCE public."EmailForm_translations_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."EmailForm_translations_id_seq" OWNER TO directus;
+
+--
+-- Name: EmailForm_translations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: directus
+--
+
+ALTER SEQUENCE public."EmailForm_translations_id_seq" OWNED BY public."EmailForm_translations".id;
+
+
+--
+-- Name: FormFields; Type: TABLE; Schema: public; Owner: directus
+--
+
+CREATE TABLE public."FormFields" (
+    id integer NOT NULL,
+    type character varying(255)
+);
+
+
+ALTER TABLE public."FormFields" OWNER TO directus;
+
+--
+-- Name: FormFields_id_seq; Type: SEQUENCE; Schema: public; Owner: directus
+--
+
+CREATE SEQUENCE public."FormFields_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."FormFields_id_seq" OWNER TO directus;
+
+--
+-- Name: FormFields_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: directus
+--
+
+ALTER SEQUENCE public."FormFields_id_seq" OWNED BY public."FormFields".id;
+
+
+--
 -- Name: SupportLinks; Type: TABLE; Schema: public; Owner: directus
 --
 
@@ -1332,6 +1515,41 @@ ALTER TABLE ONLY public."CustomSections_translations" ALTER COLUMN id SET DEFAUL
 
 
 --
+-- Name: EmailForm id; Type: DEFAULT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public."EmailForm" ALTER COLUMN id SET DEFAULT nextval('public."EmailForm_id_seq"'::regclass);
+
+
+--
+-- Name: EmailForm_FormFields id; Type: DEFAULT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public."EmailForm_FormFields" ALTER COLUMN id SET DEFAULT nextval('public."EmailForm_FormFields_id_seq"'::regclass);
+
+
+--
+-- Name: EmailForm_FormFields_translations id; Type: DEFAULT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public."EmailForm_FormFields_translations" ALTER COLUMN id SET DEFAULT nextval('public."EmailForm_FormFields_translations_id_seq"'::regclass);
+
+
+--
+-- Name: EmailForm_translations id; Type: DEFAULT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public."EmailForm_translations" ALTER COLUMN id SET DEFAULT nextval('public."EmailForm_translations_id_seq"'::regclass);
+
+
+--
+-- Name: FormFields id; Type: DEFAULT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public."FormFields" ALTER COLUMN id SET DEFAULT nextval('public."FormFields_id_seq"'::regclass);
+
+
+--
 -- Name: SupportLinks id; Type: DEFAULT; Schema: public; Owner: directus
 --
 
@@ -1477,6 +1695,57 @@ COPY public."CustomSections_translations" (id, "CustomSections_id", languages_co
 
 
 --
+-- Data for Name: EmailForm; Type: TABLE DATA; Schema: public; Owner: directus
+--
+
+COPY public."EmailForm" (id, status, sort, date_created, date_updated, "emailTo", city) FROM stdin;
+1	draft	\N	2024-02-03 14:57:39.131+00	2024-02-03 15:28:22.215+00	gannonline90@gmail.com	2
+\.
+
+
+--
+-- Data for Name: EmailForm_FormFields; Type: TABLE DATA; Schema: public; Owner: directus
+--
+
+COPY public."EmailForm_FormFields" (id, "EmailForm_id", "FormFields_id") FROM stdin;
+1	1	1
+2	1	2
+\.
+
+
+--
+-- Data for Name: EmailForm_FormFields_translations; Type: TABLE DATA; Schema: public; Owner: directus
+--
+
+COPY public."EmailForm_FormFields_translations" (id, "EmailForm_FormFields_id", languages_code, label) FROM stdin;
+1	1	de	Flaggentyp
+2	1	fr	Type de drapeau
+3	2	de	Betrag
+4	2	fr	Montant
+\.
+
+
+--
+-- Data for Name: EmailForm_translations; Type: TABLE DATA; Schema: public; Owner: directus
+--
+
+COPY public."EmailForm_translations" (id, "EmailForm_id", languages_code, subject, title, description, "submitText") FROM stdin;
+1	1	de	neue Bestellung	Flaggen bestellen	Um Ihre Fahnen zu bestellen, geben Sie bitte die Anzahl und die Art der Fahnen an, die Sie wünschen. 	Bestellung
+2	1	fr	nouvelle commande	Commander des drapeaux	Pour commander vos drapeaux, veuillez indiquer le nombre et le type de drapeaux que vous souhaitez. 	Commande
+\.
+
+
+--
+-- Data for Name: FormFields; Type: TABLE DATA; Schema: public; Owner: directus
+--
+
+COPY public."FormFields" (id, type) FROM stdin;
+1	text
+2	number
+\.
+
+
+--
 -- Data for Name: SupportLinks; Type: TABLE DATA; Schema: public; Owner: directus
 --
 
@@ -1516,7 +1785,7 @@ COPY public."SupportLinks_translations" (id, "SupportLinks_id", languages_code, 
 
 COPY public.city (id, status, sort, date_updated) FROM stdin;
 1	draft	\N	2024-01-28 11:22:39.355+00
-2	draft	\N	2024-02-02 11:28:09.968+00
+2	draft	\N	2024-02-03 15:28:22.208+00
 \.
 
 
@@ -1525,25 +1794,25 @@ COPY public.city (id, status, sort, date_updated) FROM stdin;
 --
 
 COPY public.city_files (id, city_id, directus_files_id) FROM stdin;
-1	2	dc123d72-8323-45eb-a943-36389dc5bea6
-2	2	ec2bd7e0-01a0-4571-8f1b-56b3bac4da7e
-3	2	255e9876-3511-4338-932d-de553ca6523a
-4	2	88ec0a8b-f67a-4449-b7f1-26202cb606ca
-5	2	8b3b763c-9d84-4797-ba28-6e52eab82a73
-6	2	f9874dc2-dbd2-4b87-bd32-12ce32a1f526
-7	2	5c60c983-c656-4bb7-bd46-0a107e5bde4c
-8	2	7b5011a5-e238-459c-b133-9cb10c0f49b5
-9	2	2ab59289-4609-4754-aa16-a48358f1d5bf
-10	2	0c6462b2-f86e-4fca-a960-23c0222ce597
-11	2	f1585467-0562-4b63-bd7d-bedadf620e8b
-12	2	3a2dfe2d-cb94-452c-bdff-dd3ac2396b6f
-13	2	02735120-e2ae-4389-ac2e-2426d10b7944
-14	2	0174130c-f4f5-44aa-a9c7-35f8b5ead135
-15	2	ca987d87-80ed-42f0-b50e-56340b1f497e
-16	2	16ef4a31-4ab0-4cab-898b-618be781d472
-17	2	7ca7e9cb-0a8e-4c5f-8f1a-32f5f544ff2f
-18	2	3e1f3db6-0a84-433e-957c-972ce8a1d278
-19	2	c55467d4-8338-437b-a177-c0710f9a535d
+20	2	b8438249-863c-449a-8fe5-568f4e47b67b
+21	2	4ddcfe09-9d8c-4faf-875b-f4badd641872
+22	2	3fe2f5dd-65dd-4441-b0d6-fe6b00e20b7e
+23	2	8690b83f-d3a7-4c50-a73d-ca1457c60576
+24	2	a395308d-6b1a-4db4-8b3c-c39009964fbf
+25	2	57f3e7e0-db45-42fc-ab87-af4daa0bb144
+26	2	3785366c-a15c-4648-9398-be2b068af3ac
+27	2	92930338-0f26-4953-9074-a7bbad626063
+28	2	f97ece40-8c83-445f-84aa-296470d9156c
+29	2	a6d8e567-36f1-421a-ac23-5e549a84d564
+30	2	f3e9f151-89f9-4521-8682-719049e2066d
+31	2	9624d4fa-f777-4d8c-a25a-0c44d4f3335d
+32	2	be7798e7-4a82-476d-9337-efb46d483803
+33	2	a1140a22-23f1-4cdd-b36e-a892b4ff7e48
+34	2	c0ca15c3-237b-4903-8bdb-bb26785bb930
+35	2	248abf34-2e4e-43f1-9257-c6ec55cb1e83
+36	2	979419ac-8085-42df-a425-af8c952f7840
+37	2	5e740af8-492d-4540-b959-ae89e0576ce3
+38	2	c64a680d-6535-47c6-a527-0808229d2fcf
 \.
 
 
@@ -1919,6 +2188,7 @@ COPY public.directus_activity (id, action, "user", "timestamp", ip, user_agent, 
 376	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 11:27:36.762+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	ec2bd7e0-01a0-4571-8f1b-56b3bac4da7e	\N	http://localhost:8055
 378	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 11:27:56.684+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	88ec0a8b-f67a-4449-b7f1-26202cb606ca	\N	http://localhost:8055
 382	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 11:28:06.548+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	2ab59289-4609-4754-aa16-a48358f1d5bf	\N	http://localhost:8055
+424	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:48:48.012+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city_files	1	\N	http://localhost:8055
 391	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 11:28:06.729+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	7ca7e9cb-0a8e-4c5f-8f1a-32f5f544ff2f	\N	http://localhost:8055
 414	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 11:46:44.767+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_permissions	52	\N	http://localhost:8055
 418	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 11:46:44.797+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_permissions	55	\N	http://localhost:8055
@@ -2006,6 +2276,245 @@ COPY public.directus_activity (id, action, "user", "timestamp", ip, user_agent, 
 353	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 10:25:53.951+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	CustomSections_translations	2	\N	http://localhost:8055
 354	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 10:25:53.976+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	CustomSections	1	\N	http://localhost:8055
 387	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 11:28:06.676+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	02735120-e2ae-4389-ac2e-2426d10b7944	\N	http://localhost:8055
+425	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:48:48.018+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city_files	10	\N	http://localhost:8055
+426	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:48:48.022+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city_files	11	\N	http://localhost:8055
+427	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:48:48.026+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city_files	12	\N	http://localhost:8055
+428	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:48:48.029+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city_files	13	\N	http://localhost:8055
+429	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:48:48.033+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city_files	14	\N	http://localhost:8055
+430	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:48:48.038+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city_files	15	\N	http://localhost:8055
+431	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:48:48.042+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city_files	2	\N	http://localhost:8055
+432	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:48:48.046+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city_files	3	\N	http://localhost:8055
+433	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:48:48.049+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city_files	4	\N	http://localhost:8055
+434	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:48:48.052+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city_files	5	\N	http://localhost:8055
+435	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:48:48.055+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city_files	6	\N	http://localhost:8055
+436	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:48:48.059+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city_files	7	\N	http://localhost:8055
+437	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:48:48.062+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city_files	8	\N	http://localhost:8055
+438	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:48:48.065+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city_files	9	\N	http://localhost:8055
+439	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:48:48.118+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city	2	\N	http://localhost:8055
+483	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:51:23.237+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_collections	dddd	\N	http://localhost:8055
+485	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:52:27.5+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city_files	1	\N	http://localhost:8055
+486	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:52:27.506+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city_files	2	\N	http://localhost:8055
+487	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:52:27.512+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city_files	3	\N	http://localhost:8055
+488	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:52:27.517+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city_files	4	\N	http://localhost:8055
+489	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:52:27.522+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city_files	5	\N	http://localhost:8055
+490	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:52:27.527+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city_files	6	\N	http://localhost:8055
+491	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:52:27.532+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city_files	7	\N	http://localhost:8055
+492	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:52:27.538+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city_files	8	\N	http://localhost:8055
+493	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:52:27.543+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city_files	9	\N	http://localhost:8055
+494	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:52:27.55+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city_files	10	\N	http://localhost:8055
+495	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:52:27.555+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city_files	11	\N	http://localhost:8055
+496	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:52:27.56+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city_files	12	\N	http://localhost:8055
+497	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:52:27.565+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city_files	13	\N	http://localhost:8055
+498	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:52:27.571+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city_files	14	\N	http://localhost:8055
+499	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:52:27.576+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city_files	15	\N	http://localhost:8055
+500	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:52:27.581+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city_files	16	\N	http://localhost:8055
+501	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:52:27.588+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city_files	17	\N	http://localhost:8055
+502	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:52:27.593+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city_files	18	\N	http://localhost:8055
+503	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:52:27.597+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city_files	19	\N	http://localhost:8055
+440	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:48:54.059+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city_files	16	\N	http://localhost:8055
+441	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:48:54.065+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city_files	17	\N	http://localhost:8055
+442	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:48:54.07+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city_files	18	\N	http://localhost:8055
+443	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:48:54.076+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city_files	19	\N	http://localhost:8055
+444	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:48:54.111+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city	2	\N	http://localhost:8055
+484	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:52:17.992+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_collections	city_files	\N	http://localhost:8055
+516	login	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:54:16.563+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_users	db513aee-cd3a-47a9-95e5-a98f1cc92d13	\N	http://localhost:8055
+519	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:54:42.487+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	4ddcfe09-9d8c-4faf-875b-f4badd641872	\N	http://localhost:8055
+525	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:55:06.128+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	f97ece40-8c83-445f-84aa-296470d9156c	\N	http://localhost:8055
+529	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:55:06.635+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	be7798e7-4a82-476d-9337-efb46d483803	\N	http://localhost:8055
+531	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:55:06.645+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	c0ca15c3-237b-4903-8bdb-bb26785bb930	\N	http://localhost:8055
+533	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:55:07.103+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	979419ac-8085-42df-a425-af8c952f7840	\N	http://localhost:8055
+535	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:55:07.108+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	c64a680d-6535-47c6-a527-0808229d2fcf	\N	http://localhost:8055
+536	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:56:14.264+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city_files	20	\N	http://localhost:8055
+537	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:56:14.29+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city_files	21	\N	http://localhost:8055
+538	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:56:14.303+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city_files	22	\N	http://localhost:8055
+539	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:56:14.312+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city_files	23	\N	http://localhost:8055
+540	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:56:14.319+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city_files	24	\N	http://localhost:8055
+541	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:56:14.327+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city_files	25	\N	http://localhost:8055
+542	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:56:14.333+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city_files	26	\N	http://localhost:8055
+543	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:56:14.34+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city_files	27	\N	http://localhost:8055
+544	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:56:14.347+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city_files	28	\N	http://localhost:8055
+545	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:56:14.353+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city_files	29	\N	http://localhost:8055
+546	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:56:14.36+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city_files	30	\N	http://localhost:8055
+547	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:56:14.366+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city_files	31	\N	http://localhost:8055
+548	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:56:14.372+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city_files	32	\N	http://localhost:8055
+549	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:56:14.381+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city_files	33	\N	http://localhost:8055
+550	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:56:14.387+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city_files	34	\N	http://localhost:8055
+551	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:56:14.393+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city_files	35	\N	http://localhost:8055
+552	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:56:14.399+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city_files	36	\N	http://localhost:8055
+553	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:56:14.404+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city_files	37	\N	http://localhost:8055
+554	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:56:14.411+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city_files	38	\N	http://localhost:8055
+555	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:56:14.418+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city	2	\N	http://localhost:8055
+556	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 13:47:39.742+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	86	\N	http://localhost:8055
+445	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:49:12.712+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	c55467d4-8338-437b-a177-c0710f9a535d	\N	http://localhost:8055
+446	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:49:12.718+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	3e1f3db6-0a84-433e-957c-972ce8a1d278	\N	http://localhost:8055
+447	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:49:12.723+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	7ca7e9cb-0a8e-4c5f-8f1a-32f5f544ff2f	\N	http://localhost:8055
+448	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:49:12.728+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	16ef4a31-4ab0-4cab-898b-618be781d472	\N	http://localhost:8055
+449	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:49:12.733+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	ca987d87-80ed-42f0-b50e-56340b1f497e	\N	http://localhost:8055
+450	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:49:12.737+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	0174130c-f4f5-44aa-a9c7-35f8b5ead135	\N	http://localhost:8055
+451	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:49:12.742+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	02735120-e2ae-4389-ac2e-2426d10b7944	\N	http://localhost:8055
+452	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:49:12.746+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	3a2dfe2d-cb94-452c-bdff-dd3ac2396b6f	\N	http://localhost:8055
+453	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:49:12.75+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	f1585467-0562-4b63-bd7d-bedadf620e8b	\N	http://localhost:8055
+454	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:49:12.755+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	0c6462b2-f86e-4fca-a960-23c0222ce597	\N	http://localhost:8055
+455	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:49:12.76+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	2ab59289-4609-4754-aa16-a48358f1d5bf	\N	http://localhost:8055
+456	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:49:12.764+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	5c60c983-c656-4bb7-bd46-0a107e5bde4c	\N	http://localhost:8055
+457	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:49:12.768+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	7b5011a5-e238-459c-b133-9cb10c0f49b5	\N	http://localhost:8055
+458	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:49:12.773+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	f9874dc2-dbd2-4b87-bd32-12ce32a1f526	\N	http://localhost:8055
+459	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:49:12.777+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	8b3b763c-9d84-4797-ba28-6e52eab82a73	\N	http://localhost:8055
+460	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:49:12.782+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	88ec0a8b-f67a-4449-b7f1-26202cb606ca	\N	http://localhost:8055
+461	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:49:12.786+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	255e9876-3511-4338-932d-de553ca6523a	\N	http://localhost:8055
+462	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:49:12.793+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	ec2bd7e0-01a0-4571-8f1b-56b3bac4da7e	\N	http://localhost:8055
+463	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:49:12.8+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	dc123d72-8323-45eb-a943-36389dc5bea6	\N	http://localhost:8055
+464	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:49:12.805+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	a6150896-1236-46da-b6b2-916ac4c336b5	\N	http://localhost:8055
+465	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:49:12.811+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	9a84a67e-7ce4-4058-9999-e3618f028112	\N	http://localhost:8055
+466	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:49:12.816+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	cdbe52e5-a926-44e0-9eab-51e1a6abaeb4	\N	http://localhost:8055
+467	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:49:12.821+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	5ce3e335-c4ec-4b6c-a4e3-8635d1f5659c	\N	http://localhost:8055
+468	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:49:12.826+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	9130e67e-5565-4a66-bc25-c478cf7e70e8	\N	http://localhost:8055
+469	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:49:12.832+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	cdbe4b25-5eac-4489-a45e-e254e04e83a1	\N	http://localhost:8055
+517	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:54:42.476+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	b8438249-863c-449a-8fe5-568f4e47b67b	\N	http://localhost:8055
+521	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:54:42.917+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	a395308d-6b1a-4db4-8b3c-c39009964fbf	\N	http://localhost:8055
+522	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:54:57.254+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	57f3e7e0-db45-42fc-ab87-af4daa0bb144	\N	http://localhost:8055
+526	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:55:06.135+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	a6d8e567-36f1-421a-ac23-5e549a84d564	\N	http://localhost:8055
+528	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:55:06.634+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	9624d4fa-f777-4d8c-a25a-0c44d4f3335d	\N	http://localhost:8055
+470	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:49:16.775+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	56e68cfa-5ac6-4c83-ac3e-f8ac6652fd80	\N	http://localhost:8055
+471	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:49:16.781+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	a22a9ec3-84c9-4b95-9a00-7d9f62eaf1a6	\N	http://localhost:8055
+472	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:49:16.786+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	981dd0e3-e926-47d4-8794-c7a307017c08	\N	http://localhost:8055
+473	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:49:16.79+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	f80b438b-97d2-4fb9-8645-fd2b334f628c	\N	http://localhost:8055
+474	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:49:16.795+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	425a0e8e-16b3-4405-9e7d-4d133b09c14b	\N	http://localhost:8055
+475	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:49:16.8+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	4aece6fc-c22f-4751-8f2e-cb8453ec98ae	\N	http://localhost:8055
+476	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:49:16.804+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	cdd76a04-84f2-426d-b3e6-a4d48ec8a7aa	\N	http://localhost:8055
+477	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:49:16.81+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	5fe1e0ef-1903-4907-bd61-167b748b3820	\N	http://localhost:8055
+478	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:49:16.815+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	83ad9a9d-77dc-4eca-9a0e-4596b1221f0b	\N	http://localhost:8055
+479	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:49:16.819+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	5556b0ea-7025-40a9-aaaf-b55713639b87	\N	http://localhost:8055
+480	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:49:16.824+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	239810f8-beac-4b54-b540-f84cb45ad0e6	\N	http://localhost:8055
+518	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:54:42.482+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	3fe2f5dd-65dd-4441-b0d6-fe6b00e20b7e	\N	http://localhost:8055
+523	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:55:06.116+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	3785366c-a15c-4648-9398-be2b068af3ac	\N	http://localhost:8055
+527	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:55:06.152+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	f3e9f151-89f9-4521-8682-719049e2066d	\N	http://localhost:8055
+530	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:55:06.64+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	a1140a22-23f1-4cdd-b36e-a892b4ff7e48	\N	http://localhost:8055
+534	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:55:07.107+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	5e740af8-492d-4540-b959-ae89e0576ce3	\N	http://localhost:8055
+557	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 13:47:39.777+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	87	\N	http://localhost:8055
+558	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 13:47:39.804+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	88	\N	http://localhost:8055
+559	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 13:47:39.831+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	89	\N	http://localhost:8055
+560	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 13:47:39.851+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	90	\N	http://localhost:8055
+561	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 13:47:39.862+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_collections	DynamicCityForm	\N	http://localhost:8055
+563	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 13:48:18.969+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	91	\N	http://localhost:8055
+564	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 13:48:18.997+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	92	\N	http://localhost:8055
+565	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 13:48:19.02+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	93	\N	http://localhost:8055
+566	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 13:48:19.043+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	94	\N	http://localhost:8055
+567	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 13:48:19.064+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	95	\N	http://localhost:8055
+568	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 13:48:19.089+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_collections	CityFormFields	\N	http://localhost:8055
+575	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 13:50:51.76+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	101	\N	http://localhost:8055
+581	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 13:52:21.906+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	106	\N	http://localhost:8055
+585	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 13:52:22.433+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	109	\N	http://localhost:8055
+587	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 13:54:50.937+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	111	\N	http://localhost:8055
+589	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 13:55:16.406+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	113	\N	http://localhost:8055
+481	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:50:26.233+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	85	\N	http://localhost:8055
+482	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:50:26.257+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_collections	dddd	\N	http://localhost:8055
+520	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:54:42.492+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	8690b83f-d3a7-4c50-a73d-ca1457c60576	\N	http://localhost:8055
+524	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:55:06.117+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	92930338-0f26-4953-9074-a7bbad626063	\N	http://localhost:8055
+532	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:55:06.648+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	248abf34-2e4e-43f1-9257-c6ec55cb1e83	\N	http://localhost:8055
+562	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 13:47:55.969+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_collections	DynamicCityForm	\N	http://localhost:8055
+569	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 13:48:40.716+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	96	\N	http://localhost:8055
+570	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 13:50:32.091+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	97	\N	http://localhost:8055
+571	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 13:50:32.274+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	98	\N	http://localhost:8055
+572	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 13:50:32.281+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_collections	CityFormFields_translations	\N	http://localhost:8055
+573	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 13:50:32.373+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	99	\N	http://localhost:8055
+574	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 13:50:32.474+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	100	\N	http://localhost:8055
+576	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 13:51:25.26+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	102	\N	http://localhost:8055
+577	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 13:51:25.5+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	103	\N	http://localhost:8055
+578	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 13:51:25.519+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_collections	DynamicCityForm_CityFormFields	\N	http://localhost:8055
+579	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 13:51:25.703+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	104	\N	http://localhost:8055
+580	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 13:51:25.81+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	105	\N	http://localhost:8055
+582	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 13:52:22.113+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	107	\N	http://localhost:8055
+583	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 13:52:22.126+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_collections	DynamicCityForm_translations	\N	http://localhost:8055
+584	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 13:52:22.271+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	108	\N	http://localhost:8055
+586	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 13:52:46.336+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	110	\N	http://localhost:8055
+588	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 13:55:01.579+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	112	\N	http://localhost:8055
+590	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 13:55:38.719+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	114	\N	http://localhost:8055
+591	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:17:41.452+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_collections	CityFormFields	\N	http://localhost:8055
+592	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:18:12.21+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	115	\N	http://localhost:8055
+593	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:18:12.495+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	116	\N	http://localhost:8055
+594	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:18:12.518+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_collections	DynamicCityForm_CityFormFields_translations	\N	http://localhost:8055
+595	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:18:12.72+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	117	\N	http://localhost:8055
+596	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:18:12.926+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	118	\N	http://localhost:8055
+597	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:18:22.843+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	119	\N	http://localhost:8055
+600	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:27:46.129+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	120	\N	http://localhost:8055
+601	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:27:46.241+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	121	\N	http://localhost:8055
+602	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:27:46.249+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_collections	DynamicCityForm_CityFormFields_1	\N	http://localhost:8055
+603	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:27:46.325+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	122	\N	http://localhost:8055
+604	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:27:46.407+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	123	\N	http://localhost:8055
+607	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:30:11.537+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	124	\N	http://localhost:8055
+614	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:34:57.569+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_collections	CityFormFields_translations	\N	http://localhost:8055
+615	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:35:02.718+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_collections	CityFormFields	\N	http://localhost:8055
+616	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:35:07.642+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_collections	DynamicCityForm	\N	http://localhost:8055
+617	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:35:14.494+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_collections	DynamicCityForm_CityFormFields	\N	http://localhost:8055
+618	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:35:18.242+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_collections	DynamicCityForm_CityFormFields_1	\N	http://localhost:8055
+619	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:35:25.756+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_collections	DynamicCityForm_CityFormFields_translations	\N	http://localhost:8055
+620	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:35:32.337+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_collections	DynamicCityForm_translations	\N	http://localhost:8055
+621	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:36:59.932+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	125	\N	http://localhost:8055
+622	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:36:59.94+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	126	\N	http://localhost:8055
+623	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:36:59.947+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	127	\N	http://localhost:8055
+624	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:36:59.954+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	128	\N	http://localhost:8055
+625	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:36:59.959+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	129	\N	http://localhost:8055
+626	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:36:59.966+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_collections	EmailForm	\N	http://localhost:8055
+627	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:37:10.278+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	130	\N	http://localhost:8055
+628	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:37:20.102+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	131	\N	http://localhost:8055
+629	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:37:20.201+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	132	\N	http://localhost:8055
+630	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:37:20.207+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_collections	EmailForm_translations	\N	http://localhost:8055
+631	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:37:20.274+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	133	\N	http://localhost:8055
+632	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:37:20.342+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	134	\N	http://localhost:8055
+633	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:37:37.645+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	135	\N	http://localhost:8055
+634	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:37:51.573+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	136	\N	http://localhost:8055
+635	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:38:55.253+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	137	\N	http://localhost:8055
+636	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:39:05.592+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	138	\N	http://localhost:8055
+637	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:39:19.215+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_collections	EmailForm	\N	http://localhost:8055
+638	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:41:52.488+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	139	\N	http://localhost:8055
+639	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:41:52.495+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_collections	FormFields	\N	http://localhost:8055
+640	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:43:03.669+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	140	\N	http://localhost:8055
+641	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:47:56.768+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	141	\N	http://localhost:8055
+642	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:47:56.999+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	142	\N	http://localhost:8055
+643	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:47:57.007+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_collections	EmailForm_FormFields	\N	http://localhost:8055
+644	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:47:57.079+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	143	\N	http://localhost:8055
+645	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:47:57.16+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	144	\N	http://localhost:8055
+646	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:48:36.392+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	145	\N	http://localhost:8055
+647	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:48:36.502+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	146	\N	http://localhost:8055
+648	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:48:36.51+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_collections	EmailForm_FormFields_translations	\N	http://localhost:8055
+649	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:48:36.585+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	147	\N	http://localhost:8055
+650	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:48:36.659+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	148	\N	http://localhost:8055
+651	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:48:54.534+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	149	\N	http://localhost:8055
+652	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:50:28.736+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	141	\N	http://localhost:8055
+653	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:57:39.138+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	FormFields	1	\N	http://localhost:8055
+654	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:57:39.148+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	EmailForm_FormFields_translations	1	\N	http://localhost:8055
+655	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:57:39.155+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	EmailForm_FormFields_translations	2	\N	http://localhost:8055
+656	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:57:39.162+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	EmailForm_FormFields	1	\N	http://localhost:8055
+657	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:57:39.173+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	FormFields	2	\N	http://localhost:8055
+658	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:57:39.182+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	EmailForm_FormFields_translations	3	\N	http://localhost:8055
+659	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:57:39.19+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	EmailForm_FormFields_translations	4	\N	http://localhost:8055
+660	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:57:39.199+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	EmailForm_FormFields	2	\N	http://localhost:8055
+661	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:57:39.213+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	EmailForm_translations	1	\N	http://localhost:8055
+662	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:57:39.222+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	EmailForm_translations	2	\N	http://localhost:8055
+663	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:57:39.227+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	EmailForm	1	\N	http://localhost:8055
+664	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:58:16.931+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	141	\N	http://localhost:8055
+665	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 14:59:39.648+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	141	\N	http://localhost:8055
+666	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 15:03:01.239+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	145	\N	http://localhost:8055
+667	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 15:04:01.963+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	145	\N	http://localhost:8055
+668	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 15:04:44.425+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	145	\N	http://localhost:8055
+669	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 15:06:44.621+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	EmailForm	1	\N	http://localhost:8055
+670	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 15:07:25.926+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	131	\N	http://localhost:8055
+671	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 15:10:16.932+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	150	\N	http://localhost:8055
+672	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 15:11:09.094+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	151	\N	http://localhost:8055
+673	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 15:11:22.398+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	EmailForm	1	\N	http://localhost:8055
+674	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 15:14:02.503+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	152	\N	http://localhost:8055
+675	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 15:14:19.434+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city	2	\N	http://localhost:8055
+676	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 15:27:14.317+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	153	\N	http://localhost:8055
+677	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 15:27:46.287+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	154	\N	http://localhost:8055
+678	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 15:28:06.108+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	154	\N	http://localhost:8055
+679	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 15:28:22.221+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	EmailForm	1	\N	http://localhost:8055
+680	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 15:28:22.247+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city	2	\N	http://localhost:8055
+681	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 15:35:44.454+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_permissions	57	\N	http://localhost:8055
+682	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 15:35:45.509+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_permissions	58	\N	http://localhost:8055
+683	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 15:35:46.564+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_permissions	59	\N	http://localhost:8055
+684	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 15:35:47.6+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_permissions	60	\N	http://localhost:8055
+685	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 15:35:49.179+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_permissions	61	\N	http://localhost:8055
 \.
 
 
@@ -2021,11 +2530,16 @@ city_translations	import_export	\N	{{name}}	t	f	\N	\N	t	\N	\N	\N	all	\N	\N	\N	\N
 city	\N	\N	{{translations.name}}	f	f	\N	\N	t	archived	draft	\N	all	\N	\N	1	\N	open	\N	f
 countries	\N	\N	{{translations.name}}	f	f	\N	\N	t	archived	draft	\N	all	\N	\N	\N	\N	open	\N	f
 countries_translations	import_export	\N	{{name}}	t	f	\N	\N	t	\N	\N	\N	all	\N	\N	\N	\N	open	\N	f
-city_files	import_export	\N	\N	t	f	\N	\N	t	\N	\N	\N	all	\N	\N	\N	\N	open	\N	f
 SupportLinks_translations	import_export	\N	\N	t	f	\N	\N	t	\N	\N	\N	all	\N	\N	\N	\N	open	\N	f
 SupportLinks	\N	\N	{{translations.title}}	f	f	\N	\N	t	archived	draft	\N	all	\N	\N	\N	\N	open	\N	f
 CustomSections_translations	import_export	\N	\N	t	f	\N	\N	t	\N	\N	\N	all	\N	\N	\N	\N	open	\N	f
 CustomSections	\N	\N	\N	f	f	\N	\N	t	archived	draft	\N	all	\N	\N	\N	\N	open	\N	f
+city_files	import_export	\N	\N	f	f	\N	\N	t	\N	\N	\N	all	\N	\N	\N	\N	open	\N	f
+EmailForm_translations	import_export	\N	\N	t	f	\N	\N	t	\N	\N	\N	all	\N	\N	\N	\N	open	\N	f
+EmailForm	\N	\N	\N	f	f	\N	\N	t	archived	draft	\N	all	\N	\N	\N	\N	open	\N	f
+FormFields	\N	\N	\N	f	f	\N	\N	t	\N	\N	\N	all	\N	\N	\N	\N	open	\N	f
+EmailForm_FormFields	import_export	\N	\N	t	f	\N	\N	t	\N	\N	\N	all	\N	\N	\N	\N	open	\N	f
+EmailForm_FormFields_translations	import_export	\N	\N	t	f	\N	\N	t	\N	\N	\N	all	\N	\N	\N	\N	open	\N	f
 \.
 
 
@@ -2110,6 +2624,7 @@ COPY public.directus_fields (id, collection, field, special, interface, options,
 68	event_translations	customDates	\N	input-multiline	\N	\N	\N	f	f	7	full	\N	\N	\N	t	\N	\N	\N
 62	SupportLinks	city	m2o	select-dropdown-m2o	\N	related-values	{"template":"{{translations.name}}"}	f	f	7	full	\N	\N	\N	f	\N	\N	\N
 69	CustomSections	id	\N	input	\N	\N	\N	t	t	1	full	\N	\N	\N	f	\N	\N	\N
+129	EmailForm	date_updated	date-updated	datetime	\N	datetime	{"relative":true}	t	t	5	half	\N	\N	\N	f	\N	\N	\N
 70	CustomSections	status	\N	select-dropdown	{"choices":[{"text":"$t:published","value":"published"},{"text":"$t:draft","value":"draft"},{"text":"$t:archived","value":"archived"}]}	labels	{"showAsDot":true,"choices":[{"text":"$t:published","value":"published","foreground":"#FFFFFF","background":"var(--theme--primary)"},{"text":"$t:draft","value":"draft","foreground":"#18222F","background":"#D3DAE4"},{"text":"$t:archived","value":"archived","foreground":"#FFFFFF","background":"var(--theme--warning)"}]}	f	f	2	full	\N	\N	\N	f	\N	\N	\N
 71	CustomSections	sort	\N	input	\N	\N	\N	f	t	3	full	\N	\N	\N	f	\N	\N	\N
 72	CustomSections	date_created	date-created	datetime	\N	datetime	{"relative":true}	t	t	4	half	\N	\N	\N	f	\N	\N	\N
@@ -2124,6 +2639,32 @@ COPY public.directus_fields (id, collection, field, special, interface, options,
 82	CustomSections	city	m2o	select-dropdown-m2o	\N	\N	\N	f	f	8	full	\N	\N	\N	f	\N	\N	\N
 84	CustomSections_translations	linkText	\N	input	\N	\N	\N	f	f	6	full	\N	\N	\N	f	\N	\N	\N
 83	city	customSections	o2m	list-o2m	{"template":"{{translations.title}}"}	related-values	{"template":"{{translations.title}}"}	f	f	11	full	\N	\N	\N	f	\N	\N	\N
+125	EmailForm	id	\N	input	\N	\N	\N	t	t	1	full	\N	\N	\N	f	\N	\N	\N
+126	EmailForm	status	\N	select-dropdown	{"choices":[{"text":"$t:published","value":"published"},{"text":"$t:draft","value":"draft"},{"text":"$t:archived","value":"archived"}]}	labels	{"showAsDot":true,"choices":[{"text":"$t:published","value":"published","foreground":"#FFFFFF","background":"var(--theme--primary)"},{"text":"$t:draft","value":"draft","foreground":"#18222F","background":"#D3DAE4"},{"text":"$t:archived","value":"archived","foreground":"#FFFFFF","background":"var(--theme--warning)"}]}	f	f	2	full	\N	\N	\N	f	\N	\N	\N
+127	EmailForm	sort	\N	input	\N	\N	\N	f	t	3	full	\N	\N	\N	f	\N	\N	\N
+128	EmailForm	date_created	date-created	datetime	\N	datetime	{"relative":true}	t	t	4	half	\N	\N	\N	f	\N	\N	\N
+130	EmailForm	emailTo	\N	input	\N	\N	\N	f	f	6	full	\N	\N	\N	f	\N	\N	\N
+132	EmailForm_translations	id	\N	\N	\N	\N	\N	f	t	1	full	\N	\N	\N	f	\N	\N	\N
+133	EmailForm_translations	EmailForm_id	\N	\N	\N	\N	\N	f	t	2	full	\N	\N	\N	f	\N	\N	\N
+134	EmailForm_translations	languages_code	\N	\N	\N	\N	\N	f	t	3	full	\N	\N	\N	f	\N	\N	\N
+135	EmailForm_translations	subject	\N	input	\N	\N	\N	f	f	4	full	\N	\N	\N	f	\N	\N	\N
+136	EmailForm_translations	title	\N	input	\N	\N	\N	f	f	5	full	\N	\N	\N	f	\N	\N	\N
+137	EmailForm_translations	description	\N	input-multiline	\N	\N	\N	f	f	6	full	\N	\N	\N	f	\N	\N	\N
+138	EmailForm_translations	submitText	\N	input	\N	\N	\N	f	f	7	full	\N	\N	\N	f	\N	\N	\N
+139	FormFields	id	\N	input	\N	\N	\N	t	t	1	full	\N	\N	\N	f	\N	\N	\N
+140	FormFields	type	\N	select-dropdown	{"choices":[{"text":"number","value":"number"},{"text":"text","value":"text"}]}	\N	\N	f	f	2	full	\N	\N	\N	f	\N	\N	\N
+142	EmailForm_FormFields	id	\N	\N	\N	\N	\N	f	t	1	full	\N	\N	\N	f	\N	\N	\N
+143	EmailForm_FormFields	EmailForm_id	\N	\N	\N	\N	\N	f	t	2	full	\N	\N	\N	f	\N	\N	\N
+144	EmailForm_FormFields	FormFields_id	\N	\N	\N	\N	\N	f	t	3	full	\N	\N	\N	f	\N	\N	\N
+146	EmailForm_FormFields_translations	id	\N	\N	\N	\N	\N	f	t	1	full	\N	\N	\N	f	\N	\N	\N
+147	EmailForm_FormFields_translations	EmailForm_FormFields_id	\N	\N	\N	\N	\N	f	t	2	full	\N	\N	\N	f	\N	\N	\N
+148	EmailForm_FormFields_translations	languages_code	\N	\N	\N	\N	\N	f	t	3	full	\N	\N	\N	f	\N	\N	\N
+149	EmailForm_FormFields_translations	label	\N	input	\N	\N	\N	f	f	4	full	\N	\N	\N	t	\N	\N	\N
+154	city	emailForm	o2m	list-o2m	\N	related-values	{"template":"{{translations.title}}"}	f	f	12	full	\N	\N	\N	f	\N	\N	\N
+141	EmailForm	fields	m2m	list-m2m	{"junctionFieldLocation":"top","allowDuplicates":true,"template":"{{translations.label}}"}	related-values	{"template":"{{translations.label}}"}	f	f	8	full	\N	\N	\N	t	\N	\N	\N
+145	EmailForm_FormFields	translations	translations	translations	{"languageField":"code","defaultLanguage":"de","userLanguage":true}	translations	{"userLanguage":true,"defaultLanguage":"de","template":"{{label}}","languageField":"code"}	f	f	4	full	\N	\N	\N	f	\N	\N	\N
+131	EmailForm	translations	translations	translations	{"defaultLanguage":"de","languageField":"code"}	translations	{"defaultLanguage":"de","languageField":"code","userLanguage":true,"template":"{{title}}"}	f	f	7	full	\N	\N	\N	f	\N	\N	\N
+153	EmailForm	city	m2o	select-dropdown-m2o	\N	\N	\N	f	f	9	full	\N	\N	\N	t	\N	\N	\N
 \.
 
 
@@ -2132,42 +2673,25 @@ COPY public.directus_fields (id, collection, field, special, interface, options,
 --
 
 COPY public.directus_files (id, storage, filename_disk, filename_download, title, type, folder, uploaded_by, uploaded_on, modified_by, modified_on, charset, filesize, width, height, duration, embed, description, location, tags, metadata) FROM stdin;
-239810f8-beac-4b54-b540-f84cb45ad0e6	local	239810f8-beac-4b54-b540-f84cb45ad0e6.webp	0ab7b648-1665-4eff-bdf9-2a5b86da89ae.webp	0ab7b648 1665 4eff Bdf9 2a5b86da89ae	image/webp	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-01-27 14:27:54.4312+00	\N	2024-01-27 14:27:54.492+00	\N	177826	1024	1024	\N	\N	\N	\N	\N	{}
-5556b0ea-7025-40a9-aaaf-b55713639b87	local	5556b0ea-7025-40a9-aaaf-b55713639b87.jpg	Cds_BPAN_15_06_20_800.jpg	Cds Bpan 15 06 20 800	image/jpeg	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 09:27:55.303337+00	\N	2024-02-02 09:27:55.336+00	\N	109136	800	600	\N	\N	\N	\N	\N	{"ifd0":{"Make":"Canon","Model":"Canon PowerShot A2300"},"exif":{"FNumber":7.9,"ExposureTime":0.004,"FocalLength":5,"ISO":125}}
-83ad9a9d-77dc-4eca-9a0e-4596b1221f0b	local	83ad9a9d-77dc-4eca-9a0e-4596b1221f0b.jpg	bern_lesen-schreiben-03.jpg	Bern Lesen Schreiben 03	image/jpeg	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 11:27:06.411205+00	\N	2024-02-02 11:27:06.469+00	\N	145234	750	750	\N	\N	\N	\N	\N	{}
-cdd76a04-84f2-426d-b3e6-a4d48ec8a7aa	local	cdd76a04-84f2-426d-b3e6-a4d48ec8a7aa.jpg	bern_lesen-schreiben-06.jpg	Bern Lesen Schreiben 06	image/jpeg	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 11:27:06.417398+00	\N	2024-02-02 11:27:06.474+00	\N	146581	750	750	\N	\N	\N	\N	\N	{}
-5fe1e0ef-1903-4907-bd61-167b748b3820	local	5fe1e0ef-1903-4907-bd61-167b748b3820.jpg	bern_lesen-schreiben-02.jpg	Bern Lesen Schreiben 02	image/jpeg	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 11:27:06.41163+00	\N	2024-02-02 11:27:06.477+00	\N	112678	750	750	\N	\N	\N	\N	\N	{}
-4aece6fc-c22f-4751-8f2e-cb8453ec98ae	local	4aece6fc-c22f-4751-8f2e-cb8453ec98ae.jpg	bern_lesen-schreiben-01.jpg	Bern Lesen Schreiben 01	image/jpeg	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 11:27:06.417749+00	\N	2024-02-02 11:27:06.489+00	\N	198041	1000	714	\N	\N	\N	\N	\N	{}
-f80b438b-97d2-4fb9-8645-fd2b334f628c	local	f80b438b-97d2-4fb9-8645-fd2b334f628c.jpg	OK_BNN_MFR5701.jpg	Ok Bnn Mf R5701	image/jpeg	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 11:27:06.525679+00	\N	2024-02-02 11:27:06.593+00	\N	477344	1200	800	\N	\N	\N	\N	\N	{"ifd0":{"Make":"NIKON CORPORATION","Model":"NIKON Z 9"},"exif":{"FNumber":1.8,"ExposureTime":0.01,"FocalLength":35,"ISO":500}}
-981dd0e3-e926-47d4-8794-c7a307017c08	local	981dd0e3-e926-47d4-8794-c7a307017c08.jpg	CDE_CO2N_MFR8782.jpg	Cde C O2 N Mf R8782	image/jpeg	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 11:27:06.533519+00	\N	2024-02-02 11:27:06.603+00	\N	419281	1200	800	\N	\N	\N	\N	\N	{"ifd0":{"Make":"NIKON CORPORATION","Model":"NIKON Z 9"},"exif":{"FNumber":1.2,"ExposureTime":0.01,"FocalLength":50,"ISO":50}}
-a22a9ec3-84c9-4b95-9a00-7d9f62eaf1a6	local	a22a9ec3-84c9-4b95-9a00-7d9f62eaf1a6.jpg	OK_BNN_MFR5706.jpg	Ok Bnn Mf R5706	image/jpeg	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 11:27:06.541721+00	\N	2024-02-02 11:27:06.613+00	\N	607145	1200	800	\N	\N	\N	\N	\N	{"ifd0":{"Make":"NIKON CORPORATION","Model":"NIKON Z 9"},"exif":{"FNumber":1.8,"ExposureTime":0.00003125,"FocalLength":85,"ISO":500}}
-425a0e8e-16b3-4405-9e7d-4d133b09c14b	local	425a0e8e-16b3-4405-9e7d-4d133b09c14b.jpg	CDE_CO2N_MFR2867.jpg	Cde C O2 N Mf R2867	image/jpeg	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 11:27:06.509676+00	\N	2024-02-02 11:27:06.615+00	\N	965249	1200	800	\N	\N	\N	\N	\N	{"ifd0":{"Make":"NIKON CORPORATION","Model":"NIKON Z 7_2"},"exif":{"FNumber":5.6,"ExposureTime":0.07692307692307693,"FocalLength":25.5,"ISO":160}}
-56e68cfa-5ac6-4c83-ac3e-f8ac6652fd80	local	56e68cfa-5ac6-4c83-ac3e-f8ac6652fd80.jpg	OK_BNN_MFR5703.jpg	Ok Bnn Mf R5703	image/jpeg	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 11:27:06.636744+00	\N	2024-02-02 11:27:06.704+00	\N	422100	1200	800	\N	\N	\N	\N	\N	{"ifd0":{"Make":"NIKON CORPORATION","Model":"NIKON Z 9"},"exif":{"FNumber":1.8,"ExposureTime":0.000625,"FocalLength":35,"ISO":500}}
-cdbe4b25-5eac-4489-a45e-e254e04e83a1	local	cdbe4b25-5eac-4489-a45e-e254e04e83a1.jpg	OK_BNN_MFR5718.jpg	Ok Bnn Mf R5718	image/jpeg	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 11:27:06.665933+00	\N	2024-02-02 11:27:06.716+00	\N	680042	1200	800	\N	\N	\N	\N	\N	{"ifd0":{"Make":"NIKON CORPORATION","Model":"NIKON Z 9"},"exif":{"FNumber":1.8,"ExposureTime":0.0004,"FocalLength":35,"ISO":50}}
-9130e67e-5565-4a66-bc25-c478cf7e70e8	local	9130e67e-5565-4a66-bc25-c478cf7e70e8.jpg	OK_BNN_MFR5735.jpg	Ok Bnn Mf R5735	image/jpeg	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 11:27:06.672094+00	\N	2024-02-02 11:27:06.735+00	\N	777482	1200	800	\N	\N	\N	\N	\N	{"ifd0":{"Make":"NIKON CORPORATION","Model":"NIKON Z 9"},"exif":{"FNumber":1.8,"ExposureTime":0.00015625,"FocalLength":35,"ISO":32}}
-5ce3e335-c4ec-4b6c-a4e3-8635d1f5659c	local	5ce3e335-c4ec-4b6c-a4e3-8635d1f5659c.jpg	OK_BNN_MFR5772.jpg	Ok Bnn Mf R5772	image/jpeg	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 11:27:06.676459+00	\N	2024-02-02 11:27:06.737+00	\N	576622	1200	800	\N	\N	\N	\N	\N	{"ifd0":{"Make":"NIKON CORPORATION","Model":"NIKON Z 9"},"exif":{"FNumber":1.8,"ExposureTime":0.000125,"FocalLength":35,"ISO":200}}
-cdbe52e5-a926-44e0-9eab-51e1a6abaeb4	local	cdbe52e5-a926-44e0-9eab-51e1a6abaeb4.jpg	OK_BNN_MFR5724.jpg	Ok Bnn Mf R5724	image/jpeg	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 11:27:06.732211+00	\N	2024-02-02 11:27:06.793+00	\N	838179	1200	800	\N	\N	\N	\N	\N	{"ifd0":{"Make":"NIKON CORPORATION","Model":"NIKON Z 9"},"exif":{"FNumber":1.8,"ExposureTime":0.002,"FocalLength":35,"ISO":32}}
-9a84a67e-7ce4-4058-9999-e3618f028112	local	9a84a67e-7ce4-4058-9999-e3618f028112.jpg	OK_BNN_MFR5788.jpg	Ok Bnn Mf R5788	image/jpeg	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 11:27:06.761005+00	\N	2024-02-02 11:27:06.797+00	\N	568831	1200	800	\N	\N	\N	\N	\N	{"ifd0":{"Make":"NIKON CORPORATION","Model":"NIKON Z 9"},"exif":{"FNumber":1.8,"ExposureTime":0.00015625,"FocalLength":35,"ISO":64}}
-a6150896-1236-46da-b6b2-916ac4c336b5	local	a6150896-1236-46da-b6b2-916ac4c336b5.jpg	CDE_CO2N_MFR2853.jpg	Cde C O2 N Mf R2853	image/jpeg	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 11:27:06.773111+00	\N	2024-02-02 11:27:06.806+00	\N	709020	1200	800	\N	\N	\N	\N	\N	{"ifd0":{"Make":"NIKON CORPORATION","Model":"NIKON Z 7_2"},"exif":{"FNumber":16,"ExposureTime":0.06666666666666667,"FocalLength":42,"ISO":31}}
-dc123d72-8323-45eb-a943-36389dc5bea6	local	dc123d72-8323-45eb-a943-36389dc5bea6.jpg	bern_lesen-schreiben-03.jpg	Bern Lesen Schreiben 03	image/jpeg	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 11:27:30.33443+00	\N	2024-02-02 11:27:30.381+00	\N	145234	750	750	\N	\N	\N	\N	\N	{}
-ec2bd7e0-01a0-4571-8f1b-56b3bac4da7e	local	ec2bd7e0-01a0-4571-8f1b-56b3bac4da7e.jpg	bern_lesen-schreiben-02.jpg	Bern Lesen Schreiben 02	image/jpeg	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 11:27:36.758107+00	\N	2024-02-02 11:27:36.779+00	\N	112678	750	750	\N	\N	\N	\N	\N	{}
-255e9876-3511-4338-932d-de553ca6523a	local	255e9876-3511-4338-932d-de553ca6523a.jpg	bern_lesen-schreiben-06.jpg	Bern Lesen Schreiben 06	image/jpeg	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 11:27:44.459899+00	\N	2024-02-02 11:27:44.493+00	\N	146581	750	750	\N	\N	\N	\N	\N	{}
-88ec0a8b-f67a-4449-b7f1-26202cb606ca	local	88ec0a8b-f67a-4449-b7f1-26202cb606ca.jpg	bern_lesen-schreiben-01.jpg	Bern Lesen Schreiben 01	image/jpeg	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 11:27:56.65154+00	\N	2024-02-02 11:27:56.745+00	\N	198041	1000	714	\N	\N	\N	\N	\N	{}
-f9874dc2-dbd2-4b87-bd32-12ce32a1f526	local	f9874dc2-dbd2-4b87-bd32-12ce32a1f526.jpg	bern_lesen-schreiben-09.jpg	Bern Lesen Schreiben 09	image/jpeg	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 11:27:56.702949+00	\N	2024-02-02 11:27:56.772+00	\N	425117	1400	1000	\N	\N	\N	\N	\N	{}
-8b3b763c-9d84-4797-ba28-6e52eab82a73	local	8b3b763c-9d84-4797-ba28-6e52eab82a73.jpg	bern_lesen-schreiben-10.jpg	Bern Lesen Schreiben 10	image/jpeg	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 11:27:56.694287+00	\N	2024-02-02 11:27:56.776+00	\N	526139	1400	1000	\N	\N	\N	\N	\N	{}
-7b5011a5-e238-459c-b133-9cb10c0f49b5	local	7b5011a5-e238-459c-b133-9cb10c0f49b5.jpg	CDE_CO2N_MFR8686.jpg	Cde C O2 N Mf R8686	image/jpeg	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 11:28:06.51835+00	\N	2024-02-02 11:28:06.598+00	\N	414567	1200	800	\N	\N	\N	\N	\N	{"ifd0":{"Make":"NIKON CORPORATION","Model":"NIKON Z 9"},"exif":{"FNumber":1.3,"ExposureTime":0.004,"FocalLength":50,"ISO":400}}
-0c6462b2-f86e-4fca-a960-23c0222ce597	local	0c6462b2-f86e-4fca-a960-23c0222ce597.jpg	CDE_CO2N_MFR8782.jpg	Cde C O2 N Mf R8782	image/jpeg	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 11:28:06.531633+00	\N	2024-02-02 11:28:06.599+00	\N	419281	1200	800	\N	\N	\N	\N	\N	{"ifd0":{"Make":"NIKON CORPORATION","Model":"NIKON Z 9"},"exif":{"FNumber":1.2,"ExposureTime":0.01,"FocalLength":50,"ISO":50}}
-0174130c-f4f5-44aa-a9c7-35f8b5ead135	local	0174130c-f4f5-44aa-a9c7-35f8b5ead135.jpg	OK_BNN_MFR5718.jpg	Ok Bnn Mf R5718	image/jpeg	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 11:28:06.665505+00	\N	2024-02-02 11:28:06.757+00	\N	680042	1200	800	\N	\N	\N	\N	\N	{"ifd0":{"Make":"NIKON CORPORATION","Model":"NIKON Z 9"},"exif":{"FNumber":1.8,"ExposureTime":0.0004,"FocalLength":35,"ISO":50}}
-ca987d87-80ed-42f0-b50e-56340b1f497e	local	ca987d87-80ed-42f0-b50e-56340b1f497e.jpg	OK_BNN_MFR5735.jpg	Ok Bnn Mf R5735	image/jpeg	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 11:28:06.677726+00	\N	2024-02-02 11:28:06.772+00	\N	777482	1200	800	\N	\N	\N	\N	\N	{"ifd0":{"Make":"NIKON CORPORATION","Model":"NIKON Z 9"},"exif":{"FNumber":1.8,"ExposureTime":0.00015625,"FocalLength":35,"ISO":32}}
-5c60c983-c656-4bb7-bd46-0a107e5bde4c	local	5c60c983-c656-4bb7-bd46-0a107e5bde4c.jpg	CDE_CO2N_MFR8794.jpg	Cde C O2 N Mf R8794	image/jpeg	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 11:28:06.518652+00	\N	2024-02-02 11:28:06.605+00	\N	554710	1200	800	\N	\N	\N	\N	\N	{"ifd0":{"Make":"NIKON CORPORATION","Model":"NIKON Z 9"},"exif":{"FNumber":1.2,"ExposureTime":0.005,"FocalLength":50,"ISO":50}}
-02735120-e2ae-4389-ac2e-2426d10b7944	local	02735120-e2ae-4389-ac2e-2426d10b7944.jpg	OK_BNN_MFR5703.jpg	Ok Bnn Mf R5703	image/jpeg	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 11:28:06.661349+00	\N	2024-02-02 11:28:06.747+00	\N	422100	1200	800	\N	\N	\N	\N	\N	{"ifd0":{"Make":"NIKON CORPORATION","Model":"NIKON Z 9"},"exif":{"FNumber":1.8,"ExposureTime":0.000625,"FocalLength":35,"ISO":500}}
-f1585467-0562-4b63-bd7d-bedadf620e8b	local	f1585467-0562-4b63-bd7d-bedadf620e8b.jpg	OK_BNN_MFR5701.jpg	Ok Bnn Mf R5701	image/jpeg	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 11:28:06.568504+00	\N	2024-02-02 11:28:06.67+00	\N	477344	1200	800	\N	\N	\N	\N	\N	{"ifd0":{"Make":"NIKON CORPORATION","Model":"NIKON Z 9"},"exif":{"FNumber":1.8,"ExposureTime":0.01,"FocalLength":35,"ISO":500}}
-16ef4a31-4ab0-4cab-898b-618be781d472	local	16ef4a31-4ab0-4cab-898b-618be781d472.jpg	OK_BNN_MFR5772.jpg	Ok Bnn Mf R5772	image/jpeg	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 11:28:06.715754+00	\N	2024-02-02 11:28:06.8+00	\N	576622	1200	800	\N	\N	\N	\N	\N	{"ifd0":{"Make":"NIKON CORPORATION","Model":"NIKON Z 9"},"exif":{"FNumber":1.8,"ExposureTime":0.000125,"FocalLength":35,"ISO":200}}
-3a2dfe2d-cb94-452c-bdff-dd3ac2396b6f	local	3a2dfe2d-cb94-452c-bdff-dd3ac2396b6f.jpg	OK_BNN_MFR5706.jpg	Ok Bnn Mf R5706	image/jpeg	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 11:28:06.570897+00	\N	2024-02-02 11:28:06.675+00	\N	607145	1200	800	\N	\N	\N	\N	\N	{"ifd0":{"Make":"NIKON CORPORATION","Model":"NIKON Z 9"},"exif":{"FNumber":1.8,"ExposureTime":0.00003125,"FocalLength":85,"ISO":500}}
-3e1f3db6-0a84-433e-957c-972ce8a1d278	local	3e1f3db6-0a84-433e-957c-972ce8a1d278.jpg	OK_BNN_MFR5788.jpg	Ok Bnn Mf R5788	image/jpeg	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 11:28:06.730427+00	\N	2024-02-02 11:28:06.818+00	\N	568831	1200	800	\N	\N	\N	\N	\N	{"ifd0":{"Make":"NIKON CORPORATION","Model":"NIKON Z 9"},"exif":{"FNumber":1.8,"ExposureTime":0.00015625,"FocalLength":35,"ISO":64}}
-c55467d4-8338-437b-a177-c0710f9a535d	local	c55467d4-8338-437b-a177-c0710f9a535d.jpg	CDE_CO2N_MFR2853.jpg	Cde C O2 N Mf R2853	image/jpeg	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 11:28:06.800545+00	\N	2024-02-02 11:28:06.837+00	\N	709020	1200	800	\N	\N	\N	\N	\N	{"ifd0":{"Make":"NIKON CORPORATION","Model":"NIKON Z 7_2"},"exif":{"FNumber":16,"ExposureTime":0.06666666666666667,"FocalLength":42,"ISO":31}}
-2ab59289-4609-4754-aa16-a48358f1d5bf	local	2ab59289-4609-4754-aa16-a48358f1d5bf.jpg	CDE_CO2N_MFR2867.jpg	Cde C O2 N Mf R2867	image/jpeg	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 11:28:06.530869+00	\N	2024-02-02 11:28:06.677+00	\N	965249	1200	800	\N	\N	\N	\N	\N	{"ifd0":{"Make":"NIKON CORPORATION","Model":"NIKON Z 7_2"},"exif":{"FNumber":5.6,"ExposureTime":0.07692307692307693,"FocalLength":25.5,"ISO":160}}
-7ca7e9cb-0a8e-4c5f-8f1a-32f5f544ff2f	local	7ca7e9cb-0a8e-4c5f-8f1a-32f5f544ff2f.jpg	OK_BNN_MFR5724.jpg	Ok Bnn Mf R5724	image/jpeg	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 11:28:06.718536+00	\N	2024-02-02 11:28:06.824+00	\N	838179	1200	800	\N	\N	\N	\N	\N	{"ifd0":{"Make":"NIKON CORPORATION","Model":"NIKON Z 9"},"exif":{"FNumber":1.8,"ExposureTime":0.002,"FocalLength":35,"ISO":32}}
+b8438249-863c-449a-8fe5-568f4e47b67b	local	b8438249-863c-449a-8fe5-568f4e47b67b.jpg	bern_lesen-schreiben-03.jpg	Bern Lesen Schreiben 03	image/jpeg	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:54:42.464589+00	\N	2024-02-02 14:54:42.519+00	\N	145234	750	750	\N	\N	\N	\N	\N	{}
+4ddcfe09-9d8c-4faf-875b-f4badd641872	local	4ddcfe09-9d8c-4faf-875b-f4badd641872.jpg	bern_lesen-schreiben-02.jpg	Bern Lesen Schreiben 02	image/jpeg	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:54:42.465119+00	\N	2024-02-02 14:54:42.522+00	\N	112678	750	750	\N	\N	\N	\N	\N	{}
+3fe2f5dd-65dd-4441-b0d6-fe6b00e20b7e	local	3fe2f5dd-65dd-4441-b0d6-fe6b00e20b7e.jpg	bern_lesen-schreiben-06.jpg	Bern Lesen Schreiben 06	image/jpeg	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:54:42.469792+00	\N	2024-02-02 14:54:42.524+00	\N	146581	750	750	\N	\N	\N	\N	\N	{}
+8690b83f-d3a7-4c50-a73d-ca1457c60576	local	8690b83f-d3a7-4c50-a73d-ca1457c60576.jpg	bern_lesen-schreiben-01.jpg	Bern Lesen Schreiben 01	image/jpeg	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:54:42.470336+00	\N	2024-02-02 14:54:42.527+00	\N	198041	1000	714	\N	\N	\N	\N	\N	{}
+a395308d-6b1a-4db4-8b3c-c39009964fbf	local	a395308d-6b1a-4db4-8b3c-c39009964fbf.jpg	bern_lesen-schreiben-09.jpg	Bern Lesen Schreiben 09	image/jpeg	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:54:42.91284+00	\N	2024-02-02 14:54:42.948+00	\N	425117	1400	1000	\N	\N	\N	\N	\N	{}
+57f3e7e0-db45-42fc-ab87-af4daa0bb144	local	57f3e7e0-db45-42fc-ab87-af4daa0bb144.jpg	bern_lesen-schreiben-10.jpg	Bern Lesen Schreiben 10	image/jpeg	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:54:57.241269+00	\N	2024-02-02 14:54:57.303+00	\N	526139	1400	1000	\N	\N	\N	\N	\N	{}
+a6d8e567-36f1-421a-ac23-5e549a84d564	local	a6d8e567-36f1-421a-ac23-5e549a84d564.jpg	CDE_CO2N_MFR8782.jpg	Cde C O2 N Mf R8782	image/jpeg	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:55:06.120715+00	\N	2024-02-02 14:55:06.179+00	\N	419281	1200	800	\N	\N	\N	\N	\N	{"ifd0":{"Make":"NIKON CORPORATION","Model":"NIKON Z 9"},"exif":{"FNumber":1.2,"ExposureTime":0.01,"FocalLength":50,"ISO":50}}
+92930338-0f26-4953-9074-a7bbad626063	local	92930338-0f26-4953-9074-a7bbad626063.jpg	CDE_CO2N_MFR8686.jpg	Cde C O2 N Mf R8686	image/jpeg	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:55:06.095816+00	\N	2024-02-02 14:55:06.18+00	\N	414567	1200	800	\N	\N	\N	\N	\N	{"ifd0":{"Make":"NIKON CORPORATION","Model":"NIKON Z 9"},"exif":{"FNumber":1.3,"ExposureTime":0.004,"FocalLength":50,"ISO":400}}
+3785366c-a15c-4648-9398-be2b068af3ac	local	3785366c-a15c-4648-9398-be2b068af3ac.jpg	CDE_CO2N_MFR8794.jpg	Cde C O2 N Mf R8794	image/jpeg	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:55:06.09505+00	\N	2024-02-02 14:55:06.183+00	\N	554710	1200	800	\N	\N	\N	\N	\N	{"ifd0":{"Make":"NIKON CORPORATION","Model":"NIKON Z 9"},"exif":{"FNumber":1.2,"ExposureTime":0.005,"FocalLength":50,"ISO":50}}
+f3e9f151-89f9-4521-8682-719049e2066d	local	f3e9f151-89f9-4521-8682-719049e2066d.jpg	OK_BNN_MFR5701.jpg	Ok Bnn Mf R5701	image/jpeg	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:55:06.145949+00	\N	2024-02-02 14:55:06.21+00	\N	477344	1200	800	\N	\N	\N	\N	\N	{"ifd0":{"Make":"NIKON CORPORATION","Model":"NIKON Z 9"},"exif":{"FNumber":1.8,"ExposureTime":0.01,"FocalLength":35,"ISO":500}}
+f97ece40-8c83-445f-84aa-296470d9156c	local	f97ece40-8c83-445f-84aa-296470d9156c.jpg	CDE_CO2N_MFR2867.jpg	Cde C O2 N Mf R2867	image/jpeg	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:55:06.115456+00	\N	2024-02-02 14:55:06.211+00	\N	965249	1200	800	\N	\N	\N	\N	\N	{"ifd0":{"Make":"NIKON CORPORATION","Model":"NIKON Z 7_2"},"exif":{"FNumber":5.6,"ExposureTime":0.07692307692307693,"FocalLength":25.5,"ISO":160}}
+be7798e7-4a82-476d-9337-efb46d483803	local	be7798e7-4a82-476d-9337-efb46d483803.jpg	OK_BNN_MFR5703.jpg	Ok Bnn Mf R5703	image/jpeg	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:55:06.613407+00	\N	2024-02-02 14:55:06.69+00	\N	422100	1200	800	\N	\N	\N	\N	\N	{"ifd0":{"Make":"NIKON CORPORATION","Model":"NIKON Z 9"},"exif":{"FNumber":1.8,"ExposureTime":0.000625,"FocalLength":35,"ISO":500}}
+9624d4fa-f777-4d8c-a25a-0c44d4f3335d	local	9624d4fa-f777-4d8c-a25a-0c44d4f3335d.jpg	OK_BNN_MFR5706.jpg	Ok Bnn Mf R5706	image/jpeg	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:55:06.613006+00	\N	2024-02-02 14:55:06.695+00	\N	607145	1200	800	\N	\N	\N	\N	\N	{"ifd0":{"Make":"NIKON CORPORATION","Model":"NIKON Z 9"},"exif":{"FNumber":1.8,"ExposureTime":0.00003125,"FocalLength":85,"ISO":500}}
+248abf34-2e4e-43f1-9257-c6ec55cb1e83	local	248abf34-2e4e-43f1-9257-c6ec55cb1e83.jpg	OK_BNN_MFR5772.jpg	Ok Bnn Mf R5772	image/jpeg	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:55:06.620577+00	\N	2024-02-02 14:55:06.699+00	\N	576622	1200	800	\N	\N	\N	\N	\N	{"ifd0":{"Make":"NIKON CORPORATION","Model":"NIKON Z 9"},"exif":{"FNumber":1.8,"ExposureTime":0.000125,"FocalLength":35,"ISO":200}}
+a1140a22-23f1-4cdd-b36e-a892b4ff7e48	local	a1140a22-23f1-4cdd-b36e-a892b4ff7e48.jpg	OK_BNN_MFR5718.jpg	Ok Bnn Mf R5718	image/jpeg	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:55:06.619392+00	\N	2024-02-02 14:55:06.7+00	\N	680042	1200	800	\N	\N	\N	\N	\N	{"ifd0":{"Make":"NIKON CORPORATION","Model":"NIKON Z 9"},"exif":{"FNumber":1.8,"ExposureTime":0.0004,"FocalLength":35,"ISO":50}}
+c0ca15c3-237b-4903-8bdb-bb26785bb930	local	c0ca15c3-237b-4903-8bdb-bb26785bb930.jpg	OK_BNN_MFR5735.jpg	Ok Bnn Mf R5735	image/jpeg	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:55:06.619871+00	\N	2024-02-02 14:55:06.728+00	\N	777482	1200	800	\N	\N	\N	\N	\N	{"ifd0":{"Make":"NIKON CORPORATION","Model":"NIKON Z 9"},"exif":{"FNumber":1.8,"ExposureTime":0.00015625,"FocalLength":35,"ISO":32}}
+5e740af8-492d-4540-b959-ae89e0576ce3	local	5e740af8-492d-4540-b959-ae89e0576ce3.jpg	OK_BNN_MFR5788.jpg	Ok Bnn Mf R5788	image/jpeg	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:55:07.098258+00	\N	2024-02-02 14:55:07.133+00	\N	568831	1200	800	\N	\N	\N	\N	\N	{"ifd0":{"Make":"NIKON CORPORATION","Model":"NIKON Z 9"},"exif":{"FNumber":1.8,"ExposureTime":0.00015625,"FocalLength":35,"ISO":64}}
+979419ac-8085-42df-a425-af8c952f7840	local	979419ac-8085-42df-a425-af8c952f7840.jpg	OK_BNN_MFR5724.jpg	Ok Bnn Mf R5724	image/jpeg	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:55:07.097993+00	\N	2024-02-02 14:55:07.134+00	\N	838179	1200	800	\N	\N	\N	\N	\N	{"ifd0":{"Make":"NIKON CORPORATION","Model":"NIKON Z 9"},"exif":{"FNumber":1.8,"ExposureTime":0.002,"FocalLength":35,"ISO":32}}
+c64a680d-6535-47c6-a527-0808229d2fcf	local	c64a680d-6535-47c6-a527-0808229d2fcf.jpg	CDE_CO2N_MFR2853.jpg	Cde C O2 N Mf R2853	image/jpeg	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-02 14:55:07.102321+00	\N	2024-02-02 14:55:07.136+00	\N	709020	1200	800	\N	\N	\N	\N	\N	{"ifd0":{"Make":"NIKON CORPORATION","Model":"NIKON Z 7_2"},"exif":{"FNumber":16,"ExposureTime":0.06666666666666667,"FocalLength":42,"ISO":31}}
 \.
 
 
@@ -2337,6 +2861,11 @@ COPY public.directus_permissions (id, role, collection, action, permissions, val
 51	\N	CustomSections_translations	read	{}	{}	\N	*
 49	\N	city_files	read	{}	{}	\N	*
 56	\N	directus_files	read	{}	{}	\N	*
+57	\N	EmailForm	read	{}	{}	\N	*
+58	\N	EmailForm_FormFields	read	{}	{}	\N	*
+59	\N	EmailForm_FormFields_translations	read	{}	{}	\N	*
+60	\N	EmailForm_translations	read	{}	{}	\N	*
+61	\N	FormFields	read	{}	{}	\N	*
 \.
 
 
@@ -2346,10 +2875,11 @@ COPY public.directus_permissions (id, role, collection, action, permissions, val
 
 COPY public.directus_presets (id, bookmark, "user", role, collection, search, layout, layout_query, layout_options, refresh_interval, filter, icon, color) FROM stdin;
 2	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	\N	event	\N	\N	{"tabular":{"page":1}}	\N	10	\N	bookmark	\N
-1	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	\N	languages	\N	\N	{"tabular":{"page":1}}	\N	\N	\N	bookmark	\N
 3	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	\N	countries	\N	\N	{"tabular":{"page":1}}	\N	\N	\N	bookmark	\N
 4	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	\N	SupportLinks	\N	\N	{"tabular":{"fields":["city","link","status","translations"]}}	{"tabular":{"widths":{"link":250}}}	\N	\N	bookmark	\N
 5	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	\N	directus_files	\N	cards	{"cards":{"sort":["-uploaded_on"],"page":1}}	{"cards":{"icon":"insert_drive_file","title":"{{ title }}","subtitle":"{{ type }} • {{ filesize }}","size":4,"imageFit":"crop"}}	\N	\N	bookmark	\N
+1	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	\N	languages	\N	\N	{"tabular":{"page":1}}	\N	\N	\N	bookmark	\N
+6	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	\N	EmailForm	\N	\N	{"tabular":{"page":1,"fields":["emailTo","fields","status","translations"]}}	{"tabular":{"widths":{"translations":256.5}}}	\N	\N	bookmark	\N
 \.
 
 
@@ -2366,8 +2896,6 @@ COPY public.directus_relations (id, many_collection, many_field, one_collection,
 7	countries_translations	languages_code	languages	\N	\N	\N	countries_id	\N	nullify
 8	countries_translations	countries_id	countries	translations	\N	\N	languages_code	\N	nullify
 9	countries	cities	city	\N	\N	\N	\N	\N	nullify
-10	city_files	directus_files_id	directus_files	\N	\N	\N	city_id	\N	nullify
-11	city_files	city_id	city	gallery	\N	\N	directus_files_id	\N	nullify
 12	SupportLinks_translations	languages_code	languages	\N	\N	\N	SupportLinks_id	\N	nullify
 13	SupportLinks_translations	SupportLinks_id	SupportLinks	translations	\N	\N	languages_code	\N	nullify
 15	SupportLinks	city	city	supportlinks	\N	\N	\N	\N	nullify
@@ -2375,6 +2903,15 @@ COPY public.directus_relations (id, many_collection, many_field, one_collection,
 16	CustomSections_translations	languages_code	languages	\N	\N	\N	CustomSections_id	\N	nullify
 17	CustomSections_translations	CustomSections_id	CustomSections	translations	\N	\N	languages_code	\N	nullify
 18	CustomSections	city	city	customSections	\N	\N	\N	\N	nullify
+10	city_files	directus_files_id	directus_files	\N	\N	\N	city_id	\N	nullify
+11	city_files	city_id	city	gallery	\N	\N	directus_files_id	\N	delete
+29	EmailForm_translations	languages_code	languages	\N	\N	\N	EmailForm_id	\N	nullify
+30	EmailForm_translations	EmailForm_id	EmailForm	translations	\N	\N	languages_code	\N	nullify
+31	EmailForm_FormFields	FormFields_id	FormFields	\N	\N	\N	EmailForm_id	\N	nullify
+32	EmailForm_FormFields	EmailForm_id	EmailForm	fields	\N	\N	FormFields_id	\N	nullify
+33	EmailForm_FormFields_translations	languages_code	languages	\N	\N	\N	EmailForm_FormFields_id	\N	nullify
+34	EmailForm_FormFields_translations	EmailForm_FormFields_id	EmailForm_FormFields	translations	\N	\N	languages_code	\N	nullify
+38	EmailForm	city	city	emailForm	\N	\N	\N	\N	nullify
 \.
 
 
@@ -2674,6 +3211,7 @@ COPY public.directus_revisions (id, activity, collection, item, data, delta, par
 288	321	directus_fields	68	{"sort":7,"interface":"input-multiline","special":null,"required":true,"collection":"event_translations","field":"customDates"}	{"sort":7,"interface":"input-multiline","special":null,"required":true,"collection":"event_translations","field":"customDates"}	\N	\N
 295	328	event	5	{"translations":{"create":[{"location":"Bovetstrasse 1, 3007 Bern","languages_code":{"code":"de"},"name":"Gottesdienste und Gedenkaktionen auf Italienisch in der Missione Cattolica di Lingua Italiana","description":"<p>&lt;p class=\\"font_8\\"&gt;Sabato, 17 giugno 2023 Ore 18.30 Santa Messa Ore 19.30 - 22.00 lettura dei nomi e adorazione Domenica 18 giugno 2023 Ore 9.30 - 10.45 lettura dei nomi e adorazione Ore 11.00 Santa Messa Affissione dei nomi dal 17-26 giugno 2023&lt;/p&gt;</p>","customDates":"2023-06-17"},{"location":"Bovetstrasse 1, 3007 Bern","languages_code":{"code":"fr"},"name":"Services religieux et actions commémoratives en italien à la Missione Cattolica di Lingua Italiana","description":"<p>&lt;p class=\\"font_8\\"&gt;Sabato, 17 giugno 2023 Ore 18.30 Santa Messa Ore 19.30 - 22.00 lettura dei nomi e adorazione Domenica 18 giugno 2023 Ore 9.30 - 10.45 lettura dei nomi e adorazione Ore 11.00 Santa Messa Affissione dei nomi dal 17-26 giugno 2023&lt;/p&gt;</p>","customDates":"2023-06-17"}],"update":[],"delete":[]},"city":2}	{"translations":{"create":[{"location":"Bovetstrasse 1, 3007 Bern","languages_code":{"code":"de"},"name":"Gottesdienste und Gedenkaktionen auf Italienisch in der Missione Cattolica di Lingua Italiana","description":"<p>&lt;p class=\\"font_8\\"&gt;Sabato, 17 giugno 2023 Ore 18.30 Santa Messa Ore 19.30 - 22.00 lettura dei nomi e adorazione Domenica 18 giugno 2023 Ore 9.30 - 10.45 lettura dei nomi e adorazione Ore 11.00 Santa Messa Affissione dei nomi dal 17-26 giugno 2023&lt;/p&gt;</p>","customDates":"2023-06-17"},{"location":"Bovetstrasse 1, 3007 Bern","languages_code":{"code":"fr"},"name":"Services religieux et actions commémoratives en italien à la Missione Cattolica di Lingua Italiana","description":"<p>&lt;p class=\\"font_8\\"&gt;Sabato, 17 giugno 2023 Ore 18.30 Santa Messa Ore 19.30 - 22.00 lettura dei nomi e adorazione Domenica 18 giugno 2023 Ore 9.30 - 10.45 lettura dei nomi e adorazione Ore 11.00 Santa Messa Affissione dei nomi dal 17-26 giugno 2023&lt;/p&gt;</p>","customDates":"2023-06-17"}],"update":[],"delete":[]},"city":2}	\N	\N
 293	326	event_translations	7	{"location":"Bovetstrasse 1, 3007 Bern","languages_code":{"code":"de"},"name":"Gottesdienste und Gedenkaktionen auf Italienisch in der Missione Cattolica di Lingua Italiana","description":"<p>&lt;p class=\\"font_8\\"&gt;Sabato, 17 giugno 2023 Ore 18.30 Santa Messa Ore 19.30 - 22.00 lettura dei nomi e adorazione Domenica 18 giugno 2023 Ore 9.30 - 10.45 lettura dei nomi e adorazione Ore 11.00 Santa Messa Affissione dei nomi dal 17-26 giugno 2023&lt;/p&gt;</p>","customDates":"2023-06-17","event_id":5}	{"location":"Bovetstrasse 1, 3007 Bern","languages_code":{"code":"de"},"name":"Gottesdienste und Gedenkaktionen auf Italienisch in der Missione Cattolica di Lingua Italiana","description":"<p>&lt;p class=\\"font_8\\"&gt;Sabato, 17 giugno 2023 Ore 18.30 Santa Messa Ore 19.30 - 22.00 lettura dei nomi e adorazione Domenica 18 giugno 2023 Ore 9.30 - 10.45 lettura dei nomi e adorazione Ore 11.00 Santa Messa Affissione dei nomi dal 17-26 giugno 2023&lt;/p&gt;</p>","customDates":"2023-06-17","event_id":5}	295	\N
+351	384	directus_files	0c6462b2-f86e-4fca-a960-23c0222ce597	{"title":"Cde C O2 N Mf R8782","filename_download":"CDE_CO2N_MFR8782.jpg","type":"image/jpeg","storage":"local"}	{"title":"Cde C O2 N Mf R8782","filename_download":"CDE_CO2N_MFR8782.jpg","type":"image/jpeg","storage":"local"}	\N	\N
 294	327	event_translations	8	{"location":"Bovetstrasse 1, 3007 Bern","languages_code":{"code":"fr"},"name":"Services religieux et actions commémoratives en italien à la Missione Cattolica di Lingua Italiana","description":"<p>&lt;p class=\\"font_8\\"&gt;Sabato, 17 giugno 2023 Ore 18.30 Santa Messa Ore 19.30 - 22.00 lettura dei nomi e adorazione Domenica 18 giugno 2023 Ore 9.30 - 10.45 lettura dei nomi e adorazione Ore 11.00 Santa Messa Affissione dei nomi dal 17-26 giugno 2023&lt;/p&gt;</p>","customDates":"2023-06-17","event_id":5}	{"location":"Bovetstrasse 1, 3007 Bern","languages_code":{"code":"fr"},"name":"Services religieux et actions commémoratives en italien à la Missione Cattolica di Lingua Italiana","description":"<p>&lt;p class=\\"font_8\\"&gt;Sabato, 17 giugno 2023 Ore 18.30 Santa Messa Ore 19.30 - 22.00 lettura dei nomi e adorazione Domenica 18 giugno 2023 Ore 9.30 - 10.45 lettura dei nomi e adorazione Ore 11.00 Santa Messa Affissione dei nomi dal 17-26 giugno 2023&lt;/p&gt;</p>","customDates":"2023-06-17","event_id":5}	295	\N
 296	329	directus_fields	62	{"id":62,"collection":"SupportLinks","field":"city","special":["m2o"],"interface":"select-dropdown-m2o","options":null,"display":"related-values","display_options":{"template":"{{translations.name}}"},"readonly":false,"hidden":false,"sort":7,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"SupportLinks","field":"city","special":["m2o"],"interface":"select-dropdown-m2o","options":null,"display":"related-values","display_options":{"template":"{{translations.name}}"},"readonly":false,"hidden":false,"sort":7,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	\N	\N
 287	320	directus_fields	67	{"sort":6,"interface":"input","special":null,"collection":"event_translations","field":"location"}	{"sort":6,"interface":"input","special":null,"collection":"event_translations","field":"location"}	\N	\N
@@ -2705,6 +3243,8 @@ COPY public.directus_revisions (id, activity, collection, item, data, delta, par
 314	347	directus_fields	83	{"sort":11,"interface":"list-o2m","special":["o2m"],"collection":"city","field":"customSections"}	{"sort":11,"interface":"list-o2m","special":["o2m"],"collection":"city","field":"customSections"}	\N	\N
 315	348	CustomSections_translations	1	{"title":" Petition im Rahmen der Aktion „Beim Namen nennen“ 2023: Wiederaufnahme des Resettlement-Programms der Schweiz ermöglichen","languages_code":{"code":"de"},"description":"<p>Im Juni werden in zehn verschiedenen Schweizer St&auml;dten die Namen von &uuml;ber 51&lsquo;000 M&auml;nner, Frauen und Kinder gelesen und aufgeschrieben, die auf der Flucht nach Europa ums Leben gekommen sind. Die europ&auml;ische und schweizerische Migrationspolitik ist mitverantwortlich f&uuml;r dieses entsetzliche Sterben an den Grenzen Europas. Es braucht sichere Fluchtwege.<br>Als erstes sollte die Schweiz so schnell wie m&ouml;glich, das von BR Karin Keller-Suter vor Weihnachten 2022 ausgesetzte Resettlement-Programm wieder aufnehmen. In diesem Programm nimmt die Schweiz vom UNHCR anerkannte Fl&uuml;chtlinge zum Beispiel aus den Lagern im Nahen Osten direkt in die Schweiz auf. Der gef&auml;hrliche Fluchtweg entf&auml;llt.<br>Die Schweiz hat sich verpflichtet bis Ende 2023 insgesamt 1600 besonders verletzliche Personen aufzunehmen (zum Beispiel: Frauen, Kinder und UMA, die Opfer von Folter, sexueller Gewalt, Menschenhandel und Sklaverei sind oder unter der Bedrohung solcher Gewalttaten gelebt haben.) Noch immer warten 800 Menschen sehnlichst darauf, aus den<br>prek&auml;ren Verh&auml;ltnissen direkt in die Schweiz aufgenommen zu werden.<br>Nun m&ouml;chte der Bundesrat die Einreisen wieder erm&ouml;glichen. Er ist dabei aber auf die Unterst&uuml;tzung der Kantone angewiesen.<br>Wir bitten den Regierungsrat des Kantons Bern: Senden Sie ein positives Signal an den Bundesrat und sichern Sie die Bereitschaft des Kantons zu, die Menschen, die dem Kanton Bern zugeteilt w&uuml;rden, aufzunehmen mit allem, was dazu geh&ouml;rt.<br>Viele Freiwillige in NGOs, in den Kirchen und auch die St&auml;dte bieten Hand, um bei der Betreuung, Unterbringung und Integration dieser Menschen zu helfen.</p>","CustomSections_id":1}	{"title":" Petition im Rahmen der Aktion „Beim Namen nennen“ 2023: Wiederaufnahme des Resettlement-Programms der Schweiz ermöglichen","languages_code":{"code":"de"},"description":"<p>Im Juni werden in zehn verschiedenen Schweizer St&auml;dten die Namen von &uuml;ber 51&lsquo;000 M&auml;nner, Frauen und Kinder gelesen und aufgeschrieben, die auf der Flucht nach Europa ums Leben gekommen sind. Die europ&auml;ische und schweizerische Migrationspolitik ist mitverantwortlich f&uuml;r dieses entsetzliche Sterben an den Grenzen Europas. Es braucht sichere Fluchtwege.<br>Als erstes sollte die Schweiz so schnell wie m&ouml;glich, das von BR Karin Keller-Suter vor Weihnachten 2022 ausgesetzte Resettlement-Programm wieder aufnehmen. In diesem Programm nimmt die Schweiz vom UNHCR anerkannte Fl&uuml;chtlinge zum Beispiel aus den Lagern im Nahen Osten direkt in die Schweiz auf. Der gef&auml;hrliche Fluchtweg entf&auml;llt.<br>Die Schweiz hat sich verpflichtet bis Ende 2023 insgesamt 1600 besonders verletzliche Personen aufzunehmen (zum Beispiel: Frauen, Kinder und UMA, die Opfer von Folter, sexueller Gewalt, Menschenhandel und Sklaverei sind oder unter der Bedrohung solcher Gewalttaten gelebt haben.) Noch immer warten 800 Menschen sehnlichst darauf, aus den<br>prek&auml;ren Verh&auml;ltnissen direkt in die Schweiz aufgenommen zu werden.<br>Nun m&ouml;chte der Bundesrat die Einreisen wieder erm&ouml;glichen. Er ist dabei aber auf die Unterst&uuml;tzung der Kantone angewiesen.<br>Wir bitten den Regierungsrat des Kantons Bern: Senden Sie ein positives Signal an den Bundesrat und sichern Sie die Bereitschaft des Kantons zu, die Menschen, die dem Kanton Bern zugeteilt w&uuml;rden, aufzunehmen mit allem, was dazu geh&ouml;rt.<br>Viele Freiwillige in NGOs, in den Kirchen und auch die St&auml;dte bieten Hand, um bei der Betreuung, Unterbringung und Integration dieser Menschen zu helfen.</p>","CustomSections_id":1}	317	\N
 316	349	CustomSections_translations	2	{"title":"Pétition dans le cadre de l'action \\"Appeler un chat un chat\\" 2023 : Permettre la reprise du programme de réinstallation de la Suisse","languages_code":{"code":"fr"},"description":"<p>En juin, dans dix villes suisses diff&eacute;rentes, les noms de plus de 51'000 hommes, femmes et enfants qui ont perdu la vie en fuyant vers l'Europe seront lus et &eacute;crits. La politique migratoire europ&eacute;enne et suisse est en partie responsable de cette mort horrible aux fronti&egrave;res de l'Europe. Il faut des voies de fuite s&ucirc;res.<br>En premier lieu, la Suisse devrait reprendre le plus rapidement possible le programme de r&eacute;installation suspendu par la conseill&egrave;re f&eacute;d&eacute;rale Karin Keller-Suter avant No&euml;l 2022. Dans le cadre de ce programme, la Suisse accueille directement en Suisse des r&eacute;fugi&eacute;s reconnus par le HCR, par exemple en provenance des camps du Proche-Orient. La voie de fuite dangereuse est ainsi supprim&eacute;e.<br>La Suisse s'est engag&eacute;e &agrave; accueillir au total 1600 personnes particuli&egrave;rement vuln&eacute;rables d'ici fin 2023 (par exemple : des femmes, des enfants et des MNA qui sont victimes de torture, de violences sexuelles, de la traite des &ecirc;tres humains et de l'esclavage ou qui ont v&eacute;cu sous la menace de tels actes de violence). Aujourd'hui encore, 800 personnes attendent avec impatience de pouvoir sortir des<br>&ecirc;tre admises directement en Suisse dans des conditions pr&eacute;caires.<br>Le Conseil f&eacute;d&eacute;ral souhaite &agrave; pr&eacute;sent permettre &agrave; nouveau ces entr&eacute;es. Mais pour cela, il a besoin du soutien des cantons.<br>Nous demandons au Conseil d'Etat du canton de Berne : envoyez un signal positif au Conseil f&eacute;d&eacute;ral et assurez la disponibilit&eacute; du canton &agrave; accueillir les personnes qui seraient attribu&eacute;es au canton de Berne, avec tout ce que cela implique.<br>De nombreux b&eacute;n&eacute;voles dans les ONG, les &eacute;glises et d'autres organisations sont pr&ecirc;ts &agrave; s'engager.</p>","CustomSections_id":1}	{"title":"Pétition dans le cadre de l'action \\"Appeler un chat un chat\\" 2023 : Permettre la reprise du programme de réinstallation de la Suisse","languages_code":{"code":"fr"},"description":"<p>En juin, dans dix villes suisses diff&eacute;rentes, les noms de plus de 51'000 hommes, femmes et enfants qui ont perdu la vie en fuyant vers l'Europe seront lus et &eacute;crits. La politique migratoire europ&eacute;enne et suisse est en partie responsable de cette mort horrible aux fronti&egrave;res de l'Europe. Il faut des voies de fuite s&ucirc;res.<br>En premier lieu, la Suisse devrait reprendre le plus rapidement possible le programme de r&eacute;installation suspendu par la conseill&egrave;re f&eacute;d&eacute;rale Karin Keller-Suter avant No&euml;l 2022. Dans le cadre de ce programme, la Suisse accueille directement en Suisse des r&eacute;fugi&eacute;s reconnus par le HCR, par exemple en provenance des camps du Proche-Orient. La voie de fuite dangereuse est ainsi supprim&eacute;e.<br>La Suisse s'est engag&eacute;e &agrave; accueillir au total 1600 personnes particuli&egrave;rement vuln&eacute;rables d'ici fin 2023 (par exemple : des femmes, des enfants et des MNA qui sont victimes de torture, de violences sexuelles, de la traite des &ecirc;tres humains et de l'esclavage ou qui ont v&eacute;cu sous la menace de tels actes de violence). Aujourd'hui encore, 800 personnes attendent avec impatience de pouvoir sortir des<br>&ecirc;tre admises directement en Suisse dans des conditions pr&eacute;caires.<br>Le Conseil f&eacute;d&eacute;ral souhaite &agrave; pr&eacute;sent permettre &agrave; nouveau ces entr&eacute;es. Mais pour cela, il a besoin du soutien des cantons.<br>Nous demandons au Conseil d'Etat du canton de Berne : envoyez un signal positif au Conseil f&eacute;d&eacute;ral et assurez la disponibilit&eacute; du canton &agrave; accueillir les personnes qui seraient attribu&eacute;es au canton de Berne, avec tout ce que cela implique.<br>De nombreux b&eacute;n&eacute;voles dans les ONG, les &eacute;glises et d'autres organisations sont pr&ecirc;ts &agrave; s'engager.</p>","CustomSections_id":1}	317	\N
+359	392	directus_files	3e1f3db6-0a84-433e-957c-972ce8a1d278	{"title":"Ok Bnn Mf R5788","filename_download":"OK_BNN_MFR5788.jpg","type":"image/jpeg","storage":"local"}	{"title":"Ok Bnn Mf R5788","filename_download":"OK_BNN_MFR5788.jpg","type":"image/jpeg","storage":"local"}	\N	\N
+360	393	directus_files	c55467d4-8338-437b-a177-c0710f9a535d	{"title":"Cde C O2 N Mf R2853","filename_download":"CDE_CO2N_MFR2853.jpg","type":"image/jpeg","storage":"local"}	{"title":"Cde C O2 N Mf R2853","filename_download":"CDE_CO2N_MFR2853.jpg","type":"image/jpeg","storage":"local"}	\N	\N
 324	357	directus_fields	83	{"id":83,"collection":"city","field":"customSections","special":["o2m"],"interface":"list-o2m","options":{"template":"{{translations.title}}"},"display":"related-values","display_options":{"template":"{{translations.title}}"},"readonly":false,"hidden":false,"sort":11,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"city","field":"customSections","special":["o2m"],"interface":"list-o2m","options":{"template":"{{translations.title}}"},"display":"related-values","display_options":{"template":"{{translations.title}}"},"readonly":false,"hidden":false,"sort":11,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	\N	\N
 328	361	directus_files	cdd76a04-84f2-426d-b3e6-a4d48ec8a7aa	{"title":"Bern Lesen Schreiben 06","filename_download":"bern_lesen-schreiben-06.jpg","type":"image/jpeg","storage":"local"}	{"title":"Bern Lesen Schreiben 06","filename_download":"bern_lesen-schreiben-06.jpg","type":"image/jpeg","storage":"local"}	\N	\N
 330	362	directus_files	4aece6fc-c22f-4751-8f2e-cb8453ec98ae	{"title":"Bern Lesen Schreiben 01","filename_download":"bern_lesen-schreiben-01.jpg","type":"image/jpeg","storage":"local"}	{"title":"Bern Lesen Schreiben 01","filename_download":"bern_lesen-schreiben-01.jpg","type":"image/jpeg","storage":"local"}	\N	\N
@@ -2735,9 +3275,6 @@ COPY public.directus_revisions (id, activity, collection, item, data, delta, par
 349	382	directus_files	2ab59289-4609-4754-aa16-a48358f1d5bf	{"title":"Cde C O2 N Mf R2867","filename_download":"CDE_CO2N_MFR2867.jpg","type":"image/jpeg","storage":"local"}	{"title":"Cde C O2 N Mf R2867","filename_download":"CDE_CO2N_MFR2867.jpg","type":"image/jpeg","storage":"local"}	\N	\N
 358	391	directus_files	7ca7e9cb-0a8e-4c5f-8f1a-32f5f544ff2f	{"title":"Ok Bnn Mf R5724","filename_download":"OK_BNN_MFR5724.jpg","type":"image/jpeg","storage":"local"}	{"title":"Ok Bnn Mf R5724","filename_download":"OK_BNN_MFR5724.jpg","type":"image/jpeg","storage":"local"}	\N	\N
 347	380	directus_files	f9874dc2-dbd2-4b87-bd32-12ce32a1f526	{"title":"Bern Lesen Schreiben 09","filename_download":"bern_lesen-schreiben-09.jpg","type":"image/jpeg","storage":"local"}	{"title":"Bern Lesen Schreiben 09","filename_download":"bern_lesen-schreiben-09.jpg","type":"image/jpeg","storage":"local"}	\N	\N
-351	384	directus_files	0c6462b2-f86e-4fca-a960-23c0222ce597	{"title":"Cde C O2 N Mf R8782","filename_download":"CDE_CO2N_MFR8782.jpg","type":"image/jpeg","storage":"local"}	{"title":"Cde C O2 N Mf R8782","filename_download":"CDE_CO2N_MFR8782.jpg","type":"image/jpeg","storage":"local"}	\N	\N
-359	392	directus_files	3e1f3db6-0a84-433e-957c-972ce8a1d278	{"title":"Ok Bnn Mf R5788","filename_download":"OK_BNN_MFR5788.jpg","type":"image/jpeg","storage":"local"}	{"title":"Ok Bnn Mf R5788","filename_download":"OK_BNN_MFR5788.jpg","type":"image/jpeg","storage":"local"}	\N	\N
-360	393	directus_files	c55467d4-8338-437b-a177-c0710f9a535d	{"title":"Cde C O2 N Mf R2853","filename_download":"CDE_CO2N_MFR2853.jpg","type":"image/jpeg","storage":"local"}	{"title":"Cde C O2 N Mf R2853","filename_download":"CDE_CO2N_MFR2853.jpg","type":"image/jpeg","storage":"local"}	\N	\N
 352	385	directus_files	3a2dfe2d-cb94-452c-bdff-dd3ac2396b6f	{"title":"Ok Bnn Mf R5706","filename_download":"OK_BNN_MFR5706.jpg","type":"image/jpeg","storage":"local"}	{"title":"Ok Bnn Mf R5706","filename_download":"OK_BNN_MFR5706.jpg","type":"image/jpeg","storage":"local"}	\N	\N
 353	386	directus_files	f1585467-0562-4b63-bd7d-bedadf620e8b	{"title":"Ok Bnn Mf R5701","filename_download":"OK_BNN_MFR5701.jpg","type":"image/jpeg","storage":"local"}	{"title":"Ok Bnn Mf R5701","filename_download":"OK_BNN_MFR5701.jpg","type":"image/jpeg","storage":"local"}	\N	\N
 354	387	directus_files	02735120-e2ae-4389-ac2e-2426d10b7944	{"title":"Ok Bnn Mf R5703","filename_download":"OK_BNN_MFR5703.jpg","type":"image/jpeg","storage":"local"}	{"title":"Ok Bnn Mf R5703","filename_download":"OK_BNN_MFR5703.jpg","type":"image/jpeg","storage":"local"}	\N	\N
@@ -2769,6 +3306,182 @@ COPY public.directus_revisions (id, activity, collection, item, data, delta, par
 384	417	directus_permissions	54	{"role":null,"collection":"city_files","action":"delete","fields":["*"],"permissions":{},"validation":{}}	{"role":null,"collection":"city_files","action":"delete","fields":["*"],"permissions":{},"validation":{}}	\N	\N
 385	418	directus_permissions	55	{"role":null,"collection":"city_files","action":"share","fields":["*"],"permissions":{},"validation":{}}	{"role":null,"collection":"city_files","action":"share","fields":["*"],"permissions":{},"validation":{}}	\N	\N
 386	423	directus_permissions	56	{"role":null,"collection":"directus_files","action":"read","fields":["*"],"permissions":{},"validation":{}}	{"role":null,"collection":"directus_files","action":"read","fields":["*"],"permissions":{},"validation":{}}	\N	\N
+402	439	city	2	{"id":2,"status":"draft","sort":null,"date_updated":"2024-02-02T14:48:47.979Z","translations":[3,4],"gallery":[16,17,18,19],"supportlinks":[1,2,3,4,5,6,7,8],"events":[1,4,5],"customSections":[1]}	{"date_updated":"2024-02-02T14:48:47.979Z"}	\N	\N
+387	424	city_files	1	{"id":1,"city_id":null,"directus_files_id":"dc123d72-8323-45eb-a943-36389dc5bea6"}	{"city_id":null}	402	\N
+388	425	city_files	10	{"id":2,"city_id":null,"directus_files_id":"ec2bd7e0-01a0-4571-8f1b-56b3bac4da7e"}	{"city_id":null}	402	\N
+389	426	city_files	11	{"id":3,"city_id":null,"directus_files_id":"255e9876-3511-4338-932d-de553ca6523a"}	{"city_id":null}	402	\N
+390	427	city_files	12	{"id":4,"city_id":null,"directus_files_id":"88ec0a8b-f67a-4449-b7f1-26202cb606ca"}	{"city_id":null}	402	\N
+391	428	city_files	13	{"id":5,"city_id":null,"directus_files_id":"8b3b763c-9d84-4797-ba28-6e52eab82a73"}	{"city_id":null}	402	\N
+392	429	city_files	14	{"id":6,"city_id":null,"directus_files_id":"f9874dc2-dbd2-4b87-bd32-12ce32a1f526"}	{"city_id":null}	402	\N
+393	430	city_files	15	{"id":7,"city_id":null,"directus_files_id":"5c60c983-c656-4bb7-bd46-0a107e5bde4c"}	{"city_id":null}	402	\N
+394	431	city_files	2	{"id":8,"city_id":null,"directus_files_id":"7b5011a5-e238-459c-b133-9cb10c0f49b5"}	{"city_id":null}	402	\N
+395	432	city_files	3	{"id":9,"city_id":null,"directus_files_id":"2ab59289-4609-4754-aa16-a48358f1d5bf"}	{"city_id":null}	402	\N
+396	433	city_files	4	{"id":10,"city_id":null,"directus_files_id":"0c6462b2-f86e-4fca-a960-23c0222ce597"}	{"city_id":null}	402	\N
+397	434	city_files	5	{"id":11,"city_id":null,"directus_files_id":"f1585467-0562-4b63-bd7d-bedadf620e8b"}	{"city_id":null}	402	\N
+398	435	city_files	6	{"id":12,"city_id":null,"directus_files_id":"3a2dfe2d-cb94-452c-bdff-dd3ac2396b6f"}	{"city_id":null}	402	\N
+399	436	city_files	7	{"id":13,"city_id":null,"directus_files_id":"02735120-e2ae-4389-ac2e-2426d10b7944"}	{"city_id":null}	402	\N
+400	437	city_files	8	{"id":14,"city_id":null,"directus_files_id":"0174130c-f4f5-44aa-a9c7-35f8b5ead135"}	{"city_id":null}	402	\N
+401	438	city_files	9	{"id":15,"city_id":null,"directus_files_id":"ca987d87-80ed-42f0-b50e-56340b1f497e"}	{"city_id":null}	402	\N
+526	600	directus_fields	120	{"sort":9,"interface":"list-m2m","special":["m2m"],"required":true,"collection":"DynamicCityForm","field":"fields"}	{"sort":9,"interface":"list-m2m","special":["m2m"],"required":true,"collection":"DynamicCityForm","field":"fields"}	\N	\N
+530	604	directus_fields	123	{"sort":3,"hidden":true,"collection":"DynamicCityForm_CityFormFields_1","field":"CityFormFields_id"}	{"sort":3,"hidden":true,"collection":"DynamicCityForm_CityFormFields_1","field":"CityFormFields_id"}	\N	\N
+580	662	EmailForm_translations	2	{"description":"Pour commander vos drapeaux, veuillez indiquer le nombre et le type de drapeaux que vous souhaitez. ","languages_code":{"code":"fr"},"title":"Commander des drapeaux","subject":"nouvelle commande","submitText":"Commande","EmailForm_id":1}	{"description":"Pour commander vos drapeaux, veuillez indiquer le nombre et le type de drapeaux que vous souhaitez. ","languages_code":{"code":"fr"},"title":"Commander des drapeaux","subject":"nouvelle commande","submitText":"Commande","EmailForm_id":1}	581	\N
+407	444	city	2	{"id":2,"status":"draft","sort":null,"date_updated":"2024-02-02T14:48:54.034Z","translations":[3,4],"gallery":[],"supportlinks":[1,2,3,4,5,6,7,8],"events":[1,4,5],"customSections":[1]}	{"date_updated":"2024-02-02T14:48:54.034Z"}	\N	\N
+403	440	city_files	16	{"id":16,"city_id":null,"directus_files_id":"16ef4a31-4ab0-4cab-898b-618be781d472"}	{"city_id":null}	407	\N
+404	441	city_files	17	{"id":17,"city_id":null,"directus_files_id":"7ca7e9cb-0a8e-4c5f-8f1a-32f5f544ff2f"}	{"city_id":null}	407	\N
+405	442	city_files	18	{"id":18,"city_id":null,"directus_files_id":"3e1f3db6-0a84-433e-957c-972ce8a1d278"}	{"city_id":null}	407	\N
+406	443	city_files	19	{"id":19,"city_id":null,"directus_files_id":"c55467d4-8338-437b-a177-c0710f9a535d"}	{"city_id":null}	407	\N
+527	601	directus_fields	121	{"sort":1,"hidden":true,"field":"id","collection":"DynamicCityForm_CityFormFields_1"}	{"sort":1,"hidden":true,"field":"id","collection":"DynamicCityForm_CityFormFields_1"}	\N	\N
+528	602	directus_collections	DynamicCityForm_CityFormFields_1	{"hidden":true,"icon":"import_export","collection":"DynamicCityForm_CityFormFields_1"}	{"hidden":true,"icon":"import_export","collection":"DynamicCityForm_CityFormFields_1"}	\N	\N
+529	603	directus_fields	122	{"sort":2,"hidden":true,"collection":"DynamicCityForm_CityFormFields_1","field":"DynamicCityForm_id"}	{"sort":2,"hidden":true,"collection":"DynamicCityForm_CityFormFields_1","field":"DynamicCityForm_id"}	\N	\N
+582	664	directus_fields	141	{"id":141,"collection":"EmailForm","field":"fields","special":["m2m"],"interface":"list-m2m","options":{"junctionFieldLocation":"top","allowDuplicates":true,"template":"{{translations.label}}{{FormFields_id.type}}"},"display":"related-values","display_options":{"template":"{{translations.label}}"},"readonly":false,"hidden":false,"sort":8,"width":"full","translations":null,"note":null,"conditions":null,"required":true,"group":null,"validation":null,"validation_message":null}	{"collection":"EmailForm","field":"fields","special":["m2m"],"interface":"list-m2m","options":{"junctionFieldLocation":"top","allowDuplicates":true,"template":"{{translations.label}}{{FormFields_id.type}}"},"display":"related-values","display_options":{"template":"{{translations.label}}"},"readonly":false,"hidden":false,"sort":8,"width":"full","translations":null,"note":null,"conditions":null,"required":true,"group":null,"validation":null,"validation_message":null}	\N	\N
+408	481	directus_fields	85	{"sort":1,"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"dddd"}	{"sort":1,"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"dddd"}	\N	\N
+409	482	directus_collections	dddd	{"singleton":false,"collection":"dddd"}	{"singleton":false,"collection":"dddd"}	\N	\N
+533	607	directus_fields	124	{"sort":4,"interface":"input","special":null,"collection":"DynamicCityForm_CityFormFields_1","field":"label"}	{"sort":4,"interface":"input","special":null,"collection":"DynamicCityForm_CityFormFields_1","field":"label"}	\N	\N
+583	665	directus_fields	141	{"id":141,"collection":"EmailForm","field":"fields","special":["m2m"],"interface":"list-m2m","options":{"junctionFieldLocation":"top","allowDuplicates":true,"template":"{{translations.label}}"},"display":"related-values","display_options":{"template":"{{translations.label}}"},"readonly":false,"hidden":false,"sort":8,"width":"full","translations":null,"note":null,"conditions":null,"required":true,"group":null,"validation":null,"validation_message":null}	{"collection":"EmailForm","field":"fields","special":["m2m"],"interface":"list-m2m","options":{"junctionFieldLocation":"top","allowDuplicates":true,"template":"{{translations.label}}"},"display":"related-values","display_options":{"template":"{{translations.label}}"},"readonly":false,"hidden":false,"sort":8,"width":"full","translations":null,"note":null,"conditions":null,"required":true,"group":null,"validation":null,"validation_message":null}	\N	\N
+410	484	directus_collections	city_files	{"collection":"city_files","icon":"import_export","note":null,"display_template":null,"hidden":false,"singleton":false,"translations":null,"archive_field":null,"archive_app_filter":true,"archive_value":null,"unarchive_value":null,"sort_field":null,"accountability":"all","color":null,"item_duplication_fields":null,"sort":null,"group":null,"collapse":"open","preview_url":null,"versioning":false}	{"hidden":false}	\N	\N
+443	517	directus_files	b8438249-863c-449a-8fe5-568f4e47b67b	{"title":"Bern Lesen Schreiben 03","filename_download":"bern_lesen-schreiben-03.jpg","type":"image/jpeg","storage":"local"}	{"title":"Bern Lesen Schreiben 03","filename_download":"bern_lesen-schreiben-03.jpg","type":"image/jpeg","storage":"local"}	\N	\N
+447	521	directus_files	a395308d-6b1a-4db4-8b3c-c39009964fbf	{"title":"Bern Lesen Schreiben 09","filename_download":"bern_lesen-schreiben-09.jpg","type":"image/jpeg","storage":"local"}	{"title":"Bern Lesen Schreiben 09","filename_download":"bern_lesen-schreiben-09.jpg","type":"image/jpeg","storage":"local"}	\N	\N
+448	522	directus_files	57f3e7e0-db45-42fc-ab87-af4daa0bb144	{"title":"Bern Lesen Schreiben 10","filename_download":"bern_lesen-schreiben-10.jpg","type":"image/jpeg","storage":"local"}	{"title":"Bern Lesen Schreiben 10","filename_download":"bern_lesen-schreiben-10.jpg","type":"image/jpeg","storage":"local"}	\N	\N
+452	526	directus_files	a6d8e567-36f1-421a-ac23-5e549a84d564	{"title":"Cde C O2 N Mf R8782","filename_download":"CDE_CO2N_MFR8782.jpg","type":"image/jpeg","storage":"local"}	{"title":"Cde C O2 N Mf R8782","filename_download":"CDE_CO2N_MFR8782.jpg","type":"image/jpeg","storage":"local"}	\N	\N
+454	528	directus_files	9624d4fa-f777-4d8c-a25a-0c44d4f3335d	{"title":"Ok Bnn Mf R5706","filename_download":"OK_BNN_MFR5706.jpg","type":"image/jpeg","storage":"local"}	{"title":"Ok Bnn Mf R5706","filename_download":"OK_BNN_MFR5706.jpg","type":"image/jpeg","storage":"local"}	\N	\N
+481	555	city	2	{"id":2,"status":"draft","sort":null,"date_updated":"2024-02-02T14:56:14.221Z","translations":[3,4],"gallery":[20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38],"supportlinks":[1,2,3,4,5,6,7,8],"events":[1,4,5],"customSections":[1]}	{"date_updated":"2024-02-02T14:56:14.221Z"}	\N	\N
+462	536	city_files	20	{"city_id":"2","directus_files_id":{"id":"b8438249-863c-449a-8fe5-568f4e47b67b"}}	{"city_id":"2","directus_files_id":{"id":"b8438249-863c-449a-8fe5-568f4e47b67b"}}	481	\N
+463	537	city_files	21	{"city_id":"2","directus_files_id":{"id":"4ddcfe09-9d8c-4faf-875b-f4badd641872"}}	{"city_id":"2","directus_files_id":{"id":"4ddcfe09-9d8c-4faf-875b-f4badd641872"}}	481	\N
+464	538	city_files	22	{"city_id":"2","directus_files_id":{"id":"3fe2f5dd-65dd-4441-b0d6-fe6b00e20b7e"}}	{"city_id":"2","directus_files_id":{"id":"3fe2f5dd-65dd-4441-b0d6-fe6b00e20b7e"}}	481	\N
+465	539	city_files	23	{"city_id":"2","directus_files_id":{"id":"8690b83f-d3a7-4c50-a73d-ca1457c60576"}}	{"city_id":"2","directus_files_id":{"id":"8690b83f-d3a7-4c50-a73d-ca1457c60576"}}	481	\N
+466	540	city_files	24	{"city_id":"2","directus_files_id":{"id":"a395308d-6b1a-4db4-8b3c-c39009964fbf"}}	{"city_id":"2","directus_files_id":{"id":"a395308d-6b1a-4db4-8b3c-c39009964fbf"}}	481	\N
+467	541	city_files	25	{"city_id":"2","directus_files_id":{"id":"57f3e7e0-db45-42fc-ab87-af4daa0bb144"}}	{"city_id":"2","directus_files_id":{"id":"57f3e7e0-db45-42fc-ab87-af4daa0bb144"}}	481	\N
+444	518	directus_files	3fe2f5dd-65dd-4441-b0d6-fe6b00e20b7e	{"title":"Bern Lesen Schreiben 06","filename_download":"bern_lesen-schreiben-06.jpg","type":"image/jpeg","storage":"local"}	{"title":"Bern Lesen Schreiben 06","filename_download":"bern_lesen-schreiben-06.jpg","type":"image/jpeg","storage":"local"}	\N	\N
+449	523	directus_files	3785366c-a15c-4648-9398-be2b068af3ac	{"title":"Cde C O2 N Mf R8794","filename_download":"CDE_CO2N_MFR8794.jpg","type":"image/jpeg","storage":"local"}	{"title":"Cde C O2 N Mf R8794","filename_download":"CDE_CO2N_MFR8794.jpg","type":"image/jpeg","storage":"local"}	\N	\N
+453	527	directus_files	f3e9f151-89f9-4521-8682-719049e2066d	{"title":"Ok Bnn Mf R5701","filename_download":"OK_BNN_MFR5701.jpg","type":"image/jpeg","storage":"local"}	{"title":"Ok Bnn Mf R5701","filename_download":"OK_BNN_MFR5701.jpg","type":"image/jpeg","storage":"local"}	\N	\N
+456	530	directus_files	a1140a22-23f1-4cdd-b36e-a892b4ff7e48	{"title":"Ok Bnn Mf R5718","filename_download":"OK_BNN_MFR5718.jpg","type":"image/jpeg","storage":"local"}	{"title":"Ok Bnn Mf R5718","filename_download":"OK_BNN_MFR5718.jpg","type":"image/jpeg","storage":"local"}	\N	\N
+460	534	directus_files	5e740af8-492d-4540-b959-ae89e0576ce3	{"title":"Ok Bnn Mf R5788","filename_download":"OK_BNN_MFR5788.jpg","type":"image/jpeg","storage":"local"}	{"title":"Ok Bnn Mf R5788","filename_download":"OK_BNN_MFR5788.jpg","type":"image/jpeg","storage":"local"}	\N	\N
+468	542	city_files	26	{"city_id":"2","directus_files_id":{"id":"3785366c-a15c-4648-9398-be2b068af3ac"}}	{"city_id":"2","directus_files_id":{"id":"3785366c-a15c-4648-9398-be2b068af3ac"}}	481	\N
+469	543	city_files	27	{"city_id":"2","directus_files_id":{"id":"92930338-0f26-4953-9074-a7bbad626063"}}	{"city_id":"2","directus_files_id":{"id":"92930338-0f26-4953-9074-a7bbad626063"}}	481	\N
+470	544	city_files	28	{"city_id":"2","directus_files_id":{"id":"f97ece40-8c83-445f-84aa-296470d9156c"}}	{"city_id":"2","directus_files_id":{"id":"f97ece40-8c83-445f-84aa-296470d9156c"}}	481	\N
+471	545	city_files	29	{"city_id":"2","directus_files_id":{"id":"a6d8e567-36f1-421a-ac23-5e549a84d564"}}	{"city_id":"2","directus_files_id":{"id":"a6d8e567-36f1-421a-ac23-5e549a84d564"}}	481	\N
+472	546	city_files	30	{"city_id":"2","directus_files_id":{"id":"f3e9f151-89f9-4521-8682-719049e2066d"}}	{"city_id":"2","directus_files_id":{"id":"f3e9f151-89f9-4521-8682-719049e2066d"}}	481	\N
+473	547	city_files	31	{"city_id":"2","directus_files_id":{"id":"9624d4fa-f777-4d8c-a25a-0c44d4f3335d"}}	{"city_id":"2","directus_files_id":{"id":"9624d4fa-f777-4d8c-a25a-0c44d4f3335d"}}	481	\N
+474	548	city_files	32	{"city_id":"2","directus_files_id":{"id":"be7798e7-4a82-476d-9337-efb46d483803"}}	{"city_id":"2","directus_files_id":{"id":"be7798e7-4a82-476d-9337-efb46d483803"}}	481	\N
+475	549	city_files	33	{"city_id":"2","directus_files_id":{"id":"a1140a22-23f1-4cdd-b36e-a892b4ff7e48"}}	{"city_id":"2","directus_files_id":{"id":"a1140a22-23f1-4cdd-b36e-a892b4ff7e48"}}	481	\N
+476	550	city_files	34	{"city_id":"2","directus_files_id":{"id":"c0ca15c3-237b-4903-8bdb-bb26785bb930"}}	{"city_id":"2","directus_files_id":{"id":"c0ca15c3-237b-4903-8bdb-bb26785bb930"}}	481	\N
+477	551	city_files	35	{"city_id":"2","directus_files_id":{"id":"248abf34-2e4e-43f1-9257-c6ec55cb1e83"}}	{"city_id":"2","directus_files_id":{"id":"248abf34-2e4e-43f1-9257-c6ec55cb1e83"}}	481	\N
+478	552	city_files	36	{"city_id":"2","directus_files_id":{"id":"979419ac-8085-42df-a425-af8c952f7840"}}	{"city_id":"2","directus_files_id":{"id":"979419ac-8085-42df-a425-af8c952f7840"}}	481	\N
+479	553	city_files	37	{"city_id":"2","directus_files_id":{"id":"5e740af8-492d-4540-b959-ae89e0576ce3"}}	{"city_id":"2","directus_files_id":{"id":"5e740af8-492d-4540-b959-ae89e0576ce3"}}	481	\N
+480	554	city_files	38	{"city_id":"2","directus_files_id":{"id":"c64a680d-6535-47c6-a527-0808229d2fcf"}}	{"city_id":"2","directus_files_id":{"id":"c64a680d-6535-47c6-a527-0808229d2fcf"}}	481	\N
+584	666	directus_fields	145	{"id":145,"collection":"EmailForm_FormFields","field":"translations","special":["translations"],"interface":"translations","options":{"languageField":"code","defaultLanguage":"de","userLanguage":true},"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":4,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"EmailForm_FormFields","field":"translations","special":["translations"],"interface":"translations","options":{"languageField":"code","defaultLanguage":"de","userLanguage":true},"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":4,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	\N	\N
+445	519	directus_files	4ddcfe09-9d8c-4faf-875b-f4badd641872	{"title":"Bern Lesen Schreiben 02","filename_download":"bern_lesen-schreiben-02.jpg","type":"image/jpeg","storage":"local"}	{"title":"Bern Lesen Schreiben 02","filename_download":"bern_lesen-schreiben-02.jpg","type":"image/jpeg","storage":"local"}	\N	\N
+451	525	directus_files	f97ece40-8c83-445f-84aa-296470d9156c	{"title":"Cde C O2 N Mf R2867","filename_download":"CDE_CO2N_MFR2867.jpg","type":"image/jpeg","storage":"local"}	{"title":"Cde C O2 N Mf R2867","filename_download":"CDE_CO2N_MFR2867.jpg","type":"image/jpeg","storage":"local"}	\N	\N
+455	529	directus_files	be7798e7-4a82-476d-9337-efb46d483803	{"title":"Ok Bnn Mf R5703","filename_download":"OK_BNN_MFR5703.jpg","type":"image/jpeg","storage":"local"}	{"title":"Ok Bnn Mf R5703","filename_download":"OK_BNN_MFR5703.jpg","type":"image/jpeg","storage":"local"}	\N	\N
+459	533	directus_files	979419ac-8085-42df-a425-af8c952f7840	{"title":"Ok Bnn Mf R5724","filename_download":"OK_BNN_MFR5724.jpg","type":"image/jpeg","storage":"local"}	{"title":"Ok Bnn Mf R5724","filename_download":"OK_BNN_MFR5724.jpg","type":"image/jpeg","storage":"local"}	\N	\N
+482	556	directus_fields	86	{"sort":1,"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"DynamicCityForm"}	{"sort":1,"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"DynamicCityForm"}	\N	\N
+483	557	directus_fields	87	{"sort":2,"width":"full","options":{"choices":[{"text":"$t:published","value":"published"},{"text":"$t:draft","value":"draft"},{"text":"$t:archived","value":"archived"}]},"interface":"select-dropdown","display":"labels","display_options":{"showAsDot":true,"choices":[{"text":"$t:published","value":"published","foreground":"#FFFFFF","background":"var(--theme--primary)"},{"text":"$t:draft","value":"draft","foreground":"#18222F","background":"#D3DAE4"},{"text":"$t:archived","value":"archived","foreground":"#FFFFFF","background":"var(--theme--warning)"}]},"field":"status","collection":"DynamicCityForm"}	{"sort":2,"width":"full","options":{"choices":[{"text":"$t:published","value":"published"},{"text":"$t:draft","value":"draft"},{"text":"$t:archived","value":"archived"}]},"interface":"select-dropdown","display":"labels","display_options":{"showAsDot":true,"choices":[{"text":"$t:published","value":"published","foreground":"#FFFFFF","background":"var(--theme--primary)"},{"text":"$t:draft","value":"draft","foreground":"#18222F","background":"#D3DAE4"},{"text":"$t:archived","value":"archived","foreground":"#FFFFFF","background":"var(--theme--warning)"}]},"field":"status","collection":"DynamicCityForm"}	\N	\N
+484	558	directus_fields	88	{"sort":3,"interface":"input","hidden":true,"field":"sort","collection":"DynamicCityForm"}	{"sort":3,"interface":"input","hidden":true,"field":"sort","collection":"DynamicCityForm"}	\N	\N
+485	559	directus_fields	89	{"sort":4,"special":["date-created"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_created","collection":"DynamicCityForm"}	{"sort":4,"special":["date-created"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_created","collection":"DynamicCityForm"}	\N	\N
+486	560	directus_fields	90	{"sort":5,"special":["date-updated"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_updated","collection":"DynamicCityForm"}	{"sort":5,"special":["date-updated"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_updated","collection":"DynamicCityForm"}	\N	\N
+487	561	directus_collections	DynamicCityForm	{"sort_field":"sort","archive_field":"status","archive_value":"archived","unarchive_value":"draft","singleton":false,"collection":"DynamicCityForm"}	{"sort_field":"sort","archive_field":"status","archive_value":"archived","unarchive_value":"draft","singleton":false,"collection":"DynamicCityForm"}	\N	\N
+539	621	directus_fields	125	{"sort":1,"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"EmailForm"}	{"sort":1,"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"EmailForm"}	\N	\N
+540	622	directus_fields	126	{"sort":2,"width":"full","options":{"choices":[{"text":"$t:published","value":"published"},{"text":"$t:draft","value":"draft"},{"text":"$t:archived","value":"archived"}]},"interface":"select-dropdown","display":"labels","display_options":{"showAsDot":true,"choices":[{"text":"$t:published","value":"published","foreground":"#FFFFFF","background":"var(--theme--primary)"},{"text":"$t:draft","value":"draft","foreground":"#18222F","background":"#D3DAE4"},{"text":"$t:archived","value":"archived","foreground":"#FFFFFF","background":"var(--theme--warning)"}]},"field":"status","collection":"EmailForm"}	{"sort":2,"width":"full","options":{"choices":[{"text":"$t:published","value":"published"},{"text":"$t:draft","value":"draft"},{"text":"$t:archived","value":"archived"}]},"interface":"select-dropdown","display":"labels","display_options":{"showAsDot":true,"choices":[{"text":"$t:published","value":"published","foreground":"#FFFFFF","background":"var(--theme--primary)"},{"text":"$t:draft","value":"draft","foreground":"#18222F","background":"#D3DAE4"},{"text":"$t:archived","value":"archived","foreground":"#FFFFFF","background":"var(--theme--warning)"}]},"field":"status","collection":"EmailForm"}	\N	\N
+541	623	directus_fields	127	{"sort":3,"interface":"input","hidden":true,"field":"sort","collection":"EmailForm"}	{"sort":3,"interface":"input","hidden":true,"field":"sort","collection":"EmailForm"}	\N	\N
+542	624	directus_fields	128	{"sort":4,"special":["date-created"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_created","collection":"EmailForm"}	{"sort":4,"special":["date-created"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_created","collection":"EmailForm"}	\N	\N
+543	625	directus_fields	129	{"sort":5,"special":["date-updated"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_updated","collection":"EmailForm"}	{"sort":5,"special":["date-updated"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_updated","collection":"EmailForm"}	\N	\N
+544	626	directus_collections	EmailForm	{"sort_field":"sort","archive_field":"status","archive_value":"archived","unarchive_value":"draft","singleton":false,"collection":"EmailForm"}	{"sort_field":"sort","archive_field":"status","archive_value":"archived","unarchive_value":"draft","singleton":false,"collection":"EmailForm"}	\N	\N
+446	520	directus_files	8690b83f-d3a7-4c50-a73d-ca1457c60576	{"title":"Bern Lesen Schreiben 01","filename_download":"bern_lesen-schreiben-01.jpg","type":"image/jpeg","storage":"local"}	{"title":"Bern Lesen Schreiben 01","filename_download":"bern_lesen-schreiben-01.jpg","type":"image/jpeg","storage":"local"}	\N	\N
+450	524	directus_files	92930338-0f26-4953-9074-a7bbad626063	{"title":"Cde C O2 N Mf R8686","filename_download":"CDE_CO2N_MFR8686.jpg","type":"image/jpeg","storage":"local"}	{"title":"Cde C O2 N Mf R8686","filename_download":"CDE_CO2N_MFR8686.jpg","type":"image/jpeg","storage":"local"}	\N	\N
+458	532	directus_files	248abf34-2e4e-43f1-9257-c6ec55cb1e83	{"title":"Ok Bnn Mf R5772","filename_download":"OK_BNN_MFR5772.jpg","type":"image/jpeg","storage":"local"}	{"title":"Ok Bnn Mf R5772","filename_download":"OK_BNN_MFR5772.jpg","type":"image/jpeg","storage":"local"}	\N	\N
+488	562	directus_collections	DynamicCityForm	{"collection":"DynamicCityForm","icon":null,"note":null,"display_template":null,"hidden":false,"singleton":false,"translations":null,"archive_field":null,"archive_app_filter":true,"archive_value":"archived","unarchive_value":"draft","sort_field":null,"accountability":"all","color":null,"item_duplication_fields":null,"sort":null,"group":null,"collapse":"open","preview_url":null,"versioning":false}	{"archive_field":null,"sort_field":null}	\N	\N
+496	570	directus_fields	97	{"sort":7,"interface":"translations","special":["translations"],"options":{"languageField":"code","defaultLanguage":"de"},"collection":"CityFormFields","field":"translations"}	{"sort":7,"interface":"translations","special":["translations"],"options":{"languageField":"code","defaultLanguage":"de"},"collection":"CityFormFields","field":"translations"}	\N	\N
+500	574	directus_fields	100	{"sort":3,"hidden":true,"collection":"CityFormFields_translations","field":"languages_code"}	{"sort":3,"hidden":true,"collection":"CityFormFields_translations","field":"languages_code"}	\N	\N
+545	627	directus_fields	130	{"sort":6,"interface":"input","special":null,"collection":"EmailForm","field":"emailTo"}	{"sort":6,"interface":"input","special":null,"collection":"EmailForm","field":"emailTo"}	\N	\N
+547	629	directus_fields	132	{"sort":1,"hidden":true,"field":"id","collection":"EmailForm_translations"}	{"sort":1,"hidden":true,"field":"id","collection":"EmailForm_translations"}	\N	\N
+548	630	directus_collections	EmailForm_translations	{"hidden":true,"icon":"import_export","collection":"EmailForm_translations"}	{"hidden":true,"icon":"import_export","collection":"EmailForm_translations"}	\N	\N
+549	631	directus_fields	133	{"sort":2,"hidden":true,"collection":"EmailForm_translations","field":"EmailForm_id"}	{"sort":2,"hidden":true,"collection":"EmailForm_translations","field":"EmailForm_id"}	\N	\N
+551	633	directus_fields	135	{"sort":4,"interface":"input","special":null,"collection":"EmailForm_translations","field":"subject"}	{"sort":4,"interface":"input","special":null,"collection":"EmailForm_translations","field":"subject"}	\N	\N
+553	635	directus_fields	137	{"sort":6,"interface":"input-multiline","special":null,"collection":"EmailForm_translations","field":"description"}	{"sort":6,"interface":"input-multiline","special":null,"collection":"EmailForm_translations","field":"description"}	\N	\N
+554	636	directus_fields	138	{"sort":7,"interface":"input","special":null,"collection":"EmailForm_translations","field":"submitText"}	{"sort":7,"interface":"input","special":null,"collection":"EmailForm_translations","field":"submitText"}	\N	\N
+585	667	directus_fields	145	{"id":145,"collection":"EmailForm_FormFields","field":"translations","special":["translations"],"interface":"translations","options":{"languageField":"code","defaultLanguage":"de","userLanguage":true},"display":"translations","display_options":{"userLanguage":true,"defaultLanguage":"de"},"readonly":false,"hidden":false,"sort":4,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"EmailForm_FormFields","field":"translations","special":["translations"],"interface":"translations","options":{"languageField":"code","defaultLanguage":"de","userLanguage":true},"display":"translations","display_options":{"userLanguage":true,"defaultLanguage":"de"},"readonly":false,"hidden":false,"sort":4,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	\N	\N
+457	531	directus_files	c0ca15c3-237b-4903-8bdb-bb26785bb930	{"title":"Ok Bnn Mf R5735","filename_download":"OK_BNN_MFR5735.jpg","type":"image/jpeg","storage":"local"}	{"title":"Ok Bnn Mf R5735","filename_download":"OK_BNN_MFR5735.jpg","type":"image/jpeg","storage":"local"}	\N	\N
+461	535	directus_files	c64a680d-6535-47c6-a527-0808229d2fcf	{"title":"Cde C O2 N Mf R2853","filename_download":"CDE_CO2N_MFR2853.jpg","type":"image/jpeg","storage":"local"}	{"title":"Cde C O2 N Mf R2853","filename_download":"CDE_CO2N_MFR2853.jpg","type":"image/jpeg","storage":"local"}	\N	\N
+489	563	directus_fields	91	{"sort":1,"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"CityFormFields"}	{"sort":1,"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"CityFormFields"}	\N	\N
+490	564	directus_fields	92	{"sort":2,"width":"full","options":{"choices":[{"text":"$t:published","value":"published"},{"text":"$t:draft","value":"draft"},{"text":"$t:archived","value":"archived"}]},"interface":"select-dropdown","display":"labels","display_options":{"showAsDot":true,"choices":[{"text":"$t:published","value":"published","foreground":"#FFFFFF","background":"var(--theme--primary)"},{"text":"$t:draft","value":"draft","foreground":"#18222F","background":"#D3DAE4"},{"text":"$t:archived","value":"archived","foreground":"#FFFFFF","background":"var(--theme--warning)"}]},"field":"status","collection":"CityFormFields"}	{"sort":2,"width":"full","options":{"choices":[{"text":"$t:published","value":"published"},{"text":"$t:draft","value":"draft"},{"text":"$t:archived","value":"archived"}]},"interface":"select-dropdown","display":"labels","display_options":{"showAsDot":true,"choices":[{"text":"$t:published","value":"published","foreground":"#FFFFFF","background":"var(--theme--primary)"},{"text":"$t:draft","value":"draft","foreground":"#18222F","background":"#D3DAE4"},{"text":"$t:archived","value":"archived","foreground":"#FFFFFF","background":"var(--theme--warning)"}]},"field":"status","collection":"CityFormFields"}	\N	\N
+491	565	directus_fields	93	{"sort":3,"interface":"input","hidden":true,"field":"sort","collection":"CityFormFields"}	{"sort":3,"interface":"input","hidden":true,"field":"sort","collection":"CityFormFields"}	\N	\N
+492	566	directus_fields	94	{"sort":4,"special":["date-created"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_created","collection":"CityFormFields"}	{"sort":4,"special":["date-created"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_created","collection":"CityFormFields"}	\N	\N
+493	567	directus_fields	95	{"sort":5,"special":["date-updated"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_updated","collection":"CityFormFields"}	{"sort":5,"special":["date-updated"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_updated","collection":"CityFormFields"}	\N	\N
+494	568	directus_collections	CityFormFields	{"sort_field":"sort","archive_field":"status","archive_value":"archived","unarchive_value":"draft","singleton":false,"collection":"CityFormFields"}	{"sort_field":"sort","archive_field":"status","archive_value":"archived","unarchive_value":"draft","singleton":false,"collection":"CityFormFields"}	\N	\N
+546	628	directus_fields	131	{"sort":7,"interface":"translations","special":["translations"],"options":{"defaultLanguage":"de","languageField":"code"},"collection":"EmailForm","field":"translations"}	{"sort":7,"interface":"translations","special":["translations"],"options":{"defaultLanguage":"de","languageField":"code"},"collection":"EmailForm","field":"translations"}	\N	\N
+550	632	directus_fields	134	{"sort":3,"hidden":true,"collection":"EmailForm_translations","field":"languages_code"}	{"sort":3,"hidden":true,"collection":"EmailForm_translations","field":"languages_code"}	\N	\N
+552	634	directus_fields	136	{"sort":5,"interface":"input","special":null,"collection":"EmailForm_translations","field":"title"}	{"sort":5,"interface":"input","special":null,"collection":"EmailForm_translations","field":"title"}	\N	\N
+586	668	directus_fields	145	{"id":145,"collection":"EmailForm_FormFields","field":"translations","special":["translations"],"interface":"translations","options":{"languageField":"code","defaultLanguage":"de","userLanguage":true},"display":"translations","display_options":{"userLanguage":true,"defaultLanguage":"de","template":"{{label}}","languageField":"code"},"readonly":false,"hidden":false,"sort":4,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"EmailForm_FormFields","field":"translations","special":["translations"],"interface":"translations","options":{"languageField":"code","defaultLanguage":"de","userLanguage":true},"display":"translations","display_options":{"userLanguage":true,"defaultLanguage":"de","template":"{{label}}","languageField":"code"},"readonly":false,"hidden":false,"sort":4,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	\N	\N
+495	569	directus_fields	96	{"sort":6,"interface":"input","special":null,"required":true,"collection":"CityFormFields","field":"type"}	{"sort":6,"interface":"input","special":null,"required":true,"collection":"CityFormFields","field":"type"}	\N	\N
+497	571	directus_fields	98	{"sort":1,"hidden":true,"field":"id","collection":"CityFormFields_translations"}	{"sort":1,"hidden":true,"field":"id","collection":"CityFormFields_translations"}	\N	\N
+498	572	directus_collections	CityFormFields_translations	{"hidden":true,"icon":"import_export","collection":"CityFormFields_translations"}	{"hidden":true,"icon":"import_export","collection":"CityFormFields_translations"}	\N	\N
+499	573	directus_fields	99	{"sort":2,"hidden":true,"collection":"CityFormFields_translations","field":"CityFormFields_id"}	{"sort":2,"hidden":true,"collection":"CityFormFields_translations","field":"CityFormFields_id"}	\N	\N
+503	577	directus_fields	103	{"sort":1,"hidden":true,"field":"id","collection":"DynamicCityForm_CityFormFields"}	{"sort":1,"hidden":true,"field":"id","collection":"DynamicCityForm_CityFormFields"}	\N	\N
+504	578	directus_collections	DynamicCityForm_CityFormFields	{"hidden":true,"icon":"import_export","collection":"DynamicCityForm_CityFormFields"}	{"hidden":true,"icon":"import_export","collection":"DynamicCityForm_CityFormFields"}	\N	\N
+505	579	directus_fields	104	{"sort":2,"hidden":true,"collection":"DynamicCityForm_CityFormFields","field":"DynamicCityForm_id"}	{"sort":2,"hidden":true,"collection":"DynamicCityForm_CityFormFields","field":"DynamicCityForm_id"}	\N	\N
+508	582	directus_fields	107	{"sort":1,"hidden":true,"field":"id","collection":"DynamicCityForm_translations"}	{"sort":1,"hidden":true,"field":"id","collection":"DynamicCityForm_translations"}	\N	\N
+509	583	directus_collections	DynamicCityForm_translations	{"hidden":true,"icon":"import_export","collection":"DynamicCityForm_translations"}	{"hidden":true,"icon":"import_export","collection":"DynamicCityForm_translations"}	\N	\N
+510	584	directus_fields	108	{"sort":2,"hidden":true,"collection":"DynamicCityForm_translations","field":"DynamicCityForm_id"}	{"sort":2,"hidden":true,"collection":"DynamicCityForm_translations","field":"DynamicCityForm_id"}	\N	\N
+512	586	directus_fields	110	{"sort":4,"interface":"input","special":null,"required":true,"collection":"DynamicCityForm_translations","field":"title"}	{"sort":4,"interface":"input","special":null,"required":true,"collection":"DynamicCityForm_translations","field":"title"}	\N	\N
+514	588	directus_fields	112	{"sort":6,"interface":"input-multiline","special":null,"collection":"DynamicCityForm_translations","field":"description"}	{"sort":6,"interface":"input-multiline","special":null,"collection":"DynamicCityForm_translations","field":"description"}	\N	\N
+555	637	directus_collections	EmailForm	{"collection":"EmailForm","icon":null,"note":null,"display_template":null,"hidden":false,"singleton":false,"translations":null,"archive_field":null,"archive_app_filter":true,"archive_value":"archived","unarchive_value":"draft","sort_field":null,"accountability":"all","color":null,"item_duplication_fields":null,"sort":null,"group":null,"collapse":"open","preview_url":null,"versioning":false}	{"archive_field":null,"sort_field":null}	\N	\N
+587	669	EmailForm	1	{"id":1,"status":"draft","sort":null,"date_created":"2024-02-03T14:57:39.131Z","date_updated":"2024-02-03T15:06:44.618Z","emailTo":"gannonline90@gmail.com","translations":[1,2],"fields":[1,2]}	{"date_updated":"2024-02-03T15:06:44.618Z"}	\N	\N
+588	670	directus_fields	131	{"id":131,"collection":"EmailForm","field":"translations","special":["translations"],"interface":"translations","options":{"defaultLanguage":"de","languageField":"code"},"display":"translations","display_options":{"defaultLanguage":"de","languageField":"code","userLanguage":true,"template":"{{title}}"},"readonly":false,"hidden":false,"sort":7,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"EmailForm","field":"translations","special":["translations"],"interface":"translations","options":{"defaultLanguage":"de","languageField":"code"},"display":"translations","display_options":{"defaultLanguage":"de","languageField":"code","userLanguage":true,"template":"{{title}}"},"readonly":false,"hidden":false,"sort":7,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	\N	\N
+501	575	directus_fields	101	{"sort":4,"interface":"input","special":null,"required":true,"collection":"CityFormFields_translations","field":"label"}	{"sort":4,"interface":"input","special":null,"required":true,"collection":"CityFormFields_translations","field":"label"}	\N	\N
+556	638	directus_fields	139	{"sort":1,"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"FormFields"}	{"sort":1,"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"FormFields"}	\N	\N
+557	639	directus_collections	FormFields	{"singleton":false,"collection":"FormFields"}	{"singleton":false,"collection":"FormFields"}	\N	\N
+589	671	directus_fields	150	{"sort":9,"interface":"select-dropdown-m2o","special":["m2o"],"options":{"template":"{{translations.title}}"},"collection":"EmailForm","field":"emailForm"}	{"sort":9,"interface":"select-dropdown-m2o","special":["m2o"],"options":{"template":"{{translations.title}}"},"collection":"EmailForm","field":"emailForm"}	\N	\N
+590	672	directus_fields	151	{"sort":9,"interface":"select-dropdown-m2o","special":["m2o"],"required":true,"options":{"template":"{{translations.name}}"},"collection":"EmailForm","field":"city"}	{"sort":9,"interface":"select-dropdown-m2o","special":["m2o"],"required":true,"options":{"template":"{{translations.name}}"},"collection":"EmailForm","field":"city"}	\N	\N
+599	681	directus_permissions	57	{"role":null,"collection":"EmailForm","action":"read","fields":["*"],"permissions":{},"validation":{}}	{"role":null,"collection":"EmailForm","action":"read","fields":["*"],"permissions":{},"validation":{}}	\N	\N
+600	682	directus_permissions	58	{"role":null,"collection":"EmailForm_FormFields","action":"read","fields":["*"],"permissions":{},"validation":{}}	{"role":null,"collection":"EmailForm_FormFields","action":"read","fields":["*"],"permissions":{},"validation":{}}	\N	\N
+601	683	directus_permissions	59	{"role":null,"collection":"EmailForm_FormFields_translations","action":"read","fields":["*"],"permissions":{},"validation":{}}	{"role":null,"collection":"EmailForm_FormFields_translations","action":"read","fields":["*"],"permissions":{},"validation":{}}	\N	\N
+602	684	directus_permissions	60	{"role":null,"collection":"EmailForm_translations","action":"read","fields":["*"],"permissions":{},"validation":{}}	{"role":null,"collection":"EmailForm_translations","action":"read","fields":["*"],"permissions":{},"validation":{}}	\N	\N
+603	685	directus_permissions	61	{"role":null,"collection":"FormFields","action":"read","fields":["*"],"permissions":{},"validation":{}}	{"role":null,"collection":"FormFields","action":"read","fields":["*"],"permissions":{},"validation":{}}	\N	\N
+502	576	directus_fields	102	{"sort":6,"interface":"list-m2m","special":["m2m"],"required":true,"collection":"DynamicCityForm","field":"fields"}	{"sort":6,"interface":"list-m2m","special":["m2m"],"required":true,"collection":"DynamicCityForm","field":"fields"}	\N	\N
+506	580	directus_fields	105	{"sort":3,"hidden":true,"collection":"DynamicCityForm_CityFormFields","field":"CityFormFields_id"}	{"sort":3,"hidden":true,"collection":"DynamicCityForm_CityFormFields","field":"CityFormFields_id"}	\N	\N
+558	640	directus_fields	140	{"sort":2,"interface":"select-dropdown","special":null,"options":{"choices":[{"text":"number","value":"number"},{"text":"text","value":"text"}]},"collection":"FormFields","field":"type"}	{"sort":2,"interface":"select-dropdown","special":null,"options":{"choices":[{"text":"number","value":"number"},{"text":"text","value":"text"}]},"collection":"FormFields","field":"type"}	\N	\N
+591	673	EmailForm	1	{"id":1,"status":"draft","sort":null,"date_created":"2024-02-03T14:57:39.131Z","date_updated":"2024-02-03T15:11:22.395Z","emailTo":"gannonline90@gmail.com","city":2,"fields":[1,2],"translations":[1,2]}	{"city":2,"date_updated":"2024-02-03T15:11:22.395Z"}	\N	\N
+507	581	directus_fields	106	{"sort":7,"interface":"translations","special":["translations"],"collection":"DynamicCityForm","field":"translations"}	{"sort":7,"interface":"translations","special":["translations"],"collection":"DynamicCityForm","field":"translations"}	\N	\N
+511	585	directus_fields	109	{"sort":3,"hidden":true,"collection":"DynamicCityForm_translations","field":"languages_code"}	{"sort":3,"hidden":true,"collection":"DynamicCityForm_translations","field":"languages_code"}	\N	\N
+513	587	directus_fields	111	{"sort":5,"interface":"input","special":null,"required":true,"collection":"DynamicCityForm_translations","field":"subject"}	{"sort":5,"interface":"input","special":null,"required":true,"collection":"DynamicCityForm_translations","field":"subject"}	\N	\N
+515	589	directus_fields	113	{"sort":7,"interface":"input","special":null,"collection":"DynamicCityForm_translations","field":"submitLabel"}	{"sort":7,"interface":"input","special":null,"collection":"DynamicCityForm_translations","field":"submitLabel"}	\N	\N
+559	641	directus_fields	141	{"sort":8,"special":["m2m"],"required":true,"interface":"list-m2m","options":{"junctionFieldLocation":"top","allowDuplicates":true},"display":"related-values","collection":"EmailForm","field":"fields"}	{"sort":8,"special":["m2m"],"required":true,"interface":"list-m2m","options":{"junctionFieldLocation":"top","allowDuplicates":true},"display":"related-values","collection":"EmailForm","field":"fields"}	\N	\N
+563	645	directus_fields	144	{"sort":3,"hidden":true,"collection":"EmailForm_FormFields","field":"FormFields_id"}	{"sort":3,"hidden":true,"collection":"EmailForm_FormFields","field":"FormFields_id"}	\N	\N
+592	674	directus_fields	152	{"sort":12,"interface":"select-dropdown-m2o","special":["m2o"],"options":{"template":"{{translations.title}}"},"collection":"city","field":"emailForm"}	{"sort":12,"interface":"select-dropdown-m2o","special":["m2o"],"options":{"template":"{{translations.title}}"},"collection":"city","field":"emailForm"}	\N	\N
+516	590	directus_fields	114	{"sort":8,"interface":"input","special":null,"required":true,"collection":"DynamicCityForm","field":"emailTo"}	{"sort":8,"interface":"input","special":null,"required":true,"collection":"DynamicCityForm","field":"emailTo"}	\N	\N
+560	642	directus_fields	142	{"sort":1,"hidden":true,"field":"id","collection":"EmailForm_FormFields"}	{"sort":1,"hidden":true,"field":"id","collection":"EmailForm_FormFields"}	\N	\N
+561	643	directus_collections	EmailForm_FormFields	{"hidden":true,"icon":"import_export","collection":"EmailForm_FormFields"}	{"hidden":true,"icon":"import_export","collection":"EmailForm_FormFields"}	\N	\N
+562	644	directus_fields	143	{"sort":2,"hidden":true,"collection":"EmailForm_FormFields","field":"EmailForm_id"}	{"sort":2,"hidden":true,"collection":"EmailForm_FormFields","field":"EmailForm_id"}	\N	\N
+593	675	city	2	{"id":2,"status":"draft","sort":null,"date_updated":"2024-02-03T15:14:19.428Z","emailForm":1,"translations":[3,4],"gallery":[20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38],"supportlinks":[1,2,3,4,5,6,7,8],"events":[1,4,5],"customSections":[1]}	{"emailForm":1,"date_updated":"2024-02-03T15:14:19.428Z"}	\N	\N
+517	591	directus_collections	CityFormFields	{"collection":"CityFormFields","icon":null,"note":null,"display_template":null,"hidden":false,"singleton":false,"translations":null,"archive_field":null,"archive_app_filter":true,"archive_value":"archived","unarchive_value":"draft","sort_field":null,"accountability":"all","color":null,"item_duplication_fields":null,"sort":null,"group":null,"collapse":"open","preview_url":null,"versioning":false}	{"archive_field":null,"sort_field":null}	\N	\N
+564	646	directus_fields	145	{"sort":4,"interface":"translations","special":["translations"],"options":{"languageField":"code","defaultLanguage":"de"},"collection":"EmailForm_FormFields","field":"translations"}	{"sort":4,"interface":"translations","special":["translations"],"options":{"languageField":"code","defaultLanguage":"de"},"collection":"EmailForm_FormFields","field":"translations"}	\N	\N
+568	650	directus_fields	148	{"sort":3,"hidden":true,"collection":"EmailForm_FormFields_translations","field":"languages_code"}	{"sort":3,"hidden":true,"collection":"EmailForm_FormFields_translations","field":"languages_code"}	\N	\N
+594	676	directus_fields	153	{"sort":9,"interface":"select-dropdown-m2o","special":["m2o"],"required":true,"collection":"EmailForm","field":"city"}	{"sort":9,"interface":"select-dropdown-m2o","special":["m2o"],"required":true,"collection":"EmailForm","field":"city"}	\N	\N
+595	677	directus_fields	154	{"sort":12,"interface":"list-o2m","special":["o2m"],"collection":"city","field":"emailForm"}	{"sort":12,"interface":"list-o2m","special":["o2m"],"collection":"city","field":"emailForm"}	\N	\N
+596	678	directus_fields	154	{"id":154,"collection":"city","field":"emailForm","special":["o2m"],"interface":"list-o2m","options":null,"display":"related-values","display_options":{"template":"{{translations.title}}"},"readonly":false,"hidden":false,"sort":12,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"city","field":"emailForm","special":["o2m"],"interface":"list-o2m","options":null,"display":"related-values","display_options":{"template":"{{translations.title}}"},"readonly":false,"hidden":false,"sort":12,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	\N	\N
+518	592	directus_fields	115	{"sort":4,"interface":"translations","special":["translations"],"options":{"languageField":"code","defaultLanguage":"de"},"collection":"DynamicCityForm_CityFormFields","field":"translations"}	{"sort":4,"interface":"translations","special":["translations"],"options":{"languageField":"code","defaultLanguage":"de"},"collection":"DynamicCityForm_CityFormFields","field":"translations"}	\N	\N
+522	596	directus_fields	118	{"sort":3,"hidden":true,"collection":"DynamicCityForm_CityFormFields_translations","field":"languages_code"}	{"sort":3,"hidden":true,"collection":"DynamicCityForm_CityFormFields_translations","field":"languages_code"}	\N	\N
+565	647	directus_fields	146	{"sort":1,"hidden":true,"field":"id","collection":"EmailForm_FormFields_translations"}	{"sort":1,"hidden":true,"field":"id","collection":"EmailForm_FormFields_translations"}	\N	\N
+566	648	directus_collections	EmailForm_FormFields_translations	{"hidden":true,"icon":"import_export","collection":"EmailForm_FormFields_translations"}	{"hidden":true,"icon":"import_export","collection":"EmailForm_FormFields_translations"}	\N	\N
+567	649	directus_fields	147	{"sort":2,"hidden":true,"collection":"EmailForm_FormFields_translations","field":"EmailForm_FormFields_id"}	{"sort":2,"hidden":true,"collection":"EmailForm_FormFields_translations","field":"EmailForm_FormFields_id"}	\N	\N
+569	651	directus_fields	149	{"sort":4,"interface":"input","special":null,"required":true,"collection":"EmailForm_FormFields_translations","field":"label"}	{"sort":4,"interface":"input","special":null,"required":true,"collection":"EmailForm_FormFields_translations","field":"label"}	\N	\N
+598	680	city	2	{"id":2,"status":"draft","sort":null,"date_updated":"2024-02-03T15:28:22.208Z","translations":[3,4],"gallery":[20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38],"supportlinks":[1,2,3,4,5,6,7,8],"events":[1,4,5],"customSections":[1],"emailForm":[1]}	{"date_updated":"2024-02-03T15:28:22.208Z"}	\N	\N
+597	679	EmailForm	1	{"id":1,"status":"draft","sort":null,"date_created":"2024-02-03T14:57:39.131Z","date_updated":"2024-02-03T15:28:22.215Z","emailTo":"gannonline90@gmail.com","city":2,"fields":[1,2],"translations":[1,2]}	{"city":"2","date_updated":"2024-02-03T15:28:22.215Z"}	598	\N
+519	593	directus_fields	116	{"sort":1,"hidden":true,"field":"id","collection":"DynamicCityForm_CityFormFields_translations"}	{"sort":1,"hidden":true,"field":"id","collection":"DynamicCityForm_CityFormFields_translations"}	\N	\N
+520	594	directus_collections	DynamicCityForm_CityFormFields_translations	{"hidden":true,"icon":"import_export","collection":"DynamicCityForm_CityFormFields_translations"}	{"hidden":true,"icon":"import_export","collection":"DynamicCityForm_CityFormFields_translations"}	\N	\N
+521	595	directus_fields	117	{"sort":2,"hidden":true,"collection":"DynamicCityForm_CityFormFields_translations","field":"DynamicCityForm_CityFormFields_id"}	{"sort":2,"hidden":true,"collection":"DynamicCityForm_CityFormFields_translations","field":"DynamicCityForm_CityFormFields_id"}	\N	\N
+523	597	directus_fields	119	{"sort":4,"interface":"input","special":null,"collection":"DynamicCityForm_CityFormFields_translations","field":"label"}	{"sort":4,"interface":"input","special":null,"collection":"DynamicCityForm_CityFormFields_translations","field":"label"}	\N	\N
+570	652	directus_fields	141	{"id":141,"collection":"EmailForm","field":"fields","special":["m2m"],"interface":"list-m2m","options":{"junctionFieldLocation":"top","allowDuplicates":true,"template":"{{translations.label}}{{FormFields_id.type}}"},"display":"related-values","display_options":null,"readonly":false,"hidden":false,"sort":8,"width":"full","translations":null,"note":null,"conditions":null,"required":true,"group":null,"validation":null,"validation_message":null}	{"collection":"EmailForm","field":"fields","special":["m2m"],"interface":"list-m2m","options":{"junctionFieldLocation":"top","allowDuplicates":true,"template":"{{translations.label}}{{FormFields_id.type}}"},"display":"related-values","display_options":null,"readonly":false,"hidden":false,"sort":8,"width":"full","translations":null,"note":null,"conditions":null,"required":true,"group":null,"validation":null,"validation_message":null}	\N	\N
+571	653	FormFields	1	{"type":"text"}	{"type":"text"}	574	\N
+572	654	EmailForm_FormFields_translations	1	{"label":"Flaggentyp","languages_code":{"code":"de"},"EmailForm_FormFields_id":1}	{"label":"Flaggentyp","languages_code":{"code":"de"},"EmailForm_FormFields_id":1}	574	\N
+573	655	EmailForm_FormFields_translations	2	{"label":"Type de drapeau","languages_code":{"code":"fr"},"EmailForm_FormFields_id":1}	{"label":"Type de drapeau","languages_code":{"code":"fr"},"EmailForm_FormFields_id":1}	574	\N
+575	657	FormFields	2	{"type":"number"}	{"type":"number"}	578	\N
+576	658	EmailForm_FormFields_translations	3	{"label":"Betrag","languages_code":{"code":"de"},"EmailForm_FormFields_id":2}	{"label":"Betrag","languages_code":{"code":"de"},"EmailForm_FormFields_id":2}	578	\N
+577	659	EmailForm_FormFields_translations	4	{"label":"Montant","languages_code":{"code":"fr"},"EmailForm_FormFields_id":2}	{"label":"Montant","languages_code":{"code":"fr"},"EmailForm_FormFields_id":2}	578	\N
+581	663	EmailForm	1	{"emailTo":"gannonline90@gmail.com","translations":{"create":[{"title":"Flaggen bestellen","languages_code":{"code":"de"},"subject":"neue Bestellung","description":"Um Ihre Fahnen zu bestellen, geben Sie bitte die Anzahl und die Art der Fahnen an, die Sie wünschen. ","submitText":"Bestellung"},{"description":"Pour commander vos drapeaux, veuillez indiquer le nombre et le type de drapeaux que vous souhaitez. ","languages_code":{"code":"fr"},"title":"Commander des drapeaux","subject":"nouvelle commande","submitText":"Commande"}],"update":[],"delete":[]},"fields":{"create":[{"translations":{"create":[{"label":"Flaggentyp","languages_code":{"code":"de"}},{"label":"Type de drapeau","languages_code":{"code":"fr"}}],"update":[],"delete":[]},"FormFields_id":{"type":"text"}},{"translations":{"create":[{"label":"Betrag","languages_code":{"code":"de"}},{"label":"Montant","languages_code":{"code":"fr"}}],"update":[],"delete":[]},"FormFields_id":{"type":"number"}}],"update":[],"delete":[]}}	{"emailTo":"gannonline90@gmail.com","translations":{"create":[{"title":"Flaggen bestellen","languages_code":{"code":"de"},"subject":"neue Bestellung","description":"Um Ihre Fahnen zu bestellen, geben Sie bitte die Anzahl und die Art der Fahnen an, die Sie wünschen. ","submitText":"Bestellung"},{"description":"Pour commander vos drapeaux, veuillez indiquer le nombre et le type de drapeaux que vous souhaitez. ","languages_code":{"code":"fr"},"title":"Commander des drapeaux","subject":"nouvelle commande","submitText":"Commande"}],"update":[],"delete":[]},"fields":{"create":[{"translations":{"create":[{"label":"Flaggentyp","languages_code":{"code":"de"}},{"label":"Type de drapeau","languages_code":{"code":"fr"}}],"update":[],"delete":[]},"FormFields_id":{"type":"text"}},{"translations":{"create":[{"label":"Betrag","languages_code":{"code":"de"}},{"label":"Montant","languages_code":{"code":"fr"}}],"update":[],"delete":[]},"FormFields_id":{"type":"number"}}],"update":[],"delete":[]}}	\N	\N
+574	656	EmailForm_FormFields	1	{"translations":{"create":[{"label":"Flaggentyp","languages_code":{"code":"de"}},{"label":"Type de drapeau","languages_code":{"code":"fr"}}],"update":[],"delete":[]},"FormFields_id":{"type":"text"},"EmailForm_id":1}	{"translations":{"create":[{"label":"Flaggentyp","languages_code":{"code":"de"}},{"label":"Type de drapeau","languages_code":{"code":"fr"}}],"update":[],"delete":[]},"FormFields_id":{"type":"text"},"EmailForm_id":1}	581	\N
+578	660	EmailForm_FormFields	2	{"translations":{"create":[{"label":"Betrag","languages_code":{"code":"de"}},{"label":"Montant","languages_code":{"code":"fr"}}],"update":[],"delete":[]},"FormFields_id":{"type":"number"},"EmailForm_id":1}	{"translations":{"create":[{"label":"Betrag","languages_code":{"code":"de"}},{"label":"Montant","languages_code":{"code":"fr"}}],"update":[],"delete":[]},"FormFields_id":{"type":"number"},"EmailForm_id":1}	581	\N
+579	661	EmailForm_translations	1	{"title":"Flaggen bestellen","languages_code":{"code":"de"},"subject":"neue Bestellung","description":"Um Ihre Fahnen zu bestellen, geben Sie bitte die Anzahl und die Art der Fahnen an, die Sie wünschen. ","submitText":"Bestellung","EmailForm_id":1}	{"title":"Flaggen bestellen","languages_code":{"code":"de"},"subject":"neue Bestellung","description":"Um Ihre Fahnen zu bestellen, geben Sie bitte die Anzahl und die Art der Fahnen an, die Sie wünschen. ","submitText":"Bestellung","EmailForm_id":1}	581	\N
 \.
 
 
@@ -2788,6 +3501,7 @@ COPY public.directus_roles (id, name, icon, description, ip_access, enforce_tfa,
 
 COPY public.directus_sessions (token, "user", expires, ip, user_agent, share, origin) FROM stdin;
 ugw2EDUkeYttedp8bDszYAaj8XwH_nz5FwytoBhyP99UtFzVvQeweDEb89JVZcHL	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-09 13:00:09.421+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36	\N	http://localhost:8055
+_n2IlWn0u2BWyqm5pXcMPwWkR6dhSjaiqU1dcQRpzR8S_fTzjKdgH6f4NwrZ7iaK	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-10 16:11:35.334+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	\N	http://localhost:8055
 \.
 
 
@@ -2821,7 +3535,7 @@ COPY public.directus_translations (id, language, key, value) FROM stdin;
 
 COPY public.directus_users (id, first_name, last_name, email, password, location, title, description, tags, avatar, language, tfa_secret, status, role, token, last_access, last_page, provider, external_identifier, auth_data, email_notifications, appearance, theme_dark, theme_light, theme_light_overrides, theme_dark_overrides) FROM stdin;
 507e3800-1c28-454b-bcd2-766cda54a162	Basel	Admin	mirjamthomet@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$rEXyXmboQoJtEolz1V+VwQ$0mpZ0yfRnbyl8LchcvwSg1zkRSH516jNbFYv2TCGJ0s	\N	\N	\N	\N	\N	\N	\N	active	68c58399-f145-49aa-9db1-ee94c793b427	\N	2024-01-20 14:42:17.91+00	/content/city	default	\N	\N	t	\N	\N	\N	\N	\N
-db513aee-cd3a-47a9-95e5-a98f1cc92d13	Admin	User	gannonline90@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$8mOx4/9GjUaVmWJRCxhc1Q$O2PmAQbgGlqxaNAnsgyyJRQxPl+9HeBKZ5z7JMZjqbo	\N	\N	\N	\N	\N	\N	\N	active	878f0264-16f3-4a54-a79e-82c27313bacc	\N	2024-02-02 13:00:09.431+00	/settings/roles/public	default	\N	\N	t	\N	\N	\N	\N	\N
+db513aee-cd3a-47a9-95e5-a98f1cc92d13	Admin	User	gannonline90@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$8mOx4/9GjUaVmWJRCxhc1Q$O2PmAQbgGlqxaNAnsgyyJRQxPl+9HeBKZ5z7JMZjqbo	\N	\N	\N	\N	\N	\N	\N	active	878f0264-16f3-4a54-a79e-82c27313bacc	\N	2024-02-03 16:11:35.349+00	/settings/roles/public	default	\N	\N	t	\N	\N	\N	\N	\N
 \.
 
 
@@ -2848,8 +3562,8 @@ COPY public.directus_webhooks (id, name, method, url, status, data, actions, col
 COPY public.event (id, status, sort, date_updated, teaser, city, link) FROM stdin;
 1	draft	\N	2024-01-20 15:03:36.217+00	\N	2	\N
 2	draft	\N	2024-01-20 15:04:35.777+00	\N	1	\N
-4	draft	\N	\N	5556b0ea-7025-40a9-aaaf-b55713639b87	2	https://www.kathbern.ch/fasa/sozialpolitisches-engagement/cercle-de-silence
 5	draft	\N	\N	\N	2	\N
+4	draft	\N	\N	\N	2	https://www.kathbern.ch/fasa/sozialpolitisches-engagement/cercle-de-silence
 \.
 
 
@@ -2894,6 +3608,41 @@ SELECT pg_catalog.setval('public."CustomSections_translations_id_seq"', 2, true)
 
 
 --
+-- Name: EmailForm_FormFields_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
+--
+
+SELECT pg_catalog.setval('public."EmailForm_FormFields_id_seq"', 2, true);
+
+
+--
+-- Name: EmailForm_FormFields_translations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
+--
+
+SELECT pg_catalog.setval('public."EmailForm_FormFields_translations_id_seq"', 4, true);
+
+
+--
+-- Name: EmailForm_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
+--
+
+SELECT pg_catalog.setval('public."EmailForm_id_seq"', 1, true);
+
+
+--
+-- Name: EmailForm_translations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
+--
+
+SELECT pg_catalog.setval('public."EmailForm_translations_id_seq"', 2, true);
+
+
+--
+-- Name: FormFields_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
+--
+
+SELECT pg_catalog.setval('public."FormFields_id_seq"', 2, true);
+
+
+--
 -- Name: SupportLinks_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
 --
 
@@ -2911,7 +3660,7 @@ SELECT pg_catalog.setval('public."SupportLinks_translations_id_seq"', 10, true);
 -- Name: city_files_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
 --
 
-SELECT pg_catalog.setval('public.city_files_id_seq', 19, true);
+SELECT pg_catalog.setval('public.city_files_id_seq', 38, true);
 
 
 --
@@ -2946,14 +3695,14 @@ SELECT pg_catalog.setval('public.countries_translations_id_seq', 2, true);
 -- Name: directus_activity_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
 --
 
-SELECT pg_catalog.setval('public.directus_activity_id_seq', 423, true);
+SELECT pg_catalog.setval('public.directus_activity_id_seq', 685, true);
 
 
 --
 -- Name: directus_fields_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
 --
 
-SELECT pg_catalog.setval('public.directus_fields_id_seq', 84, true);
+SELECT pg_catalog.setval('public.directus_fields_id_seq', 154, true);
 
 
 --
@@ -2967,28 +3716,28 @@ SELECT pg_catalog.setval('public.directus_notifications_id_seq', 1, false);
 -- Name: directus_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
 --
 
-SELECT pg_catalog.setval('public.directus_permissions_id_seq', 56, true);
+SELECT pg_catalog.setval('public.directus_permissions_id_seq', 61, true);
 
 
 --
 -- Name: directus_presets_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
 --
 
-SELECT pg_catalog.setval('public.directus_presets_id_seq', 5, true);
+SELECT pg_catalog.setval('public.directus_presets_id_seq', 6, true);
 
 
 --
 -- Name: directus_relations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
 --
 
-SELECT pg_catalog.setval('public.directus_relations_id_seq', 18, true);
+SELECT pg_catalog.setval('public.directus_relations_id_seq', 38, true);
 
 
 --
 -- Name: directus_revisions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
 --
 
-SELECT pg_catalog.setval('public.directus_revisions_id_seq', 386, true);
+SELECT pg_catalog.setval('public.directus_revisions_id_seq', 603, true);
 
 
 --
@@ -3033,6 +3782,46 @@ ALTER TABLE ONLY public."CustomSections"
 
 ALTER TABLE ONLY public."CustomSections_translations"
     ADD CONSTRAINT "CustomSections_translations_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: EmailForm_FormFields EmailForm_FormFields_pkey; Type: CONSTRAINT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public."EmailForm_FormFields"
+    ADD CONSTRAINT "EmailForm_FormFields_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: EmailForm_FormFields_translations EmailForm_FormFields_translations_pkey; Type: CONSTRAINT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public."EmailForm_FormFields_translations"
+    ADD CONSTRAINT "EmailForm_FormFields_translations_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: EmailForm EmailForm_pkey; Type: CONSTRAINT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public."EmailForm"
+    ADD CONSTRAINT "EmailForm_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: EmailForm_translations EmailForm_translations_pkey; Type: CONSTRAINT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public."EmailForm_translations"
+    ADD CONSTRAINT "EmailForm_translations_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: FormFields FormFields_pkey; Type: CONSTRAINT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public."FormFields"
+    ADD CONSTRAINT "FormFields_pkey" PRIMARY KEY (id);
 
 
 --
@@ -3360,7 +4149,7 @@ ALTER TABLE ONLY public.languages
 --
 
 ALTER TABLE ONLY public.city_files
-    ADD CONSTRAINT city_files_city_id_foreign FOREIGN KEY (city_id) REFERENCES public.city(id) ON DELETE SET NULL;
+    ADD CONSTRAINT city_files_city_id_foreign FOREIGN KEY (city_id) REFERENCES public.city(id) ON DELETE CASCADE;
 
 
 --
@@ -3368,7 +4157,7 @@ ALTER TABLE ONLY public.city_files
 --
 
 ALTER TABLE ONLY public.city_files
-    ADD CONSTRAINT city_files_directus_files_id_foreign FOREIGN KEY (directus_files_id) REFERENCES public.directus_files(id) ON DELETE SET NULL;
+    ADD CONSTRAINT city_files_directus_files_id_foreign FOREIGN KEY (directus_files_id) REFERENCES public.directus_files(id) ON DELETE CASCADE;
 
 
 --
@@ -3713,6 +4502,62 @@ ALTER TABLE ONLY public.directus_versions
 
 ALTER TABLE ONLY public.directus_versions
     ADD CONSTRAINT directus_versions_user_updated_foreign FOREIGN KEY (user_updated) REFERENCES public.directus_users(id);
+
+
+--
+-- Name: EmailForm emailform_city_foreign; Type: FK CONSTRAINT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public."EmailForm"
+    ADD CONSTRAINT emailform_city_foreign FOREIGN KEY (city) REFERENCES public.city(id) ON DELETE SET NULL;
+
+
+--
+-- Name: EmailForm_FormFields emailform_formfields_emailform_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public."EmailForm_FormFields"
+    ADD CONSTRAINT emailform_formfields_emailform_id_foreign FOREIGN KEY ("EmailForm_id") REFERENCES public."EmailForm"(id) ON DELETE SET NULL;
+
+
+--
+-- Name: EmailForm_FormFields emailform_formfields_formfields_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public."EmailForm_FormFields"
+    ADD CONSTRAINT emailform_formfields_formfields_id_foreign FOREIGN KEY ("FormFields_id") REFERENCES public."FormFields"(id) ON DELETE SET NULL;
+
+
+--
+-- Name: EmailForm_FormFields_translations emailform_formfields_translations_emailfor__7e82bea7_foreign; Type: FK CONSTRAINT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public."EmailForm_FormFields_translations"
+    ADD CONSTRAINT emailform_formfields_translations_emailfor__7e82bea7_foreign FOREIGN KEY ("EmailForm_FormFields_id") REFERENCES public."EmailForm_FormFields"(id) ON DELETE SET NULL;
+
+
+--
+-- Name: EmailForm_FormFields_translations emailform_formfields_translations_languages_code_foreign; Type: FK CONSTRAINT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public."EmailForm_FormFields_translations"
+    ADD CONSTRAINT emailform_formfields_translations_languages_code_foreign FOREIGN KEY (languages_code) REFERENCES public.languages(code) ON DELETE SET NULL;
+
+
+--
+-- Name: EmailForm_translations emailform_translations_emailform_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public."EmailForm_translations"
+    ADD CONSTRAINT emailform_translations_emailform_id_foreign FOREIGN KEY ("EmailForm_id") REFERENCES public."EmailForm"(id) ON DELETE SET NULL;
+
+
+--
+-- Name: EmailForm_translations emailform_translations_languages_code_foreign; Type: FK CONSTRAINT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public."EmailForm_translations"
+    ADD CONSTRAINT emailform_translations_languages_code_foreign FOREIGN KEY (languages_code) REFERENCES public.languages(code) ON DELETE SET NULL;
 
 
 --
