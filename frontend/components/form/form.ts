@@ -51,7 +51,6 @@ export class Form extends DefaultComponent {
 
   submitForm(e: Event) {
     e.preventDefault();
-    console.log(this.shadowRoot?.getElementById("form"));
     const form: HTMLFormElement = this.shadowRoot?.getElementById(
       "form"
     ) as HTMLFormElement;
@@ -64,6 +63,8 @@ export class Form extends DefaultComponent {
           values[f.label] = value;
         }
       });
+      //TODO: Post Email
+      console.log(values)
     }
   }
 
