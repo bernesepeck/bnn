@@ -4,7 +4,7 @@ import { createDirectus, readItem, readItems, rest } from '@directus/sdk';
 export class CityService {
     private client;
     private langFilter;
-    private modelsToTranslate = ['events', 'supportlinks', 'customSections']; // List of related models
+    private modelsToTranslate = ['events', 'supportlinks', 'customSections', 'emailForm']; // List of related models
 
     constructor() {
         this.client = createDirectus('http://localhost:8055').with(rest());
@@ -23,6 +23,8 @@ export class CityService {
             '*',
             'translations.*',
             'gallery.*',
+            'emailForm.fields.FormFields_id.type',
+            'emailForm.fields.translations.*',
             ...this.modelsToTranslate.map(model => `${model}.*`),
             ...this.modelsToTranslate.map(model => `${model}.translations.*`),
         ];
@@ -35,7 +37,7 @@ export class CityService {
                 [model]: this.langFilter,
             }), {...this.langFilter}),
         }));
-
+        console.log("FetchedData", response);
         return this.convertToCity(response);
     }
 
@@ -56,36 +58,36 @@ export class CityService {
         return response.map(this.convertToCity);
     }
 
-    convertToCity = (city: any): CityModel => {
-        console.log("FetchedData", city);
-        const translationObj = city.translations?.[0] || {};
+    private flattenTranslations(item: any): any {
+        if (item?.translations) {
+            // Flatten translations into the parent object
+            item = { ...item, ...item.translations[0] };
+            delete item.translations; // Remove translations property
+        }
+        
+        // Recursively process each property
+        for (const key of Object.keys(item)) {
+            if (Array.isArray(item[key])) {
+                item[key] = item[key].map(this.flattenTranslations.bind(this)); // Process array items
+            } else if (typeof item[key] === 'object' && item[key] !== null) {
+                item[key] = this.flattenTranslations(item[key]); // Process nested objects
+            }
+        }
 
-        const flattenTranslations = (items: any[]) => items?.map(item => ({
-            ...item,
-            ...item.translations?.[0]
-        })) || [];
+        return item;
+    }
 
-        const cityObj: CityModel = {
-            id: city.id || null,
-            status: city.status || null,
-            date_updated: city.date_updated || null,
-            gallery: city.gallery || null,
-            languages_code: translationObj.languages_code || null,
-            name: translationObj.name || '',
-            page_title: translationObj.page_title || '',
-            description: translationObj.description || '',
-            sponsors: translationObj.sponsors || '',
-            events: [],
-            supportlinks: [],
-            customSections: []
-        };
+    public convertToCity = (city: any): CityModel => {
+        city = this.flattenTranslations(city); // Flatten translations for the top-level city object
 
         // Dynamically flatten translations for related models and assign to cityObj
         this.modelsToTranslate.forEach(model => {
-            cityObj[model] = flattenTranslations(city[model]);
+            if (city[model]) {
+                city[model] = city[model].map((item: any) => this.flattenTranslations(item));
+            }
         });
 
-        console.log("ParsedCityObj", cityObj);
-        return cityObj;
+        console.log("ParsedCityObj", city);
+        return city as CityModel;
     }
 }
