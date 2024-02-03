@@ -50,22 +50,52 @@ export class Form extends DefaultComponent {
     `;
   }
 
-  submitForm(e: Event) {
+  async submitForm(e: Event) {
     e.preventDefault();
-    const form: HTMLFormElement = this.shadowRoot?.getElementById(
-      "form"
-    ) as HTMLFormElement;
+    
+    // Assuming this.shadowRoot and this.form are defined in your component's context
+    const form: HTMLFormElement = this.shadowRoot?.getElementById("form") as HTMLFormElement;
+    
     if (form) {
       const formData = new FormData(form);
       const values: { [key: string]: FormDataEntryValue } = {};
+      
+      // Extract values from the form based on this.form.fields
       this.form?.fields.forEach((f) => {
         const value = formData.get(f.label);
         if (value) {
           values[f.label] = value;
         }
       });
-      //TODO: Post Email
-      console.log(values)
+      
+      // Construct the payload
+      const payload = {
+        values: values,
+        emailTo: this.form?.emailTo,
+        subject: this.form?.subject
+      };
+      
+      try {
+        // Send the POST request
+        const response = await fetch('http://localhost:8055/flows/trigger/fdcaf62f-a842-492d-9e73-c719f558a149', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });
+        
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        
+        const responseData = await response.json();
+        console.log('Form submitted successfully:', responseData);
+        // Handle success response
+      } catch (error) {
+        console.error('Error submitting form:', error);
+        // Handle error
+      }
     }
   }
 
