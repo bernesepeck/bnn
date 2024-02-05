@@ -1,5 +1,4 @@
 // config.ts
-
 // Inform TypeScript about the `process.env` variables.
 declare var process: {
     env: {
@@ -24,11 +23,14 @@ async function getConfig(): Promise<AppConfig> {
         };
     } else {
         // In other environments, fetch the config.json.
-        const response = await fetch('config.json');
+        const response = await fetch('/config.json');
         if (!response.ok) {
             throw new Error(`Failed to load configuration: ${response.status}`);
         }
-        return response.json();
+        const config = await response.json();
+        return {
+            apiUrl: config.PARCEL_API_URL || '',
+        };
     }
 }
 

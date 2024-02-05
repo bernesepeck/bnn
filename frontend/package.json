@@ -1,7 +1,8 @@
 {
   "scripts": {
-    "start": "npm run build-img && parcel index.html city/index.html",
-    "build": "parcel build index.html",
+    "copy-assets": "cp -r assets/* dist",
+    "start": "npm run copy-assets && npm run build-img && parcel index.html city/index.html",
+    "build": "npm run copy-assets && build index.html",
     "build-img": "parcel build assets/* --no-cache"
   },
   "devDependencies": {
