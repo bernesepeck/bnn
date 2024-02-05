@@ -23,9 +23,9 @@ export class CitySelector extends DefaultComponent {
         font-size: 1.5em;
         gap: 8px;
         & a {
-            text-decoration: none;
-            color: var(--color-primary);
-            font-size: var(--font-size-m);
+          text-decoration: none;
+          color: var(--color-primary);
+          font-size: var(--font-size-m);
         }
       }
     `;
@@ -45,7 +45,11 @@ export class CitySelector extends DefaultComponent {
       <nav>
         ${this.cities.map(
           (city) =>
-            html`<a href="${`/city/${city.id}`}">${city.name}</a>`
+            html`<a
+              href="${`/city/${city.id}`}"
+              @click="${(e) => e.stopPropagation()}"
+              >${city.name}</a
+            >`
         )}
       </nav>
     `;
