@@ -15,7 +15,7 @@ type MenuItem = {
 @customElement("bnn-nav-menu")
 export class NavMenu extends DefaultComponent {
   @property({ type: Array<MenuItem> }) menuItems: MenuItem[] = [
-    { title: "Home", submenu: false, link: '/' },
+    { title: "Home", submenu: false, link: "/" },
     {
       title: "Cities",
       submenu: true,
@@ -67,13 +67,22 @@ export class NavMenu extends DefaultComponent {
 
   constructor() {
     super();
+    document.addEventListener("click", (e) => {
+      if (this.menuItems.some((i) => i.submenuVisible)) {
+        this.menuItems = this.menuItems.map((i) =>
+          i.submenuVisible ? { ...i, submenuVisible: false } : i
+        );
+      }
+    });
   }
 
   render() {
     return html`
       <nav class="menu">
-        ${this.menuItems.map(
-          (item) => item.submenu ? this.renderMenuItemWithSubmenu(item) : html `<a class="main-link" href="${item.link}">${item.title}</a>`
+        ${this.menuItems.map((item) =>
+          item.submenu
+            ? this.renderMenuItemWithSubmenu(item)
+            : html`<a class="main-link" href="${item.link}">${item.title}</a>`
         )}
       </nav>
     `;
@@ -81,22 +90,25 @@ export class NavMenu extends DefaultComponent {
 
   renderMenuItemWithSubmenu(item: MenuItem) {
     return html`
-      <li @click="${() => this.toggleSubMenu(item)}">
-              ${item.title}
-              ${item.submenu && item.submenuVisible
-                ? html`
-                    <div class="submenu">
-                      ${item.submenuSlotName === "bnn-city-selector"
-                        ? html`<bnn-city-selector></bnn-city-selector>`
-                        : html`<slot name="${item.submenuSlotName}"></slot>`}
-                    </div>
-                  `
-                : ""}
-            </li>
-    `
+      <li @click="${(e) => this.toggleSubMenu(item, e)}">
+        ${item.title}
+        ${item.submenu && item.submenuVisible
+          ? html`
+              <div class="submenu">
+                ${item.submenuSlotName === "bnn-city-selector"
+                  ? html`<bnn-city-selector></bnn-city-selector>`
+                  : html`<slot name="${item.submenuSlotName}"></slot>`}
+              </div>
+            `
+          : ""}
+      </li>
+    `;
   }
 
-  toggleSubMenu(item: MenuItem) {
+  toggleSubMenu(item: MenuItem, e: PointerEvent) {
+    //Important so menu doesn't get closed immediately
+    e.preventDefault();
+    e.stopPropagation();
     this.menuItems = this.menuItems.map((i) =>
       i === item ? { ...i, submenuVisible: !i.submenuVisible } : i
     );
