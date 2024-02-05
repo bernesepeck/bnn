@@ -1,13 +1,17 @@
 import { CityModel } from "./city.models";
 import { createDirectus, readItem, readItems, rest } from '@directus/sdk';
+import { ConfigService } from '../config-service'; // Adjust the import path as needed
+import { AppConfig } from "../config";
 
 export class CityService {
     private client;
     private langFilter;
     private modelsToTranslate = ['events', 'supportlinks', 'customSections', 'emailForm']; // List of related models
+    private configService = ConfigService.getInstance();
+    private config = this.configService.getConfig();
 
     constructor() {
-        this.client = createDirectus('http://localhost:8055').with(rest());
+        this.client = createDirectus(this.config.apiUrl).with(rest());
         const languageCode = sessionStorage.getItem('selectedLanguage') || 'de';
         this.langFilter = {
             translations: {
@@ -37,7 +41,7 @@ export class CityService {
                 [model]: this.langFilter,
             }), {...this.langFilter}),
         }));
-        console.log("FetchedData", response);
+        console.log("FetchedCityObj", response);
         return this.convertToCity(response);
     }
 
