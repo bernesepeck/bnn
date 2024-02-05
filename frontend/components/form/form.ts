@@ -90,11 +90,9 @@ export class Form extends DefaultComponent {
         }
         
         const responseData = await response.json();
-        console.log('Form submitted successfully:', responseData);
         // Handle success response
       } catch (error) {
         console.error('Error submitting form:', error);
-        // Handle error
       }
     }
   }

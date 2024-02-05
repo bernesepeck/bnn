@@ -1,4 +1,4 @@
-import { html } from "lit";
+import { PropertyValueMap, html } from "lit";
 import { customElement, state } from "lit/decorators.js";
 import "../components/banner/banner";
 import "../components/language/languageSelector";
@@ -14,27 +14,35 @@ import "./components/gallery/gallery";
 import "../components/footer/footer";
 import "../components/text-content/text-content";
 import "../components/form/form";
+import { ConfigService } from '../config-service'; // Adjust the import path as needed
 
 @customElement("bnn-city")
 export class City extends DefaultComponent {
-  private cityService: CityService;
-
-  constructor() {
-    super();
-    this.cityService = new CityService();
-    this.handleCitySelection = this.handleCitySelection.bind(this);
-    this.initializeSelectedCityFromURL();
-  }
+  private cityService!: CityService;
 
   @state()
   protected city: CityModel | undefined;
   @state()
   protected selectedCity!: number;
 
-  connectedCallback() {
-    super.connectedCallback();
-    window.addEventListener("city-selected", this.handleCitySelection);
-    this.fetchCityData();
+  constructor() {
+    super();
+    const configService = ConfigService.getInstance();
+    
+    configService.loadConfig().then(() => {
+      console.log("Configuration loaded successfully.");
+      this.cityService = new CityService();
+      this.initializeSelectedCityFromURL();
+    }).catch(error => {
+      console.error("Failed to load configuration:", error);
+    });
+  }
+
+  updated(changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>) {
+    super.updated(changedProperties);
+    if (changedProperties.has('selectedCity')) {
+      this.fetchCityData();
+    }
   }
 
   initializeSelectedCityFromURL() {
@@ -48,18 +56,12 @@ export class City extends DefaultComponent {
     }
   }
 
-  handleCitySelection(e) {
-    this.selectedCity = e.detail.cityId;
-    this.fetchCityData();
-  }
-
   fetchCityData() {
     if (this.selectedCity !== null) {
       this.cityService
         .getCity(this.selectedCity)
         .then((cityData) => {
           this.city = cityData;
-          console.log("render", cityData);
         })
         .catch((error) => {
           console.error("Failed to fetch city data", error);
