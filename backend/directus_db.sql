@@ -3711,7 +3711,7 @@ COPY public.directus_roles (id, name, icon, description, ip_access, enforce_tfa,
 
 COPY public.directus_sessions (token, "user", expires, ip, user_agent, share, origin) FROM stdin;
 ugw2EDUkeYttedp8bDszYAaj8XwH_nz5FwytoBhyP99UtFzVvQeweDEb89JVZcHL	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-09 13:00:09.421+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36	\N	http://localhost:8055
-mD6snJ4ZLjpH420dKO6TlF_L6lfxFMMcE88_9ErH16Bx2tbAaTDWg46UgGXL1zjx	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-10 18:44:13.711+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	\N	http://localhost:8055
+FbuVyV-JVnT1ajgQBjed8FOSkkv225-W75nhLpuZEOOCxEVFfxpRztVzSvIzrryV	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-12 18:19:26.915+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	\N	http://localhost:8055
 \.
 
 
@@ -3745,7 +3745,7 @@ COPY public.directus_translations (id, language, key, value) FROM stdin;
 
 COPY public.directus_users (id, first_name, last_name, email, password, location, title, description, tags, avatar, language, tfa_secret, status, role, token, last_access, last_page, provider, external_identifier, auth_data, email_notifications, appearance, theme_dark, theme_light, theme_light_overrides, theme_dark_overrides) FROM stdin;
 507e3800-1c28-454b-bcd2-766cda54a162	Basel	Admin	mirjamthomet@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$rEXyXmboQoJtEolz1V+VwQ$0mpZ0yfRnbyl8LchcvwSg1zkRSH516jNbFYv2TCGJ0s	\N	\N	\N	\N	\N	\N	\N	active	68c58399-f145-49aa-9db1-ee94c793b427	\N	2024-01-20 14:42:17.91+00	/content/city	default	\N	\N	t	\N	\N	\N	\N	\N
-db513aee-cd3a-47a9-95e5-a98f1cc92d13	Admin	User	gannonline90@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$8mOx4/9GjUaVmWJRCxhc1Q$O2PmAQbgGlqxaNAnsgyyJRQxPl+9HeBKZ5z7JMZjqbo	\N	\N	\N	\N	\N	\N	\N	active	878f0264-16f3-4a54-a79e-82c27313bacc	\N	2024-02-03 18:44:13.76+00	/content/EmailForm	default	\N	\N	t	\N	\N	\N	\N	\N
+db513aee-cd3a-47a9-95e5-a98f1cc92d13	Admin	User	gannonline90@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$8mOx4/9GjUaVmWJRCxhc1Q$O2PmAQbgGlqxaNAnsgyyJRQxPl+9HeBKZ5z7JMZjqbo	\N	\N	\N	\N	\N	\N	\N	active	878f0264-16f3-4a54-a79e-82c27313bacc	\N	2024-02-05 18:19:26.926+00	/content/EmailForm	default	\N	\N	t	\N	\N	\N	\N	\N
 \.
 
 
