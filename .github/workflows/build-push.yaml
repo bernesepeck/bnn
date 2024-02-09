@@ -1,12 +1,12 @@
-name: CI to Docker Hub
+name: CI to Docker Hub and Deploy to Google Cloud Run
 
 on:
   push:
     branches:
-      - 'main' # Trigger on pushes to main branch
+      - 'main'
 
 jobs:
-  build-and-push-image:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the code
@@ -31,6 +31,14 @@ jobs:
             j0hngnn0n/bnn:frontend-${{ github.sha }}
             j0hngnn0n/bnn:latest
 
-      # This step might need adjustment as "docker_build" needs to match the id of the build step if you want to use outputs
-      - name: Image digest
-        run: echo ${{ steps.docker_build.outputs.digest }}
+      - name: Authenticate to Google Cloud
+        uses: 'google-github-actions/auth@v2'
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - id: 'deploy'
+        uses: 'google-github-actions/deploy-cloudrun@v2'
+        with:
+          service: 'bnn-frontend'
+          image: 'j0hngnn0n/bnn:frontend-${{ github.sha }}'
+
