@@ -3,6 +3,7 @@ import { LitElement, html, css } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import "../../city/city-selector";
 import { DefaultComponent } from "../default.component";
+import { classMap } from 'lit/directives/class-map.js';
 
 type MenuItem = {
   title: string;
@@ -10,6 +11,7 @@ type MenuItem = {
   submenuSlotName?: string;
   submenuVisible?: boolean;
   link?: string;
+  urlParam?: string;
 };
 
 @customElement("bnn-nav-menu")
@@ -21,6 +23,7 @@ export class NavMenu extends DefaultComponent {
       submenu: true,
       submenuSlotName: "bnn-city-selector",
       submenuVisible: false,
+      urlParam: 'city'
     },
   ];
 
@@ -33,7 +36,7 @@ export class NavMenu extends DefaultComponent {
                 transform: translateY(-20px); /* Start 20 pixels above its final position */
             }
             to {
-                opacity: 0.8;
+                opacity: 1;
                 transform: translateY(0); /* End at its final position */
             }
         }
@@ -42,6 +45,8 @@ export class NavMenu extends DefaultComponent {
                 list-style: none;
                 display: flex;
                 gap: 32px;
+                padding: 8px;
+                background-color: var(--color-primary);
                 & .main-link::after {
                   content: none;
                 }
@@ -50,14 +55,20 @@ export class NavMenu extends DefaultComponent {
                     text-decoration: none;
                     color: white;
                     cursor: pointer;
-                    font-weight: bold;
+                    text-transform: uppercase;
+                    font-weight: normal;
+                    padding: 0;
+                    &.selected {
+                      text-decoration: underline;
+                      text-underline-offset: 4px;
+                    }
                 }
                 & .submenu {
                     position: absolute;
-                    background-color: white;
+                    background-color: var(--color-primary);
                     padding: 16px;
                     opacity: 0; /* Start from invisible */
-                    animation: slideDownFadeIn 0.5s ease-out forwards; /* Apply the animation */
+                    animation: slideDownFadeIn 0.2s ease-out forwards; /* Apply the animation */
                 }
               }
             }
@@ -90,7 +101,7 @@ export class NavMenu extends DefaultComponent {
 
   renderMenuItemWithSubmenu(item: MenuItem) {
     return html`
-      <li @click="${(e) => this.toggleSubMenu(item, e)}">
+      <li @click="${(e) => this.toggleSubMenu(item, e)}"  class="${classMap({selected: window.location.href.includes(item.urlParam!)})}">
         ${item.title}
         ${item.submenu && item.submenuVisible
           ? html`
