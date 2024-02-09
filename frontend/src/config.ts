@@ -29,7 +29,7 @@ async function getConfig(): Promise<AppConfig> {
         }
         const config = await response.json();
         return {
-            apiUrl: config.PARCEL_API_URL || '',
+            apiUrl: config.apiUrl || '',
         };
     }
 }
