@@ -8,6 +8,13 @@ export class ContentContainer extends DefaultComponent {
         return css`
             .container {
                 padding: 3em var(--content-padding);
+                display: flex;
+                justify-content: center;
+            }
+            .max-content {
+                max-width: 1000px;
+                width: 100%;
+                margin: 0;
             }
         `
     }
@@ -30,7 +37,9 @@ export class ContentContainer extends DefaultComponent {
     render() {
         return html`
             <div class="container" .style="${this.colorStyles?.length ? this.colorStyles : ''}" >
+            <div class="max-content">
                 <slot></slot>
+            </div>
             </div>
         `
     }
