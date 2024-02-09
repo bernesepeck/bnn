@@ -27,10 +27,18 @@ export class EventList extends DefaultComponent {
         display: flex;
         flex-direction: column;
         gap: var(--gutter-s);
+        padding: 16px;
+        background-color: white;
         & p,
         h3 {
           margin: 0;
         }
+      }
+      h2 {
+        background-color: var(--color-primary);
+        color: white;
+        padding: 4px;
+        width: max-content;
       }
     `;
   }
@@ -49,14 +57,15 @@ export class EventList extends DefaultComponent {
   renderEvent(event: EventModel) {
     return html`
       <div class="event">
+      ${event.location
+          ? html`<p .innerHTML="${event.location}" class="location"></p>`
+          : html``}
         <h3>${event.name}</h3>
         ${event.customDates
           ? html`<p .innerHTML="${event.customDates}" class="dates"></p>`
           : html``}
-        ${event.location
-          ? html`<p .innerHTML="${event.location}" class="location"></p>`
-          : html``}
         <p .innerHTML="${event.description}"></p>
+        ${event.link ? html`<a .href="${event.link}" target="_blank">Mehr</a>` : html``}
       </div>
     `;
   }

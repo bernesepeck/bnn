@@ -25,6 +25,7 @@ export interface EventModel {
     description: string | null;
     customDates: string | null;
     location: string | null;
+    link: string | null;
 }
 export interface CustomSectionModel {
     id: number;

@@ -3,6 +3,7 @@ import { customElement, state } from "lit/decorators.js";
 import { CityService } from "./city.service"; // Adjust the path as necessary
 import { CityModel } from "./city.models";
 import { DefaultComponent } from "../components/default.component";
+import { classMap } from 'lit/directives/class-map.js';
 
 @customElement("bnn-city-selector")
 export class CitySelector extends DefaultComponent {
@@ -24,8 +25,17 @@ export class CitySelector extends DefaultComponent {
         gap: 8px;
         & a {
           text-decoration: none;
-          color: var(--color-primary);
+          color: white;
           font-size: var(--font-size-m);
+          font-weight: normal;
+          padding: 0;
+          &::after {
+            content: none;
+          }
+          &.selected {
+            text-decoration: underline;
+            text-underline-offset: 4px;
+          }
         }
       }
     `;
@@ -46,6 +56,7 @@ export class CitySelector extends DefaultComponent {
         ${this.cities.map(
           (city) =>
             html`<a
+            class="${classMap({selected: this.getCurrentCity() === city.id})}"
               href="${`/city/${city.id}`}"
               @click="${(e) => e.stopPropagation()}"
               >${city.name}</a
@@ -54,4 +65,13 @@ export class CitySelector extends DefaultComponent {
       </nav>
     `;
   }
+
+  getCurrentCity() {
+    const currentUrl = window.location.href;
+    const parsedUrl = new URL(currentUrl);
+    const pathSegments = parsedUrl.pathname.split('/');
+    const lastPart = pathSegments.filter(segment => segment !== "").pop();
+    return Number(lastPart);
+  }
+  
 }
