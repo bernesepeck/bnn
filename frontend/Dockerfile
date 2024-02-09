@@ -21,10 +21,19 @@ RUN npm run build
 # Stage 2: Serve the application with Nginx
 FROM nginx:alpine
 
+# Create a directory for the custom Nginx configuration
+RUN mkdir -p /etc/nginx/templates
+WORKDIR /etc/nginx/templates
+
 # Copy built assets from the build-stage to the Nginx server
 COPY --from=build-stage /app/dist /usr/share/nginx/html
 
-# Expose port 80
-EXPOSE 80
+# Remove the default Nginx configuration
+RUN rm /etc/nginx/conf.d/default.conf
 
-# Nginx starts automatically, so no need to specify CMD
+# Add custom Nginx configuration template
+COPY nginx.conf.template /etc/nginx/templates/default.conf.template
+
+# Use environment variables to configure Nginx at runtime
+ENV PORT=8080
+CMD ["/bin/sh" , "-c" , "envsubst < /etc/nginx/templates/default.conf.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"]
