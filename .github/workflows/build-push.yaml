@@ -41,4 +41,5 @@ jobs:
         with:
           service: 'bnn-frontend'
           image: 'j0hngnn0n/bnn:frontend-${{ github.sha }}'
+          region: 'europe-west6'
 
