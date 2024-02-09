@@ -1,9 +1,9 @@
 // menu-component.ts
-import { LitElement, html, css } from "lit";
-import { customElement, property } from "lit/decorators.js";
+import { html, css } from "lit";
+import { customElement, property, state } from "lit/decorators.js";
 import "../../city/city-selector";
 import { DefaultComponent } from "../default.component";
-import { classMap } from 'lit/directives/class-map.js';
+import { classMap } from "lit/directives/class-map.js";
 
 type MenuItem = {
   title: string;
@@ -23,9 +23,12 @@ export class NavMenu extends DefaultComponent {
       submenu: true,
       submenuSlotName: "bnn-city-selector",
       submenuVisible: false,
-      urlParam: 'city'
+      urlParam: "city",
     },
   ];
+
+  @state()
+  isMenuOpen = false;
 
   static get componentStyles() {
     return css`
@@ -70,8 +73,52 @@ export class NavMenu extends DefaultComponent {
                     opacity: 0; /* Start from invisible */
                     animation: slideDownFadeIn 0.2s ease-out forwards; /* Apply the animation */
                 }
+            }
+            @media screen and (max-width: 480px) {
+              .menu {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: var(--color-primary);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                opacity: 0;
+                visibility: hidden;
+                z-index: 1000;
+                transition: opacity 0.5s, visibility 0s linear 0.5s;
+              }
+              /* Open state for the menu */
+              .menu.open {
+                opacity: 1;
+                visibility: visible;
+                transition: opacity 0.5s;
+              }
+              .hamburger-menu {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+                z-index: 2000;
+                position: fixed;
+                top: 16px;
+                right: 16px;
+                & div {
+                  width: 40px;
+                  height: 4px;
+                  background-color: white;
+                }
               }
             }
+            @media screen and (min-width: 480px) {
+              .menu {
+                display: flex;
+              }
+              .hamburger-menu {
+                display: none;
+              }
             }
         `;
   }
@@ -89,21 +136,31 @@ export class NavMenu extends DefaultComponent {
 
   render() {
     return html`
-      <nav class="menu">
+      <nav class="menu" class="${classMap({open: this.isMenuOpen, menu: true})}">
         ${this.menuItems.map((item) =>
           item.submenu
             ? this.renderMenuItemWithSubmenu(item)
             : html`<a class="main-link" href="${item.link}">${item.title}</a>`
         )}
       </nav>
+      <button class="hamburger-menu" @click="${() => this.isMenuOpen = !this.isMenuOpen}">
+        <div></div>
+        <div></div>
+        <div></div>
+      </button>
     `;
   }
 
   renderMenuItemWithSubmenu(item: MenuItem) {
     return html`
-      <li @click="${(e) => this.toggleSubMenu(item, e)}"  class="${classMap({selected: window.location.href.includes(item.urlParam!)})}">
+      <li
+        @click="${(e) => this.toggleSubMenu(item, e)}"
+        class="${classMap({
+          selected: window.location.href.includes(item.urlParam!),
+        })}"
+      >
         ${item.title}
-        ${item.submenu && item.submenuVisible
+        ${item.submenu && (item.submenuVisible || this.isMenuOpen)
           ? html`
               <div class="submenu">
                 ${item.submenuSlotName === "bnn-city-selector"
