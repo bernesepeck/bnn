@@ -1489,6 +1489,77 @@ ALTER SEQUENCE public.event_translations_id_seq OWNED BY public.event_translatio
 
 
 --
+-- Name: home; Type: TABLE; Schema: public; Owner: directus
+--
+
+CREATE TABLE public.home (
+    id integer NOT NULL
+);
+
+
+ALTER TABLE public.home OWNER TO directus;
+
+--
+-- Name: home_id_seq; Type: SEQUENCE; Schema: public; Owner: directus
+--
+
+CREATE SEQUENCE public.home_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.home_id_seq OWNER TO directus;
+
+--
+-- Name: home_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: directus
+--
+
+ALTER SEQUENCE public.home_id_seq OWNED BY public.home.id;
+
+
+--
+-- Name: home_translations; Type: TABLE; Schema: public; Owner: directus
+--
+
+CREATE TABLE public.home_translations (
+    id integer NOT NULL,
+    home_id integer,
+    languages_code character varying(255),
+    titel character varying(255),
+    description text,
+    contentbox json
+);
+
+
+ALTER TABLE public.home_translations OWNER TO directus;
+
+--
+-- Name: home_translations_id_seq; Type: SEQUENCE; Schema: public; Owner: directus
+--
+
+CREATE SEQUENCE public.home_translations_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.home_translations_id_seq OWNER TO directus;
+
+--
+-- Name: home_translations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: directus
+--
+
+ALTER SEQUENCE public.home_translations_id_seq OWNED BY public.home_translations.id;
+
+
+--
 -- Name: languages; Type: TABLE; Schema: public; Owner: directus
 --
 
@@ -1673,6 +1744,20 @@ ALTER TABLE ONLY public.event ALTER COLUMN id SET DEFAULT nextval('public.event_
 --
 
 ALTER TABLE ONLY public.event_translations ALTER COLUMN id SET DEFAULT nextval('public.event_translations_id_seq'::regclass);
+
+
+--
+-- Name: home id; Type: DEFAULT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public.home ALTER COLUMN id SET DEFAULT nextval('public.home_id_seq'::regclass);
+
+
+--
+-- Name: home_translations id; Type: DEFAULT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public.home_translations ALTER COLUMN id SET DEFAULT nextval('public.home_translations_id_seq'::regclass);
 
 
 --
@@ -2626,6 +2711,21 @@ COPY public.directus_activity (id, action, "user", "timestamp", ip, user_agent, 
 790	run	\N	2024-02-03 18:44:21.571+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_flows	fdcaf62f-a842-492d-9e73-c719f558a149	\N	http://localhost:1234
 791	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-03 18:44:41.357+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	EmailForm	1	\N	http://localhost:8055
 792	run	\N	2024-02-03 18:44:53.111+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_flows	fdcaf62f-a842-492d-9e73-c719f558a149	\N	http://localhost:1234
+793	login	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-09 12:17:31.324+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	directus_users	db513aee-cd3a-47a9-95e5-a98f1cc92d13	\N	http://localhost:8055
+797	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-09 12:17:57.863+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	directus_fields	157	\N	http://localhost:8055
+798	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-09 12:17:57.869+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	directus_collections	home_translations	\N	http://localhost:8055
+799	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-09 12:17:57.909+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	directus_fields	158	\N	http://localhost:8055
+794	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-09 12:17:46.97+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	directus_fields	155	\N	http://localhost:8055
+795	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-09 12:17:46.981+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	directus_collections	home	\N	http://localhost:8055
+796	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-09 12:17:57.791+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	directus_fields	156	\N	http://localhost:8055
+800	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-09 12:17:57.947+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	directus_fields	159	\N	http://localhost:8055
+801	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-09 12:18:09.065+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	directus_fields	160	\N	http://localhost:8055
+803	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-09 12:19:12.381+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	directus_fields	162	\N	http://localhost:8055
+802	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-09 12:18:19.4+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	directus_fields	161	\N	http://localhost:8055
+804	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-09 12:19:22.235+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	directus_permissions	68	\N	http://localhost:8055
+805	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-09 12:19:23.86+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	directus_permissions	69	\N	http://localhost:8055
+806	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-09 12:20:51.759+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	home_translations	1	\N	http://localhost:8055
+807	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-09 12:20:51.764+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	home	1	\N	http://localhost:8055
 \.
 
 
@@ -2651,6 +2751,8 @@ EmailForm	\N	\N	\N	f	f	\N	\N	t	archived	draft	\N	all	\N	\N	\N	\N	open	\N	f
 FormFields	\N	\N	\N	f	f	\N	\N	t	\N	\N	\N	all	\N	\N	\N	\N	open	\N	f
 EmailForm_FormFields	import_export	\N	\N	t	f	\N	\N	t	\N	\N	\N	all	\N	\N	\N	\N	open	\N	f
 EmailForm_FormFields_translations	import_export	\N	\N	t	f	\N	\N	t	\N	\N	\N	all	\N	\N	\N	\N	open	\N	f
+home	\N	\N	\N	f	t	\N	\N	t	\N	\N	\N	all	\N	\N	\N	\N	open	\N	f
+home_translations	import_export	\N	\N	t	f	\N	\N	t	\N	\N	\N	all	\N	\N	\N	\N	open	\N	f
 \.
 
 
@@ -2776,6 +2878,14 @@ COPY public.directus_fields (id, collection, field, special, interface, options,
 145	EmailForm_FormFields	translations	translations	translations	{"languageField":"code","defaultLanguage":"de","userLanguage":true}	translations	{"userLanguage":true,"defaultLanguage":"de","template":"{{label}}","languageField":"code"}	f	f	4	full	\N	\N	\N	f	\N	\N	\N
 131	EmailForm	translations	translations	translations	{"defaultLanguage":"de","languageField":"code"}	translations	{"defaultLanguage":"de","languageField":"code","userLanguage":true,"template":"{{title}}"}	f	f	7	full	\N	\N	\N	f	\N	\N	\N
 153	EmailForm	city	m2o	select-dropdown-m2o	\N	\N	\N	f	f	9	full	\N	\N	\N	t	\N	\N	\N
+155	home	id	\N	input	\N	\N	\N	t	t	1	full	\N	\N	\N	f	\N	\N	\N
+156	home	translations	translations	translations	\N	\N	\N	f	f	2	full	\N	\N	\N	f	\N	\N	\N
+157	home_translations	id	\N	\N	\N	\N	\N	f	t	1	full	\N	\N	\N	f	\N	\N	\N
+158	home_translations	home_id	\N	\N	\N	\N	\N	f	t	2	full	\N	\N	\N	f	\N	\N	\N
+159	home_translations	languages_code	\N	\N	\N	\N	\N	f	t	3	full	\N	\N	\N	f	\N	\N	\N
+160	home_translations	titel	\N	input	\N	\N	\N	f	f	4	full	\N	\N	\N	f	\N	\N	\N
+161	home_translations	description	\N	input-multiline	\N	\N	\N	f	f	5	full	\N	\N	\N	f	\N	\N	\N
+162	home_translations	contentbox	cast-json	list	{"fields":[{"field":"title","name":"title","type":"string","meta":{"field":"title","type":"string","interface":"input"}},{"field":"description","name":"description","type":"text","meta":{"field":"description","type":"text","interface":"input-rich-text-html"}}]}	\N	\N	f	f	6	full	\N	\N	\N	f	\N	\N	\N
 \.
 
 
@@ -2978,6 +3088,8 @@ COPY public.directus_permissions (id, role, collection, action, permissions, val
 59	\N	EmailForm_FormFields_translations	read	{}	{}	\N	*
 60	\N	EmailForm_translations	read	{}	{}	\N	*
 61	\N	FormFields	read	{}	{}	\N	*
+68	\N	home	read	{}	{}	\N	*
+69	\N	home_translations	read	{}	{}	\N	*
 \.
 
 
@@ -3024,6 +3136,8 @@ COPY public.directus_relations (id, many_collection, many_field, one_collection,
 33	EmailForm_FormFields_translations	languages_code	languages	\N	\N	\N	EmailForm_FormFields_id	\N	nullify
 34	EmailForm_FormFields_translations	EmailForm_FormFields_id	EmailForm_FormFields	translations	\N	\N	languages_code	\N	nullify
 38	EmailForm	city	city	emailForm	\N	\N	\N	\N	nullify
+39	home_translations	languages_code	languages	\N	\N	\N	home_id	\N	nullify
+40	home_translations	home_id	home	translations	\N	\N	languages_code	\N	nullify
 \.
 
 
@@ -3338,6 +3452,7 @@ COPY public.directus_revisions (id, activity, collection, item, data, delta, par
 322	355	directus_fields	83	{"id":83,"collection":"city","field":"customSections","special":["o2m"],"interface":"list-o2m","options":null,"display":"related-values","display_options":null,"readonly":false,"hidden":false,"sort":11,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"city","field":"customSections","special":["o2m"],"interface":"list-o2m","options":null,"display":"related-values","display_options":null,"readonly":false,"hidden":false,"sort":11,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	\N	\N
 323	356	directus_fields	83	{"id":83,"collection":"city","field":"customSections","special":["o2m"],"interface":"list-o2m","options":{"template":"{{translations.title}}"},"display":"related-values","display_options":null,"readonly":false,"hidden":false,"sort":11,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"city","field":"customSections","special":["o2m"],"interface":"list-o2m","options":{"template":"{{translations.title}}"},"display":"related-values","display_options":null,"readonly":false,"hidden":false,"sort":11,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	\N	\N
 327	360	directus_files	83ad9a9d-77dc-4eca-9a0e-4596b1221f0b	{"title":"Bern Lesen Schreiben 03","filename_download":"bern_lesen-schreiben-03.jpg","type":"image/jpeg","storage":"local"}	{"title":"Bern Lesen Schreiben 03","filename_download":"bern_lesen-schreiben-03.jpg","type":"image/jpeg","storage":"local"}	\N	\N
+702	794	directus_fields	155	{"sort":1,"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"home"}	{"sort":1,"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"home"}	\N	\N
 329	363	directus_files	5fe1e0ef-1903-4907-bd61-167b748b3820	{"title":"Bern Lesen Schreiben 02","filename_download":"bern_lesen-schreiben-02.jpg","type":"image/jpeg","storage":"local"}	{"title":"Bern Lesen Schreiben 02","filename_download":"bern_lesen-schreiben-02.jpg","type":"image/jpeg","storage":"local"}	\N	\N
 331	364	directus_files	425a0e8e-16b3-4405-9e7d-4d133b09c14b	{"title":"Cde C O2 N Mf R2867","filename_download":"CDE_CO2N_MFR2867.jpg","type":"image/jpeg","storage":"local"}	{"title":"Cde C O2 N Mf R2867","filename_download":"CDE_CO2N_MFR2867.jpg","type":"image/jpeg","storage":"local"}	\N	\N
 333	367	directus_files	a22a9ec3-84c9-4b95-9a00-7d9f62eaf1a6	{"title":"Ok Bnn Mf R5706","filename_download":"OK_BNN_MFR5706.jpg","type":"image/jpeg","storage":"local"}	{"title":"Ok Bnn Mf R5706","filename_download":"OK_BNN_MFR5706.jpg","type":"image/jpeg","storage":"local"}	\N	\N
@@ -3370,6 +3485,7 @@ COPY public.directus_revisions (id, activity, collection, item, data, delta, par
 304	337	directus_fields	75	{"sort":6,"interface":"translations","special":["translations"],"options":{"languageField":"code","defaultLanguage":"de"},"collection":"CustomSections","field":"translations"}	{"sort":6,"interface":"translations","special":["translations"],"options":{"languageField":"code","defaultLanguage":"de"},"collection":"CustomSections","field":"translations"}	\N	\N
 308	341	directus_fields	78	{"sort":3,"hidden":true,"collection":"CustomSections_translations","field":"languages_code"}	{"sort":3,"hidden":true,"collection":"CustomSections_translations","field":"languages_code"}	\N	\N
 310	343	directus_fields	80	{"sort":5,"interface":"input-rich-text-html","special":null,"collection":"CustomSections_translations","field":"description"}	{"sort":5,"interface":"input-rich-text-html","special":null,"collection":"CustomSections_translations","field":"description"}	\N	\N
+703	795	directus_collections	home	{"singleton":true,"collection":"home"}	{"singleton":true,"collection":"home"}	\N	\N
 318	351	directus_fields	84	{"sort":6,"interface":"input","special":null,"collection":"CustomSections_translations","field":"linkText"}	{"sort":6,"interface":"input","special":null,"collection":"CustomSections_translations","field":"linkText"}	\N	\N
 325	358	directus_permissions	50	{"role":null,"collection":"CustomSections","action":"read","fields":["*"],"permissions":{},"validation":{}}	{"role":null,"collection":"CustomSections","action":"read","fields":["*"],"permissions":{},"validation":{}}	\N	\N
 326	359	directus_permissions	51	{"role":null,"collection":"CustomSections_translations","action":"read","fields":["*"],"permissions":{},"validation":{}}	{"role":null,"collection":"CustomSections_translations","action":"read","fields":["*"],"permissions":{},"validation":{}}	\N	\N
@@ -3500,6 +3616,7 @@ COPY public.directus_revisions (id, activity, collection, item, data, delta, par
 455	529	directus_files	be7798e7-4a82-476d-9337-efb46d483803	{"title":"Ok Bnn Mf R5703","filename_download":"OK_BNN_MFR5703.jpg","type":"image/jpeg","storage":"local"}	{"title":"Ok Bnn Mf R5703","filename_download":"OK_BNN_MFR5703.jpg","type":"image/jpeg","storage":"local"}	\N	\N
 459	533	directus_files	979419ac-8085-42df-a425-af8c952f7840	{"title":"Ok Bnn Mf R5724","filename_download":"OK_BNN_MFR5724.jpg","type":"image/jpeg","storage":"local"}	{"title":"Ok Bnn Mf R5724","filename_download":"OK_BNN_MFR5724.jpg","type":"image/jpeg","storage":"local"}	\N	\N
 482	556	directus_fields	86	{"sort":1,"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"DynamicCityForm"}	{"sort":1,"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"DynamicCityForm"}	\N	\N
+704	796	directus_fields	156	{"sort":2,"interface":"translations","special":["translations"],"collection":"home","field":"translations"}	{"sort":2,"interface":"translations","special":["translations"],"collection":"home","field":"translations"}	\N	\N
 483	557	directus_fields	87	{"sort":2,"width":"full","options":{"choices":[{"text":"$t:published","value":"published"},{"text":"$t:draft","value":"draft"},{"text":"$t:archived","value":"archived"}]},"interface":"select-dropdown","display":"labels","display_options":{"showAsDot":true,"choices":[{"text":"$t:published","value":"published","foreground":"#FFFFFF","background":"var(--theme--primary)"},{"text":"$t:draft","value":"draft","foreground":"#18222F","background":"#D3DAE4"},{"text":"$t:archived","value":"archived","foreground":"#FFFFFF","background":"var(--theme--warning)"}]},"field":"status","collection":"DynamicCityForm"}	{"sort":2,"width":"full","options":{"choices":[{"text":"$t:published","value":"published"},{"text":"$t:draft","value":"draft"},{"text":"$t:archived","value":"archived"}]},"interface":"select-dropdown","display":"labels","display_options":{"showAsDot":true,"choices":[{"text":"$t:published","value":"published","foreground":"#FFFFFF","background":"var(--theme--primary)"},{"text":"$t:draft","value":"draft","foreground":"#18222F","background":"#D3DAE4"},{"text":"$t:archived","value":"archived","foreground":"#FFFFFF","background":"var(--theme--warning)"}]},"field":"status","collection":"DynamicCityForm"}	\N	\N
 484	558	directus_fields	88	{"sort":3,"interface":"input","hidden":true,"field":"sort","collection":"DynamicCityForm"}	{"sort":3,"interface":"input","hidden":true,"field":"sort","collection":"DynamicCityForm"}	\N	\N
 485	559	directus_fields	89	{"sort":4,"special":["date-created"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_created","collection":"DynamicCityForm"}	{"sort":4,"special":["date-created"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_created","collection":"DynamicCityForm"}	\N	\N
@@ -3531,6 +3648,10 @@ COPY public.directus_revisions (id, activity, collection, item, data, delta, par
 457	531	directus_files	c0ca15c3-237b-4903-8bdb-bb26785bb930	{"title":"Ok Bnn Mf R5735","filename_download":"OK_BNN_MFR5735.jpg","type":"image/jpeg","storage":"local"}	{"title":"Ok Bnn Mf R5735","filename_download":"OK_BNN_MFR5735.jpg","type":"image/jpeg","storage":"local"}	\N	\N
 461	535	directus_files	c64a680d-6535-47c6-a527-0808229d2fcf	{"title":"Cde C O2 N Mf R2853","filename_download":"CDE_CO2N_MFR2853.jpg","type":"image/jpeg","storage":"local"}	{"title":"Cde C O2 N Mf R2853","filename_download":"CDE_CO2N_MFR2853.jpg","type":"image/jpeg","storage":"local"}	\N	\N
 489	563	directus_fields	91	{"sort":1,"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"CityFormFields"}	{"sort":1,"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"CityFormFields"}	\N	\N
+682	766	directus_operations	4a75c41a-1b24-48bc-b4d9-9f4f39bfa9e1	{"id":"4a75c41a-1b24-48bc-b4d9-9f4f39bfa9e1","name":"Send Email","key":"mail_vy7n5","type":"log","position_x":19,"position_y":1,"options":{"message":"{{$trigger.body}}"},"resolve":null,"reject":null,"flow":"fdcaf62f-a842-492d-9e73-c719f558a149","date_created":"2024-02-03T17:38:40.394Z","user_created":"db513aee-cd3a-47a9-95e5-a98f1cc92d13"}	{"name":"Send Email","key":"mail_vy7n5","type":"log","options":{"message":"{{$trigger.body}}"},"flow":"fdcaf62f-a842-492d-9e73-c719f558a149"}	683	\N
+705	797	directus_fields	157	{"sort":1,"hidden":true,"field":"id","collection":"home_translations"}	{"sort":1,"hidden":true,"field":"id","collection":"home_translations"}	\N	\N
+706	798	directus_collections	home_translations	{"hidden":true,"icon":"import_export","collection":"home_translations"}	{"hidden":true,"icon":"import_export","collection":"home_translations"}	\N	\N
+707	799	directus_fields	158	{"sort":2,"hidden":true,"collection":"home_translations","field":"home_id"}	{"sort":2,"hidden":true,"collection":"home_translations","field":"home_id"}	\N	\N
 490	564	directus_fields	92	{"sort":2,"width":"full","options":{"choices":[{"text":"$t:published","value":"published"},{"text":"$t:draft","value":"draft"},{"text":"$t:archived","value":"archived"}]},"interface":"select-dropdown","display":"labels","display_options":{"showAsDot":true,"choices":[{"text":"$t:published","value":"published","foreground":"#FFFFFF","background":"var(--theme--primary)"},{"text":"$t:draft","value":"draft","foreground":"#18222F","background":"#D3DAE4"},{"text":"$t:archived","value":"archived","foreground":"#FFFFFF","background":"var(--theme--warning)"}]},"field":"status","collection":"CityFormFields"}	{"sort":2,"width":"full","options":{"choices":[{"text":"$t:published","value":"published"},{"text":"$t:draft","value":"draft"},{"text":"$t:archived","value":"archived"}]},"interface":"select-dropdown","display":"labels","display_options":{"showAsDot":true,"choices":[{"text":"$t:published","value":"published","foreground":"#FFFFFF","background":"var(--theme--primary)"},{"text":"$t:draft","value":"draft","foreground":"#18222F","background":"#D3DAE4"},{"text":"$t:archived","value":"archived","foreground":"#FFFFFF","background":"var(--theme--warning)"}]},"field":"status","collection":"CityFormFields"}	\N	\N
 491	565	directus_fields	93	{"sort":3,"interface":"input","hidden":true,"field":"sort","collection":"CityFormFields"}	{"sort":3,"interface":"input","hidden":true,"field":"sort","collection":"CityFormFields"}	\N	\N
 492	566	directus_fields	94	{"sort":4,"special":["date-created"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_created","collection":"CityFormFields"}	{"sort":4,"special":["date-created"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_created","collection":"CityFormFields"}	\N	\N
@@ -3563,6 +3684,7 @@ COPY public.directus_revisions (id, activity, collection, item, data, delta, par
 556	638	directus_fields	139	{"sort":1,"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"FormFields"}	{"sort":1,"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"FormFields"}	\N	\N
 557	639	directus_collections	FormFields	{"singleton":false,"collection":"FormFields"}	{"singleton":false,"collection":"FormFields"}	\N	\N
 589	671	directus_fields	150	{"sort":9,"interface":"select-dropdown-m2o","special":["m2o"],"options":{"template":"{{translations.title}}"},"collection":"EmailForm","field":"emailForm"}	{"sort":9,"interface":"select-dropdown-m2o","special":["m2o"],"options":{"template":"{{translations.title}}"},"collection":"EmailForm","field":"emailForm"}	\N	\N
+708	800	directus_fields	159	{"sort":3,"hidden":true,"collection":"home_translations","field":"languages_code"}	{"sort":3,"hidden":true,"collection":"home_translations","field":"languages_code"}	\N	\N
 590	672	directus_fields	151	{"sort":9,"interface":"select-dropdown-m2o","special":["m2o"],"required":true,"options":{"template":"{{translations.name}}"},"collection":"EmailForm","field":"city"}	{"sort":9,"interface":"select-dropdown-m2o","special":["m2o"],"required":true,"options":{"template":"{{translations.name}}"},"collection":"EmailForm","field":"city"}	\N	\N
 599	681	directus_permissions	57	{"role":null,"collection":"EmailForm","action":"read","fields":["*"],"permissions":{},"validation":{}}	{"role":null,"collection":"EmailForm","action":"read","fields":["*"],"permissions":{},"validation":{}}	\N	\N
 600	682	directus_permissions	58	{"role":null,"collection":"EmailForm_FormFields","action":"read","fields":["*"],"permissions":{},"validation":{}}	{"role":null,"collection":"EmailForm_FormFields","action":"read","fields":["*"],"permissions":{},"validation":{}}	\N	\N
@@ -3618,6 +3740,7 @@ COPY public.directus_revisions (id, activity, collection, item, data, delta, par
 568	650	directus_fields	148	{"sort":3,"hidden":true,"collection":"EmailForm_FormFields_translations","field":"languages_code"}	{"sort":3,"hidden":true,"collection":"EmailForm_FormFields_translations","field":"languages_code"}	\N	\N
 594	676	directus_fields	153	{"sort":9,"interface":"select-dropdown-m2o","special":["m2o"],"required":true,"collection":"EmailForm","field":"city"}	{"sort":9,"interface":"select-dropdown-m2o","special":["m2o"],"required":true,"collection":"EmailForm","field":"city"}	\N	\N
 595	677	directus_fields	154	{"sort":12,"interface":"list-o2m","special":["o2m"],"collection":"city","field":"emailForm"}	{"sort":12,"interface":"list-o2m","special":["o2m"],"collection":"city","field":"emailForm"}	\N	\N
+709	801	directus_fields	160	{"sort":4,"interface":"input","special":null,"collection":"home_translations","field":"titel"}	{"sort":4,"interface":"input","special":null,"collection":"home_translations","field":"titel"}	\N	\N
 596	678	directus_fields	154	{"id":154,"collection":"city","field":"emailForm","special":["o2m"],"interface":"list-o2m","options":null,"display":"related-values","display_options":{"template":"{{translations.title}}"},"readonly":false,"hidden":false,"sort":12,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"city","field":"emailForm","special":["o2m"],"interface":"list-o2m","options":null,"display":"related-values","display_options":{"template":"{{translations.title}}"},"readonly":false,"hidden":false,"sort":12,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	\N	\N
 611	693	directus_flows	fdcaf62f-a842-492d-9e73-c719f558a149	{"id":"fdcaf62f-a842-492d-9e73-c719f558a149","name":"Send Email","icon":"alternate_email","color":null,"description":"Sends an email","status":"active","trigger":"webhook","accountability":"all","options":{"method":"POST"},"operation":null,"date_created":"2024-02-03T17:30:42.718Z","user_created":"db513aee-cd3a-47a9-95e5-a98f1cc92d13","operations":[]}	{"name":"Send Email","icon":"alternate_email","color":null,"description":"Sends an email","status":"active","trigger":"webhook","accountability":"all","options":{"method":"POST"}}	\N	\N
 613	695	directus_flows	fdcaf62f-a842-492d-9e73-c719f558a149	{"id":"fdcaf62f-a842-492d-9e73-c719f558a149","name":"Send Email","icon":"alternate_email","color":null,"description":"Sends an email","status":"active","trigger":"webhook","accountability":"all","options":{"method":"POST"},"operation":"4a75c41a-1b24-48bc-b4d9-9f4f39bfa9e1","date_created":"2024-02-03T17:30:42.718Z","user_created":"db513aee-cd3a-47a9-95e5-a98f1cc92d13","operations":["4a75c41a-1b24-48bc-b4d9-9f4f39bfa9e1"]}	{"operation":"4a75c41a-1b24-48bc-b4d9-9f4f39bfa9e1"}	\N	\N
@@ -3632,6 +3755,7 @@ COPY public.directus_revisions (id, activity, collection, item, data, delta, par
 566	648	directus_collections	EmailForm_FormFields_translations	{"hidden":true,"icon":"import_export","collection":"EmailForm_FormFields_translations"}	{"hidden":true,"icon":"import_export","collection":"EmailForm_FormFields_translations"}	\N	\N
 567	649	directus_fields	147	{"sort":2,"hidden":true,"collection":"EmailForm_FormFields_translations","field":"EmailForm_FormFields_id"}	{"sort":2,"hidden":true,"collection":"EmailForm_FormFields_translations","field":"EmailForm_FormFields_id"}	\N	\N
 569	651	directus_fields	149	{"sort":4,"interface":"input","special":null,"required":true,"collection":"EmailForm_FormFields_translations","field":"label"}	{"sort":4,"interface":"input","special":null,"required":true,"collection":"EmailForm_FormFields_translations","field":"label"}	\N	\N
+710	802	directus_fields	161	{"sort":5,"interface":"input-multiline","special":null,"collection":"home_translations","field":"description"}	{"sort":5,"interface":"input-multiline","special":null,"collection":"home_translations","field":"description"}	\N	\N
 598	680	city	2	{"id":2,"status":"draft","sort":null,"date_updated":"2024-02-03T15:28:22.208Z","translations":[3,4],"gallery":[20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38],"supportlinks":[1,2,3,4,5,6,7,8],"events":[1,4,5],"customSections":[1],"emailForm":[1]}	{"date_updated":"2024-02-03T15:28:22.208Z"}	\N	\N
 597	679	EmailForm	1	{"id":1,"status":"draft","sort":null,"date_created":"2024-02-03T14:57:39.131Z","date_updated":"2024-02-03T15:28:22.215Z","emailTo":"gannonline90@gmail.com","city":2,"fields":[1,2],"translations":[1,2]}	{"city":"2","date_updated":"2024-02-03T15:28:22.215Z"}	598	\N
 614	696	directus_flows	fdcaf62f-a842-492d-9e73-c719f558a149	{"steps":[{"operation":"4a75c41a-1b24-48bc-b4d9-9f4f39bfa9e1","key":"mail_vy7n5","status":"reject","options":{"to":"undefined","subject":"undefined","data":{"url":"example.com"},"body":"undefined"}}],"data":{"$trigger":{"path":"/trigger/fdcaf62f-a842-492d-9e73-c719f558a149","query":{},"body":{"values":{"Flaggentyp":"awdawd","Betrag":"2","Next Day Delivery?":"on"},"emailTo":"gannonline90@gmail.com","subject":"neue Bestellung"},"method":"POST","headers":{"host":"localhost:8055","connection":"keep-alive","content-length":"136","pragma":"no-cache","cache-control":"no-cache","sec-ch-ua":"\\"Not A(Brand\\";v=\\"99\\", \\"Google Chrome\\";v=\\"121\\", \\"Chromium\\";v=\\"121\\"","sec-ch-ua-platform":"\\"Linux\\"","sec-ch-ua-mobile":"?0","user-agent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36","content-type":"application/json","accept":"*/*","origin":"http://localhost:1234","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:1234/","accept-encoding":"gzip, deflate, br","accept-language":""}},"$last":{"name":"Error","message":"write EPIPE"},"$accountability":{"user":null,"role":null,"admin":false,"app":false,"ip":"172.21.0.1","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36","origin":"http://localhost:1234"},"$env":{},"mail_vy7n5":{"name":"Error","message":"write EPIPE"}}}	\N	\N	\N
@@ -3672,7 +3796,6 @@ COPY public.directus_revisions (id, activity, collection, item, data, delta, par
 675	759	directus_flows	fdcaf62f-a842-492d-9e73-c719f558a149	{"steps":[{"operation":"4a75c41a-1b24-48bc-b4d9-9f4f39bfa9e1","key":"mail_vy7n5","status":"resolve","options":{"message":"undefined"}}],"data":{"$trigger":{"path":"/trigger/fdcaf62f-a842-492d-9e73-c719f558a149","query":{},"body":{"values":{"Flaggentyp":"awdawd","Betrag":"2","Next Day Delivery?":"on"},"emailTo":"gannonline90@gmail.com","subject":"neue Bestellung"},"method":"POST","headers":{"host":"localhost:8055","connection":"keep-alive","content-length":"136","pragma":"no-cache","cache-control":"no-cache","sec-ch-ua":"\\"Not A(Brand\\";v=\\"99\\", \\"Google Chrome\\";v=\\"121\\", \\"Chromium\\";v=\\"121\\"","sec-ch-ua-platform":"\\"Linux\\"","sec-ch-ua-mobile":"?0","user-agent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36","content-type":"application/json","accept":"*/*","origin":"http://localhost:1234","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:1234/","accept-encoding":"gzip, deflate, br","accept-language":""}},"$last":null,"$accountability":{"user":null,"role":null,"admin":false,"app":false,"ip":"172.21.0.1","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36","origin":"http://localhost:1234"},"$env":{},"mail_vy7n5":null}}	\N	\N	\N
 676	760	directus_flows	fdcaf62f-a842-492d-9e73-c719f558a149	{"steps":[{"operation":"4a75c41a-1b24-48bc-b4d9-9f4f39bfa9e1","key":"mail_vy7n5","status":"resolve","options":{"message":"undefined"}}],"data":{"$trigger":{"path":"/trigger/fdcaf62f-a842-492d-9e73-c719f558a149","query":{},"body":{"values":{"Flaggentyp":"awdawd","Betrag":"2","Next Day Delivery?":"on"},"emailTo":"gannonline90@gmail.com","subject":"neue Bestellung"},"method":"POST","headers":{"host":"localhost:8055","connection":"keep-alive","content-length":"136","pragma":"no-cache","cache-control":"no-cache","sec-ch-ua":"\\"Not A(Brand\\";v=\\"99\\", \\"Google Chrome\\";v=\\"121\\", \\"Chromium\\";v=\\"121\\"","sec-ch-ua-platform":"\\"Linux\\"","sec-ch-ua-mobile":"?0","user-agent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36","content-type":"application/json","accept":"*/*","origin":"http://localhost:1234","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:1234/","accept-encoding":"gzip, deflate, br","accept-language":""}},"$last":null,"$accountability":{"user":null,"role":null,"admin":false,"app":false,"ip":"172.21.0.1","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36","origin":"http://localhost:1234"},"$env":{},"mail_vy7n5":null}}	\N	\N	\N
 683	767	directus_flows	fdcaf62f-a842-492d-9e73-c719f558a149	{"id":"fdcaf62f-a842-492d-9e73-c719f558a149","name":"Send Email","icon":"alternate_email","color":null,"description":"Sends an email","status":"active","trigger":"webhook","accountability":"all","options":{"method":"POST"},"operation":"4a75c41a-1b24-48bc-b4d9-9f4f39bfa9e1","date_created":"2024-02-03T17:30:42.718Z","user_created":"db513aee-cd3a-47a9-95e5-a98f1cc92d13","operations":["4a75c41a-1b24-48bc-b4d9-9f4f39bfa9e1"]}	{"operation":"4a75c41a-1b24-48bc-b4d9-9f4f39bfa9e1"}	\N	\N
-682	766	directus_operations	4a75c41a-1b24-48bc-b4d9-9f4f39bfa9e1	{"id":"4a75c41a-1b24-48bc-b4d9-9f4f39bfa9e1","name":"Send Email","key":"mail_vy7n5","type":"log","position_x":19,"position_y":1,"options":{"message":"{{$trigger.body}}"},"resolve":null,"reject":null,"flow":"fdcaf62f-a842-492d-9e73-c719f558a149","date_created":"2024-02-03T17:38:40.394Z","user_created":"db513aee-cd3a-47a9-95e5-a98f1cc92d13"}	{"name":"Send Email","key":"mail_vy7n5","type":"log","options":{"message":"{{$trigger.body}}"},"flow":"fdcaf62f-a842-492d-9e73-c719f558a149"}	683	\N
 679	763	directus_flows	fdcaf62f-a842-492d-9e73-c719f558a149	{"steps":[{"operation":"4a75c41a-1b24-48bc-b4d9-9f4f39bfa9e1","key":"mail_vy7n5","status":"resolve","options":{"message":"undefined"}}],"data":{"$trigger":{"path":"/trigger/fdcaf62f-a842-492d-9e73-c719f558a149","query":{},"body":{"values":{"Flaggentyp":"awdawd","Betrag":"2","Next Day Delivery?":"on"},"emailTo":"gannonline90@gmail.com","subject":"neue Bestellung"},"method":"POST","headers":{"host":"localhost:8055","connection":"keep-alive","content-length":"136","pragma":"no-cache","cache-control":"no-cache","sec-ch-ua":"\\"Not A(Brand\\";v=\\"99\\", \\"Google Chrome\\";v=\\"121\\", \\"Chromium\\";v=\\"121\\"","sec-ch-ua-platform":"\\"Linux\\"","sec-ch-ua-mobile":"?0","user-agent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36","content-type":"application/json","accept":"*/*","origin":"http://localhost:1234","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:1234/","accept-encoding":"gzip, deflate, br","accept-language":""}},"$last":null,"$accountability":{"user":null,"role":null,"admin":false,"app":false,"ip":"172.21.0.1","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36","origin":"http://localhost:1234"},"$env":{},"mail_vy7n5":null}}	\N	\N	\N
 680	764	directus_flows	fdcaf62f-a842-492d-9e73-c719f558a149	{"steps":[{"operation":"4a75c41a-1b24-48bc-b4d9-9f4f39bfa9e1","key":"mail_vy7n5","status":"resolve","options":{"message":"undefined"}}],"data":{"$trigger":{"path":"/trigger/fdcaf62f-a842-492d-9e73-c719f558a149","query":{},"body":{"values":{"Flaggentyp":"awdawd","Betrag":"2","Next Day Delivery?":"on"},"emailTo":"gannonline90@gmail.com","subject":"neue Bestellung"},"method":"POST","headers":{"host":"localhost:8055","connection":"keep-alive","content-length":"136","pragma":"no-cache","cache-control":"no-cache","sec-ch-ua":"\\"Not A(Brand\\";v=\\"99\\", \\"Google Chrome\\";v=\\"121\\", \\"Chromium\\";v=\\"121\\"","sec-ch-ua-platform":"\\"Linux\\"","sec-ch-ua-mobile":"?0","user-agent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36","content-type":"application/json","accept":"*/*","origin":"http://localhost:1234","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:1234/","accept-encoding":"gzip, deflate, br","accept-language":""}},"$last":null,"$accountability":{"user":null,"role":null,"admin":false,"app":false,"ip":"172.21.0.1","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36","origin":"http://localhost:1234"},"$env":{},"mail_vy7n5":null}}	\N	\N	\N
 681	765	directus_flows	fdcaf62f-a842-492d-9e73-c719f558a149	{"steps":[{"operation":"4a75c41a-1b24-48bc-b4d9-9f4f39bfa9e1","key":"mail_vy7n5","status":"resolve","options":{"message":"undefined"}}],"data":{"$trigger":{"path":"/trigger/fdcaf62f-a842-492d-9e73-c719f558a149","query":{},"body":{"values":{"Flaggentyp":"awdawd","Betrag":"2","Next Day Delivery?":"on"},"emailTo":"gannonline90@gmail.com","subject":"neue Bestellung"},"method":"POST","headers":{"host":"localhost:8055","connection":"keep-alive","content-length":"136","pragma":"no-cache","cache-control":"no-cache","sec-ch-ua":"\\"Not A(Brand\\";v=\\"99\\", \\"Google Chrome\\";v=\\"121\\", \\"Chromium\\";v=\\"121\\"","sec-ch-ua-platform":"\\"Linux\\"","sec-ch-ua-mobile":"?0","user-agent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36","content-type":"application/json","accept":"*/*","origin":"http://localhost:1234","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:1234/","accept-encoding":"gzip, deflate, br","accept-language":""}},"$last":null,"$accountability":{"user":null,"role":null,"admin":false,"app":false,"ip":"172.21.0.1","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36","origin":"http://localhost:1234"},"$env":{},"mail_vy7n5":null}}	\N	\N	\N
@@ -3692,6 +3815,11 @@ COPY public.directus_revisions (id, activity, collection, item, data, delta, par
 698	788	directus_flows	fdcaf62f-a842-492d-9e73-c719f558a149	{"steps":[{"operation":"4a75c41a-1b24-48bc-b4d9-9f4f39bfa9e1","key":"mail_vy7n5","status":"reject","options":{"subject":"neue Bestellung","body":{"Flaggentyp":"Hey look! An email from our app. This is john btw","Betrag":"9001","Next Day Delivery?":"on"},"to":"mirjam.thomet@gmail.com"}}],"data":{"$trigger":{"path":"/trigger/fdcaf62f-a842-492d-9e73-c719f558a149","query":{},"body":{"values":{"Flaggentyp":"Hey look! An email from our app. This is john btw","Betrag":"9001","Next Day Delivery?":"on"},"emailTo":"mirjam.thomet@gmail.com","subject":"neue Bestellung"},"method":"POST","headers":{"host":"localhost:8055","connection":"keep-alive","content-length":"183","pragma":"no-cache","cache-control":"no-cache","sec-ch-ua":"\\"Not A(Brand\\";v=\\"99\\", \\"Google Chrome\\";v=\\"121\\", \\"Chromium\\";v=\\"121\\"","sec-ch-ua-platform":"\\"Linux\\"","sec-ch-ua-mobile":"?0","user-agent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36","content-type":"application/json","accept":"*/*","origin":"http://localhost:1234","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:1234/","accept-encoding":"gzip, deflate, br","accept-language":""}},"$last":{"name":"Error","message":"Forbidden"},"$accountability":{"user":null,"role":null,"admin":false,"app":false,"ip":"172.21.0.1","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36","origin":"http://localhost:1234"},"$env":{},"mail_vy7n5":{"name":"Error","message":"Forbidden"}}}	\N	\N	\N
 699	790	directus_flows	fdcaf62f-a842-492d-9e73-c719f558a149	{"steps":[{"operation":"4a75c41a-1b24-48bc-b4d9-9f4f39bfa9e1","key":"mail_vy7n5","status":"resolve","options":{"subject":"neue Bestellung","body":{"Flaggentyp":"Hey look! An email from our app. This is john btw","Betrag":"9001","Next Day Delivery?":"on"},"to":"mirjam.thomet@gmail.com"}}],"data":{"$trigger":{"path":"/trigger/fdcaf62f-a842-492d-9e73-c719f558a149","query":{},"body":{"values":{"Flaggentyp":"Hey look! An email from our app. This is john btw","Betrag":"9001","Next Day Delivery?":"on"},"emailTo":"mirjam.thomet@gmail.com","subject":"neue Bestellung"},"method":"POST","headers":{"host":"localhost:8055","connection":"keep-alive","content-length":"183","pragma":"no-cache","cache-control":"no-cache","sec-ch-ua":"\\"Not A(Brand\\";v=\\"99\\", \\"Google Chrome\\";v=\\"121\\", \\"Chromium\\";v=\\"121\\"","sec-ch-ua-platform":"\\"Linux\\"","sec-ch-ua-mobile":"?0","user-agent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36","content-type":"application/json","accept":"*/*","origin":"http://localhost:1234","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:1234/","accept-encoding":"gzip, deflate, br","accept-language":""}},"$last":null,"$accountability":{"user":null,"role":null,"admin":false,"app":false,"ip":"172.21.0.1","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36","origin":"http://localhost:1234"},"$env":{},"mail_vy7n5":null}}	\N	\N	\N
 701	792	directus_flows	fdcaf62f-a842-492d-9e73-c719f558a149	{"steps":[{"operation":"4a75c41a-1b24-48bc-b4d9-9f4f39bfa9e1","key":"mail_vy7n5","status":"resolve","options":{"subject":"neue Bestellung","body":{"Flaggentyp":"adawdawd","Betrag":"5","Next Day Delivery?":"on"},"to":"gannonline90@gmail.com"}}],"data":{"$trigger":{"path":"/trigger/fdcaf62f-a842-492d-9e73-c719f558a149","query":{},"body":{"values":{"Flaggentyp":"adawdawd","Betrag":"5","Next Day Delivery?":"on"},"emailTo":"gannonline90@gmail.com","subject":"neue Bestellung"},"method":"POST","headers":{"host":"localhost:8055","connection":"keep-alive","content-length":"138","pragma":"no-cache","cache-control":"no-cache","sec-ch-ua":"\\"Not A(Brand\\";v=\\"99\\", \\"Google Chrome\\";v=\\"121\\", \\"Chromium\\";v=\\"121\\"","sec-ch-ua-platform":"\\"Linux\\"","sec-ch-ua-mobile":"?0","user-agent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36","content-type":"application/json","accept":"*/*","origin":"http://localhost:1234","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:1234/","accept-encoding":"gzip, deflate, br","accept-language":""}},"$last":null,"$accountability":{"user":null,"role":null,"admin":false,"app":false,"ip":"172.21.0.1","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36","origin":"http://localhost:1234"},"$env":{},"mail_vy7n5":null}}	\N	\N	\N
+711	803	directus_fields	162	{"sort":6,"interface":"list","special":["cast-json"],"options":{"fields":[{"field":"title","name":"title","type":"string","meta":{"field":"title","type":"string","interface":"input"}},{"field":"description","name":"description","type":"text","meta":{"field":"description","type":"text","interface":"input-rich-text-html"}}]},"collection":"home_translations","field":"contentbox"}	{"sort":6,"interface":"list","special":["cast-json"],"options":{"fields":[{"field":"title","name":"title","type":"string","meta":{"field":"title","type":"string","interface":"input"}},{"field":"description","name":"description","type":"text","meta":{"field":"description","type":"text","interface":"input-rich-text-html"}}]},"collection":"home_translations","field":"contentbox"}	\N	\N
+712	804	directus_permissions	68	{"role":null,"collection":"home","action":"read","fields":["*"],"permissions":{},"validation":{}}	{"role":null,"collection":"home","action":"read","fields":["*"],"permissions":{},"validation":{}}	\N	\N
+713	805	directus_permissions	69	{"role":null,"collection":"home_translations","action":"read","fields":["*"],"permissions":{},"validation":{}}	{"role":null,"collection":"home_translations","action":"read","fields":["*"],"permissions":{},"validation":{}}	\N	\N
+715	807	home	1	{"translations":{"create":[{"titel":"Flüchtlingstag 2023 Beim Namen nennen – über 51 000 Opfer der Festung Europas","languages_code":{"code":"de"},"description":"Ein stilles Drama geht seit Jahren auf den Meeren und an den Grenzen Europas vor sich und schafft es nur gelegentlich in die Medien. Seit 1993 sind über 51 000 Kinder, Frauen und Männer gestorben. Oder müssen wir die Frage stellen, ob sie getötet wurden? Von einer immer härteren Politik der Länder Europas, die verhindert, dass diese Menschen legal in Europa einreisen können, um hier ein Asylgesuch zu stellen.\\n\\nSie müssen vor lebensgefährlichen Situationen fliehen und setzen ihr Leben aufs Spiel. Sie verharren in unwürdigen Flüchtlingslagern ohne angemessene Versorgung oder das Wissen, ob, wann und wie es weiter geht. Darüber sind wir entsetzt und fordern sichere Fluchtwege! Mit verschiedenen Aktionen und einem Mahnmal gedenken wir der Opfer und protestieren öffentlich gegen die unhaltbare Situation.","contentbox":[{"title":"Veranstaltungsorte","description":"<p>Die Aktion &laquo;Beim Namen nennen&raquo; findet statt in&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/basel\\" target=\\"_self\\">Basel</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/berlin\\" target=\\"_self\\">Berlin</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/bern\\" target=\\"_self\\">Bern</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/braunschweig\\" target=\\"_self\\">Braunschweig</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/chur\\" target=\\"_self\\">Chur</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/dortmund\\" target=\\"_self\\">Dortmund</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/essen\\" target=\\"_self\\">Essen</a></span>, Frankfurt,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/gen%C3%A8ve\\" target=\\"_self\\">Genf</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/kehl\\" target=\\"_self\\">Kehl</a></span>, Lausanne,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/luzern\\" target=\\"_self\\">Luzern</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/neuch%C3%A2tel\\" target=\\"_self\\">Neuch&acirc;tel</a></span>, Offenburg,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/st.-gallen\\" target=\\"_self\\">St.Gallen</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/thun\\" target=\\"_self\\">Thun</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/z%C3%BCrich\\" target=\\"_self\\">Z&uuml;rich&nbsp;</a></span>in<br class=\\"wixui-rich-text__text\\">Kooperation mit UNITED for Intercultural Action http://unitedagainstrefugeedeaths.eu</p>"},{"title":"Gedenk-Aktionen","description":"<p class=\\"font_8 wixui-rich-text__text\\"><span class=\\"wixui-rich-text__text\\">In den verschiedenen St&auml;dten fanden &ouml;ffentliche Lesungen der &laquo;List of Deaths&raquo; statt. Dazu wurden die Angaben jeder verstorbenen Person auf ein St&uuml;ck Stoff geschrieben und an einer Installation befestigt.</span></p>\\n<p class=\\"font_8 wixui-rich-text__text\\"><span class=\\"wixui-rich-text__text\\">So bauten wir gemeinsam im Gedenken an die Verstorbenen &ouml;ffentliche Mahnmale.</span></p>"},{"title":" Schirmherrschaft von „Beim Namen nennen“ in Deutschland","description":"<p class=\\"font_8 wixui-rich-text__text\\">Ratsvorsitzende der Ev. Kirche Deutschland und Präses der Ev. Kirche von Westfalen, Annette Kurschus</p>\\n<p class=\\"font_8 wixui-rich-text__text\\">Namen sind nicht Schall und Rauch. &bdquo;Teuflisch ist es, dass abertausende Menschen, die bei ihrer Flucht umkommen, namenlos bleiben. Sie werden an Grenzz&auml;unen get&ouml;tet und ertrinken im Mittelmeer. &hellip; Jeder Name, der gelesen wird, ist ein Protest gegen ihren bitteren Tod.&ldquo; &ndash; hei&szlig;t es im Gru&szlig;wort der Schirmherrin zur Aktion &bdquo;Beim Namen nennen&ldquo;: &nbsp; &nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.sanktreinoldi.de/fileadmin/Medienablage_Reinoldi/02_Allgemein/WFT/Grusswort_Beim_Namen_nennen.pdf\\" target=\\"_blank\\" rel=\\"noreferrer noopener\\">weiter zum Gru&szlig;wort</a></span></p>"}]}],"update":[],"delete":[]}}	{"translations":{"create":[{"titel":"Flüchtlingstag 2023 Beim Namen nennen – über 51 000 Opfer der Festung Europas","languages_code":{"code":"de"},"description":"Ein stilles Drama geht seit Jahren auf den Meeren und an den Grenzen Europas vor sich und schafft es nur gelegentlich in die Medien. Seit 1993 sind über 51 000 Kinder, Frauen und Männer gestorben. Oder müssen wir die Frage stellen, ob sie getötet wurden? Von einer immer härteren Politik der Länder Europas, die verhindert, dass diese Menschen legal in Europa einreisen können, um hier ein Asylgesuch zu stellen.\\n\\nSie müssen vor lebensgefährlichen Situationen fliehen und setzen ihr Leben aufs Spiel. Sie verharren in unwürdigen Flüchtlingslagern ohne angemessene Versorgung oder das Wissen, ob, wann und wie es weiter geht. Darüber sind wir entsetzt und fordern sichere Fluchtwege! Mit verschiedenen Aktionen und einem Mahnmal gedenken wir der Opfer und protestieren öffentlich gegen die unhaltbare Situation.","contentbox":[{"title":"Veranstaltungsorte","description":"<p>Die Aktion &laquo;Beim Namen nennen&raquo; findet statt in&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/basel\\" target=\\"_self\\">Basel</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/berlin\\" target=\\"_self\\">Berlin</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/bern\\" target=\\"_self\\">Bern</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/braunschweig\\" target=\\"_self\\">Braunschweig</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/chur\\" target=\\"_self\\">Chur</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/dortmund\\" target=\\"_self\\">Dortmund</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/essen\\" target=\\"_self\\">Essen</a></span>, Frankfurt,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/gen%C3%A8ve\\" target=\\"_self\\">Genf</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/kehl\\" target=\\"_self\\">Kehl</a></span>, Lausanne,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/luzern\\" target=\\"_self\\">Luzern</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/neuch%C3%A2tel\\" target=\\"_self\\">Neuch&acirc;tel</a></span>, Offenburg,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/st.-gallen\\" target=\\"_self\\">St.Gallen</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/thun\\" target=\\"_self\\">Thun</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/z%C3%BCrich\\" target=\\"_self\\">Z&uuml;rich&nbsp;</a></span>in<br class=\\"wixui-rich-text__text\\">Kooperation mit UNITED for Intercultural Action http://unitedagainstrefugeedeaths.eu</p>"},{"title":"Gedenk-Aktionen","description":"<p class=\\"font_8 wixui-rich-text__text\\"><span class=\\"wixui-rich-text__text\\">In den verschiedenen St&auml;dten fanden &ouml;ffentliche Lesungen der &laquo;List of Deaths&raquo; statt. Dazu wurden die Angaben jeder verstorbenen Person auf ein St&uuml;ck Stoff geschrieben und an einer Installation befestigt.</span></p>\\n<p class=\\"font_8 wixui-rich-text__text\\"><span class=\\"wixui-rich-text__text\\">So bauten wir gemeinsam im Gedenken an die Verstorbenen &ouml;ffentliche Mahnmale.</span></p>"},{"title":" Schirmherrschaft von „Beim Namen nennen“ in Deutschland","description":"<p class=\\"font_8 wixui-rich-text__text\\">Ratsvorsitzende der Ev. Kirche Deutschland und Präses der Ev. Kirche von Westfalen, Annette Kurschus</p>\\n<p class=\\"font_8 wixui-rich-text__text\\">Namen sind nicht Schall und Rauch. &bdquo;Teuflisch ist es, dass abertausende Menschen, die bei ihrer Flucht umkommen, namenlos bleiben. Sie werden an Grenzz&auml;unen get&ouml;tet und ertrinken im Mittelmeer. &hellip; Jeder Name, der gelesen wird, ist ein Protest gegen ihren bitteren Tod.&ldquo; &ndash; hei&szlig;t es im Gru&szlig;wort der Schirmherrin zur Aktion &bdquo;Beim Namen nennen&ldquo;: &nbsp; &nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.sanktreinoldi.de/fileadmin/Medienablage_Reinoldi/02_Allgemein/WFT/Grusswort_Beim_Namen_nennen.pdf\\" target=\\"_blank\\" rel=\\"noreferrer noopener\\">weiter zum Gru&szlig;wort</a></span></p>"}]}],"update":[],"delete":[]}}	\N	\N
+714	806	home_translations	1	{"titel":"Flüchtlingstag 2023 Beim Namen nennen – über 51 000 Opfer der Festung Europas","languages_code":{"code":"de"},"description":"Ein stilles Drama geht seit Jahren auf den Meeren und an den Grenzen Europas vor sich und schafft es nur gelegentlich in die Medien. Seit 1993 sind über 51 000 Kinder, Frauen und Männer gestorben. Oder müssen wir die Frage stellen, ob sie getötet wurden? Von einer immer härteren Politik der Länder Europas, die verhindert, dass diese Menschen legal in Europa einreisen können, um hier ein Asylgesuch zu stellen.\\n\\nSie müssen vor lebensgefährlichen Situationen fliehen und setzen ihr Leben aufs Spiel. Sie verharren in unwürdigen Flüchtlingslagern ohne angemessene Versorgung oder das Wissen, ob, wann und wie es weiter geht. Darüber sind wir entsetzt und fordern sichere Fluchtwege! Mit verschiedenen Aktionen und einem Mahnmal gedenken wir der Opfer und protestieren öffentlich gegen die unhaltbare Situation.","contentbox":[{"title":"Veranstaltungsorte","description":"<p>Die Aktion &laquo;Beim Namen nennen&raquo; findet statt in&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/basel\\" target=\\"_self\\">Basel</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/berlin\\" target=\\"_self\\">Berlin</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/bern\\" target=\\"_self\\">Bern</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/braunschweig\\" target=\\"_self\\">Braunschweig</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/chur\\" target=\\"_self\\">Chur</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/dortmund\\" target=\\"_self\\">Dortmund</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/essen\\" target=\\"_self\\">Essen</a></span>, Frankfurt,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/gen%C3%A8ve\\" target=\\"_self\\">Genf</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/kehl\\" target=\\"_self\\">Kehl</a></span>, Lausanne,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/luzern\\" target=\\"_self\\">Luzern</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/neuch%C3%A2tel\\" target=\\"_self\\">Neuch&acirc;tel</a></span>, Offenburg,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/st.-gallen\\" target=\\"_self\\">St.Gallen</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/thun\\" target=\\"_self\\">Thun</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/z%C3%BCrich\\" target=\\"_self\\">Z&uuml;rich&nbsp;</a></span>in<br class=\\"wixui-rich-text__text\\">Kooperation mit UNITED for Intercultural Action http://unitedagainstrefugeedeaths.eu</p>"},{"title":"Gedenk-Aktionen","description":"<p class=\\"font_8 wixui-rich-text__text\\"><span class=\\"wixui-rich-text__text\\">In den verschiedenen St&auml;dten fanden &ouml;ffentliche Lesungen der &laquo;List of Deaths&raquo; statt. Dazu wurden die Angaben jeder verstorbenen Person auf ein St&uuml;ck Stoff geschrieben und an einer Installation befestigt.</span></p>\\n<p class=\\"font_8 wixui-rich-text__text\\"><span class=\\"wixui-rich-text__text\\">So bauten wir gemeinsam im Gedenken an die Verstorbenen &ouml;ffentliche Mahnmale.</span></p>"},{"title":" Schirmherrschaft von „Beim Namen nennen“ in Deutschland","description":"<p class=\\"font_8 wixui-rich-text__text\\">Ratsvorsitzende der Ev. Kirche Deutschland und Präses der Ev. Kirche von Westfalen, Annette Kurschus</p>\\n<p class=\\"font_8 wixui-rich-text__text\\">Namen sind nicht Schall und Rauch. &bdquo;Teuflisch ist es, dass abertausende Menschen, die bei ihrer Flucht umkommen, namenlos bleiben. Sie werden an Grenzz&auml;unen get&ouml;tet und ertrinken im Mittelmeer. &hellip; Jeder Name, der gelesen wird, ist ein Protest gegen ihren bitteren Tod.&ldquo; &ndash; hei&szlig;t es im Gru&szlig;wort der Schirmherrin zur Aktion &bdquo;Beim Namen nennen&ldquo;: &nbsp; &nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.sanktreinoldi.de/fileadmin/Medienablage_Reinoldi/02_Allgemein/WFT/Grusswort_Beim_Namen_nennen.pdf\\" target=\\"_blank\\" rel=\\"noreferrer noopener\\">weiter zum Gru&szlig;wort</a></span></p>"}],"home_id":1}	{"titel":"Flüchtlingstag 2023 Beim Namen nennen – über 51 000 Opfer der Festung Europas","languages_code":{"code":"de"},"description":"Ein stilles Drama geht seit Jahren auf den Meeren und an den Grenzen Europas vor sich und schafft es nur gelegentlich in die Medien. Seit 1993 sind über 51 000 Kinder, Frauen und Männer gestorben. Oder müssen wir die Frage stellen, ob sie getötet wurden? Von einer immer härteren Politik der Länder Europas, die verhindert, dass diese Menschen legal in Europa einreisen können, um hier ein Asylgesuch zu stellen.\\n\\nSie müssen vor lebensgefährlichen Situationen fliehen und setzen ihr Leben aufs Spiel. Sie verharren in unwürdigen Flüchtlingslagern ohne angemessene Versorgung oder das Wissen, ob, wann und wie es weiter geht. Darüber sind wir entsetzt und fordern sichere Fluchtwege! Mit verschiedenen Aktionen und einem Mahnmal gedenken wir der Opfer und protestieren öffentlich gegen die unhaltbare Situation.","contentbox":[{"title":"Veranstaltungsorte","description":"<p>Die Aktion &laquo;Beim Namen nennen&raquo; findet statt in&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/basel\\" target=\\"_self\\">Basel</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/berlin\\" target=\\"_self\\">Berlin</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/bern\\" target=\\"_self\\">Bern</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/braunschweig\\" target=\\"_self\\">Braunschweig</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/chur\\" target=\\"_self\\">Chur</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/dortmund\\" target=\\"_self\\">Dortmund</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/essen\\" target=\\"_self\\">Essen</a></span>, Frankfurt,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/gen%C3%A8ve\\" target=\\"_self\\">Genf</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/kehl\\" target=\\"_self\\">Kehl</a></span>, Lausanne,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/luzern\\" target=\\"_self\\">Luzern</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/neuch%C3%A2tel\\" target=\\"_self\\">Neuch&acirc;tel</a></span>, Offenburg,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/st.-gallen\\" target=\\"_self\\">St.Gallen</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/thun\\" target=\\"_self\\">Thun</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/z%C3%BCrich\\" target=\\"_self\\">Z&uuml;rich&nbsp;</a></span>in<br class=\\"wixui-rich-text__text\\">Kooperation mit UNITED for Intercultural Action http://unitedagainstrefugeedeaths.eu</p>"},{"title":"Gedenk-Aktionen","description":"<p class=\\"font_8 wixui-rich-text__text\\"><span class=\\"wixui-rich-text__text\\">In den verschiedenen St&auml;dten fanden &ouml;ffentliche Lesungen der &laquo;List of Deaths&raquo; statt. Dazu wurden die Angaben jeder verstorbenen Person auf ein St&uuml;ck Stoff geschrieben und an einer Installation befestigt.</span></p>\\n<p class=\\"font_8 wixui-rich-text__text\\"><span class=\\"wixui-rich-text__text\\">So bauten wir gemeinsam im Gedenken an die Verstorbenen &ouml;ffentliche Mahnmale.</span></p>"},{"title":" Schirmherrschaft von „Beim Namen nennen“ in Deutschland","description":"<p class=\\"font_8 wixui-rich-text__text\\">Ratsvorsitzende der Ev. Kirche Deutschland und Präses der Ev. Kirche von Westfalen, Annette Kurschus</p>\\n<p class=\\"font_8 wixui-rich-text__text\\">Namen sind nicht Schall und Rauch. &bdquo;Teuflisch ist es, dass abertausende Menschen, die bei ihrer Flucht umkommen, namenlos bleiben. Sie werden an Grenzz&auml;unen get&ouml;tet und ertrinken im Mittelmeer. &hellip; Jeder Name, der gelesen wird, ist ein Protest gegen ihren bitteren Tod.&ldquo; &ndash; hei&szlig;t es im Gru&szlig;wort der Schirmherrin zur Aktion &bdquo;Beim Namen nennen&ldquo;: &nbsp; &nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.sanktreinoldi.de/fileadmin/Medienablage_Reinoldi/02_Allgemein/WFT/Grusswort_Beim_Namen_nennen.pdf\\" target=\\"_blank\\" rel=\\"noreferrer noopener\\">weiter zum Gru&szlig;wort</a></span></p>"}],"home_id":1}	715	\N
 \.
 
 
@@ -3712,6 +3840,7 @@ COPY public.directus_roles (id, name, icon, description, ip_access, enforce_tfa,
 COPY public.directus_sessions (token, "user", expires, ip, user_agent, share, origin) FROM stdin;
 ugw2EDUkeYttedp8bDszYAaj8XwH_nz5FwytoBhyP99UtFzVvQeweDEb89JVZcHL	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-09 13:00:09.421+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36	\N	http://localhost:8055
 FbuVyV-JVnT1ajgQBjed8FOSkkv225-W75nhLpuZEOOCxEVFfxpRztVzSvIzrryV	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-12 18:19:26.915+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	\N	http://localhost:8055
+d0BfHdPwQZuLaPb_cM-zKex6iNUPGlYzpm_dogmx6H0JPPJ1Z_sbyHwJiei-Vbc9	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-16 12:17:31.308+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	\N	http://localhost:8055
 \.
 
 
@@ -3745,7 +3874,7 @@ COPY public.directus_translations (id, language, key, value) FROM stdin;
 
 COPY public.directus_users (id, first_name, last_name, email, password, location, title, description, tags, avatar, language, tfa_secret, status, role, token, last_access, last_page, provider, external_identifier, auth_data, email_notifications, appearance, theme_dark, theme_light, theme_light_overrides, theme_dark_overrides) FROM stdin;
 507e3800-1c28-454b-bcd2-766cda54a162	Basel	Admin	mirjamthomet@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$rEXyXmboQoJtEolz1V+VwQ$0mpZ0yfRnbyl8LchcvwSg1zkRSH516jNbFYv2TCGJ0s	\N	\N	\N	\N	\N	\N	\N	active	68c58399-f145-49aa-9db1-ee94c793b427	\N	2024-01-20 14:42:17.91+00	/content/city	default	\N	\N	t	\N	\N	\N	\N	\N
-db513aee-cd3a-47a9-95e5-a98f1cc92d13	Admin	User	gannonline90@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$8mOx4/9GjUaVmWJRCxhc1Q$O2PmAQbgGlqxaNAnsgyyJRQxPl+9HeBKZ5z7JMZjqbo	\N	\N	\N	\N	\N	\N	\N	active	878f0264-16f3-4a54-a79e-82c27313bacc	\N	2024-02-05 18:19:26.926+00	/content/EmailForm	default	\N	\N	t	\N	\N	\N	\N	\N
+db513aee-cd3a-47a9-95e5-a98f1cc92d13	Admin	User	gannonline90@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$8mOx4/9GjUaVmWJRCxhc1Q$O2PmAQbgGlqxaNAnsgyyJRQxPl+9HeBKZ5z7JMZjqbo	\N	\N	\N	\N	\N	\N	\N	active	878f0264-16f3-4a54-a79e-82c27313bacc	\N	2024-02-09 12:17:31.329+00	/content/home	default	\N	\N	t	\N	\N	\N	\N	\N
 \.
 
 
@@ -3790,6 +3919,24 @@ COPY public.event_translations (id, event_id, languages_code, name, description,
 6	4	fr	Cercle de Silence	<p>&lt;p class="font_8"&gt;Nous, r&eacute;fugi&eacute;s et non-r&eacute;fugi&eacute;s ensemble, voulons dans ce cercle donner un signe de solidarit&eacute; et attirer l'attention sur la situation tr&egrave;s difficile des requ&eacute;rants d'asile d&eacute;bout&eacute;s et des personnes sans papiers en Suisse, et rendre hommage &agrave; ceux qui ont perdu la vie en fuyant.&lt;/p&gt;</p>	Place de la gare de Berne, à côté de l'église du Saint-Esprit	2023-06-17
 7	5	de	Gottesdienste und Gedenkaktionen auf Italienisch in der Missione Cattolica di Lingua Italiana	<p>&lt;p class="font_8"&gt;Sabato, 17 giugno 2023 Ore 18.30 Santa Messa Ore 19.30 - 22.00 lettura dei nomi e adorazione Domenica 18 giugno 2023 Ore 9.30 - 10.45 lettura dei nomi e adorazione Ore 11.00 Santa Messa Affissione dei nomi dal 17-26 giugno 2023&lt;/p&gt;</p>	Bovetstrasse 1, 3007 Bern	2023-06-17
 8	5	fr	Services religieux et actions commémoratives en italien à la Missione Cattolica di Lingua Italiana	<p>&lt;p class="font_8"&gt;Sabato, 17 giugno 2023 Ore 18.30 Santa Messa Ore 19.30 - 22.00 lettura dei nomi e adorazione Domenica 18 giugno 2023 Ore 9.30 - 10.45 lettura dei nomi e adorazione Ore 11.00 Santa Messa Affissione dei nomi dal 17-26 giugno 2023&lt;/p&gt;</p>	Bovetstrasse 1, 3007 Bern	2023-06-17
+\.
+
+
+--
+-- Data for Name: home; Type: TABLE DATA; Schema: public; Owner: directus
+--
+
+COPY public.home (id) FROM stdin;
+1
+\.
+
+
+--
+-- Data for Name: home_translations; Type: TABLE DATA; Schema: public; Owner: directus
+--
+
+COPY public.home_translations (id, home_id, languages_code, titel, description, contentbox) FROM stdin;
+1	1	de	Flüchtlingstag 2023 Beim Namen nennen – über 51 000 Opfer der Festung Europas	Ein stilles Drama geht seit Jahren auf den Meeren und an den Grenzen Europas vor sich und schafft es nur gelegentlich in die Medien. Seit 1993 sind über 51 000 Kinder, Frauen und Männer gestorben. Oder müssen wir die Frage stellen, ob sie getötet wurden? Von einer immer härteren Politik der Länder Europas, die verhindert, dass diese Menschen legal in Europa einreisen können, um hier ein Asylgesuch zu stellen.\n\nSie müssen vor lebensgefährlichen Situationen fliehen und setzen ihr Leben aufs Spiel. Sie verharren in unwürdigen Flüchtlingslagern ohne angemessene Versorgung oder das Wissen, ob, wann und wie es weiter geht. Darüber sind wir entsetzt und fordern sichere Fluchtwege! Mit verschiedenen Aktionen und einem Mahnmal gedenken wir der Opfer und protestieren öffentlich gegen die unhaltbare Situation.	[{"title":"Veranstaltungsorte","description":"<p>Die Aktion &laquo;Beim Namen nennen&raquo; findet statt in&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/basel\\" target=\\"_self\\">Basel</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/berlin\\" target=\\"_self\\">Berlin</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/bern\\" target=\\"_self\\">Bern</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/braunschweig\\" target=\\"_self\\">Braunschweig</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/chur\\" target=\\"_self\\">Chur</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/dortmund\\" target=\\"_self\\">Dortmund</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/essen\\" target=\\"_self\\">Essen</a></span>, Frankfurt,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/gen%C3%A8ve\\" target=\\"_self\\">Genf</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/kehl\\" target=\\"_self\\">Kehl</a></span>, Lausanne,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/luzern\\" target=\\"_self\\">Luzern</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/neuch%C3%A2tel\\" target=\\"_self\\">Neuch&acirc;tel</a></span>, Offenburg,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/st.-gallen\\" target=\\"_self\\">St.Gallen</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/thun\\" target=\\"_self\\">Thun</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/z%C3%BCrich\\" target=\\"_self\\">Z&uuml;rich&nbsp;</a></span>in<br class=\\"wixui-rich-text__text\\">Kooperation mit UNITED for Intercultural Action http://unitedagainstrefugeedeaths.eu</p>"},{"title":"Gedenk-Aktionen","description":"<p class=\\"font_8 wixui-rich-text__text\\"><span class=\\"wixui-rich-text__text\\">In den verschiedenen St&auml;dten fanden &ouml;ffentliche Lesungen der &laquo;List of Deaths&raquo; statt. Dazu wurden die Angaben jeder verstorbenen Person auf ein St&uuml;ck Stoff geschrieben und an einer Installation befestigt.</span></p>\\n<p class=\\"font_8 wixui-rich-text__text\\"><span class=\\"wixui-rich-text__text\\">So bauten wir gemeinsam im Gedenken an die Verstorbenen &ouml;ffentliche Mahnmale.</span></p>"},{"title":" Schirmherrschaft von „Beim Namen nennen“ in Deutschland","description":"<p class=\\"font_8 wixui-rich-text__text\\">Ratsvorsitzende der Ev. Kirche Deutschland und Präses der Ev. Kirche von Westfalen, Annette Kurschus</p>\\n<p class=\\"font_8 wixui-rich-text__text\\">Namen sind nicht Schall und Rauch. &bdquo;Teuflisch ist es, dass abertausende Menschen, die bei ihrer Flucht umkommen, namenlos bleiben. Sie werden an Grenzz&auml;unen get&ouml;tet und ertrinken im Mittelmeer. &hellip; Jeder Name, der gelesen wird, ist ein Protest gegen ihren bitteren Tod.&ldquo; &ndash; hei&szlig;t es im Gru&szlig;wort der Schirmherrin zur Aktion &bdquo;Beim Namen nennen&ldquo;: &nbsp; &nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.sanktreinoldi.de/fileadmin/Medienablage_Reinoldi/02_Allgemein/WFT/Grusswort_Beim_Namen_nennen.pdf\\" target=\\"_blank\\" rel=\\"noreferrer noopener\\">weiter zum Gru&szlig;wort</a></span></p>"}]
 \.
 
 
@@ -3905,14 +4052,14 @@ SELECT pg_catalog.setval('public.countries_translations_id_seq', 2, true);
 -- Name: directus_activity_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
 --
 
-SELECT pg_catalog.setval('public.directus_activity_id_seq', 792, true);
+SELECT pg_catalog.setval('public.directus_activity_id_seq', 807, true);
 
 
 --
 -- Name: directus_fields_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
 --
 
-SELECT pg_catalog.setval('public.directus_fields_id_seq', 154, true);
+SELECT pg_catalog.setval('public.directus_fields_id_seq', 162, true);
 
 
 --
@@ -3926,7 +4073,7 @@ SELECT pg_catalog.setval('public.directus_notifications_id_seq', 1, false);
 -- Name: directus_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
 --
 
-SELECT pg_catalog.setval('public.directus_permissions_id_seq', 67, true);
+SELECT pg_catalog.setval('public.directus_permissions_id_seq', 69, true);
 
 
 --
@@ -3940,14 +4087,14 @@ SELECT pg_catalog.setval('public.directus_presets_id_seq', 6, true);
 -- Name: directus_relations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
 --
 
-SELECT pg_catalog.setval('public.directus_relations_id_seq', 38, true);
+SELECT pg_catalog.setval('public.directus_relations_id_seq', 40, true);
 
 
 --
 -- Name: directus_revisions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
 --
 
-SELECT pg_catalog.setval('public.directus_revisions_id_seq', 701, true);
+SELECT pg_catalog.setval('public.directus_revisions_id_seq', 715, true);
 
 
 --
@@ -3976,6 +4123,20 @@ SELECT pg_catalog.setval('public.event_id_seq', 5, true);
 --
 
 SELECT pg_catalog.setval('public.event_translations_id_seq', 8, true);
+
+
+--
+-- Name: home_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
+--
+
+SELECT pg_catalog.setval('public.home_id_seq', 1, true);
+
+
+--
+-- Name: home_translations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
+--
+
+SELECT pg_catalog.setval('public.home_translations_id_seq', 1, true);
 
 
 --
@@ -4344,6 +4505,22 @@ ALTER TABLE ONLY public.event
 
 ALTER TABLE ONLY public.event_translations
     ADD CONSTRAINT event_translations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: home home_pkey; Type: CONSTRAINT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public.home
+    ADD CONSTRAINT home_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: home_translations home_translations_pkey; Type: CONSTRAINT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public.home_translations
+    ADD CONSTRAINT home_translations_pkey PRIMARY KEY (id);
 
 
 --
@@ -4800,6 +4977,22 @@ ALTER TABLE ONLY public.event_translations
 
 ALTER TABLE ONLY public.event_translations
     ADD CONSTRAINT event_translations_languages_code_foreign FOREIGN KEY (languages_code) REFERENCES public.languages(code) ON DELETE SET NULL;
+
+
+--
+-- Name: home_translations home_translations_home_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public.home_translations
+    ADD CONSTRAINT home_translations_home_id_foreign FOREIGN KEY (home_id) REFERENCES public.home(id) ON DELETE SET NULL;
+
+
+--
+-- Name: home_translations home_translations_languages_code_foreign; Type: FK CONSTRAINT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public.home_translations
+    ADD CONSTRAINT home_translations_languages_code_foreign FOREIGN KEY (languages_code) REFERENCES public.languages(code) ON DELETE SET NULL;
 
 
 --
