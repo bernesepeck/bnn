@@ -2,9 +2,8 @@ name: CI to Docker Hub
 
 on:
   push:
-    branches-ignore:
-      - 'main'
-      - 'master'
+    branches:
+      - 'main' # Trigger on pushes to main branch
 
 jobs:
   build-and-push-image:
@@ -28,7 +27,10 @@ jobs:
           context: ./frontend
           file: ./frontend/Dockerfile
           push: true
-          tags: j0hngnn0n/bnn:frontend-${{ github.sha }}
+          tags: |
+            j0hngnn0n/bnn:frontend-${{ github.sha }}
+            j0hngnn0n/bnn:latest # Add the latest tag
 
+      # This step might need adjustment as "docker_build" needs to match the id of the build step if you want to use outputs
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
