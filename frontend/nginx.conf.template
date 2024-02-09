@@ -1,10 +1,20 @@
 server {
     listen       ${PORT}; # Use the PORT environment variable
     server_name  localhost;
-    
+
+
+    # Existing location for the root
     location / {
         root   /usr/share/nginx/html;
         index  index.html index.htm;
+        location ~ \.js$ {
+            add_header Content-Type application/javascript;
+        }
+
+        location ~ \.mjs$ {
+            add_header Content-Type application/javascript;
+        }
+        rewrite ^/city(/.*)?$ /city/index.html break; # Rewrite to serve index.html from city folder
     }
 
     error_page   500 502 503 504  /50x.html;
