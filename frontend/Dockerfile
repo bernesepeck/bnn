@@ -21,7 +21,10 @@ RUN npm run build
 # Stage 2: Serve the application with Nginx
 FROM nginx:alpine
 
-# Create a directory for the custom Nginx configuration
+# Install curl and jq for scripting
+RUN apk add --no-cache jq curl
+
+# Create a directory for the custom Nginx configuration and the script
 RUN mkdir -p /etc/nginx/templates
 WORKDIR /etc/nginx/templates
 
@@ -34,6 +37,13 @@ RUN rm /etc/nginx/conf.d/default.conf
 # Add custom Nginx configuration template
 COPY nginx.conf.template /etc/nginx/templates/default.conf.template
 
+# Copy the entrypoint script
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
 # Use environment variables to configure Nginx at runtime
 ENV PORT=8080
-CMD ["/bin/sh" , "-c" , "envsubst < /etc/nginx/templates/default.conf.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"]
+ENV PARCEL_API_URL=""
+
+# Set the entrypoint script to run on container start
+ENTRYPOINT ["/entrypoint.sh"]
