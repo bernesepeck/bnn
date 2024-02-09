@@ -16,8 +16,14 @@ export class Banner extends DefaultComponent {
         padding: 0px var(--content-padding);
         padding-top: 16px;
         display: flex;
-        flex-direction: column;
-        background-size: 100%;
+        justify-content: center;
+        background-size: cover;
+    }
+    .max-content {
+      width: 100%;
+      max-width: 1000px;
+      display: flex;
+      flex-direction: column;
     }
     bnn-nav-menu {
       margin-left: auto;
@@ -33,8 +39,10 @@ export class Banner extends DefaultComponent {
   public render() {
     return html`
       <div class="header-wrapper">
-      <bnn-nav-menu></bnn-nav-menu>
-        <h1>${this.cityname}</h1>
+        <div class="max-content">
+          <bnn-nav-menu></bnn-nav-menu>
+          <h1>${this.cityname}</h1>
+        </div>
       </div>
     `;
   }
