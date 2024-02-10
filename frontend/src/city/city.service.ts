@@ -1,7 +1,6 @@
 import { CityModel } from "./city.models";
 import { createDirectus, readItem, readItems, rest } from '@directus/sdk';
 import { ConfigService } from '../config-service'; // Adjust the import path as needed
-import { AppConfig } from "../config";
 
 export class CityService {
     private client;

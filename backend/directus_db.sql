@@ -439,6 +439,76 @@ ALTER SEQUENCE public."FormFields_id_seq" OWNED BY public."FormFields".id;
 
 
 --
+-- Name: GeneralTranslations; Type: TABLE; Schema: public; Owner: directus
+--
+
+CREATE TABLE public."GeneralTranslations" (
+    id integer NOT NULL,
+    key character varying(255)
+);
+
+
+ALTER TABLE public."GeneralTranslations" OWNER TO directus;
+
+--
+-- Name: GeneralTranslations_id_seq; Type: SEQUENCE; Schema: public; Owner: directus
+--
+
+CREATE SEQUENCE public."GeneralTranslations_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."GeneralTranslations_id_seq" OWNER TO directus;
+
+--
+-- Name: GeneralTranslations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: directus
+--
+
+ALTER SEQUENCE public."GeneralTranslations_id_seq" OWNED BY public."GeneralTranslations".id;
+
+
+--
+-- Name: GeneralTranslations_translations; Type: TABLE; Schema: public; Owner: directus
+--
+
+CREATE TABLE public."GeneralTranslations_translations" (
+    id integer NOT NULL,
+    "GeneralTranslations_id" integer,
+    languages_code character varying(255),
+    text character varying(255)
+);
+
+
+ALTER TABLE public."GeneralTranslations_translations" OWNER TO directus;
+
+--
+-- Name: GeneralTranslations_translations_id_seq; Type: SEQUENCE; Schema: public; Owner: directus
+--
+
+CREATE SEQUENCE public."GeneralTranslations_translations_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."GeneralTranslations_translations_id_seq" OWNER TO directus;
+
+--
+-- Name: GeneralTranslations_translations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: directus
+--
+
+ALTER SEQUENCE public."GeneralTranslations_translations_id_seq" OWNED BY public."GeneralTranslations_translations".id;
+
+
+--
 -- Name: SupportLinks; Type: TABLE; Schema: public; Owner: directus
 --
 
@@ -1622,6 +1692,20 @@ ALTER TABLE ONLY public."FormFields" ALTER COLUMN id SET DEFAULT nextval('public
 
 
 --
+-- Name: GeneralTranslations id; Type: DEFAULT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public."GeneralTranslations" ALTER COLUMN id SET DEFAULT nextval('public."GeneralTranslations_id_seq"'::regclass);
+
+
+--
+-- Name: GeneralTranslations_translations id; Type: DEFAULT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public."GeneralTranslations_translations" ALTER COLUMN id SET DEFAULT nextval('public."GeneralTranslations_translations_id_seq"'::regclass);
+
+
+--
 -- Name: SupportLinks id; Type: DEFAULT; Schema: public; Owner: directus
 --
 
@@ -1832,6 +1916,40 @@ COPY public."FormFields" (id, type) FROM stdin;
 2	number
 3	checkbox
 4	checkbox
+\.
+
+
+--
+-- Data for Name: GeneralTranslations; Type: TABLE DATA; Schema: public; Owner: directus
+--
+
+COPY public."GeneralTranslations" (id, key) FROM stdin;
+2	german_cities
+3	swiss_cities
+4	events
+5	sponsors
+6	about_us
+7	contact
+9	home
+10	volunteer
+\.
+
+
+--
+-- Data for Name: GeneralTranslations_translations; Type: TABLE DATA; Schema: public; Owner: directus
+--
+
+COPY public."GeneralTranslations_translations" (id, "GeneralTranslations_id", languages_code, text) FROM stdin;
+1	\N	de	Deutsche Städte
+2	2	de	Deutsche Städte
+3	3	de	Schweizer Städte
+4	4	de	Veranstaltungen
+5	5	de	Organisation | Trägerschaft
+6	6	de	Über uns
+7	7	de	Kontakt
+9	9	de	Home
+8	\N	de	Home
+10	10	de	Mitmachen
 \.
 
 
@@ -2719,25 +2837,61 @@ COPY public.directus_activity (id, action, "user", "timestamp", ip, user_agent, 
 798	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-09 12:17:57.869+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	directus_collections	home_translations	\N	http://localhost:8055
 799	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-09 12:17:57.909+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	directus_fields	158	\N	http://localhost:8055
 808	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-10 06:59:56.258+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	home	1	\N	http://localhost:8055
+817	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-10 11:20:09.877+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	directus_fields	164	\N	http://localhost:8055
+818	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-10 11:20:09.89+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	directus_collections	GeneralTranslations	\N	http://localhost:8055
+850	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-10 13:04:06.625+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	GeneralTranslations	10	\N	http://localhost:8055
 794	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-09 12:17:46.97+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	directus_fields	155	\N	http://localhost:8055
 795	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-09 12:17:46.981+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	directus_collections	home	\N	http://localhost:8055
 809	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-10 07:03:31.142+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	directus_fields	162	\N	http://localhost:8055
+819	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-10 11:20:31.923+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	directus_fields	165	\N	http://localhost:8055
+823	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-10 11:20:32.098+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	directus_fields	168	\N	http://localhost:8055
+825	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-10 11:21:25.056+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	directus_fields	170	\N	http://localhost:8055
+851	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-10 13:04:27.297+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	GeneralTranslations_translations	10	\N	http://localhost:8055
+852	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-10 13:04:27.301+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	GeneralTranslations	10	\N	http://localhost:8055
 796	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-09 12:17:57.791+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	directus_fields	156	\N	http://localhost:8055
 800	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-09 12:17:57.947+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	directus_fields	159	\N	http://localhost:8055
 810	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-10 07:04:29.984+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	home_translations	1	\N	http://localhost:8055
 811	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-10 07:04:29.99+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	home	1	\N	http://localhost:8055
+820	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-10 11:20:32.004+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	directus_fields	166	\N	http://localhost:8055
+821	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-10 11:20:32.009+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	directus_collections	GeneralTranslations_translations	\N	http://localhost:8055
+822	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-10 11:20:32.053+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	directus_fields	167	\N	http://localhost:8055
+824	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-10 11:20:55.976+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	directus_fields	169	\N	http://localhost:8055
 801	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-09 12:18:09.065+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	directus_fields	160	\N	http://localhost:8055
 803	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-09 12:19:12.381+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	directus_fields	162	\N	http://localhost:8055
 812	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-10 10:09:38.759+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	directus_fields	163	\N	http://localhost:8055
+826	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-10 11:22:00.095+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	GeneralTranslations_translations	1	\N	http://localhost:8055
+827	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-10 11:22:00.098+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	GeneralTranslations	1	\N	http://localhost:8055
 802	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-09 12:18:19.4+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	directus_fields	161	\N	http://localhost:8055
 813	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-10 10:10:00.808+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	city	2	\N	http://localhost:8055
+828	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-10 11:24:17.464+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	directus_fields	171	\N	http://localhost:8055
 804	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-09 12:19:22.235+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	directus_permissions	68	\N	http://localhost:8055
 805	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-09 12:19:23.86+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	directus_permissions	69	\N	http://localhost:8055
 814	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-10 10:10:08.232+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	city	1	\N	http://localhost:8055
+829	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-10 11:24:25.827+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	GeneralTranslations	1	\N	http://localhost:8055
+830	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-10 11:24:44.83+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	GeneralTranslations_translations	2	\N	http://localhost:8055
+831	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-10 11:24:44.832+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	GeneralTranslations	2	\N	http://localhost:8055
 806	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-09 12:20:51.759+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	home_translations	1	\N	http://localhost:8055
 807	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-09 12:20:51.764+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	home	1	\N	http://localhost:8055
 815	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-10 10:10:21.038+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	city_translations	5	\N	http://localhost:8055
 816	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-10 10:10:21.045+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	city	3	\N	http://localhost:8055
+832	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-10 11:24:57.852+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	GeneralTranslations_translations	3	\N	http://localhost:8055
+833	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-10 11:24:57.861+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	GeneralTranslations	3	\N	http://localhost:8055
+836	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-10 11:25:23.539+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	GeneralTranslations_translations	5	\N	http://localhost:8055
+837	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-10 11:25:23.543+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	GeneralTranslations	5	\N	http://localhost:8055
+834	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-10 11:25:07.807+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	GeneralTranslations_translations	4	\N	http://localhost:8055
+835	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-10 11:25:07.811+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	GeneralTranslations	4	\N	http://localhost:8055
+838	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-10 11:25:46.235+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	GeneralTranslations_translations	6	\N	http://localhost:8055
+839	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-10 11:25:46.242+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	GeneralTranslations	6	\N	http://localhost:8055
+840	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-10 11:25:54.913+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	GeneralTranslations_translations	7	\N	http://localhost:8055
+841	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-10 11:25:54.915+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	GeneralTranslations	7	\N	http://localhost:8055
+842	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-10 11:28:19.223+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	directus_permissions	70	\N	http://localhost:8055
+843	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-10 11:28:20.393+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	directus_permissions	71	\N	http://localhost:8055
+844	login	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-10 12:31:14.422+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	directus_users	db513aee-cd3a-47a9-95e5-a98f1cc92d13	\N	http://localhost:8055
+845	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-10 12:32:05.509+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	GeneralTranslations_translations	8	\N	http://localhost:8055
+846	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-10 12:32:05.517+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	GeneralTranslations	8	\N	http://localhost:8055
+847	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-10 12:33:44.82+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	GeneralTranslations_translations	9	\N	http://localhost:8055
+848	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-10 12:33:44.825+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	GeneralTranslations	9	\N	http://localhost:8055
+849	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-10 12:33:49.85+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	GeneralTranslations	8	\N	http://localhost:8055
 \.
 
 
@@ -2765,6 +2919,8 @@ EmailForm_FormFields	import_export	\N	\N	t	f	\N	\N	t	\N	\N	\N	all	\N	\N	\N	\N	op
 EmailForm_FormFields_translations	import_export	\N	\N	t	f	\N	\N	t	\N	\N	\N	all	\N	\N	\N	\N	open	\N	f
 home	\N	\N	\N	f	t	\N	\N	t	\N	\N	\N	all	\N	\N	\N	\N	open	\N	f
 home_translations	import_export	\N	\N	t	f	\N	\N	t	\N	\N	\N	all	\N	\N	\N	\N	open	\N	f
+GeneralTranslations	\N	\N	\N	f	f	\N	\N	t	\N	\N	\N	all	\N	\N	\N	\N	open	\N	f
+GeneralTranslations_translations	import_export	\N	\N	t	f	\N	\N	t	\N	\N	\N	all	\N	\N	\N	\N	open	\N	f
 \.
 
 
@@ -2899,6 +3055,13 @@ COPY public.directus_fields (id, collection, field, special, interface, options,
 161	home_translations	description	\N	input-multiline	\N	\N	\N	f	f	5	full	\N	\N	\N	f	\N	\N	\N
 162	home_translations	contentbox	cast-json	list	{"fields":[{"field":"title","name":"title","type":"string","meta":{"field":"title","type":"string","interface":"input"}},{"field":"description","name":"description","type":"text","meta":{"field":"description","type":"text","interface":"input-rich-text-html"}},{"field":"width","name":"width","type":"integer","meta":{"field":"width","type":"integer","interface":"select-dropdown","options":{"choices":[{"text":"Full width","value":"1"},{"text":"Half width","value":"0.5"}]}}}]}	\N	\N	f	f	6	full	\N	\N	\N	f	\N	\N	\N
 163	city	country	\N	select-dropdown	{"choices":[{"text":"Deutschland","value":"de"},{"text":"Schweiz","value":"ch"}]}	\N	\N	f	f	13	full	\N	\N	\N	f	\N	\N	\N
+164	GeneralTranslations	id	\N	input	\N	\N	\N	t	t	1	full	\N	\N	\N	f	\N	\N	\N
+165	GeneralTranslations	translations	translations	translations	\N	\N	\N	f	f	2	full	\N	\N	\N	f	\N	\N	\N
+166	GeneralTranslations_translations	id	\N	\N	\N	\N	\N	f	t	1	full	\N	\N	\N	f	\N	\N	\N
+167	GeneralTranslations_translations	GeneralTranslations_id	\N	\N	\N	\N	\N	f	t	2	full	\N	\N	\N	f	\N	\N	\N
+168	GeneralTranslations_translations	languages_code	\N	\N	\N	\N	\N	f	t	3	full	\N	\N	\N	f	\N	\N	\N
+170	GeneralTranslations_translations	text	\N	input	\N	\N	\N	f	f	5	full	\N	\N	\N	f	\N	\N	\N
+171	GeneralTranslations	key	\N	input	\N	\N	\N	f	f	3	full	\N	\N	\N	f	\N	\N	\N
 \.
 
 
@@ -3103,6 +3266,8 @@ COPY public.directus_permissions (id, role, collection, action, permissions, val
 61	\N	FormFields	read	{}	{}	\N	*
 68	\N	home	read	{}	{}	\N	*
 69	\N	home_translations	read	{}	{}	\N	*
+70	\N	GeneralTranslations	read	{}	{}	\N	*
+71	\N	GeneralTranslations_translations	read	{}	{}	\N	*
 \.
 
 
@@ -3151,6 +3316,8 @@ COPY public.directus_relations (id, many_collection, many_field, one_collection,
 38	EmailForm	city	city	emailForm	\N	\N	\N	\N	nullify
 39	home_translations	languages_code	languages	\N	\N	\N	home_id	\N	nullify
 40	home_translations	home_id	home	translations	\N	\N	languages_code	\N	nullify
+41	GeneralTranslations_translations	languages_code	languages	\N	\N	\N	GeneralTranslations_id	\N	nullify
+42	GeneralTranslations_translations	GeneralTranslations_id	GeneralTranslations	translations	\N	\N	languages_code	\N	nullify
 \.
 
 
@@ -3834,12 +4001,44 @@ COPY public.directus_revisions (id, activity, collection, item, data, delta, par
 715	807	home	1	{"translations":{"create":[{"titel":"Flüchtlingstag 2023 Beim Namen nennen – über 51 000 Opfer der Festung Europas","languages_code":{"code":"de"},"description":"Ein stilles Drama geht seit Jahren auf den Meeren und an den Grenzen Europas vor sich und schafft es nur gelegentlich in die Medien. Seit 1993 sind über 51 000 Kinder, Frauen und Männer gestorben. Oder müssen wir die Frage stellen, ob sie getötet wurden? Von einer immer härteren Politik der Länder Europas, die verhindert, dass diese Menschen legal in Europa einreisen können, um hier ein Asylgesuch zu stellen.\\n\\nSie müssen vor lebensgefährlichen Situationen fliehen und setzen ihr Leben aufs Spiel. Sie verharren in unwürdigen Flüchtlingslagern ohne angemessene Versorgung oder das Wissen, ob, wann und wie es weiter geht. Darüber sind wir entsetzt und fordern sichere Fluchtwege! Mit verschiedenen Aktionen und einem Mahnmal gedenken wir der Opfer und protestieren öffentlich gegen die unhaltbare Situation.","contentbox":[{"title":"Veranstaltungsorte","description":"<p>Die Aktion &laquo;Beim Namen nennen&raquo; findet statt in&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/basel\\" target=\\"_self\\">Basel</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/berlin\\" target=\\"_self\\">Berlin</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/bern\\" target=\\"_self\\">Bern</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/braunschweig\\" target=\\"_self\\">Braunschweig</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/chur\\" target=\\"_self\\">Chur</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/dortmund\\" target=\\"_self\\">Dortmund</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/essen\\" target=\\"_self\\">Essen</a></span>, Frankfurt,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/gen%C3%A8ve\\" target=\\"_self\\">Genf</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/kehl\\" target=\\"_self\\">Kehl</a></span>, Lausanne,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/luzern\\" target=\\"_self\\">Luzern</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/neuch%C3%A2tel\\" target=\\"_self\\">Neuch&acirc;tel</a></span>, Offenburg,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/st.-gallen\\" target=\\"_self\\">St.Gallen</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/thun\\" target=\\"_self\\">Thun</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/z%C3%BCrich\\" target=\\"_self\\">Z&uuml;rich&nbsp;</a></span>in<br class=\\"wixui-rich-text__text\\">Kooperation mit UNITED for Intercultural Action http://unitedagainstrefugeedeaths.eu</p>"},{"title":"Gedenk-Aktionen","description":"<p class=\\"font_8 wixui-rich-text__text\\"><span class=\\"wixui-rich-text__text\\">In den verschiedenen St&auml;dten fanden &ouml;ffentliche Lesungen der &laquo;List of Deaths&raquo; statt. Dazu wurden die Angaben jeder verstorbenen Person auf ein St&uuml;ck Stoff geschrieben und an einer Installation befestigt.</span></p>\\n<p class=\\"font_8 wixui-rich-text__text\\"><span class=\\"wixui-rich-text__text\\">So bauten wir gemeinsam im Gedenken an die Verstorbenen &ouml;ffentliche Mahnmale.</span></p>"},{"title":" Schirmherrschaft von „Beim Namen nennen“ in Deutschland","description":"<p class=\\"font_8 wixui-rich-text__text\\">Ratsvorsitzende der Ev. Kirche Deutschland und Präses der Ev. Kirche von Westfalen, Annette Kurschus</p>\\n<p class=\\"font_8 wixui-rich-text__text\\">Namen sind nicht Schall und Rauch. &bdquo;Teuflisch ist es, dass abertausende Menschen, die bei ihrer Flucht umkommen, namenlos bleiben. Sie werden an Grenzz&auml;unen get&ouml;tet und ertrinken im Mittelmeer. &hellip; Jeder Name, der gelesen wird, ist ein Protest gegen ihren bitteren Tod.&ldquo; &ndash; hei&szlig;t es im Gru&szlig;wort der Schirmherrin zur Aktion &bdquo;Beim Namen nennen&ldquo;: &nbsp; &nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.sanktreinoldi.de/fileadmin/Medienablage_Reinoldi/02_Allgemein/WFT/Grusswort_Beim_Namen_nennen.pdf\\" target=\\"_blank\\" rel=\\"noreferrer noopener\\">weiter zum Gru&szlig;wort</a></span></p>"}]}],"update":[],"delete":[]}}	{"translations":{"create":[{"titel":"Flüchtlingstag 2023 Beim Namen nennen – über 51 000 Opfer der Festung Europas","languages_code":{"code":"de"},"description":"Ein stilles Drama geht seit Jahren auf den Meeren und an den Grenzen Europas vor sich und schafft es nur gelegentlich in die Medien. Seit 1993 sind über 51 000 Kinder, Frauen und Männer gestorben. Oder müssen wir die Frage stellen, ob sie getötet wurden? Von einer immer härteren Politik der Länder Europas, die verhindert, dass diese Menschen legal in Europa einreisen können, um hier ein Asylgesuch zu stellen.\\n\\nSie müssen vor lebensgefährlichen Situationen fliehen und setzen ihr Leben aufs Spiel. Sie verharren in unwürdigen Flüchtlingslagern ohne angemessene Versorgung oder das Wissen, ob, wann und wie es weiter geht. Darüber sind wir entsetzt und fordern sichere Fluchtwege! Mit verschiedenen Aktionen und einem Mahnmal gedenken wir der Opfer und protestieren öffentlich gegen die unhaltbare Situation.","contentbox":[{"title":"Veranstaltungsorte","description":"<p>Die Aktion &laquo;Beim Namen nennen&raquo; findet statt in&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/basel\\" target=\\"_self\\">Basel</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/berlin\\" target=\\"_self\\">Berlin</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/bern\\" target=\\"_self\\">Bern</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/braunschweig\\" target=\\"_self\\">Braunschweig</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/chur\\" target=\\"_self\\">Chur</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/dortmund\\" target=\\"_self\\">Dortmund</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/essen\\" target=\\"_self\\">Essen</a></span>, Frankfurt,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/gen%C3%A8ve\\" target=\\"_self\\">Genf</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/kehl\\" target=\\"_self\\">Kehl</a></span>, Lausanne,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/luzern\\" target=\\"_self\\">Luzern</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/neuch%C3%A2tel\\" target=\\"_self\\">Neuch&acirc;tel</a></span>, Offenburg,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/st.-gallen\\" target=\\"_self\\">St.Gallen</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/thun\\" target=\\"_self\\">Thun</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/z%C3%BCrich\\" target=\\"_self\\">Z&uuml;rich&nbsp;</a></span>in<br class=\\"wixui-rich-text__text\\">Kooperation mit UNITED for Intercultural Action http://unitedagainstrefugeedeaths.eu</p>"},{"title":"Gedenk-Aktionen","description":"<p class=\\"font_8 wixui-rich-text__text\\"><span class=\\"wixui-rich-text__text\\">In den verschiedenen St&auml;dten fanden &ouml;ffentliche Lesungen der &laquo;List of Deaths&raquo; statt. Dazu wurden die Angaben jeder verstorbenen Person auf ein St&uuml;ck Stoff geschrieben und an einer Installation befestigt.</span></p>\\n<p class=\\"font_8 wixui-rich-text__text\\"><span class=\\"wixui-rich-text__text\\">So bauten wir gemeinsam im Gedenken an die Verstorbenen &ouml;ffentliche Mahnmale.</span></p>"},{"title":" Schirmherrschaft von „Beim Namen nennen“ in Deutschland","description":"<p class=\\"font_8 wixui-rich-text__text\\">Ratsvorsitzende der Ev. Kirche Deutschland und Präses der Ev. Kirche von Westfalen, Annette Kurschus</p>\\n<p class=\\"font_8 wixui-rich-text__text\\">Namen sind nicht Schall und Rauch. &bdquo;Teuflisch ist es, dass abertausende Menschen, die bei ihrer Flucht umkommen, namenlos bleiben. Sie werden an Grenzz&auml;unen get&ouml;tet und ertrinken im Mittelmeer. &hellip; Jeder Name, der gelesen wird, ist ein Protest gegen ihren bitteren Tod.&ldquo; &ndash; hei&szlig;t es im Gru&szlig;wort der Schirmherrin zur Aktion &bdquo;Beim Namen nennen&ldquo;: &nbsp; &nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.sanktreinoldi.de/fileadmin/Medienablage_Reinoldi/02_Allgemein/WFT/Grusswort_Beim_Namen_nennen.pdf\\" target=\\"_blank\\" rel=\\"noreferrer noopener\\">weiter zum Gru&szlig;wort</a></span></p>"}]}],"update":[],"delete":[]}}	\N	\N
 714	806	home_translations	1	{"titel":"Flüchtlingstag 2023 Beim Namen nennen – über 51 000 Opfer der Festung Europas","languages_code":{"code":"de"},"description":"Ein stilles Drama geht seit Jahren auf den Meeren und an den Grenzen Europas vor sich und schafft es nur gelegentlich in die Medien. Seit 1993 sind über 51 000 Kinder, Frauen und Männer gestorben. Oder müssen wir die Frage stellen, ob sie getötet wurden? Von einer immer härteren Politik der Länder Europas, die verhindert, dass diese Menschen legal in Europa einreisen können, um hier ein Asylgesuch zu stellen.\\n\\nSie müssen vor lebensgefährlichen Situationen fliehen und setzen ihr Leben aufs Spiel. Sie verharren in unwürdigen Flüchtlingslagern ohne angemessene Versorgung oder das Wissen, ob, wann und wie es weiter geht. Darüber sind wir entsetzt und fordern sichere Fluchtwege! Mit verschiedenen Aktionen und einem Mahnmal gedenken wir der Opfer und protestieren öffentlich gegen die unhaltbare Situation.","contentbox":[{"title":"Veranstaltungsorte","description":"<p>Die Aktion &laquo;Beim Namen nennen&raquo; findet statt in&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/basel\\" target=\\"_self\\">Basel</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/berlin\\" target=\\"_self\\">Berlin</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/bern\\" target=\\"_self\\">Bern</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/braunschweig\\" target=\\"_self\\">Braunschweig</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/chur\\" target=\\"_self\\">Chur</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/dortmund\\" target=\\"_self\\">Dortmund</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/essen\\" target=\\"_self\\">Essen</a></span>, Frankfurt,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/gen%C3%A8ve\\" target=\\"_self\\">Genf</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/kehl\\" target=\\"_self\\">Kehl</a></span>, Lausanne,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/luzern\\" target=\\"_self\\">Luzern</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/neuch%C3%A2tel\\" target=\\"_self\\">Neuch&acirc;tel</a></span>, Offenburg,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/st.-gallen\\" target=\\"_self\\">St.Gallen</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/thun\\" target=\\"_self\\">Thun</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/z%C3%BCrich\\" target=\\"_self\\">Z&uuml;rich&nbsp;</a></span>in<br class=\\"wixui-rich-text__text\\">Kooperation mit UNITED for Intercultural Action http://unitedagainstrefugeedeaths.eu</p>"},{"title":"Gedenk-Aktionen","description":"<p class=\\"font_8 wixui-rich-text__text\\"><span class=\\"wixui-rich-text__text\\">In den verschiedenen St&auml;dten fanden &ouml;ffentliche Lesungen der &laquo;List of Deaths&raquo; statt. Dazu wurden die Angaben jeder verstorbenen Person auf ein St&uuml;ck Stoff geschrieben und an einer Installation befestigt.</span></p>\\n<p class=\\"font_8 wixui-rich-text__text\\"><span class=\\"wixui-rich-text__text\\">So bauten wir gemeinsam im Gedenken an die Verstorbenen &ouml;ffentliche Mahnmale.</span></p>"},{"title":" Schirmherrschaft von „Beim Namen nennen“ in Deutschland","description":"<p class=\\"font_8 wixui-rich-text__text\\">Ratsvorsitzende der Ev. Kirche Deutschland und Präses der Ev. Kirche von Westfalen, Annette Kurschus</p>\\n<p class=\\"font_8 wixui-rich-text__text\\">Namen sind nicht Schall und Rauch. &bdquo;Teuflisch ist es, dass abertausende Menschen, die bei ihrer Flucht umkommen, namenlos bleiben. Sie werden an Grenzz&auml;unen get&ouml;tet und ertrinken im Mittelmeer. &hellip; Jeder Name, der gelesen wird, ist ein Protest gegen ihren bitteren Tod.&ldquo; &ndash; hei&szlig;t es im Gru&szlig;wort der Schirmherrin zur Aktion &bdquo;Beim Namen nennen&ldquo;: &nbsp; &nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.sanktreinoldi.de/fileadmin/Medienablage_Reinoldi/02_Allgemein/WFT/Grusswort_Beim_Namen_nennen.pdf\\" target=\\"_blank\\" rel=\\"noreferrer noopener\\">weiter zum Gru&szlig;wort</a></span></p>"}],"home_id":1}	{"titel":"Flüchtlingstag 2023 Beim Namen nennen – über 51 000 Opfer der Festung Europas","languages_code":{"code":"de"},"description":"Ein stilles Drama geht seit Jahren auf den Meeren und an den Grenzen Europas vor sich und schafft es nur gelegentlich in die Medien. Seit 1993 sind über 51 000 Kinder, Frauen und Männer gestorben. Oder müssen wir die Frage stellen, ob sie getötet wurden? Von einer immer härteren Politik der Länder Europas, die verhindert, dass diese Menschen legal in Europa einreisen können, um hier ein Asylgesuch zu stellen.\\n\\nSie müssen vor lebensgefährlichen Situationen fliehen und setzen ihr Leben aufs Spiel. Sie verharren in unwürdigen Flüchtlingslagern ohne angemessene Versorgung oder das Wissen, ob, wann und wie es weiter geht. Darüber sind wir entsetzt und fordern sichere Fluchtwege! Mit verschiedenen Aktionen und einem Mahnmal gedenken wir der Opfer und protestieren öffentlich gegen die unhaltbare Situation.","contentbox":[{"title":"Veranstaltungsorte","description":"<p>Die Aktion &laquo;Beim Namen nennen&raquo; findet statt in&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/basel\\" target=\\"_self\\">Basel</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/berlin\\" target=\\"_self\\">Berlin</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/bern\\" target=\\"_self\\">Bern</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/braunschweig\\" target=\\"_self\\">Braunschweig</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/chur\\" target=\\"_self\\">Chur</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/dortmund\\" target=\\"_self\\">Dortmund</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/essen\\" target=\\"_self\\">Essen</a></span>, Frankfurt,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/gen%C3%A8ve\\" target=\\"_self\\">Genf</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/kehl\\" target=\\"_self\\">Kehl</a></span>, Lausanne,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/luzern\\" target=\\"_self\\">Luzern</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/neuch%C3%A2tel\\" target=\\"_self\\">Neuch&acirc;tel</a></span>, Offenburg,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/st.-gallen\\" target=\\"_self\\">St.Gallen</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/thun\\" target=\\"_self\\">Thun</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/z%C3%BCrich\\" target=\\"_self\\">Z&uuml;rich&nbsp;</a></span>in<br class=\\"wixui-rich-text__text\\">Kooperation mit UNITED for Intercultural Action http://unitedagainstrefugeedeaths.eu</p>"},{"title":"Gedenk-Aktionen","description":"<p class=\\"font_8 wixui-rich-text__text\\"><span class=\\"wixui-rich-text__text\\">In den verschiedenen St&auml;dten fanden &ouml;ffentliche Lesungen der &laquo;List of Deaths&raquo; statt. Dazu wurden die Angaben jeder verstorbenen Person auf ein St&uuml;ck Stoff geschrieben und an einer Installation befestigt.</span></p>\\n<p class=\\"font_8 wixui-rich-text__text\\"><span class=\\"wixui-rich-text__text\\">So bauten wir gemeinsam im Gedenken an die Verstorbenen &ouml;ffentliche Mahnmale.</span></p>"},{"title":" Schirmherrschaft von „Beim Namen nennen“ in Deutschland","description":"<p class=\\"font_8 wixui-rich-text__text\\">Ratsvorsitzende der Ev. Kirche Deutschland und Präses der Ev. Kirche von Westfalen, Annette Kurschus</p>\\n<p class=\\"font_8 wixui-rich-text__text\\">Namen sind nicht Schall und Rauch. &bdquo;Teuflisch ist es, dass abertausende Menschen, die bei ihrer Flucht umkommen, namenlos bleiben. Sie werden an Grenzz&auml;unen get&ouml;tet und ertrinken im Mittelmeer. &hellip; Jeder Name, der gelesen wird, ist ein Protest gegen ihren bitteren Tod.&ldquo; &ndash; hei&szlig;t es im Gru&szlig;wort der Schirmherrin zur Aktion &bdquo;Beim Namen nennen&ldquo;: &nbsp; &nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.sanktreinoldi.de/fileadmin/Medienablage_Reinoldi/02_Allgemein/WFT/Grusswort_Beim_Namen_nennen.pdf\\" target=\\"_blank\\" rel=\\"noreferrer noopener\\">weiter zum Gru&szlig;wort</a></span></p>"}],"home_id":1}	715	\N
 716	809	directus_fields	162	{"id":162,"collection":"home_translations","field":"contentbox","special":["cast-json"],"interface":"list","options":{"fields":[{"field":"title","name":"title","type":"string","meta":{"field":"title","type":"string","interface":"input"}},{"field":"description","name":"description","type":"text","meta":{"field":"description","type":"text","interface":"input-rich-text-html"}},{"field":"width","name":"width","type":"integer","meta":{"field":"width","type":"integer","interface":"select-dropdown","options":{"choices":[{"text":"Full width","value":"1"},{"text":"Half width","value":"0.5"}]}}}]},"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":6,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"home_translations","field":"contentbox","special":["cast-json"],"interface":"list","options":{"fields":[{"field":"title","name":"title","type":"string","meta":{"field":"title","type":"string","interface":"input"}},{"field":"description","name":"description","type":"text","meta":{"field":"description","type":"text","interface":"input-rich-text-html"}},{"field":"width","name":"width","type":"integer","meta":{"field":"width","type":"integer","interface":"select-dropdown","options":{"choices":[{"text":"Full width","value":"1"},{"text":"Half width","value":"0.5"}]}}}]},"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":6,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	\N	\N
+723	817	directus_fields	164	{"sort":1,"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"GeneralTranslations"}	{"sort":1,"hidden":true,"interface":"input","readonly":true,"field":"id","collection":"GeneralTranslations"}	\N	\N
+724	818	directus_collections	GeneralTranslations	{"singleton":false,"collection":"GeneralTranslations"}	{"singleton":false,"collection":"GeneralTranslations"}	\N	\N
 717	810	home_translations	1	{"id":1,"home_id":1,"languages_code":"de","titel":"Flüchtlingstag 2023 Beim Namen nennen – über 51 000 Opfer der Festung Europas","description":"Ein stilles Drama geht seit Jahren auf den Meeren und an den Grenzen Europas vor sich und schafft es nur gelegentlich in die Medien. Seit 1993 sind über 51 000 Kinder, Frauen und Männer gestorben. Oder müssen wir die Frage stellen, ob sie getötet wurden? Von einer immer härteren Politik der Länder Europas, die verhindert, dass diese Menschen legal in Europa einreisen können, um hier ein Asylgesuch zu stellen.\\n\\nSie müssen vor lebensgefährlichen Situationen fliehen und setzen ihr Leben aufs Spiel. Sie verharren in unwürdigen Flüchtlingslagern ohne angemessene Versorgung oder das Wissen, ob, wann und wie es weiter geht. Darüber sind wir entsetzt und fordern sichere Fluchtwege! Mit verschiedenen Aktionen und einem Mahnmal gedenken wir der Opfer und protestieren öffentlich gegen die unhaltbare Situation.","contentbox":[{"title":"Veranstaltungsorte","description":"<p>Die Aktion &laquo;Beim Namen nennen&raquo; findet statt in&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/basel\\" target=\\"_self\\">Basel</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/berlin\\" target=\\"_self\\">Berlin</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/bern\\" target=\\"_self\\">Bern</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/braunschweig\\" target=\\"_self\\">Braunschweig</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/chur\\" target=\\"_self\\">Chur</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/dortmund\\" target=\\"_self\\">Dortmund</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/essen\\" target=\\"_self\\">Essen</a></span>, Frankfurt,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/gen%C3%A8ve\\" target=\\"_self\\">Genf</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/kehl\\" target=\\"_self\\">Kehl</a></span>, Lausanne,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/luzern\\" target=\\"_self\\">Luzern</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/neuch%C3%A2tel\\" target=\\"_self\\">Neuch&acirc;tel</a></span>, Offenburg,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/st.-gallen\\" target=\\"_self\\">St.Gallen</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/thun\\" target=\\"_self\\">Thun</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/z%C3%BCrich\\" target=\\"_self\\">Z&uuml;rich&nbsp;</a></span>in<br class=\\"wixui-rich-text__text\\">Kooperation mit UNITED for Intercultural Action http://unitedagainstrefugeedeaths.eu</p>","width":"0.5"},{"title":"Gedenk-Aktionen","description":"<p class=\\"font_8 wixui-rich-text__text\\"><span class=\\"wixui-rich-text__text\\">In den verschiedenen St&auml;dten fanden &ouml;ffentliche Lesungen der &laquo;List of Deaths&raquo; statt. Dazu wurden die Angaben jeder verstorbenen Person auf ein St&uuml;ck Stoff geschrieben und an einer Installation befestigt.</span></p>\\n<p class=\\"font_8 wixui-rich-text__text\\"><span class=\\"wixui-rich-text__text\\">So bauten wir gemeinsam im Gedenken an die Verstorbenen &ouml;ffentliche Mahnmale.</span></p>","width":"0.5"},{"title":" Schirmherrschaft von „Beim Namen nennen“ in Deutschland","description":"<p class=\\"font_8 wixui-rich-text__text\\">Ratsvorsitzende der Ev. Kirche Deutschland und Präses der Ev. Kirche von Westfalen, Annette Kurschus</p>\\n<p class=\\"font_8 wixui-rich-text__text\\">Namen sind nicht Schall und Rauch. &bdquo;Teuflisch ist es, dass abertausende Menschen, die bei ihrer Flucht umkommen, namenlos bleiben. Sie werden an Grenzz&auml;unen get&ouml;tet und ertrinken im Mittelmeer. &hellip; Jeder Name, der gelesen wird, ist ein Protest gegen ihren bitteren Tod.&ldquo; &ndash; hei&szlig;t es im Gru&szlig;wort der Schirmherrin zur Aktion &bdquo;Beim Namen nennen&ldquo;: &nbsp; &nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.sanktreinoldi.de/fileadmin/Medienablage_Reinoldi/02_Allgemein/WFT/Grusswort_Beim_Namen_nennen.pdf\\" target=\\"_blank\\" rel=\\"noreferrer noopener\\">weiter zum Gru&szlig;wort</a></span></p>","width":"1"}]}	{"home_id":1,"languages_code":"de","contentbox":[{"title":"Veranstaltungsorte","description":"<p>Die Aktion &laquo;Beim Namen nennen&raquo; findet statt in&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/basel\\" target=\\"_self\\">Basel</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/berlin\\" target=\\"_self\\">Berlin</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/bern\\" target=\\"_self\\">Bern</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/braunschweig\\" target=\\"_self\\">Braunschweig</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/chur\\" target=\\"_self\\">Chur</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/dortmund\\" target=\\"_self\\">Dortmund</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/essen\\" target=\\"_self\\">Essen</a></span>, Frankfurt,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/gen%C3%A8ve\\" target=\\"_self\\">Genf</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/kehl\\" target=\\"_self\\">Kehl</a></span>, Lausanne,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/luzern\\" target=\\"_self\\">Luzern</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/neuch%C3%A2tel\\" target=\\"_self\\">Neuch&acirc;tel</a></span>, Offenburg,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/st.-gallen\\" target=\\"_self\\">St.Gallen</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/thun\\" target=\\"_self\\">Thun</a></span>,&nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.beimnamennennen.ch/cities/z%C3%BCrich\\" target=\\"_self\\">Z&uuml;rich&nbsp;</a></span>in<br class=\\"wixui-rich-text__text\\">Kooperation mit UNITED for Intercultural Action http://unitedagainstrefugeedeaths.eu</p>","width":"0.5"},{"title":"Gedenk-Aktionen","description":"<p class=\\"font_8 wixui-rich-text__text\\"><span class=\\"wixui-rich-text__text\\">In den verschiedenen St&auml;dten fanden &ouml;ffentliche Lesungen der &laquo;List of Deaths&raquo; statt. Dazu wurden die Angaben jeder verstorbenen Person auf ein St&uuml;ck Stoff geschrieben und an einer Installation befestigt.</span></p>\\n<p class=\\"font_8 wixui-rich-text__text\\"><span class=\\"wixui-rich-text__text\\">So bauten wir gemeinsam im Gedenken an die Verstorbenen &ouml;ffentliche Mahnmale.</span></p>","width":"0.5"},{"title":" Schirmherrschaft von „Beim Namen nennen“ in Deutschland","description":"<p class=\\"font_8 wixui-rich-text__text\\">Ratsvorsitzende der Ev. Kirche Deutschland und Präses der Ev. Kirche von Westfalen, Annette Kurschus</p>\\n<p class=\\"font_8 wixui-rich-text__text\\">Namen sind nicht Schall und Rauch. &bdquo;Teuflisch ist es, dass abertausende Menschen, die bei ihrer Flucht umkommen, namenlos bleiben. Sie werden an Grenzz&auml;unen get&ouml;tet und ertrinken im Mittelmeer. &hellip; Jeder Name, der gelesen wird, ist ein Protest gegen ihren bitteren Tod.&ldquo; &ndash; hei&szlig;t es im Gru&szlig;wort der Schirmherrin zur Aktion &bdquo;Beim Namen nennen&ldquo;: &nbsp; &nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.sanktreinoldi.de/fileadmin/Medienablage_Reinoldi/02_Allgemein/WFT/Grusswort_Beim_Namen_nennen.pdf\\" target=\\"_blank\\" rel=\\"noreferrer noopener\\">weiter zum Gru&szlig;wort</a></span></p>","width":"1"}]}	\N	\N
+725	819	directus_fields	165	{"sort":2,"interface":"translations","special":["translations"],"collection":"GeneralTranslations","field":"translations"}	{"sort":2,"interface":"translations","special":["translations"],"collection":"GeneralTranslations","field":"translations"}	\N	\N
+729	823	directus_fields	168	{"sort":3,"hidden":true,"collection":"GeneralTranslations_translations","field":"languages_code"}	{"sort":3,"hidden":true,"collection":"GeneralTranslations_translations","field":"languages_code"}	\N	\N
+731	825	directus_fields	170	{"sort":5,"interface":"input","special":null,"collection":"GeneralTranslations_translations","field":"text"}	{"sort":5,"interface":"input","special":null,"collection":"GeneralTranslations_translations","field":"text"}	\N	\N
 718	812	directus_fields	163	{"sort":13,"interface":"select-dropdown","special":null,"options":{"choices":[{"text":"Deutschland","value":"de"},{"text":"Schweiz","value":"ch"}]},"collection":"city","field":"country"}	{"sort":13,"interface":"select-dropdown","special":null,"options":{"choices":[{"text":"Deutschland","value":"de"},{"text":"Schweiz","value":"ch"}]},"collection":"city","field":"country"}	\N	\N
+726	820	directus_fields	166	{"sort":1,"hidden":true,"field":"id","collection":"GeneralTranslations_translations"}	{"sort":1,"hidden":true,"field":"id","collection":"GeneralTranslations_translations"}	\N	\N
+727	821	directus_collections	GeneralTranslations_translations	{"hidden":true,"icon":"import_export","collection":"GeneralTranslations_translations"}	{"hidden":true,"icon":"import_export","collection":"GeneralTranslations_translations"}	\N	\N
+728	822	directus_fields	167	{"sort":2,"hidden":true,"collection":"GeneralTranslations_translations","field":"GeneralTranslations_id"}	{"sort":2,"hidden":true,"collection":"GeneralTranslations_translations","field":"GeneralTranslations_id"}	\N	\N
+730	824	directus_fields	169	{"sort":4,"interface":"input","special":null,"collection":"GeneralTranslations_translations","field":"key"}	{"sort":4,"interface":"input","special":null,"collection":"GeneralTranslations_translations","field":"key"}	\N	\N
 719	813	city	2	{"id":2,"status":"draft","sort":null,"date_updated":"2024-02-10T10:10:00.806Z","country":"ch","translations":[3,4],"gallery":[20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38],"supportlinks":[1,2,3,4,5,6,7,8],"events":[1,4,5],"customSections":[1],"emailForm":[1]}	{"country":"ch","date_updated":"2024-02-10T10:10:00.806Z"}	\N	\N
+733	827	GeneralTranslations	1	{"translations":{"create":[{"key":"german_cities","languages_code":{"code":"de"},"text":"Deutsche Städte"}],"update":[],"delete":[]}}	{"translations":{"create":[{"key":"german_cities","languages_code":{"code":"de"},"text":"Deutsche Städte"}],"update":[],"delete":[]}}	\N	\N
+732	826	GeneralTranslations_translations	1	{"key":"german_cities","languages_code":{"code":"de"},"text":"Deutsche Städte","GeneralTranslations_id":1}	{"key":"german_cities","languages_code":{"code":"de"},"text":"Deutsche Städte","GeneralTranslations_id":1}	733	\N
 720	814	city	1	{"id":1,"status":"draft","sort":null,"date_updated":"2024-02-10T10:10:08.230Z","country":"ch","translations":[1,2],"gallery":[],"supportlinks":[],"events":[2],"customSections":[],"emailForm":[]}	{"country":"ch","date_updated":"2024-02-10T10:10:08.230Z"}	\N	\N
+734	828	directus_fields	171	{"sort":3,"interface":"input","special":null,"collection":"GeneralTranslations","field":"key"}	{"sort":3,"interface":"input","special":null,"collection":"GeneralTranslations","field":"key"}	\N	\N
 722	816	city	3	{"translations":{"create":[{"name":"Berlin","languages_code":{"code":"de"}}],"update":[],"delete":[]},"country":"de"}	{"translations":{"create":[{"name":"Berlin","languages_code":{"code":"de"}}],"update":[],"delete":[]},"country":"de"}	\N	\N
 721	815	city_translations	5	{"name":"Berlin","languages_code":{"code":"de"},"city_id":3}	{"name":"Berlin","languages_code":{"code":"de"},"city_id":3}	722	\N
+736	831	GeneralTranslations	2	{"key":"german_cities","translations":{"create":[{"text":"Deutsche Städte","languages_code":{"code":"de"}}],"update":[],"delete":[]}}	{"key":"german_cities","translations":{"create":[{"text":"Deutsche Städte","languages_code":{"code":"de"}}],"update":[],"delete":[]}}	\N	\N
+735	830	GeneralTranslations_translations	2	{"text":"Deutsche Städte","languages_code":{"code":"de"},"GeneralTranslations_id":2}	{"text":"Deutsche Städte","languages_code":{"code":"de"},"GeneralTranslations_id":2}	736	\N
+738	833	GeneralTranslations	3	{"key":"swiss_cities","translations":{"create":[{"text":"Schweizer Städte","languages_code":{"code":"de"}}],"update":[],"delete":[]}}	{"key":"swiss_cities","translations":{"create":[{"text":"Schweizer Städte","languages_code":{"code":"de"}}],"update":[],"delete":[]}}	\N	\N
+737	832	GeneralTranslations_translations	3	{"text":"Schweizer Städte","languages_code":{"code":"de"},"GeneralTranslations_id":3}	{"text":"Schweizer Städte","languages_code":{"code":"de"},"GeneralTranslations_id":3}	738	\N
+742	837	GeneralTranslations	5	{"key":"sponsors","translations":{"create":[{"text":"Organisation | Trägerschaft","languages_code":{"code":"de"}}],"update":[],"delete":[]}}	{"key":"sponsors","translations":{"create":[{"text":"Organisation | Trägerschaft","languages_code":{"code":"de"}}],"update":[],"delete":[]}}	\N	\N
+741	836	GeneralTranslations_translations	5	{"text":"Organisation | Trägerschaft","languages_code":{"code":"de"},"GeneralTranslations_id":5}	{"text":"Organisation | Trägerschaft","languages_code":{"code":"de"},"GeneralTranslations_id":5}	742	\N
+740	835	GeneralTranslations	4	{"key":"events","translations":{"create":[{"text":"Veranstaltungen","languages_code":{"code":"de"}}],"update":[],"delete":[]}}	{"key":"events","translations":{"create":[{"text":"Veranstaltungen","languages_code":{"code":"de"}}],"update":[],"delete":[]}}	\N	\N
+739	834	GeneralTranslations_translations	4	{"text":"Veranstaltungen","languages_code":{"code":"de"},"GeneralTranslations_id":4}	{"text":"Veranstaltungen","languages_code":{"code":"de"},"GeneralTranslations_id":4}	740	\N
+744	839	GeneralTranslations	6	{"translations":{"create":[{"text":"Über uns","languages_code":{"code":"de"}}],"update":[],"delete":[]},"key":"about_us"}	{"translations":{"create":[{"text":"Über uns","languages_code":{"code":"de"}}],"update":[],"delete":[]},"key":"about_us"}	\N	\N
+743	838	GeneralTranslations_translations	6	{"text":"Über uns","languages_code":{"code":"de"},"GeneralTranslations_id":6}	{"text":"Über uns","languages_code":{"code":"de"},"GeneralTranslations_id":6}	744	\N
+746	841	GeneralTranslations	7	{"translations":{"create":[{"text":"Kontakt","languages_code":{"code":"de"}}],"update":[],"delete":[]},"key":"contact"}	{"translations":{"create":[{"text":"Kontakt","languages_code":{"code":"de"}}],"update":[],"delete":[]},"key":"contact"}	\N	\N
+745	840	GeneralTranslations_translations	7	{"text":"Kontakt","languages_code":{"code":"de"},"GeneralTranslations_id":7}	{"text":"Kontakt","languages_code":{"code":"de"},"GeneralTranslations_id":7}	746	\N
+747	842	directus_permissions	70	{"role":null,"collection":"GeneralTranslations","action":"read","fields":["*"],"permissions":{},"validation":{}}	{"role":null,"collection":"GeneralTranslations","action":"read","fields":["*"],"permissions":{},"validation":{}}	\N	\N
+748	843	directus_permissions	71	{"role":null,"collection":"GeneralTranslations_translations","action":"read","fields":["*"],"permissions":{},"validation":{}}	{"role":null,"collection":"GeneralTranslations_translations","action":"read","fields":["*"],"permissions":{},"validation":{}}	\N	\N
+750	846	GeneralTranslations	8	{"key":"home","translations":{"create":[{"text":"Home","languages_code":{"code":"de"}}],"update":[],"delete":[]}}	{"key":"home","translations":{"create":[{"text":"Home","languages_code":{"code":"de"}}],"update":[],"delete":[]}}	\N	\N
+749	845	GeneralTranslations_translations	8	{"text":"Home","languages_code":{"code":"de"},"GeneralTranslations_id":8}	{"text":"Home","languages_code":{"code":"de"},"GeneralTranslations_id":8}	750	\N
+752	848	GeneralTranslations	9	{"key":"home","translations":{"create":[{"text":"Home","languages_code":{"code":"de"}}],"update":[],"delete":[]}}	{"key":"home","translations":{"create":[{"text":"Home","languages_code":{"code":"de"}}],"update":[],"delete":[]}}	\N	\N
+751	847	GeneralTranslations_translations	9	{"text":"Home","languages_code":{"code":"de"},"GeneralTranslations_id":9}	{"text":"Home","languages_code":{"code":"de"},"GeneralTranslations_id":9}	752	\N
+753	850	GeneralTranslations	10	{"key":"volunteer"}	{"key":"volunteer"}	\N	\N
+754	851	GeneralTranslations_translations	10	{"text":"Mitmachen","languages_code":{"code":"de"},"GeneralTranslations_id":"10"}	{"text":"Mitmachen","languages_code":{"code":"de"},"GeneralTranslations_id":"10"}	\N	\N
 \.
 
 
@@ -3858,9 +4057,9 @@ COPY public.directus_roles (id, name, icon, description, ip_access, enforce_tfa,
 --
 
 COPY public.directus_sessions (token, "user", expires, ip, user_agent, share, origin) FROM stdin;
-ugw2EDUkeYttedp8bDszYAaj8XwH_nz5FwytoBhyP99UtFzVvQeweDEb89JVZcHL	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-09 13:00:09.421+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36	\N	http://localhost:8055
 FbuVyV-JVnT1ajgQBjed8FOSkkv225-W75nhLpuZEOOCxEVFfxpRztVzSvIzrryV	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-12 18:19:26.915+00	172.21.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	\N	http://localhost:8055
-kDMpB1VRRjANXxae1UccUoLPuYT2831W3y0NEn8LD3Bi93qCxoBrS7abdH8d2mCi	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-17 11:09:51.441+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	\N	http://localhost:8055
+HzjXVQypoL_1QlQpb3NBPiAuLu5h2-bDTHchjdL2DZ2v39_BrJy-6f1MxtuQryjR	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-17 12:30:48.294+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	\N	http://localhost:8055
+UGfmtuFokIHuvgs3Yt106pSfCm9PhivVVWPyR3YZw3DK_MYfs7JRIYkzN5GdgaqL	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-17 13:04:02.962+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	\N	http://localhost:8055
 \.
 
 
@@ -3894,7 +4093,7 @@ COPY public.directus_translations (id, language, key, value) FROM stdin;
 
 COPY public.directus_users (id, first_name, last_name, email, password, location, title, description, tags, avatar, language, tfa_secret, status, role, token, last_access, last_page, provider, external_identifier, auth_data, email_notifications, appearance, theme_dark, theme_light, theme_light_overrides, theme_dark_overrides) FROM stdin;
 507e3800-1c28-454b-bcd2-766cda54a162	Basel	Admin	mirjamthomet@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$rEXyXmboQoJtEolz1V+VwQ$0mpZ0yfRnbyl8LchcvwSg1zkRSH516jNbFYv2TCGJ0s	\N	\N	\N	\N	\N	\N	\N	active	68c58399-f145-49aa-9db1-ee94c793b427	\N	2024-01-20 14:42:17.91+00	/content/city	default	\N	\N	t	\N	\N	\N	\N	\N
-db513aee-cd3a-47a9-95e5-a98f1cc92d13	Admin	User	gannonline90@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$8mOx4/9GjUaVmWJRCxhc1Q$O2PmAQbgGlqxaNAnsgyyJRQxPl+9HeBKZ5z7JMZjqbo	\N	\N	\N	\N	\N	\N	\N	active	878f0264-16f3-4a54-a79e-82c27313bacc	\N	2024-02-10 11:09:51.454+00	/settings/roles/public	default	\N	\N	t	\N	\N	\N	\N	\N
+db513aee-cd3a-47a9-95e5-a98f1cc92d13	Admin	User	gannonline90@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$8mOx4/9GjUaVmWJRCxhc1Q$O2PmAQbgGlqxaNAnsgyyJRQxPl+9HeBKZ5z7JMZjqbo	\N	\N	\N	\N	\N	\N	\N	active	878f0264-16f3-4a54-a79e-82c27313bacc	\N	2024-02-10 13:04:02.968+00	/content/GeneralTranslations	default	\N	\N	t	\N	\N	\N	\N	\N
 \.
 
 
@@ -4020,6 +4219,20 @@ SELECT pg_catalog.setval('public."FormFields_id_seq"', 4, true);
 
 
 --
+-- Name: GeneralTranslations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
+--
+
+SELECT pg_catalog.setval('public."GeneralTranslations_id_seq"', 10, true);
+
+
+--
+-- Name: GeneralTranslations_translations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
+--
+
+SELECT pg_catalog.setval('public."GeneralTranslations_translations_id_seq"', 10, true);
+
+
+--
 -- Name: SupportLinks_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
 --
 
@@ -4072,14 +4285,14 @@ SELECT pg_catalog.setval('public.countries_translations_id_seq', 2, true);
 -- Name: directus_activity_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
 --
 
-SELECT pg_catalog.setval('public.directus_activity_id_seq', 816, true);
+SELECT pg_catalog.setval('public.directus_activity_id_seq', 852, true);
 
 
 --
 -- Name: directus_fields_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
 --
 
-SELECT pg_catalog.setval('public.directus_fields_id_seq', 163, true);
+SELECT pg_catalog.setval('public.directus_fields_id_seq', 171, true);
 
 
 --
@@ -4093,7 +4306,7 @@ SELECT pg_catalog.setval('public.directus_notifications_id_seq', 1, false);
 -- Name: directus_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
 --
 
-SELECT pg_catalog.setval('public.directus_permissions_id_seq', 69, true);
+SELECT pg_catalog.setval('public.directus_permissions_id_seq', 71, true);
 
 
 --
@@ -4107,14 +4320,14 @@ SELECT pg_catalog.setval('public.directus_presets_id_seq', 6, true);
 -- Name: directus_relations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
 --
 
-SELECT pg_catalog.setval('public.directus_relations_id_seq', 40, true);
+SELECT pg_catalog.setval('public.directus_relations_id_seq', 42, true);
 
 
 --
 -- Name: directus_revisions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
 --
 
-SELECT pg_catalog.setval('public.directus_revisions_id_seq', 722, true);
+SELECT pg_catalog.setval('public.directus_revisions_id_seq', 754, true);
 
 
 --
@@ -4213,6 +4426,22 @@ ALTER TABLE ONLY public."EmailForm_translations"
 
 ALTER TABLE ONLY public."FormFields"
     ADD CONSTRAINT "FormFields_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: GeneralTranslations GeneralTranslations_pkey; Type: CONSTRAINT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public."GeneralTranslations"
+    ADD CONSTRAINT "GeneralTranslations_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: GeneralTranslations_translations GeneralTranslations_translations_pkey; Type: CONSTRAINT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public."GeneralTranslations_translations"
+    ADD CONSTRAINT "GeneralTranslations_translations_pkey" PRIMARY KEY (id);
 
 
 --
@@ -4997,6 +5226,22 @@ ALTER TABLE ONLY public.event_translations
 
 ALTER TABLE ONLY public.event_translations
     ADD CONSTRAINT event_translations_languages_code_foreign FOREIGN KEY (languages_code) REFERENCES public.languages(code) ON DELETE SET NULL;
+
+
+--
+-- Name: GeneralTranslations_translations generaltranslations_translations_generaltr__2175404d_foreign; Type: FK CONSTRAINT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public."GeneralTranslations_translations"
+    ADD CONSTRAINT generaltranslations_translations_generaltr__2175404d_foreign FOREIGN KEY ("GeneralTranslations_id") REFERENCES public."GeneralTranslations"(id) ON DELETE SET NULL;
+
+
+--
+-- Name: GeneralTranslations_translations generaltranslations_translations_languages_code_foreign; Type: FK CONSTRAINT; Schema: public; Owner: directus
+--
+
+ALTER TABLE ONLY public."GeneralTranslations_translations"
+    ADD CONSTRAINT generaltranslations_translations_languages_code_foreign FOREIGN KEY (languages_code) REFERENCES public.languages(code) ON DELETE SET NULL;
 
 
 --
