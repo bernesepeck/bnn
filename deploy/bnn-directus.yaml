@@ -1,9 +1,7 @@
 apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
-  labels:
-    cloud.googleapis.com/location: europe-west6
-  name: bnn-directus-2
+  name: bnn-directus
   namespace: '305755512423'
 spec:
   template:
