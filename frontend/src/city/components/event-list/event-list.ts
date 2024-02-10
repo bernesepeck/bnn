@@ -3,6 +3,7 @@ import { DefaultComponent } from "../../../components/default.component";
 import { customElement, property } from "lit/decorators.js";
 import "../../../components/content-container/content-container";
 import { EventModel } from "../../city.models";
+import { TranslationService } from "../../../services/translation.service";
 
 @customElement("bnn-event-list")
 export class EventList extends DefaultComponent {
@@ -46,7 +47,7 @@ export class EventList extends DefaultComponent {
   render() {
     return html`
       <bnn-content-container .backgroundColor="${"grey"}">
-        <h2>Veranstaltungen</h2>
+        <h2>${TranslationService.getInstance().getTranslation('events')}</h2>
         <div class="events">
           ${this.events?.map((e) => this.renderEvent(e))}
         </div>
