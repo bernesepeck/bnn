@@ -1,0 +1,49 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  labels:
+    cloud.googleapis.com/location: europe-west6
+  name: bnn-directus-2
+  namespace: '305755512423'
+spec:
+  template:
+    spec:
+      containers:
+      - image: directus/directus:10.9
+        env:
+        - name: KEY
+          value: csY0lhH1UTpmo7ch4UEvoYOGXvEdxmET
+        - name: SECRET
+          value: A9NEltjtaYl9r4z0yWlaM94raPwg2csY
+        - name: ADMIN_EMAIL
+          value: gannonline90@gmail.com
+        - name: ADMIN_PASSWORD
+          value: Fri12Mar
+        - name: CORS_ENABLED
+          value: 'true'
+        - name: CORS_ORIGIN
+          value: https://bnn-frontend-g5zcbtf63q-oa.a.run.app/
+        - name: CORS_METHODS
+          value: GET,POST,PATCH,DELETE
+        - name: CORS_ALLOWED_HEADERS
+          value: Content-Type,Authorization
+        - name: CORS_EXPOSED_HEADERS
+          value: Content-Range
+        - name: EMAIL_FROM
+          value: noreply@beimnamennennen.com
+        - name: EMAIL_TRANSPORT
+          value: smtp
+        - name: EMAIL_SMTP_HOST
+          value: smtp.gmail.com
+        - name: EMAIL_SMTP_PORT
+          value: '587'
+        - name: EMAIL_SMTP_USER
+          value: gannonline90
+        - name: EMAIL_SMTP_PASSWORD
+          value: vsngxdngzcvzsjfr
+        - name: DB_CONNECTION_STRING
+          value: postgresql://directus:Fj+f*"AL|H5~Fdo7@directus?host=/cloudsql/bnn-app-413420:europe-west6:bnn-database&sslmode=disable
+        resources:
+          limits:
+            cpu: 1000m
+            memory: 512Mi

@@ -1,7 +1,7 @@
 {
   "scripts": {
     "copy-assets": "cp -r src/assets/* dist",
-    "start": "npm run copy-assets && npm run build-img && parcel src/index.html src/city/index.html",
+    "start": "npm run build-img && parcel src/index.html src/city/index.html",
     "build": "npm run build-img && parcel build src/index.html src/city/index.html",
     "build-img": "parcel build src/assets/* --no-cache"
   },

@@ -3,7 +3,7 @@ name: CI to Docker Hub and Deploy to Google Cloud Run
 on:
   push:
     branches:
-      - 'main'
+      - 'feature/deploy-directus'
 
 jobs:
   deploy:
@@ -36,10 +36,16 @@ jobs:
         with:
           credentials_json: ${{ secrets.GCP_SA_KEY }}
 
-      - id: 'deploy'
+      - name: 'Deploy Google Cloud Run bnn-frontend'
         uses: 'google-github-actions/deploy-cloudrun@v2'
         with:
           service: 'bnn-frontend'
           image: 'j0hngnn0n/bnn:frontend-${{ github.sha }}'
           region: 'europe-west6'
+      
+      - name: 'Deploy Google Cloud Run bnn-directus'
+        uses: 'google-github-actions/deploy-cloudrun@v2'
+        with:
+          metadata: deploy/bnn-directus.yaml
+          
 
