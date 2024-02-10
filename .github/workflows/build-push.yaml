@@ -65,4 +65,5 @@ jobs:
             EMAIL_SMTP_PORT=587
             EMAIL_SMTP_USER=${{ secrets.DIRECTUS_SMTP_USER }}
             EMAIL_SMTP_PASSWORD=${{ secrets.DIRECTUS_SMTP_PASSWORD }}
+            DB_CLIENT=pg
             DB_CONNECTION_STRING=${{ secrets.DIRECTUS_DB_CONNECTION_STRING }}
