@@ -41,7 +41,6 @@ export class CityService {
                 [model]: this.langFilter,
             }), {...this.langFilter}),
         }));
-        console.log("FetchedCityObj", response);
         return this.convertToCity(response);
     }
 
@@ -51,6 +50,7 @@ export class CityService {
                 'id',
                 'translations.city_id',
                 'translations.name',
+                'country'
             ],
             deep: {
                 ...this.langFilter,
@@ -91,7 +91,6 @@ export class CityService {
             }
         });
 
-        console.log("ParsedCityObj", city);
         return city as CityModel;
     }
 }
