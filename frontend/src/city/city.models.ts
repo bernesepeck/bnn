@@ -54,8 +54,17 @@ export interface CityModel {
     emailForm: [];
     [key: string]: any;
     form: FormType;
+    country: string;
 }
 export interface GalleryModel {
     id: number;
     directus_files_id: string;
+}
+
+export const getCurrentCity = () => {
+    const currentUrl = window.location.href;
+    const parsedUrl = new URL(currentUrl);
+    const pathSegments = parsedUrl.pathname.split('/');
+    const lastPart = pathSegments.filter(segment => segment !== "").pop();
+    return Number(lastPart);
 }
