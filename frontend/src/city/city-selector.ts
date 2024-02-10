@@ -1,5 +1,5 @@
 import { css, html } from "lit";
-import { customElement, state } from "lit/decorators.js";
+import { customElement, property, state } from "lit/decorators.js";
 import { CityService } from "./city.service"; // Adjust the path as necessary
 import { CityModel } from "./city.models";
 import { DefaultComponent } from "../components/default.component";
@@ -7,14 +7,14 @@ import { classMap } from 'lit/directives/class-map.js';
 
 @customElement("bnn-city-selector")
 export class CitySelector extends DefaultComponent {
-  private cityService: CityService;
-  @state() cities: CityModel[] = [];
 
-  constructor() {
-    super();
-    this.cityService = new CityService();
-    this.fetchCities();
-  }
+  
+  @property() cities: CityModel[] = [];
+
+  @property()
+  country: string = 'ch'; 
+
+
 
   static get componentStyles() {
     return css`
@@ -41,19 +41,12 @@ export class CitySelector extends DefaultComponent {
     `;
   }
 
-  async fetchCities() {
-    try {
-      const cities = await this.cityService.getCities();
-      this.cities = cities;
-    } catch (error) {
-      console.error("Error fetching cities:", error);
-    }
-  }
+
 
   render() {
     return html`
       <nav>
-        ${this.cities.map(
+        ${this.cities.filter(c => c.country === this.country).map(
           (city) =>
             html`<a
             class="${classMap({selected: this.getCurrentCity() === city.id})}"
@@ -73,5 +66,4 @@ export class CitySelector extends DefaultComponent {
     const lastPart = pathSegments.filter(segment => segment !== "").pop();
     return Number(lastPart);
   }
-  
 }
