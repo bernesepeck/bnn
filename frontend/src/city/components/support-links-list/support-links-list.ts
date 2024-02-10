@@ -3,6 +3,7 @@ import { DefaultComponent } from "../../../components/default.component";
 import { customElement, property } from "lit/decorators.js";
 import "../../../components/content-container/content-container";
 import { SupportLinkModel } from "../../city.models";
+import { TranslationService } from "../../../services/translation.service";
 
 @customElement("bnn-support-link-list")
 export class SupportLinksList extends DefaultComponent {
@@ -22,7 +23,7 @@ export class SupportLinksList extends DefaultComponent {
   render() {
     return html`
       <bnn-content-container>
-        <h2>Mitmachen</h2>
+        <h2>${TranslationService.getInstance().getTranslation('volunteer')}</h2>
         <div class="support-links">
           ${this.supportLinks?.map((e) => this.renderSupportLink(e))}
         </div>

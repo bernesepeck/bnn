@@ -3,6 +3,7 @@ import { DefaultComponent } from "../default.component";
 import { customElement } from "lit/decorators";
 import "../content-container/content-container";
 import "../language/languageSelector";
+import { TranslationService } from "../../services/translation.service";
 
 @customElement("bnn-footer")
 export class Footer extends DefaultComponent {
@@ -26,20 +27,19 @@ export class Footer extends DefaultComponent {
     `;
   }
   public render() {
-    //TODO: Get Data From Backend
     return html`
       <footer>
         <bnn-content-container .backgroundColor="${"grey"}">
           <div class="footer-content">
             <div>
-              <h3>Über uns</h3>
+              <h3>${TranslationService.getInstance().getTranslation('about_us')}</h3>
               <a href="https://www.offene-kirche.ch/">offene kirche bern</a>
               <a href="https://unitedagainstrefugeedeaths.eu/"
                 >UNITED against Refugee Deaths</a
               >
             </div>
             <div>
-              <h3>Kontakt</h3>
+              <h3>${TranslationService.getInstance().getTranslation('contact')}</h3>
               <!--Social Media Icons-->
               <a mailto="info@beimnamennennen.ch">info@beimnamennennen.ch</a>
             </div>

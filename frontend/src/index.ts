@@ -6,7 +6,8 @@ import "./components/footer/footer";
 import "./components/content-container/content-container";
 import { ConfigService } from "./config-service";
 import { HomeModel, HomeService } from "./home.service";
-import { classMap } from 'lit/directives/class-map.js';
+import { classMap } from "lit/directives/class-map.js";
+import { TranslationService } from "./services/translation.service";
 
 @customElement("bnn-home")
 export class Home extends DefaultComponent {
@@ -35,10 +36,12 @@ export class Home extends DefaultComponent {
     const configService = ConfigService.getInstance();
     configService
       .loadConfig()
+      .then(() => TranslationService.getInstance().getTranslations())
       .then(async () => {
         console.log("Configuration loaded successfully.");
         const homeService = new HomeService();
         this.home = await homeService.getHome();
+        this.requestUpdate();
       })
       .catch((error) => {
         console.error("Failed to load configuration:", error);
@@ -53,7 +56,13 @@ export class Home extends DefaultComponent {
       <bnn-content-container>
         <div class="grid-container">
           ${this.home?.contentbox.map((content) => {
-            return html`<div class="${classMap({'content-box': true, 'full-width': content.width === 1, 'half-width': content.width === 0.5})}">
+            return html`<div
+              class="${classMap({
+                "content-box": true,
+                "full-width": content.width === 1,
+                "half-width": content.width === 0.5,
+              })}"
+            >
               <h2>${content.title}</h2>
               <p .innerHTML="${content.description}"></p>
             </div>`;
