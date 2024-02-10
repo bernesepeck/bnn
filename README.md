@@ -22,8 +22,11 @@ unzip backend/uploads.zip -d backend/uploads
 
 ### Backup directus DB
 ```bash
-# Create pg dump
+# Create full pg dump
 docker exec -t bnn-database-1 pg_dumpall -c -U directus > backend/directus_db.sql
+
+# Create directus pg dump
+docker exec -t bnn-database-1 pg_dump -U directus --no-acl --no-owner -d directus > backend/directus_db_small.sql
 ```
 
 ### Restore directus DB into container
