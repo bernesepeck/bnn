@@ -35,19 +35,23 @@ jobs:
         uses: 'google-github-actions/auth@v2'
         with:
           credentials_json: ${{ secrets.GCP_SA_KEY }}
+      
+      - name: Setup Cloud Run Environment Variables
+        run: |
+          echo '${{ secrets.DIRECTUS_ENV_VARS }}' > directus_env.yaml
 
-      - name: 'Deploy Google Cloud Run bnn-frontend'
+      - name: 'Deploy frontend to Google Cloud Run'
         uses: 'google-github-actions/deploy-cloudrun@v2'
         with:
           service: 'bnn-frontend'
           image: 'j0hngnn0n/bnn:frontend-${{ github.sha }}'
           region: 'europe-west6'
-      
-      - name: 'Deploy Google Cloud Run bnn-directus'
-        uses: 'google-github-actions/deploy-cloudrun@v2'
+
+      - name: Deploy directus to Google Cloud Run
+        uses: google-github-actions/deploy-cloudrun@v2
         with:
-          metadata: 'deploy/bnn-directus.yaml'
           region: 'europe-west6'
           service: 'bnn-directus'
-          
-
+          image: directus/directus:10.9
+          env_vars_file: directus_env.yaml
+   
