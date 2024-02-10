@@ -15,6 +15,7 @@ import "../components/footer/footer";
 import "../components/text-content/text-content";
 import "../components/form/form";
 import { ConfigService } from '../config-service'; // Adjust the import path as needed
+import { TranslationService } from "../services/translation.service";
 
 @customElement("bnn-city")
 export class City extends DefaultComponent {
@@ -29,10 +30,11 @@ export class City extends DefaultComponent {
     super();
     const configService = ConfigService.getInstance();
     
-    configService.loadConfig().then(() => {
-      console.log("Configuration loaded successfully.");
+    configService.loadConfig().then(() => TranslationService.getInstance().getTranslations()).then(() => {
       this.cityService = new CityService();
       this.initializeSelectedCityFromURL();
+      this.requestUpdate();
+      
     }).catch(error => {
       console.error("Failed to load configuration:", error);
     });
@@ -112,7 +114,7 @@ export class City extends DefaultComponent {
   renderSponsors() {
     return this.city?.sponsors
       ? html`<bnn-text-content
-          .title="${"Organisation | Trägerschaft"}"
+          .title="${TranslationService.getInstance().getTranslation('sponsors')}"
           .text="${this.city?.sponsors}"
           .backgroundColor="${"blue"}"
         ></bnn-text-content>`

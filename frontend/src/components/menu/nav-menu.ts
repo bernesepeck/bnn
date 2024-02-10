@@ -6,9 +6,10 @@ import { DefaultComponent } from "../default.component";
 import { classMap } from "lit/directives/class-map.js";
 import { CityService } from "../../city/city.service";
 import { CityModel, getCurrentCity } from "../../city/city.models";
+import { TranslationService } from "../../services/translation.service";
 
 type MenuItem = {
-  title: string;
+  translationKey: string;
   submenu: boolean;
   submenuSlotName?: string;
   submenuVisible?: boolean;
@@ -22,9 +23,9 @@ export class NavMenu extends DefaultComponent {
   private cityService: CityService;
   @state() cities: CityModel[] = [];
   @property({ type: Array<MenuItem> }) menuItems: MenuItem[] = [
-    { title: "Home", submenu: false, link: "/" },
+    { translationKey: "home", submenu: false, link: "/" },
     {
-      title: "Schweizer Städte",
+      translationKey: "swiss_cities",
       submenu: true,
       submenuSlotName: "bnn-city-selector",
       key: "ch",
@@ -32,7 +33,7 @@ export class NavMenu extends DefaultComponent {
       urlParam: "city",
     },
     {
-      title: "Deutsche Städte",
+      translationKey: "german_cities",
       submenu: true,
       submenuSlotName: "bnn-city-selector",
       key: "de",
@@ -43,11 +44,6 @@ export class NavMenu extends DefaultComponent {
 
   @state()
   isMenuOpen = false;
-
-  private isCityItemSelected(item: MenuItem): boolean {
-    const selected = window.location.href.includes(item.urlParam!)
-    return selected && this.cities.find(c => c.id === getCurrentCity())?.country === item.key;
-  }
 
   static get componentStyles() {
     return css`
@@ -167,7 +163,7 @@ export class NavMenu extends DefaultComponent {
         ${this.menuItems.map((item) =>
           item.submenu
             ? this.renderMenuItemWithSubmenu(item)
-            : html`<a class="main-link" href="${item.link}">${item.title}</a>`
+            : html`<a class="main-link" href="${item.link}">${TranslationService.getInstance().getTranslation(item.translationKey!)}</a>`
         )}
       </nav>
       <button
@@ -189,7 +185,7 @@ export class NavMenu extends DefaultComponent {
           selected: this.isCityItemSelected(item),
         })}"
       >
-        ${item.title}
+        ${TranslationService.getInstance().getTranslation(item.translationKey!)}
         ${item.submenu && (item.submenuVisible || this.isMenuOpen)
           ? html`
               <div class="submenu">
@@ -223,5 +219,10 @@ export class NavMenu extends DefaultComponent {
     } catch (error) {
       console.error("Error fetching cities:", error);
     }
+  }
+
+  private isCityItemSelected(item: MenuItem): boolean {
+    const selected = window.location.href.includes(item.urlParam!)
+    return selected && this.cities.find(c => c.id === getCurrentCity())?.country === item.key;
   }
 }
