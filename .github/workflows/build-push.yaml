@@ -46,6 +46,8 @@ jobs:
       - name: 'Deploy Google Cloud Run bnn-directus'
         uses: 'google-github-actions/deploy-cloudrun@v2'
         with:
-          metadata: deploy/bnn-directus.yaml
+          metadata: 'deploy/bnn-directus.yaml'
+          region: 'europe-west6'
+          service: 'bnn-directus'
           
 
