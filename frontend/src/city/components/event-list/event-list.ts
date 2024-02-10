@@ -45,9 +45,10 @@ export class EventList extends DefaultComponent {
   }
 
   render() {
+    console.log('rendering')
     return html`
       <bnn-content-container .backgroundColor="${"grey"}">
-        <h2>${TranslationService.getInstance().getTranslation('events')}</h2>
+        <h2>${this.t('events')}</h2>
         <div class="events">
           ${this.events?.map((e) => this.renderEvent(e))}
         </div>

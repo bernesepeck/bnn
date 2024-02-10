@@ -23,7 +23,7 @@ export class SupportLinksList extends DefaultComponent {
   render() {
     return html`
       <bnn-content-container>
-        <h2>${TranslationService.getInstance().getTranslation('volunteer')}</h2>
+        <h2>${this.t('volunteer')}</h2>
         <div class="support-links">
           ${this.supportLinks?.map((e) => this.renderSupportLink(e))}
         </div>

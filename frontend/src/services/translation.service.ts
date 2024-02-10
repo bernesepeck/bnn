@@ -10,6 +10,7 @@ export const translationLoadedEvent = 'translation-loaed';
 
 export class TranslationService {
     private static instance: TranslationService;
+    public translationLoaded = false;
     private client;
     private langFilter;
     private configService = ConfigService.getInstance();
@@ -47,6 +48,7 @@ export class TranslationService {
         }))
         
         this.translations = response.map(t => ({key: t.key, text: t.translations[0].text}))
+        this.translationLoaded = true;
         document.dispatchEvent(new CustomEvent(translationLoadedEvent))
     }
 

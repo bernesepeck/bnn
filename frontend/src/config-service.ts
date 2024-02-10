@@ -1,4 +1,4 @@
-import { AppConfig, getConfig } from './config'; // Adjust the import path as needed
+import { AppConfig, fetchConfig } from './config'; // Adjust the import path as needed
 
 export class ConfigService {
   private static instance: ConfigService;
@@ -15,16 +15,16 @@ export class ConfigService {
 
   async loadConfig(): Promise<void> {
     try {
-      const config = await getConfig();
+      const config = await fetchConfig();
       this.config = config;
     } catch (error) {
-      console.error("Failed to load config:", error);
+      console.error("Failed to fetch config:", error);
     }
   }
 
   getConfig(): AppConfig {
     if (!this.config) {
-      throw new Error("Config has not been loaded.");
+      console.log("Config not stored in ConfigService.");
     }
     return this.config;
   }

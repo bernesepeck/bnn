@@ -32,14 +32,14 @@ export class Footer extends DefaultComponent {
         <bnn-content-container .backgroundColor="${"grey"}">
           <div class="footer-content">
             <div>
-              <h3>${TranslationService.getInstance().getTranslation('about_us')}</h3>
+              <h3>${this.t('about_us')}</h3>
               <a href="https://www.offene-kirche.ch/">offene kirche bern</a>
               <a href="https://unitedagainstrefugeedeaths.eu/"
                 >UNITED against Refugee Deaths</a
               >
             </div>
             <div>
-              <h3>${TranslationService.getInstance().getTranslation('contact')}</h3>
+              <h3>${this.t('contact')}</h3>
               <!--Social Media Icons-->
               <a mailto="info@beimnamennennen.ch">info@beimnamennennen.ch</a>
             </div>

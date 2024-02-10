@@ -6,7 +6,7 @@ import { DefaultComponent } from "../default.component";
 import { classMap } from "lit/directives/class-map.js";
 import { CityService } from "../../city/city.service";
 import { CityModel, getCurrentCity } from "../../city/city.models";
-import { TranslationService } from "../../services/translation.service";
+import { TranslationService, translationLoadedEvent } from "../../services/translation.service";
 
 type MenuItem = {
   translationKey: string;
@@ -150,8 +150,7 @@ export class NavMenu extends DefaultComponent {
         );
       }
     });
-    this.cityService = new CityService();
-    this.fetchCities();
+    document.addEventListener(translationLoadedEvent, () => this.fetchCities());
   }
 
   render() {
@@ -163,7 +162,7 @@ export class NavMenu extends DefaultComponent {
         ${this.menuItems.map((item) =>
           item.submenu
             ? this.renderMenuItemWithSubmenu(item)
-            : html`<a class="main-link" href="${item.link}">${TranslationService.getInstance().getTranslation(item.translationKey!)}</a>`
+            : html`<a class="main-link" href="${item.link}">${this.t(item.translationKey!)}</a>`
         )}
       </nav>
       <button
@@ -185,7 +184,7 @@ export class NavMenu extends DefaultComponent {
           selected: this.isCityItemSelected(item),
         })}"
       >
-        ${TranslationService.getInstance().getTranslation(item.translationKey!)}
+        ${this.t(item.translationKey!)}
         ${item.submenu && (item.submenuVisible || this.isMenuOpen)
           ? html`
               <div class="submenu">
@@ -212,6 +211,7 @@ export class NavMenu extends DefaultComponent {
   }
 
   async fetchCities() {
+    this.cityService = new CityService();
     try {
       const cities = await this.cityService.getCities();
       this.cities = cities;

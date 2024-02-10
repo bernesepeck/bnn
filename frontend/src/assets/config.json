@@ -1,4 +1,3 @@
 {
-  "PARCEL_API_URL": "http://localhost:8055",
-  "CHOKIDAR_USEPOLLING": "true"
+  "apiUrl": "http://localhost:8055"
 }
