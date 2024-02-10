@@ -3,7 +3,7 @@ name: CI to Docker Hub and Deploy to Google Cloud Run
 on:
   push:
     branches:
-      - 'feature/deploy-directus'
+      - 'main'
 
 jobs:
   deploy:
