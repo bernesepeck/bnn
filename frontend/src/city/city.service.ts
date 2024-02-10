@@ -6,11 +6,11 @@ export class CityService {
     private client;
     private langFilter;
     private modelsToTranslate = ['events', 'supportlinks', 'customSections', 'emailForm']; // List of related models
-    private configService = ConfigService.getInstance();
-    private config = this.configService.getConfig();
 
     constructor() {
-        this.client = createDirectus(this.config.apiUrl).with(rest());
+        const configService = ConfigService.getInstance();
+        const config = configService.getConfig();
+        this.client = createDirectus(config.apiUrl).with(rest());
         const languageCode = sessionStorage.getItem('selectedLanguage') || 'de';
         this.langFilter = {
             translations: {

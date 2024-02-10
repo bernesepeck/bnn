@@ -114,7 +114,7 @@ export class City extends DefaultComponent {
   renderSponsors() {
     return this.city?.sponsors
       ? html`<bnn-text-content
-          .title="${TranslationService.getInstance().getTranslation('sponsors')}"
+          .title="${this.t('sponsors')}"
           .text="${this.city?.sponsors}"
           .backgroundColor="${"blue"}"
         ></bnn-text-content>`
