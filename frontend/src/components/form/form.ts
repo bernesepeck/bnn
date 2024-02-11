@@ -23,6 +23,9 @@ export class Form extends DefaultComponent {
   @property()
   public form: FormType | undefined;
 
+  @property()
+  private message: string = '';
+
   static get componentStyles() {
     return css`
       form {
@@ -42,25 +45,26 @@ export class Form extends DefaultComponent {
       <bnn-content-container>
         <h2>${this.form?.title}</h2>
         <p>${this.form?.description}</p>
-        <form id="form" @submit="${(e) => this.submitForm(e)}">
+        <form id="form" @submit="${this.submitForm}">
           ${this.form?.fields.map((field) => this.renderField(field))}
           <button type="submit">${this.form?.submitText}</button>
         </form>
+        <div class="${this.message.includes('Error') ? 'error' : 'message'}">
+          ${this.message}
+        </div>
       </bnn-content-container>
     `;
   }
 
   async submitForm(e: Event) {
     e.preventDefault();
-    
-    // Assuming this.shadowRoot and this.form are defined in your component's context
-    const form: HTMLFormElement = this.shadowRoot?.getElementById("form") as HTMLFormElement;
-    
+    this.message = ''; // Reset message on new submission
+    const form = this.shadowRoot?.getElementById("form") as HTMLFormElement;
+
     if (form) {
       const formData = new FormData(form);
       const values: { [key: string]: FormDataEntryValue } = {};
       
-      // Extract values from the form based on this.form.fields
       this.form?.fields.forEach((f) => {
         const value = formData.get(f.label);
         if (value) {
@@ -68,15 +72,12 @@ export class Form extends DefaultComponent {
         }
       });
       
-      // Construct the payload
       const payload = {
         values: values,
-        emailTo: this.form?.emailTo,
-        subject: this.form?.subject
+        ...this.form,
       };
-      
+
       try {
-        // Send the POST request
         const response = await fetch('http://localhost:8055/flows/trigger/fdcaf62f-a842-492d-9e73-c719f558a149', {
           method: 'POST',
           headers: {
@@ -84,15 +85,17 @@ export class Form extends DefaultComponent {
           },
           body: JSON.stringify(payload)
         });
-        
+
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error('Failed to send email');
         }
         
-        const responseData = await response.json();
-        // Handle success response
-      } catch (error) {
+        // On success, set a success message
+        this.message = 'Email sent successfully.';
+      } catch (error: any) {
         console.error('Error submitting form:', error);
+        // On failure, set an error message
+        this.message = `Error: ${error.message}`;
       }
     }
   }
