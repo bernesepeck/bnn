@@ -1,0 +1,8 @@
+{% layout "email-base" %}
+{% block content %}
+    {{ emailGreeting }}<br>
+    {{ emailBody }}<br>
+    {% for item in emailValues %}
+        - {{ item[0] }}: {{ item[1] }}<br>
+    {% endfor %}
+{% endblock %}
