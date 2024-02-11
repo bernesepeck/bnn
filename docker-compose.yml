@@ -11,11 +11,12 @@ services:
   cache:
     image: redis:6
   directus:
-    image: directus/directus:10.8.3
+    image: directus/directus:10.9
     ports:
       - 8055:8055
     volumes:
       - ./backend/uploads:/directus/uploads
+      - ./backend/extensions:/directus/extensions
     depends_on:
       - cache
       - database
