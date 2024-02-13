@@ -1,15 +1,13 @@
 import { css, html } from "lit";
 import { customElement, property, state } from "lit/decorators.js";
-import { CityService } from "./city.service"; // Adjust the path as necessary
 import { CityModel } from "./city.models";
 import { DefaultComponent } from "../components/default.component";
 import { classMap } from 'lit/directives/class-map.js';
 
 @customElement("bnn-city-selector")
 export class CitySelector extends DefaultComponent {
-
-  
-  @property() cities: CityModel[] = [];
+  @property() 
+  cities: CityModel[] = [];
 
   @property()
   country: string = 'ch'; 

@@ -1,31 +1,49 @@
-import { AppConfig, fetchConfig } from './config'; // Adjust the import path as needed
+export type AppConfig = {
+  apiUrl: string;
+};
+
+declare var process: {
+  env: {
+      NODE_ENV: string;
+      PARCEL_API_URL?: string;
+  }
+};
 
 export class ConfigService {
   private static instance: ConfigService;
+  public configLoaded: boolean = false;
   private config!: AppConfig;
 
-  private constructor() {}
-
-  static getInstance(): ConfigService {
-    if (!ConfigService.instance) {
-      ConfigService.instance = new ConfigService();
-    }
-    return ConfigService.instance;
+  public static getInstance(): ConfigService {
+      if (!ConfigService.instance) {
+          ConfigService.instance = new ConfigService();
+      }
+      return ConfigService.instance;
   }
 
-  async loadConfig(): Promise<void> {
-    try {
-      const config = await fetchConfig();
-      this.config = config;
-    } catch (error) {
-      console.error("Failed to fetch config:", error);
-    }
+  public async fetchConfig() {
+      this.configLoaded = true;
+      if (process.env.NODE_ENV !== 'development') {
+          // In development, use environment variables directly.
+          this.config = {
+              apiUrl: process.env.PARCEL_API_URL || '',
+          };
+      } else {
+          // In production or other environments, fetch the config.json.
+          try {
+            const response = await fetch('/config.json');
+            const responseJson = await response.json();
+            this.config = {
+                apiUrl: responseJson.apiUrl || '',
+            };
+          } catch (error) {
+            console.error("Failed to load config:", error);
+            this.configLoaded = false;
+          } 
+      }
   }
 
-  getConfig(): AppConfig {
-    if (!this.config) {
-      console.log("Config not stored in ConfigService.");
-    }
-    return this.config;
+  public getConfig(): AppConfig {
+      return this.config;
   }
 }

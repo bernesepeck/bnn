@@ -1,32 +1,56 @@
-import { TranslationService, translationLoadedEvent } from "../services/translation.service";
+import { LitElement, css, CSSResult } from "lit";
+import { ConfigService, AppConfig } from "../config-service";
+import { TranslationModel, TranslationService } from "../services/translation.service";
 import sharedStyles from "../styles/shared-styles";
-import { CSSResult, LitElement, css } from "lit";
 
 export class DefaultComponent extends LitElement {
   static componentStyles: CSSResult = css``;
-  translationLoaded = false
+  config!: AppConfig
+  translations!: TranslationModel[]
+  translationService!: TranslationService
+  configService!: ConfigService
 
   static get styles() {
     return [sharedStyles, this.componentStyles];
   }
 
-  constructor() {
-    super();
-    document.addEventListener(translationLoadedEvent, () => {
-      this.translationLoaded = true
-      this.requestUpdate()
-    });
+  connectedCallback() {
+    super.connectedCallback();
+    this.initializeComponent().then(() => this.afterComponentInitialized());
   }
 
-  /**
-   * Return translation from translation service with given key
-   * @param key 
-   * @returns 
-   */
-  t(key: string) {
-    if (this.translationLoaded) {
-      return TranslationService.getInstance().getTranslation(key)
+  async initializeComponent() {
+    try {
+        await this.initializeConfig();
+        //await this.initializeTranslations();
+        this.requestUpdate();
+    } catch (error) {
+        console.error("Error initializing component:", error);
     }
-    return ""
+}
+
+  async initializeConfig() {
+    this.configService = ConfigService.getInstance();
+    if (!this.configService.configLoaded) {
+      await this.configService.fetchConfig();
+    }
+    this.config = this.configService.getConfig()
+    console.log('config', this.config)
+    this.requestUpdate()
   }
+
+  async initializeTranslations() {
+    this.translationService = TranslationService.getInstance(this.config);
+    if (!this.translationService.translationsLoaded) {
+      await this.translationService.fetchTranslations();
+    }
+    this.translations = this.translationService.getTranslations()
+  }
+  
+
+  t(key: string) {
+    return this.translationService?.getTranslation(key)
+  }
+
+  afterComponentInitialized() {}
 }
