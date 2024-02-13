@@ -4,8 +4,6 @@ import { DefaultComponent } from "../../../components/default.component";
 import { customElement, property, state } from "lit/decorators.js";
 import "../../../components/content-container/content-container";
 import { GalleryModel } from "../../city.models";
-import { ConfigService } from "../../../config-service";
-import { AppConfig } from "../../../config";
 
 @customElement("bnn-gallery")
 export class Gallery extends DefaultComponent {
@@ -16,15 +14,12 @@ export class Gallery extends DefaultComponent {
   activeImageIndex: number | undefined;
 
   @state()
-  config: AppConfig;
 
   patternCounter: { count: any; target: any; } = { count: 0, target: 0 };
 
   constructor() {
     super();
     this.patternCounter.target = this.getRandomSmallImagesCount();
-    const configService = ConfigService.getInstance();
-    this.config = configService.getConfig();
   }
 
   static get componentStyles() {
@@ -103,7 +98,7 @@ export class Gallery extends DefaultComponent {
     const imageSize = this.getImageSize(image, index);
     return html`
       <div class="gallery-image ${imageSize.class}" @click="${() => this.setActiveImage(index)}">
-        <img src="${this.config.apiUrl}/assets/${image.directus_files_id}?fit=cover&width=${imageSize.sizeX}&height=${imageSize.sizeY}&quality=80">
+        <img src="${this.config?.apiUrl}/assets/${image.directus_files_id}?fit=cover&width=${imageSize.sizeX}&height=${imageSize.sizeY}&quality=80">
       </div>
     `;
   }
@@ -112,7 +107,7 @@ export class Gallery extends DefaultComponent {
     return html`
       <div class="lightbox" @click="${this.clearActiveImage}">
         <span class="arrow left" @click="${this.prevImage}">&#10094;</span>
-        <img src="${this.config.apiUrl}/assets/${image.directus_files_id}?quality=80">
+        <img src="${this.config?.apiUrl}/assets/${image.directus_files_id}?quality=80">
         <span class="arrow right" @click="${this.nextImage}">&#10095;</span>
       </div>
     `;

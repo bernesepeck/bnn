@@ -7,16 +7,13 @@ declare var process: {
     }
 };
 
-// Define a type for your configuration for better type-checking.
 type AppConfig = {
     apiUrl: string;
 };
 
 // Function to load the configuration based on the environment.
 async function fetchConfig(): Promise<AppConfig> {
-    if (process.env.NODE_ENV === 'development') {
-        console.log("NODE_ENV: ", process.env.NODE_ENV)
-        console.log("PARCEL_API_URL: ", process.env.PARCEL_API_URL)
+    if (process.env.NODE_ENV !== 'development') {
         // In development, use environment variables.
         return {
             apiUrl: process.env.PARCEL_API_URL || '',

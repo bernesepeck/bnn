@@ -14,8 +14,6 @@ import "./components/gallery/gallery";
 import "../components/footer/footer";
 import "../components/text-content/text-content";
 import "../components/form/form";
-import { ConfigService } from '../config-service'; // Adjust the import path as needed
-import { TranslationService } from "../services/translation.service";
 
 @customElement("bnn-city")
 export class City extends DefaultComponent {
@@ -26,18 +24,10 @@ export class City extends DefaultComponent {
   @state()
   protected selectedCity!: number;
 
-  constructor() {
-    super();
-    const configService = ConfigService.getInstance();
-    
-    configService.loadConfig().then(() => TranslationService.getInstance().getTranslations()).then(() => {
-      this.cityService = new CityService();
-      this.initializeSelectedCityFromURL();
-      this.requestUpdate();
-      
-    }).catch(error => {
-      console.error("Failed to load configuration:", error);
-    });
+  override afterComponentInitialized(): void {
+    this.cityService = new CityService(this.config);
+    this.initializeSelectedCityFromURL();
+    this.requestUpdate();
   }
 
   updated(changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>) {

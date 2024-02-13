@@ -1,24 +1,21 @@
 import { createDirectus, readItems, rest } from "@directus/sdk";
-import { ConfigService } from "../config-service";
+import { AppConfig } from "../config";
 
 export interface TranslationModel {
     key: string, 
     text: string
 }
 
-export const translationLoadedEvent = 'translation-loaed';
-
 export class TranslationService {
     private static instance: TranslationService;
-    public translationLoaded = false;
+    public translationsLoaded: boolean = false;
     private client;
     private langFilter;
-    private configService = ConfigService.getInstance();
-    private config = this.configService.getConfig();
     private translations: TranslationModel[] = [];
 
-    constructor() {
-        this.client = createDirectus(this.config.apiUrl).with(rest());
+    constructor(config: AppConfig) {
+        this.client = createDirectus(config.apiUrl).with(rest());
+        console.log('constructor', config)
         const languageCode = sessionStorage.getItem('selectedLanguage') || 'de';
         this.langFilter = {
             translations: {
@@ -29,14 +26,15 @@ export class TranslationService {
         }
     }
 
-    public static getInstance(): TranslationService {
+    public static getInstance(config: AppConfig): TranslationService {
         if (!TranslationService.instance) {
-            TranslationService.instance = new TranslationService();
+            TranslationService.instance = new TranslationService(config);
         }
         return TranslationService.instance;
     }
 
-    async getTranslations() {
+    async fetchTranslations() {
+        this.translationsLoaded = true;
         const response = await this.client.request(readItems('GeneralTranslations', {
             fields: [
                 'key',
@@ -45,11 +43,13 @@ export class TranslationService {
             deep: {
                 ...this.langFilter,
             }
-        }))
+        })).catch(() => this.translationsLoaded = false)
         
         this.translations = response.map(t => ({key: t.key, text: t.translations[0].text}))
-        this.translationLoaded = true;
-        document.dispatchEvent(new CustomEvent(translationLoadedEvent))
+    }
+    
+    getTranslations(): TranslationModel[] {
+        return this.translations;
     }
 
     getTranslation(key: string): string {
@@ -64,6 +64,4 @@ export class TranslationService {
             return '';
         }
     }
-    
-
 }
