@@ -17,7 +17,7 @@ export class Banner extends DefaultComponent {
       .header-wrapper {
         background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(30, 33, 72, 0.6)), url(/bnn-banner.webp);
           url(/bnn-banner.webp);
-        height: var(--header-size);
+        height: min-content;
         padding: 0px var(--content-padding);
         padding-top: 16px;
         display: flex;

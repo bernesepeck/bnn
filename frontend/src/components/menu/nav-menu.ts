@@ -108,6 +108,9 @@ export class NavMenu extends DefaultComponent {
           visibility: hidden;
           z-index: 1000;
           transition: opacity 0.5s, visibility 0s linear 0.5s;
+          & .submenu {
+            position: unset;
+          }
         }
         /* Open state for the menu */
         .menu.open {
@@ -206,7 +209,7 @@ export class NavMenu extends DefaultComponent {
     e.preventDefault();
     e.stopPropagation();
     this.menuItems = this.menuItems.map((i) =>
-      i === item ? { ...i, submenuVisible: !i.submenuVisible } : i
+      i === item ? { ...i, submenuVisible: !i.submenuVisible } : {...i, submenuVisible: false}
     );
   }
 
