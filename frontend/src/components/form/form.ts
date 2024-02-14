@@ -1,7 +1,8 @@
-import { customElement, property } from "lit/decorators";
+import { customElement, property, state } from "lit/decorators";
 import { DefaultComponent } from "../default.component";
 import { css, html } from "lit";
 import "../content-container/content-container";
+import "../loader/loader";
 
 type Field = {
   type: "text" | "textarea" | "number" | "checkbox";
@@ -24,7 +25,13 @@ export class Form extends DefaultComponent {
   public form: FormType | undefined;
 
   @property()
-  private message: string = '';
+  private message: string = "";
+
+  @state()
+  private isLoading = false;
+
+  @state()
+  private wasSuccessful = false;
 
   static get componentStyles() {
     return css`
@@ -37,6 +44,70 @@ export class Form extends DefaultComponent {
         display: flex;
         gap: 8px;
       }
+      .button-content {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+      svg {
+        width: 24px;
+        display: block;
+      }
+      
+      .path {
+        stroke-dasharray: 1000;
+        stroke-dashoffset: 0;
+        &.circle {
+          -webkit-animation: dash .9s ease-in-out;
+          animation: dash .9s ease-in-out;
+        }
+        &.line {
+          stroke-dashoffset: 1000;
+          -webkit-animation: dash .9s .35s ease-in-out forwards;
+          animation: dash .9s .35s ease-in-out forwards;
+        }
+        &.check {
+          stroke-dashoffset: -100;
+          -webkit-animation: dash-check .9s .35s ease-in-out forwards;
+          animation: dash-check .9s .35s ease-in-out forwards;
+        }
+      }
+      }
+      @-webkit-keyframes dash {
+        0% {
+          stroke-dashoffset: 1000;
+        }
+        100% {
+          stroke-dashoffset: 0;
+        }
+      }
+      
+      @keyframes dash {
+        0% {
+          stroke-dashoffset: 1000;
+        }
+        100% {
+          stroke-dashoffset: 0;
+        }
+      }
+      
+      @-webkit-keyframes dash-check {
+        0% {
+          stroke-dashoffset: -100;
+        }
+        100% {
+          stroke-dashoffset: 900;
+        }
+      }
+      
+      @keyframes dash-check {
+        0% {
+          stroke-dashoffset: -100;
+        }
+        100% {
+          stroke-dashoffset: 900;
+        }
+      }
     `;
   }
 
@@ -47,9 +118,15 @@ export class Form extends DefaultComponent {
         <p>${this.form?.description}</p>
         <form id="form" @submit="${this.submitForm}">
           ${this.form?.fields.map((field) => this.renderField(field))}
-          <button type="submit">${this.form?.submitText}</button>
+          <button type="submit">
+            <div class="button-content">
+              ${this.wasSuccessful ? this.renderSuccessfulTick() : html``}
+              ${this.isLoading ? html`<bnn-loader></bnn-loader>` : html``}${this
+                .form?.submitText}
+            </div>
+          </button>
         </form>
-        <div class="${this.message.includes('Error') ? 'error' : 'message'}">
+        <div class="${this.message.includes("Error") ? "error" : "message"}">
           ${this.message}
         </div>
       </bnn-content-container>
@@ -58,42 +135,49 @@ export class Form extends DefaultComponent {
 
   async submitForm(e: Event) {
     e.preventDefault();
-    this.message = ''; // Reset message on new submission
+    this.isLoading = true;
+    this.message = ""; // Reset message on new submission
     const form = this.shadowRoot?.getElementById("form") as HTMLFormElement;
 
     if (form) {
       const formData = new FormData(form);
       const values: { [key: string]: FormDataEntryValue } = {};
-      
+
       this.form?.fields.forEach((f) => {
         const value = formData.get(f.label);
         if (value) {
           values[f.label] = value;
         }
       });
-      
+
       const payload = {
         values: values,
         ...this.form,
       };
 
       try {
-        const response = await fetch('http://localhost:8055/flows/trigger/fdcaf62f-a842-492d-9e73-c719f558a149', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(payload)
-        });
+        const response = await fetch(
+          "http://localhost:8055/flows/trigger/fdcaf62f-a842-492d-9e73-c719f558a149",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payload),
+          }
+        );
 
         if (!response.ok) {
-          throw new Error('Failed to send email');
+          this.isLoading = false;
+          throw new Error("Failed to send email");
         }
-        
-        // On success, set a success message
-        this.message = 'Email sent successfully.';
+        this.isLoading = false;
+        this.wasSuccessful = true;
+        //show sucess tick for 10s
+        setTimeout(() => (this.wasSuccessful = false), 10000);
       } catch (error: any) {
-        console.error('Error submitting form:', error);
+        this.isLoading = false;
+        console.error("Error submitting form:", error);
         // On failure, set an error message
         this.message = `Error: ${error.message}`;
       }
@@ -121,5 +205,35 @@ export class Form extends DefaultComponent {
 
   renderLabel(name: string) {
     return html`<label>${name}</label>`;
+  }
+
+  renderSuccessfulTick() {
+    return html`
+      <svg
+        version="1.1"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 130.2 130.2"
+      >
+        <circle
+          class="path circle"
+          fill="none"
+          stroke="#fff"
+          stroke-width="8px"
+          stroke-miterlimit="10"
+          cx="65.1"
+          cy="65.1"
+          r="62.1"
+        />
+        <polyline
+          class="path check"
+          fill="none"
+          stroke="#fff"
+          stroke-width="8px"
+          stroke-linecap="round"
+          stroke-miterlimit="10"
+          points="100.2,40.2 51.5,88.8 29.8,67.5 "
+        />
+      </svg>
+    `;
   }
 }

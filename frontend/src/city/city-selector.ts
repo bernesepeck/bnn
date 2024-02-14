@@ -3,21 +3,22 @@ import { customElement, property, state } from "lit/decorators.js";
 import { CityService } from "./city.service"; // Adjust the path as necessary
 import { CityModel } from "./city.models";
 import { DefaultComponent } from "../components/default.component";
-import { classMap } from 'lit/directives/class-map.js';
+import { classMap } from "lit/directives/class-map.js";
 
 @customElement("bnn-city-selector")
 export class CitySelector extends DefaultComponent {
-
-  
   @property() cities: CityModel[] = [];
 
   @property()
-  country: string = 'ch'; 
-
-
+  country: string = "ch";
 
   static get componentStyles() {
     return css`
+      @media screen and (max-width: 480px) {
+        nav {
+          align-items: center;
+        }
+      }
       nav {
         display: flex;
         flex-direction: column;
@@ -41,20 +42,22 @@ export class CitySelector extends DefaultComponent {
     `;
   }
 
-
-
   render() {
     return html`
       <nav>
-        ${this.cities.filter(c => c.country === this.country).map(
-          (city) =>
-            html`<a
-            class="${classMap({selected: this.getCurrentCity() === city.id})}"
-              href="${`/city/${city.id}`}"
-              @click="${(e) => e.stopPropagation()}"
-              >${city.name}</a
-            >`
-        )}
+        ${this.cities
+          .filter((c) => c.country === this.country)
+          .map(
+            (city) =>
+              html`<a
+                class="${classMap({
+                  selected: this.getCurrentCity() === city.id,
+                })}"
+                href="${`/city/${city.id}`}"
+                @click="${(e) => e.stopPropagation()}"
+                >${city.name}</a
+              >`
+          )}
       </nav>
     `;
   }
@@ -62,8 +65,8 @@ export class CitySelector extends DefaultComponent {
   getCurrentCity() {
     const currentUrl = window.location.href;
     const parsedUrl = new URL(currentUrl);
-    const pathSegments = parsedUrl.pathname.split('/');
-    const lastPart = pathSegments.filter(segment => segment !== "").pop();
+    const pathSegments = parsedUrl.pathname.split("/");
+    const lastPart = pathSegments.filter((segment) => segment !== "").pop();
     return Number(lastPart);
   }
 }

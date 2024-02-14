@@ -66,13 +66,12 @@ export default css`
     }
   }
   a {
-    background-color: var(--color-primary);
-    width: max-content;
-    color: white;
-    padding: 4px;
     text-underline-offset: 2px;
+    color: var(--color-primary);
+    width: max-content;
     &:hover {
-      font-weight: bold;
+      background-color: var(--color-primary);
+      color: white;
     }
   }
   @media screen and (max-width: 480px) {
