@@ -2,7 +2,6 @@ import { css, html } from "lit";
 import { DefaultComponent } from "../default.component";
 import { customElement } from "lit/decorators";
 import "../content-container/content-container";
-import "../language/languageSelector";
 
 @customElement("bnn-footer")
 export class Footer extends DefaultComponent {
@@ -41,9 +40,6 @@ export class Footer extends DefaultComponent {
               <h3>${this.t('contact')}</h3>
               <!--Social Media Icons-->
               <a mailto="info@beimnamennennen.ch">info@beimnamennennen.ch</a>
-            </div>
-            <div>
-              <bnn-language-selector></bnn-language-selector>
             </div>
           </div>
         </bnn-content-container>

@@ -15,21 +15,22 @@ export class LanguageSelector extends DefaultComponent {
     static get componentStyles() {
         return css`
             select {
-                padding: 5px;
-                margin: 10px;
-                margin-left: 0;
+                background-color: var(--color-primary);
+                border: 0;
+                font-size: var(--font-size-l);
+                color: white;
             }
         `;
     }
 
     render() {
         return html`
-            <div>
+            <li>
                 <select @change="${this.handleLanguageChange}">
-                    <option value="de" ?selected="${this.language === 'de'}">Deutsch</option>
-                    <option value="fr" ?selected="${this.language === 'fr'}">Français</option>
+                    <option value="de" ?selected="${this.language === 'de'}">DE</option>
+                    <option value="fr" ?selected="${this.language === 'fr'}">FR</option>
                 </select>
-            </div>
+            </li>
         `;
     }
 
