@@ -3059,12 +3059,15 @@ COPY public.directus_activity (id, action, "user", "timestamp", ip, user_agent, 
 956	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-16 17:48:18.895+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city_files	57	\N	http://localhost:8055
 957	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-16 17:48:18.9+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city_files	58	\N	http://localhost:8055
 958	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-16 17:48:18.905+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city	2	\N	http://localhost:8055
+973	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-16 19:00:13.887+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	31933f1f-332d-4efa-a07f-2603d7a5a1df	\N	http://localhost:8055
 926	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-16 17:48:15.478+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	713bcc4f-d02f-4994-adba-f41cbd505ba0	\N	http://localhost:8055
 929	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-16 17:48:15.6+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	b0b25705-4497-4f3f-8d6b-c47376a68a28	\N	http://localhost:8055
+974	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-16 19:00:14.969+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	event	5	\N	http://localhost:8055
 927	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-16 17:48:15.484+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	3ce48e40-265a-4784-9492-e3163a44cb1b	\N	http://localhost:8055
 928	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-16 17:48:15.592+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	4c56ba5e-2daf-4890-92e5-3be7819302ad	\N	http://localhost:8055
 933	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-16 17:48:15.697+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	2c2df418-b913-4ea8-bd4b-693ee788d746	\N	http://localhost:8055
 936	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-16 17:48:15.791+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	b2797f18-fc39-42f2-8359-443ceca645fb	\N	http://localhost:8055
+975	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-16 21:39:52.099+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_permissions	73	\N	http://localhost:8055
 959	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-16 18:11:40.263+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	fcfe069e-01e8-4a08-b15c-4c2c4e2892df	\N	http://localhost:8055
 960	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-16 18:11:45.242+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	event	1	\N	http://localhost:8055
 961	run	\N	2024-02-16 18:15:47.203+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_flows	fdcaf62f-a842-492d-9e73-c719f558a149	\N	http://localhost:1234
@@ -3274,6 +3277,7 @@ d1f0b961-f7b9-4eab-af5d-e168aed1593f	local	d1f0b961-f7b9-4eab-af5d-e168aed1593f.
 fcfe069e-01e8-4a08-b15c-4c2c4e2892df	local	fcfe069e-01e8-4a08-b15c-4c2c4e2892df.jpg	CDE_CO2N_MFR8686.jpg	Cde C O2 N Mf R8686	image/jpeg	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-16 18:11:40.251885+00	\N	2024-02-16 18:11:40.299+00	\N	414567	1200	800	\N	\N	\N	\N	\N	{}	\N	\N
 6d7f0817-63a7-494e-9c18-36e66ef38363	local	6d7f0817-63a7-494e-9c18-36e66ef38363.webp	beimnamennennen_logo_dark_colour_DE_400x400.webp	Beimnamennennen Logo Dark Colour De 400x400	image/webp	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-16 18:36:45.552128+00	\N	2024-02-16 18:36:45.577+00	\N	6756	224	188	\N	\N	\N	\N	\N	{}	\N	\N
 74c0209d-8b93-4570-b6b0-01e39b3b317f	local	74c0209d-8b93-4570-b6b0-01e39b3b317f.pdf	namen_nennen_23_bern_def_low.pdf	Namen Nennen 23 Bern Def Low	application/pdf	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-16 18:51:52.506211+00	\N	2024-02-16 18:51:52.548+00	\N	304078	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+31933f1f-332d-4efa-a07f-2603d7a5a1df	local	31933f1f-332d-4efa-a07f-2603d7a5a1df.jpg	OK_BNN_MFR5706.jpg	Ok Bnn Mf R5706	image/jpeg	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-16 19:00:13.881569+00	\N	2024-02-16 19:00:13.912+00	\N	607145	1200	800	\N	\N	\N	\N	\N	{}	\N	\N
 \.
 
 
@@ -3455,6 +3459,7 @@ COPY public.directus_permissions (id, role, collection, action, permissions, val
 70	\N	GeneralTranslations	read	{}	{}	\N	*
 71	\N	GeneralTranslations_translations	read	{}	{}	\N	*
 72	\N	directus_files	read	{}	{}	\N	*
+73	\N	logo	read	{}	{}	\N	*
 \.
 
 
@@ -4317,6 +4322,9 @@ COPY public.directus_revisions (id, activity, collection, item, data, delta, par
 841	970	directus_fields	175	{"sort":14,"interface":"file","special":["file"],"collection":"city","field":"flyer"}	{"sort":14,"interface":"file","special":["file"],"collection":"city","field":"flyer"}	\N	\N
 842	971	directus_files	74c0209d-8b93-4570-b6b0-01e39b3b317f	{"title":"Namen Nennen 23 Bern Def Low","filename_download":"namen_nennen_23_bern_def_low.pdf","type":"application/pdf","storage":"local"}	{"title":"Namen Nennen 23 Bern Def Low","filename_download":"namen_nennen_23_bern_def_low.pdf","type":"application/pdf","storage":"local"}	\N	\N
 843	972	city	2	{"id":2,"status":"draft","sort":null,"date_updated":"2024-02-16T18:51:54.423Z","country":"ch","flyer":"74c0209d-8b93-4570-b6b0-01e39b3b317f","translations":[3,4],"gallery":[40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58],"supportlinks":[1,2,3,4,5,6,7,8],"events":[1,4,5],"customSections":[1],"emailForm":[1]}	{"flyer":"74c0209d-8b93-4570-b6b0-01e39b3b317f","date_updated":"2024-02-16T18:51:54.423Z"}	\N	\N
+844	973	directus_files	31933f1f-332d-4efa-a07f-2603d7a5a1df	{"title":"Ok Bnn Mf R5706","filename_download":"OK_BNN_MFR5706.jpg","type":"image/jpeg","storage":"local"}	{"title":"Ok Bnn Mf R5706","filename_download":"OK_BNN_MFR5706.jpg","type":"image/jpeg","storage":"local"}	\N	\N
+845	974	event	5	{"id":5,"status":"draft","sort":null,"date_updated":"2024-02-16T19:00:14.962Z","teaser":"31933f1f-332d-4efa-a07f-2603d7a5a1df","city":2,"link":null,"translations":[7,8]}	{"teaser":"31933f1f-332d-4efa-a07f-2603d7a5a1df","date_updated":"2024-02-16T19:00:14.962Z"}	\N	\N
+846	975	directus_permissions	73	{"role":null,"collection":"logo","action":"read","fields":["*"],"permissions":{},"validation":{}}	{"role":null,"collection":"logo","action":"read","fields":["*"],"permissions":{},"validation":{}}	\N	\N
 \.
 
 
@@ -4337,7 +4345,7 @@ COPY public.directus_roles (id, name, icon, description, ip_access, enforce_tfa,
 COPY public.directus_sessions (token, "user", expires, ip, user_agent, share, origin) FROM stdin;
 HzjXVQypoL_1QlQpb3NBPiAuLu5h2-bDTHchjdL2DZ2v39_BrJy-6f1MxtuQryjR	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-17 12:30:48.294+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	\N	http://localhost:8055
 todZHkQy0WtBOX_XbgittF5D-8u-m8B3-SHORe1-XNpe5VcZccm3xFizpSWfXPOX	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-23 10:36:40.417+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	\N	http://localhost:8055
-CPRd3oCfUWK-HWYD34-t5lRiPvx3Sb64IF0XID5MMr0HDT5kC084LDFWfmDTq1Zh	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-23 18:50:53.893+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	\N	http://localhost:8055
+nlkcagPimY9AgBS1Vol7OZwknX4EELinukcMihfC-okG7M_fFNl31WZDmNA-CwWv	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-23 22:11:43.216+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	\N	http://localhost:8055
 \.
 
 
@@ -4371,7 +4379,7 @@ COPY public.directus_translations (id, language, key, value) FROM stdin;
 
 COPY public.directus_users (id, first_name, last_name, email, password, location, title, description, tags, avatar, language, tfa_secret, status, role, token, last_access, last_page, provider, external_identifier, auth_data, email_notifications, appearance, theme_dark, theme_light, theme_light_overrides, theme_dark_overrides) FROM stdin;
 507e3800-1c28-454b-bcd2-766cda54a162	Basel	Admin	mirjamthomet@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$rEXyXmboQoJtEolz1V+VwQ$0mpZ0yfRnbyl8LchcvwSg1zkRSH516jNbFYv2TCGJ0s	\N	\N	\N	\N	\N	\N	\N	active	68c58399-f145-49aa-9db1-ee94c793b427	\N	2024-01-20 14:42:17.91+00	/content/city	default	\N	\N	t	\N	\N	\N	\N	\N
-db513aee-cd3a-47a9-95e5-a98f1cc92d13	Admin	User	gannonline90@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$8mOx4/9GjUaVmWJRCxhc1Q$O2PmAQbgGlqxaNAnsgyyJRQxPl+9HeBKZ5z7JMZjqbo	\N	\N	\N	\N	\N	\N	\N	active	878f0264-16f3-4a54-a79e-82c27313bacc	\N	2024-02-16 18:50:53.902+00	/content/city	default	\N	\N	t	\N	\N	\N	\N	\N
+db513aee-cd3a-47a9-95e5-a98f1cc92d13	Admin	User	gannonline90@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$8mOx4/9GjUaVmWJRCxhc1Q$O2PmAQbgGlqxaNAnsgyyJRQxPl+9HeBKZ5z7JMZjqbo	\N	\N	\N	\N	\N	\N	\N	active	878f0264-16f3-4a54-a79e-82c27313bacc	\N	2024-02-16 22:11:43.225+00	/settings/data-model	default	\N	\N	t	\N	\N	\N	\N	\N
 \.
 
 
@@ -4397,9 +4405,9 @@ COPY public.directus_webhooks (id, name, method, url, status, data, actions, col
 
 COPY public.event (id, status, sort, date_updated, teaser, city, link) FROM stdin;
 2	draft	\N	2024-01-20 15:04:35.777+00	\N	1	\N
-5	draft	\N	\N	\N	2	\N
 4	draft	\N	\N	\N	2	https://www.kathbern.ch/fasa/sozialpolitisches-engagement/cercle-de-silence
 1	draft	\N	2024-02-16 18:11:45.234+00	fcfe069e-01e8-4a08-b15c-4c2c4e2892df	2	\N
+5	draft	\N	2024-02-16 19:00:14.962+00	31933f1f-332d-4efa-a07f-2603d7a5a1df	2	\N
 \.
 
 
@@ -4573,7 +4581,7 @@ SELECT pg_catalog.setval('public.countries_translations_id_seq', 2, true);
 -- Name: directus_activity_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
 --
 
-SELECT pg_catalog.setval('public.directus_activity_id_seq', 972, true);
+SELECT pg_catalog.setval('public.directus_activity_id_seq', 975, true);
 
 
 --
@@ -4594,7 +4602,7 @@ SELECT pg_catalog.setval('public.directus_notifications_id_seq', 1, false);
 -- Name: directus_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
 --
 
-SELECT pg_catalog.setval('public.directus_permissions_id_seq', 72, true);
+SELECT pg_catalog.setval('public.directus_permissions_id_seq', 73, true);
 
 
 --
@@ -4615,7 +4623,7 @@ SELECT pg_catalog.setval('public.directus_relations_id_seq', 44, true);
 -- Name: directus_revisions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: directus
 --
 
-SELECT pg_catalog.setval('public.directus_revisions_id_seq', 843, true);
+SELECT pg_catalog.setval('public.directus_revisions_id_seq', 846, true);
 
 
 --
