@@ -392,7 +392,8 @@ CREATE TABLE public.city (
     status character varying(255) DEFAULT 'draft'::character varying NOT NULL,
     sort integer,
     date_updated timestamp with time zone,
-    country character varying(255)
+    country character varying(255),
+    flyer uuid
 );
 
 
@@ -1736,10 +1737,10 @@ COPY public."SupportLinks_translations" (id, "SupportLinks_id", languages_code, 
 -- Data for Name: city; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.city (id, status, sort, date_updated, country) FROM stdin;
-1	draft	\N	2024-02-10 10:10:08.23+00	ch
-3	draft	\N	\N	de
-2	draft	\N	2024-02-16 17:48:18.627+00	ch
+COPY public.city (id, status, sort, date_updated, country, flyer) FROM stdin;
+1	draft	\N	2024-02-10 10:10:08.23+00	ch	\N
+3	draft	\N	\N	de	\N
+2	draft	\N	2024-02-16 18:51:54.423+00	ch	74c0209d-8b93-4570-b6b0-01e39b3b317f
 \.
 
 
@@ -2722,6 +2723,9 @@ COPY public.directus_activity (id, action, "user", "timestamp", ip, user_agent, 
 924	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-16 17:48:15.47+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	8d4cfcee-dd23-4c60-bdab-260ad6304a07	\N	http://localhost:8055
 930	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-16 17:48:15.611+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	fe3990dc-5e3c-438a-a537-81220fe0b412	\N	http://localhost:8055
 937	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-16 17:48:15.826+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	724d3a4b-6eaa-4a6a-ad8d-2963bcbb89ec	\N	http://localhost:8055
+970	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-16 18:51:13.856+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_fields	175	\N	http://localhost:8055
+971	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-16 18:51:52.52+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	74c0209d-8b93-4570-b6b0-01e39b3b317f	\N	http://localhost:8055
+972	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-16 18:51:54.43+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	city	2	\N	http://localhost:8055
 925	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-16 17:48:15.477+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	7a1b203c-8833-433d-bc51-d36826781fd4	\N	http://localhost:8055
 931	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-16 17:48:15.616+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	ef373fce-cef3-4443-b7fb-8a1a84e48ee2	\N	http://localhost:8055
 935	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-16 17:48:15.783+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	directus_files	15d6d034-808f-4079-9a10-4c1dadddf8b9	\N	http://localhost:8055
@@ -2928,6 +2932,7 @@ COPY public.directus_fields (id, collection, field, special, interface, options,
 172	EmailForm_translations	submittedButtonText	\N	input	\N	\N	\N	f	f	8	full	\N	\N	\N	f	\N	\N	\N
 173	logo	id	\N	input	\N	\N	\N	t	t	1	full	\N	\N	\N	f	\N	\N	\N
 174	logo	logo	file	file-image	\N	\N	\N	f	f	2	full	\N	\N	\N	t	\N	\N	\N
+175	city	flyer	file	file	\N	\N	\N	f	f	14	full	\N	\N	\N	f	\N	\N	\N
 \.
 
 
@@ -2958,6 +2963,7 @@ b2797f18-fc39-42f2-8359-443ceca645fb	local	b2797f18-fc39-42f2-8359-443ceca645fb.
 d1f0b961-f7b9-4eab-af5d-e168aed1593f	local	d1f0b961-f7b9-4eab-af5d-e168aed1593f.jpg	OK_BNN_MFR5735.jpg	Ok Bnn Mf R5735	image/jpeg	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-16 17:48:15.849655+00	\N	2024-02-16 17:48:15.912+00	\N	777482	1200	800	\N	\N	\N	\N	\N	{}	\N	\N
 fcfe069e-01e8-4a08-b15c-4c2c4e2892df	local	fcfe069e-01e8-4a08-b15c-4c2c4e2892df.jpg	CDE_CO2N_MFR8686.jpg	Cde C O2 N Mf R8686	image/jpeg	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-16 18:11:40.251885+00	\N	2024-02-16 18:11:40.299+00	\N	414567	1200	800	\N	\N	\N	\N	\N	{}	\N	\N
 6d7f0817-63a7-494e-9c18-36e66ef38363	local	6d7f0817-63a7-494e-9c18-36e66ef38363.webp	beimnamennennen_logo_dark_colour_DE_400x400.webp	Beimnamennennen Logo Dark Colour De 400x400	image/webp	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-16 18:36:45.552128+00	\N	2024-02-16 18:36:45.577+00	\N	6756	224	188	\N	\N	\N	\N	\N	{}	\N	\N
+74c0209d-8b93-4570-b6b0-01e39b3b317f	local	74c0209d-8b93-4570-b6b0-01e39b3b317f.pdf	namen_nennen_23_bern_def_low.pdf	Namen Nennen 23 Bern Def Low	application/pdf	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-16 18:51:52.506211+00	\N	2024-02-16 18:51:52.548+00	\N	304078	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 \.
 
 
@@ -3190,6 +3196,7 @@ COPY public.directus_relations (id, many_collection, many_field, one_collection,
 41	GeneralTranslations_translations	languages_code	languages	\N	\N	\N	GeneralTranslations_id	\N	nullify
 42	GeneralTranslations_translations	GeneralTranslations_id	GeneralTranslations	translations	\N	\N	languages_code	\N	nullify
 43	logo	logo	directus_files	\N	\N	\N	\N	\N	nullify
+44	city	flyer	directus_files	\N	\N	\N	\N	\N	nullify
 \.
 
 
@@ -3997,6 +4004,9 @@ COPY public.directus_revisions (id, activity, collection, item, data, delta, par
 839	967	home_translations	2	{"titel":"Journée des réfugiés 2023 Appeler par leur nom – plus de 51 000 victimes de la forteresse Europe","languages_code":{"code":"fr"},"description":"Un drame silencieux se déroule depuis des années sur les mers et aux frontières de l'Europe et ne parvient que sporadiquement dans les médias. Depuis 1993, plus de 51 000 enfants, femmes et hommes sont morts. Ou devons-nous nous demander s'ils ont été tués ? Par une politique de plus en plus dure des pays européens, qui empêche ces personnes d'entrer légalement en Europe pour y déposer une demande d'asile.","home_id":1}	{"titel":"Journée des réfugiés 2023 Appeler par leur nom – plus de 51 000 victimes de la forteresse Europe","languages_code":{"code":"fr"},"description":"Un drame silencieux se déroule depuis des années sur les mers et aux frontières de l'Europe et ne parvient que sporadiquement dans les médias. Depuis 1993, plus de 51 000 enfants, femmes et hommes sont morts. Ou devons-nous nous demander s'ils ont été tués ? Par une politique de plus en plus dure des pays européens, qui empêche ces personnes d'entrer légalement en Europe pour y déposer une demande d'asile.","home_id":1}	\N	\N
 840	968	home_translations	1	{"id":1,"home_id":1,"languages_code":"de","titel":"Flüchtlingstag 2023 Beim Namen nennen – über 51 000 Opfer der Festung Europas","description":"Ein stilles Drama geht seit Jahren auf den Meeren und an den Grenzen Europas vor sich und schafft es nur gelegentlich in die Medien. Seit 1993 sind über 51 000 Kinder, Frauen und Männer gestorben. Oder müssen wir die Frage stellen, ob sie getötet wurden? Von einer immer härteren Politik der Länder Europas, die verhindert, dass diese Menschen legal in Europa einreisen können, um hier ein Asylgesuch zu stellen.\\n\\nSie müssen vor lebensgefährlichen Situationen fliehen und setzen ihr Leben aufs Spiel. Sie verharren in unwürdigen Flüchtlingslagern ohne angemessene Versorgung oder das Wissen, ob, wann und wie es weiter geht. Darüber sind wir entsetzt und fordern sichere Fluchtwege! Mit verschiedenen Aktionen und einem Mahnmal gedenken wir der Opfer und protestieren öffentlich gegen die unhaltbare Situation.","contentbox":[{"title":"Lieux de l'événement","description":"<p>L'action &laquo;Appeler par leur nom&raquo; se d&eacute;roule &agrave; B&acirc;le, Berlin, Berne, Brunswick, Coire, Dortmund, Essen, Francfort, Gen&egrave;ve, Kehl, Lausanne, Lucerne, Neuch&acirc;tel, Offenbourg, Saint-Gall, Thoune, Zurich en coop&eacute;ration avec UNITED for Intercultural Action <a href=\\"http://unitedagainstrefugeedeaths.eu/\\" target=\\"_new\\">http://unitedagainstrefugeedeaths.eu</a></p>","width":"0.5"},{"title":"Gedenk-Aktionen","description":"<p class=\\"font_8 wixui-rich-text__text\\"><span class=\\"wixui-rich-text__text\\">In den verschiedenen St&auml;dten fanden &ouml;ffentliche Lesungen der &laquo;List of Deaths&raquo; statt. Dazu wurden die Angaben jeder verstorbenen Person auf ein St&uuml;ck Stoff geschrieben und an einer Installation befestigt.</span></p>\\n<p class=\\"font_8 wixui-rich-text__text\\"><span class=\\"wixui-rich-text__text\\">So bauten wir gemeinsam im Gedenken an die Verstorbenen &ouml;ffentliche Mahnmale.</span></p>","width":"0.5"},{"title":" Schirmherrschaft von „Beim Namen nennen“ in Deutschland","description":"<p class=\\"font_8 wixui-rich-text__text\\">Ratsvorsitzende der Ev. Kirche Deutschland und Präses der Ev. Kirche von Westfalen, Annette Kurschus</p>\\n<p class=\\"font_8 wixui-rich-text__text\\">Namen sind nicht Schall und Rauch. &bdquo;Teuflisch ist es, dass abertausende Menschen, die bei ihrer Flucht umkommen, namenlos bleiben. Sie werden an Grenzz&auml;unen get&ouml;tet und ertrinken im Mittelmeer. &hellip; Jeder Name, der gelesen wird, ist ein Protest gegen ihren bitteren Tod.&ldquo; &ndash; hei&szlig;t es im Gru&szlig;wort der Schirmherrin zur Aktion &bdquo;Beim Namen nennen&ldquo;: &nbsp; &nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.sanktreinoldi.de/fileadmin/Medienablage_Reinoldi/02_Allgemein/WFT/Grusswort_Beim_Namen_nennen.pdf\\" target=\\"_blank\\" rel=\\"noreferrer noopener\\">weiter zum Gru&szlig;wort</a></span></p>","width":"1"}]}	{"home_id":1,"languages_code":"de","contentbox":[{"title":"Lieux de l'événement","description":"<p>L'action &laquo;Appeler par leur nom&raquo; se d&eacute;roule &agrave; B&acirc;le, Berlin, Berne, Brunswick, Coire, Dortmund, Essen, Francfort, Gen&egrave;ve, Kehl, Lausanne, Lucerne, Neuch&acirc;tel, Offenbourg, Saint-Gall, Thoune, Zurich en coop&eacute;ration avec UNITED for Intercultural Action <a href=\\"http://unitedagainstrefugeedeaths.eu/\\" target=\\"_new\\">http://unitedagainstrefugeedeaths.eu</a></p>","width":"0.5"},{"title":"Gedenk-Aktionen","description":"<p class=\\"font_8 wixui-rich-text__text\\"><span class=\\"wixui-rich-text__text\\">In den verschiedenen St&auml;dten fanden &ouml;ffentliche Lesungen der &laquo;List of Deaths&raquo; statt. Dazu wurden die Angaben jeder verstorbenen Person auf ein St&uuml;ck Stoff geschrieben und an einer Installation befestigt.</span></p>\\n<p class=\\"font_8 wixui-rich-text__text\\"><span class=\\"wixui-rich-text__text\\">So bauten wir gemeinsam im Gedenken an die Verstorbenen &ouml;ffentliche Mahnmale.</span></p>","width":"0.5"},{"title":" Schirmherrschaft von „Beim Namen nennen“ in Deutschland","description":"<p class=\\"font_8 wixui-rich-text__text\\">Ratsvorsitzende der Ev. Kirche Deutschland und Präses der Ev. Kirche von Westfalen, Annette Kurschus</p>\\n<p class=\\"font_8 wixui-rich-text__text\\">Namen sind nicht Schall und Rauch. &bdquo;Teuflisch ist es, dass abertausende Menschen, die bei ihrer Flucht umkommen, namenlos bleiben. Sie werden an Grenzz&auml;unen get&ouml;tet und ertrinken im Mittelmeer. &hellip; Jeder Name, der gelesen wird, ist ein Protest gegen ihren bitteren Tod.&ldquo; &ndash; hei&szlig;t es im Gru&szlig;wort der Schirmherrin zur Aktion &bdquo;Beim Namen nennen&ldquo;: &nbsp; &nbsp;<span class=\\"wixui-rich-text__text\\"><a class=\\"wixui-rich-text__text\\" href=\\"https://www.sanktreinoldi.de/fileadmin/Medienablage_Reinoldi/02_Allgemein/WFT/Grusswort_Beim_Namen_nennen.pdf\\" target=\\"_blank\\" rel=\\"noreferrer noopener\\">weiter zum Gru&szlig;wort</a></span></p>","width":"1"}]}	\N	\N
 838	966	logo	1	{"logo":"6d7f0817-63a7-494e-9c18-36e66ef38363"}	{"logo":"6d7f0817-63a7-494e-9c18-36e66ef38363"}	\N	\N
+841	970	directus_fields	175	{"sort":14,"interface":"file","special":["file"],"collection":"city","field":"flyer"}	{"sort":14,"interface":"file","special":["file"],"collection":"city","field":"flyer"}	\N	\N
+842	971	directus_files	74c0209d-8b93-4570-b6b0-01e39b3b317f	{"title":"Namen Nennen 23 Bern Def Low","filename_download":"namen_nennen_23_bern_def_low.pdf","type":"application/pdf","storage":"local"}	{"title":"Namen Nennen 23 Bern Def Low","filename_download":"namen_nennen_23_bern_def_low.pdf","type":"application/pdf","storage":"local"}	\N	\N
+843	972	city	2	{"id":2,"status":"draft","sort":null,"date_updated":"2024-02-16T18:51:54.423Z","country":"ch","flyer":"74c0209d-8b93-4570-b6b0-01e39b3b317f","translations":[3,4],"gallery":[40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58],"supportlinks":[1,2,3,4,5,6,7,8],"events":[1,4,5],"customSections":[1],"emailForm":[1]}	{"flyer":"74c0209d-8b93-4570-b6b0-01e39b3b317f","date_updated":"2024-02-16T18:51:54.423Z"}	\N	\N
 \.
 
 
@@ -4017,7 +4027,7 @@ COPY public.directus_roles (id, name, icon, description, ip_access, enforce_tfa,
 COPY public.directus_sessions (token, "user", expires, ip, user_agent, share, origin) FROM stdin;
 HzjXVQypoL_1QlQpb3NBPiAuLu5h2-bDTHchjdL2DZ2v39_BrJy-6f1MxtuQryjR	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-17 12:30:48.294+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	\N	http://localhost:8055
 todZHkQy0WtBOX_XbgittF5D-8u-m8B3-SHORe1-XNpe5VcZccm3xFizpSWfXPOX	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-23 10:36:40.417+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	\N	http://localhost:8055
-TZYeQUcNxjVSIbhkJqu2t0yC24LejvhXUYAZhlclfejy3brh9-uFD9xKYbs_WQJS	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-23 18:31:05.15+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	\N	http://localhost:8055
+CPRd3oCfUWK-HWYD34-t5lRiPvx3Sb64IF0XID5MMr0HDT5kC084LDFWfmDTq1Zh	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-02-23 18:50:53.893+00	172.19.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36	\N	http://localhost:8055
 \.
 
 
@@ -4051,7 +4061,7 @@ COPY public.directus_translations (id, language, key, value) FROM stdin;
 
 COPY public.directus_users (id, first_name, last_name, email, password, location, title, description, tags, avatar, language, tfa_secret, status, role, token, last_access, last_page, provider, external_identifier, auth_data, email_notifications, appearance, theme_dark, theme_light, theme_light_overrides, theme_dark_overrides) FROM stdin;
 507e3800-1c28-454b-bcd2-766cda54a162	Basel	Admin	mirjamthomet@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$rEXyXmboQoJtEolz1V+VwQ$0mpZ0yfRnbyl8LchcvwSg1zkRSH516jNbFYv2TCGJ0s	\N	\N	\N	\N	\N	\N	\N	active	68c58399-f145-49aa-9db1-ee94c793b427	\N	2024-01-20 14:42:17.91+00	/content/city	default	\N	\N	t	\N	\N	\N	\N	\N
-db513aee-cd3a-47a9-95e5-a98f1cc92d13	Admin	User	gannonline90@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$8mOx4/9GjUaVmWJRCxhc1Q$O2PmAQbgGlqxaNAnsgyyJRQxPl+9HeBKZ5z7JMZjqbo	\N	\N	\N	\N	\N	\N	\N	active	878f0264-16f3-4a54-a79e-82c27313bacc	\N	2024-02-16 18:31:05.159+00	/content/home	default	\N	\N	t	\N	\N	\N	\N	\N
+db513aee-cd3a-47a9-95e5-a98f1cc92d13	Admin	User	gannonline90@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$8mOx4/9GjUaVmWJRCxhc1Q$O2PmAQbgGlqxaNAnsgyyJRQxPl+9HeBKZ5z7JMZjqbo	\N	\N	\N	\N	\N	\N	\N	active	878f0264-16f3-4a54-a79e-82c27313bacc	\N	2024-02-16 18:50:53.902+00	/content/city	default	\N	\N	t	\N	\N	\N	\N	\N
 \.
 
 
@@ -4253,14 +4263,14 @@ SELECT pg_catalog.setval('public.countries_translations_id_seq', 2, true);
 -- Name: directus_activity_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.directus_activity_id_seq', 969, true);
+SELECT pg_catalog.setval('public.directus_activity_id_seq', 972, true);
 
 
 --
 -- Name: directus_fields_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.directus_fields_id_seq', 174, true);
+SELECT pg_catalog.setval('public.directus_fields_id_seq', 175, true);
 
 
 --
@@ -4288,14 +4298,14 @@ SELECT pg_catalog.setval('public.directus_presets_id_seq', 6, true);
 -- Name: directus_relations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.directus_relations_id_seq', 43, true);
+SELECT pg_catalog.setval('public.directus_relations_id_seq', 44, true);
 
 
 --
 -- Name: directus_revisions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.directus_revisions_id_seq', 840, true);
+SELECT pg_catalog.setval('public.directus_revisions_id_seq', 843, true);
 
 
 --
@@ -4777,6 +4787,14 @@ ALTER TABLE ONLY public.city_files
 
 ALTER TABLE ONLY public.city_files
     ADD CONSTRAINT city_files_directus_files_id_foreign FOREIGN KEY (directus_files_id) REFERENCES public.directus_files(id) ON DELETE CASCADE;
+
+
+--
+-- Name: city city_flyer_foreign; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.city
+    ADD CONSTRAINT city_flyer_foreign FOREIGN KEY (flyer) REFERENCES public.directus_files(id) ON DELETE SET NULL;
 
 
 --
