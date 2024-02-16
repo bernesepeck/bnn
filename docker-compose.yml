@@ -16,7 +16,6 @@ services:
       - ./backend/uploads:/directus/uploads
       - ./backend/extensions:/directus/extensions
     depends_on:
-      - cache
       - database
     env_file:
       - .env
