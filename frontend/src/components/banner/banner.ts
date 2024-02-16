@@ -1,6 +1,7 @@
 import { html, css } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { DefaultComponent } from "../default.component";
+import "../logo/logo";
 import "../menu/nav-menu";
 import { classMap } from "lit/directives/class-map";
 import { Section } from "../../types/types";
@@ -40,15 +41,26 @@ export class Banner extends DefaultComponent {
           font-size: var(--font-size-l);
         }
       }
+
       .max-content {
         width: 100%;
         max-width: 1000px;
         display: flex;
         flex-direction: column;
       }
+
+      .logo-nav-container {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        height: 50px;
+        gap: 16px;
+      }
+
       bnn-nav-menu {
         margin-left: auto;
       }
+
       h1 {
         margin-top: 0;
         color: white;
@@ -87,7 +99,10 @@ export class Banner extends DefaultComponent {
         })}"
       >
         <div class="max-content">
-          <bnn-nav-menu></bnn-nav-menu>
+          <div class="logo-nav-container">
+            <bnn-logo></bnn-logo>
+            <bnn-nav-menu></bnn-nav-menu>
+          </div>
           <h1>${this.cityname}</h1>
           ${this.description?.length ? html`<p>${this.description}</p>` : html``}
           <ul class="sections-list">

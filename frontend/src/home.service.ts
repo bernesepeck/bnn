@@ -13,7 +13,7 @@ export interface HomeModel {
 
 export class HomeService {
   private client;
-  private langFilter; // TODO: Add translate to home service
+  private langFilter;
 
   constructor(config: AppConfig) {
     this.client = createDirectus(config.apiUrl).with(rest());
@@ -45,7 +45,7 @@ export class HomeService {
             description: content.description,
             width: Number(content.width)
         }))
-    } 
+    }
     return home;
   }
 }

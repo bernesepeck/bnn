@@ -14,7 +14,6 @@ import "./components/gallery/gallery";
 import "../components/footer/footer";
 import "../components/text-content/text-content";
 import "../components/form/form";
-import { Section } from "../types/types";
 
 @customElement("bnn-city")
 export class City extends DefaultComponent {
