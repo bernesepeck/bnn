@@ -8,6 +8,7 @@ export default css`
     --color-secondary: #1e2148;
     --color-white: white;
     --color-black: black;
+    --color-success: #5cb85c;
     --content-padding: 10%;
     --font-size-s: 16px;
     --font-size-m: 20px;
