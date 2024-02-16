@@ -28,6 +28,11 @@ export class Home extends DefaultComponent {
       .half-width {
         grid-column: span 1;
       }
+      @media screen and (max-width: 480px) {
+        .half-width {
+          grid-column: span 2;
+        }
+      }
     `;
   }
 
