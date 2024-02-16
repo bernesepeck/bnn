@@ -4,45 +4,19 @@ Make sure to adjust the env values to something sensible after you copy the exam
 # Copy env file
 cp env.dist .env
 
-# Star with docker compose
+# Start with docker compose
 docker compose up
 
 ```
 
-### Backup directus uploads
+### Backup directus DB and files
 ```bash
-cd backend/uploads
-zip -r ../uploads.zip *
+./backup-directus-environment.sh
 ```
 
-### Restore directus uploads
+### Restore directus DB and files from repo
 ```bash
-unzip backend/uploads.zip -d backend/uploads
-```
-
-### Backup directus DB
-```bash
-# Create full pg dump
-docker exec -t bnn-database-1 pg_dumpall -c -U directus > backend/directus_db.sql
-
-# Create directus pg dump
-docker exec -t bnn-database-1 pg_dump -U directus --no-acl --no-owner -d directus > backend/directus_db_small.sql
-```
-
-### Restore directus DB into container
-```bash
-# Stop directus
-docker compose stop directus
-
-# Connect to an alternate database to drop and recreate the directus database
-docker exec -i bnn-database-1 psql -U directus -d postgres -c "DROP DATABASE IF EXISTS directus;"
-docker exec -i bnn-database-1 psql -U directus -d postgres -c "CREATE DATABASE directus;"
-
-# Restore dump
-cat backend/directus_db.sql | docker exec -i bnn-database-1 psql -U directus -d directus
-
-# Start directus
-docker compose start directus
+./restore-directus-environment.sh
 ```
 
 ### API Examples
