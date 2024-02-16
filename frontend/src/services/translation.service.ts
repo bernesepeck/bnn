@@ -1,69 +1,69 @@
 import { createDirectus, readItems, rest } from "@directus/sdk";
-import { ConfigService } from "../config-service";
+import { AppConfig } from "../config";
 
 export interface TranslationModel {
-    key: string, 
-    text: string
+  key: string;
+  text: string;
 }
 
-export const translationLoadedEvent = 'translation-loaed';
-
 export class TranslationService {
-    private static instance: TranslationService;
-    public translationLoaded = false;
-    private client;
-    private langFilter;
-    private configService = ConfigService.getInstance();
-    private config = this.configService.getConfig();
-    private translations: TranslationModel[] = [];
+  private static instance: TranslationService;
+  private client;
+  private langFilter;
+  private translations: TranslationModel[] | undefined;
 
-    constructor() {
-        this.client = createDirectus(this.config.apiUrl).with(rest());
-        const languageCode = sessionStorage.getItem('selectedLanguage') || 'de';
-        this.langFilter = {
-            translations: {
-                _filter: {
-                    languages_code: {_eq: languageCode}
-                }
-            }
-        }
+  constructor(config: AppConfig) {
+    this.client = createDirectus(config.apiUrl).with(rest());
+    const languageCode = sessionStorage.getItem("selectedLanguage") || "de";
+    this.langFilter = {
+      translations: {
+        _filter: {
+          languages_code: { _eq: languageCode },
+        },
+      },
+    };
+  }
+
+  public static getInstance(config: AppConfig): TranslationService {
+    if (!TranslationService.instance) {
+      TranslationService.instance = new TranslationService(config);
     }
+    return TranslationService.instance;
+  }
 
-    public static getInstance(): TranslationService {
-        if (!TranslationService.instance) {
-            TranslationService.instance = new TranslationService();
-        }
-        return TranslationService.instance;
-    }
-
-    async getTranslations() {
-        const response = await this.client.request(readItems('GeneralTranslations', {
-            fields: [
-                'key',
-                'translations.text'
-            ],
+  async fetchTranslations() {
+    if (!this.translations) {
+      const response = await this.client
+        .request(
+          readItems("GeneralTranslations", {
+            fields: ["key", "translations.text"],
             deep: {
-                ...this.langFilter,
-            }
-        }))
-        
-        this.translations = response.map(t => ({key: t.key, text: t.translations[0].text}))
-        this.translationLoaded = true;
-        document.dispatchEvent(new CustomEvent(translationLoadedEvent))
-    }
+              ...this.langFilter,
+            },
+          })
+        )
 
-    getTranslation(key: string): string {
-        if(!this.translations.length) {
-            return '';
-        }
-        const translation = this.translations.find(t => t.key === key);
-        if(translation) {
-            return translation.text;
-        } else {
-            console.error('translation doesnt exist')
-            return '';
-        }
+      this.translations = response.map((t) => ({
+        key: t.key,
+        text: t.translations[0].text,
+      }));
     }
-    
+  }
 
+  getTranslations(): TranslationModel[] {
+    return this.translations ?? [];
+  }
+
+  getTranslation(key: string): string {
+    if (!this.translations?.length) {
+      return "";
+    }
+    const translation = this.translations.find((t) => t.key === key);
+    if (translation) {
+      return translation.text;
+    } else {
+      console.error("translation doesnt exist");
+      return "";
+    }
+  }
 }

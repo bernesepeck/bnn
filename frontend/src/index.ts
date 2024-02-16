@@ -4,13 +4,13 @@ import { css, html } from "lit";
 import "./components/banner/banner";
 import "./components/footer/footer";
 import "./components/content-container/content-container";
-import { ConfigService } from "./config-service";
 import { HomeModel, HomeService } from "./home.service";
 import { classMap } from "lit/directives/class-map.js";
-import { TranslationService } from "./services/translation.service";
 
 @customElement("bnn-home")
 export class Home extends DefaultComponent {
+  private homeService!: HomeService;
+
   @state()
   home: HomeModel | undefined;
 
@@ -36,22 +36,17 @@ export class Home extends DefaultComponent {
     `;
   }
 
-  constructor() {
-    super();
-    const configService = ConfigService.getInstance();
-    configService
-      .loadConfig()
-      .then(() => TranslationService.getInstance().getTranslations())
-      .then(async () => {
-        console.log("Configuration loaded successfully.");
-        const homeService = new HomeService();
-        this.home = await homeService.getHome();
-        this.requestUpdate();
-      })
-      .catch((error) => {
-        console.error("Failed to load configuration:", error);
-      });
+  override afterComponentInitialized(): void {
+    this.homeService = new HomeService(this.config);
+    this.homeService.getHome().then((home: HomeModel) => {
+      this.home = home;
+    })
+    .catch((error: any) => {
+      console.error("Failed to fetch home data", error);
+    });
+    this.requestUpdate();
   }
+
   public render() {
     return html`
       <bnn-banner

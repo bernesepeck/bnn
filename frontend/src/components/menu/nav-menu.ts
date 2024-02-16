@@ -6,7 +6,6 @@ import { DefaultComponent } from "../default.component";
 import { classMap } from "lit/directives/class-map.js";
 import { CityService } from "../../city/city.service";
 import { CityModel, getCurrentCity } from "../../city/city.models";
-import { TranslationService, translationLoadedEvent } from "../../services/translation.service";
 
 type MenuItem = {
   translationKey: string;
@@ -20,8 +19,8 @@ type MenuItem = {
 
 @customElement("bnn-nav-menu")
 export class NavMenu extends DefaultComponent {
-  private cityService: CityService;
-  @state() cities: CityModel[] = [];
+  private cityService!: CityService;
+
   @property({ type: Array<MenuItem> }) menuItems: MenuItem[] = [
     { translationKey: "home", submenu: false, link: "/" },
     {
@@ -41,6 +40,9 @@ export class NavMenu extends DefaultComponent {
       urlParam: "city",
     },
   ];
+
+  @state() 
+  cities: CityModel[] = [];
 
   @state()
   isMenuOpen = false;
@@ -144,8 +146,7 @@ export class NavMenu extends DefaultComponent {
     `;
   }
 
-  constructor() {
-    super();
+  override afterComponentInitialized(): void {
     document.addEventListener("click", (e) => {
       if (this.menuItems.some((i) => i.submenuVisible)) {
         this.menuItems = this.menuItems.map((i) =>
@@ -153,7 +154,7 @@ export class NavMenu extends DefaultComponent {
         );
       }
     });
-    document.addEventListener(translationLoadedEvent, () => this.fetchCities());
+    this.fetchCities()
   }
 
   render() {
@@ -214,7 +215,7 @@ export class NavMenu extends DefaultComponent {
   }
 
   async fetchCities() {
-    this.cityService = new CityService();
+    this.cityService = new CityService(this.config);
     try {
       const cities = await this.cityService.getCities();
       this.cities = cities;
