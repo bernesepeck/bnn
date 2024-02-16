@@ -14,6 +14,7 @@ import "./components/gallery/gallery";
 import "../components/footer/footer";
 import "../components/text-content/text-content";
 import "../components/form/form";
+import { Section } from "../types/types";
 
 @customElement("bnn-city")
 export class City extends DefaultComponent {
@@ -21,8 +22,44 @@ export class City extends DefaultComponent {
 
   @state()
   protected city: CityModel | undefined;
+
   @state()
   protected selectedCity!: number;
+
+  getSections() {
+    const sections = [];
+
+    if (this.city?.events?.length) {
+      sections.push({ name: this.t('events'), id: 'events-section' });
+    }
+    if (this.city?.gallery?.length) {
+      sections.push({ name: this.t('gallery'), id: 'gallery-section' });
+    }
+    if (this.city?.customSections?.length) {
+      this.city.customSections.forEach((section, index) => {
+        sections.push({ name: section.title, id: `custom-section-${index}` }); // Assuming each custom section has a title
+      });
+    }
+    if (this.city?.sponsors?.length) {
+      sections.push({ name: this.t('sponsors'), id: 'sponsors-section' });
+    }
+    if (this.city?.supportlinks?.length) {
+      sections.push({ name: this.t('volunteer'), id: 'support-section' });
+    }
+
+    return sections;
+  }
+
+  initializeSelectedCityFromURL() {
+    const pathSegments = window.location.pathname.split("/");
+    const cityIndex = pathSegments.findIndex((segment) => segment === "city");
+    if (cityIndex !== -1 && pathSegments.length > cityIndex + 1) {
+      const cityId = parseInt(pathSegments[cityIndex + 1]);
+      if (!isNaN(cityId)) {
+        this.selectedCity = cityId;
+      }
+    }
+  }
 
   override afterComponentInitialized(): void {
     this.cityService = new CityService(this.config);
@@ -34,17 +71,6 @@ export class City extends DefaultComponent {
     super.updated(changedProperties);
     if (changedProperties.has('selectedCity')) {
       this.fetchCityData();
-    }
-  }
-
-  initializeSelectedCityFromURL() {
-    const pathSegments = window.location.pathname.split("/");
-    const cityIndex = pathSegments.findIndex((segment) => segment === "city");
-    if (cityIndex !== -1 && pathSegments.length > cityIndex + 1) {
-      const cityId = parseInt(pathSegments[cityIndex + 1]);
-      if (!isNaN(cityId)) {
-        this.selectedCity = cityId;
-      }
     }
   }
 
@@ -62,14 +88,16 @@ export class City extends DefaultComponent {
   }
 
   public render() {
+    const sections = this.getSections(); // Dynamically generate the sections
+
     return html`
-      <bnn-banner .cityname="${this.city?.name}"></bnn-banner>
+      <bnn-banner .cityname="${this.city?.name}" .sections="${sections}"></bnn-banner>
       <bnn-content-container>
         <h2>${this.city?.page_title}</h2>
         <p .innerHTML="${this.city?.description}"></p>
       </bnn-content-container>
       ${this.renderEventList()} ${this.renderGallery()}
-      ${this.renderCustomSection()} ${this.renderSupportLinks()}
+      ${this.renderCustomSections()} ${this.renderSupportLinks()}
       ${this.renderForm()} ${this.renderSponsors()}
       <bnn-footer></bnn-footer>
     `;
@@ -83,27 +111,31 @@ export class City extends DefaultComponent {
 
   renderEventList() {
     return this.city?.events?.length
-      ? html`<bnn-event-list .events="${this.city?.events}"></bnn-event-list>`
+      ? html`<bnn-event-list id="events-section" .events="${this.city?.events}"></bnn-event-list>`
       : ``;
   }
 
   renderGallery() {
     return this.city?.gallery?.length
-      ? html`<bnn-gallery .gallery="${this.city?.gallery}"></bnn-gallery>`
+      ? html`<bnn-gallery id="gallery-section" .gallery="${this.city?.gallery}"></bnn-gallery>`
       : ``;
   }
 
-  renderCustomSection() {
+  renderCustomSections() {
     return this.city?.customSections?.length
-      ? html` <bnn-custom-section-list
-          .customSections="${this.city?.customSections}"
-        ></bnn-custom-section-list>`
+      ? html`
+          ${this.city.customSections.map((section, index) => 
+            html`<bnn-custom-section-list id="custom-section-${index}"
+              .customSections="${[section]}"
+            ></bnn-custom-section-list>`
+          )}
+        `
       : ``;
   }
 
   renderSponsors() {
     return this.city?.sponsors
-      ? html`<bnn-text-content
+      ? html`<bnn-text-content id="sponsors-section"
           .title="${this.t('sponsors')}"
           .text="${this.city?.sponsors}"
           .backgroundColor="${"blue"}"
@@ -112,8 +144,8 @@ export class City extends DefaultComponent {
   }
 
   renderSupportLinks() {
-    return this.city?.supportLinks?.length
-      ? html` <bnn-support-link-list
+    return this.city?.supportlinks?.length
+      ? html` <bnn-support-link-list id="support-section"
           .supportLinks="${this.city?.supportlinks}"
         ></bnn-support-link-list>`
       : ``;
