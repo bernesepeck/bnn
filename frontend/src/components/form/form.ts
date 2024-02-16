@@ -3,6 +3,7 @@ import { DefaultComponent } from "../default.component";
 import { css, html } from "lit";
 import "../content-container/content-container";
 import "../loader/loader";
+import { classMap } from "lit/directives/class-map";
 
 type Field = {
   type: "text" | "textarea" | "number" | "checkbox";
@@ -17,6 +18,7 @@ export type FormType = {
   description: string;
   emailTo: string;
   subject: string;
+  submittedButtonText: string;
 };
 
 @customElement("bnn-form")
@@ -43,6 +45,9 @@ export class Form extends DefaultComponent {
       .checkbox-wrapper {
         display: flex;
         gap: 8px;
+      }
+      button.submitted {
+        background-color: var(--color-success);
       }
       .button-content {
         display: flex;
@@ -118,11 +123,16 @@ export class Form extends DefaultComponent {
         <p>${this.form?.description}</p>
         <form id="form" @submit="${this.submitForm}">
           ${this.form?.fields.map((field) => this.renderField(field))}
-          <button type="submit">
+          <button
+            type="submit"
+            class="${classMap({ submitted: this.wasSuccessful })}"
+          >
             <div class="button-content">
               ${this.wasSuccessful ? this.renderSuccessfulTick() : html``}
-              ${this.isLoading ? html`<bnn-loader></bnn-loader>` : html``}${this
-                .form?.submitText}
+              ${this.isLoading ? html`<bnn-loader></bnn-loader>` : html``}
+              ${this.wasSuccessful
+                ? this.form?.submittedButtonText
+                : this.form?.submitText}
             </div>
           </button>
         </form>
@@ -174,7 +184,10 @@ export class Form extends DefaultComponent {
         this.isLoading = false;
         this.wasSuccessful = true;
         //show sucess tick for 10s
-        setTimeout(() => (this.wasSuccessful = false), 10000);
+        setTimeout(() => {
+          this.wasSuccessful = false;
+          //Reset Form Data
+        }, 3000);
       } catch (error: any) {
         this.isLoading = false;
         console.error("Error submitting form:", error);
@@ -188,16 +201,35 @@ export class Form extends DefaultComponent {
     switch (field.FormFields_id.type) {
       case "text":
         return html` ${this.renderLabel(field.label)}
-          <input type="text" id="${field.label}" name="${field.label}" />`;
+          <input
+            type="text"
+            id="${field.label}"
+            name="${field.label}"
+            ?disabled="${this.wasSuccessful}"
+          />`;
       case "number":
         return html` ${this.renderLabel(field.label)}
-          <input type="number" id="${field.label}" name="${field.label}" />`;
+          <input
+            type="number"
+            id="${field.label}"
+            name="${field.label}"
+            ?disabled="${this.wasSuccessful}"
+          />`;
       case "textarea":
         return html` ${this.renderLabel(field.label)}
-          <textarea id="${field.label}" name="${field.label}"></textarea>`;
+          <textarea
+            id="${field.label}"
+            name="${field.label}"
+            ?disabled="${this.wasSuccessful}"
+          ></textarea>`;
       case "checkbox":
         return html` <div class="checkbox-wrapper">
-          <input type="checkbox" id="${field.label}" name="${field.label}" />
+          <input
+            type="checkbox"
+            id="${field.label}"
+            name="${field.label}"
+            ?disabled="${this.wasSuccessful}"
+          />
           ${this.renderLabel(field.label)}
         </div>`;
     }

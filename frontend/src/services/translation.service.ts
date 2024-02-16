@@ -45,7 +45,7 @@ export class TranslationService {
 
       this.translations = response.map((t) => ({
         key: t.key,
-        text: t.translations[0].text,
+        text: t.translations[0]?.text,
       }));
     }
   }
