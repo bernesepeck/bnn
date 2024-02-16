@@ -79,7 +79,7 @@ export class Gallery extends DefaultComponent {
   }
 
   render() {
-    return html`
+    return this.config ? html`
       <bnn-content-container>
       ${guard([this.gallery], () => html`
         <div class="gallery">
@@ -90,12 +90,12 @@ export class Gallery extends DefaultComponent {
           ? this.renderLightbox(this.gallery![this.activeImageIndex])
           : ''}
       </bnn-content-container>
-    `;
+    `: ``;
   }
 
   renderImage(image: GalleryModel, index: number) {
     // Calculate size class dynamically
-    const imageSize = this.getImageSize(image, index);
+    const imageSize = this.getImageSize();
     return html`
       <div class="gallery-image ${imageSize.class}" @click="${() => this.setActiveImage(index)}">
         <img src="${this.config?.apiUrl}/assets/${image.directus_files_id}?fit=cover&width=${imageSize.sizeX}&height=${imageSize.sizeY}&quality=80">
@@ -118,7 +118,7 @@ export class Gallery extends DefaultComponent {
     return Math.floor(Math.random() * 3) + 2;
   }
 
-  getImageSize(image: GalleryModel, index: number) {
+  getImageSize() {
     // Define the size mapping for large and small images
     const sizeMapping = {
       'large': { class: 'large', sizeX: '400', sizeY: '400' },
