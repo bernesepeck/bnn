@@ -89,16 +89,17 @@ export class Banner extends DefaultComponent {
         <div class="max-content">
           <bnn-nav-menu></bnn-nav-menu>
           <h1>${this.cityname}</h1>
-          ${this.description?.length
-            ? html` <p>${this.description}</p> `
-            : html``}
+          ${this.description?.length ? html`<p>${this.description}</p>` : html``}
           <ul class="sections-list">
-            ${this.sections.map(section => html`
-              <li><a href="#${section.id}" class="sections-link">${section.name}</a></li>
-            `)}
+            ${this.sections.map(section => 
+              section.fileId ? 
+                html`<li><a href="${this.config?.apiUrl}/assets/${section.fileId}" target="_blank" rel="noopener noreferrer" class="sections-link">${section.name}</a></li>` :
+                html`<li><a href="#${section.id}" class="sections-link">${section.name}</a></li>`
+            )}
           </ul>
         </div>
       </div>
     `;
   }
+
 }

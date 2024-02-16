@@ -46,6 +46,9 @@ export class City extends DefaultComponent {
     if (this.city?.supportlinks?.length) {
       sections.push({ name: this.t('volunteer'), id: 'support-section' });
     }
+    if (this.city?.flyer) {
+      sections.push({ name: 'Flyer', fileId: this.city.flyer });
+    }
 
     return sections;
   }
