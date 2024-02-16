@@ -1,7 +1,6 @@
 import { PropertyValueMap, html } from "lit";
 import { customElement, state } from "lit/decorators.js";
 import "../components/banner/banner";
-import "../components/language/languageSelector";
 import "../components/menu/nav-menu";
 import { CityModel } from "./city.models";
 import { CityService } from "./city.service";
