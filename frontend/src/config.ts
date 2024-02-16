@@ -13,7 +13,7 @@ type AppConfig = {
 
 // Function to load the configuration based on the environment.
 async function fetchConfig(): Promise<AppConfig> {
-    if (process.env.NODE_ENV !== 'development') {
+    if (process.env.NODE_ENV === 'development') {
         // In development, use environment variables.
         return {
             apiUrl: process.env.PARCEL_API_URL || '',
