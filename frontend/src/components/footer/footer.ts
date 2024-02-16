@@ -3,7 +3,6 @@ import { DefaultComponent } from "../default.component";
 import { customElement } from "lit/decorators";
 import "../content-container/content-container";
 import "../language/languageSelector";
-import { TranslationService } from "../../services/translation.service";
 
 @customElement("bnn-footer")
 export class Footer extends DefaultComponent {

@@ -1,15 +1,13 @@
+import { AppConfig } from "../config";
 import { CityModel } from "./city.models";
 import { createDirectus, readItem, readItems, rest } from '@directus/sdk';
-import { ConfigService } from '../config-service'; // Adjust the import path as needed
 
 export class CityService {
     private client;
     private langFilter;
     private modelsToTranslate = ['events', 'supportlinks', 'customSections', 'emailForm']; // List of related models
 
-    constructor() {
-        const configService = ConfigService.getInstance();
-        const config = configService.getConfig();
+    constructor(config: AppConfig) {
         this.client = createDirectus(config.apiUrl).with(rest());
         const languageCode = sessionStorage.getItem('selectedLanguage') || 'de';
         this.langFilter = {

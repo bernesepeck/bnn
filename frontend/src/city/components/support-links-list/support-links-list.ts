@@ -3,7 +3,6 @@ import { DefaultComponent } from "../../../components/default.component";
 import { customElement, property } from "lit/decorators.js";
 import "../../../components/content-container/content-container";
 import { SupportLinkModel } from "../../city.models";
-import { TranslationService } from "../../../services/translation.service";
 
 @customElement("bnn-support-link-list")
 export class SupportLinksList extends DefaultComponent {

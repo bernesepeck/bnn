@@ -1,9 +1,5 @@
-import { ConfigService } from "./config-service";
 import {
   createDirectus,
-  readCollection,
-  readItem,
-  readItems,
   readSingleton,
   rest,
 } from "@directus/sdk";
@@ -16,12 +12,10 @@ export interface HomeModel {
 
 export class HomeService {
   private client;
-  private langFilter;
-  private configService = ConfigService.getInstance();
-  private config = this.configService.getConfig();
+  private langFilter; // TODO: Add translate to home service
 
-  constructor() {
-    this.client = createDirectus(this.config.apiUrl).with(rest());
+  constructor(config) {
+    this.client = createDirectus(config.apiUrl).with(rest());
     const languageCode = sessionStorage.getItem("selectedLanguage") || "de";
     this.langFilter = {
       translations: {
