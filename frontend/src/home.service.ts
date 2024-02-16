@@ -3,6 +3,7 @@ import {
   readSingleton,
   rest,
 } from "@directus/sdk";
+import { AppConfig } from "./config";
 
 export interface HomeModel {
   titel: string;
@@ -14,7 +15,7 @@ export class HomeService {
   private client;
   private langFilter; // TODO: Add translate to home service
 
-  constructor(config) {
+  constructor(config: AppConfig) {
     this.client = createDirectus(config.apiUrl).with(rest());
     const languageCode = sessionStorage.getItem("selectedLanguage") || "de";
     this.langFilter = {
@@ -30,13 +31,16 @@ export class HomeService {
     const response = await this.client.request(
       readSingleton("home", {
         fields: ["translations.*"],
+        deep: {
+          ...this.langFilter,
+        },
       })
     );
     const translatedResult = response.translations[0];
     const home:HomeModel = {
         titel: translatedResult.titel,
         description: translatedResult.description,
-        contentbox: translatedResult.contentbox.map((content:any) => ({
+        contentbox: translatedResult.contentbox?.map((content:any) => ({
             title: content.title,
             description: content.description,
             width: Number(content.width)

@@ -55,7 +55,7 @@ export class Home extends DefaultComponent {
       ></bnn-banner>
       <bnn-content-container>
         <div class="grid-container">
-          ${this.home?.contentbox.map((content) => {
+          ${this.home?.contentbox?.map((content) => {
             return html`<div
               class="${classMap({
                 "content-box": true,
