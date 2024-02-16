@@ -21,7 +21,7 @@ export class SupportLinksList extends DefaultComponent {
 
   render() {
     return html`
-      <bnn-content-container>
+      <bnn-content-container .backgroundColor="${"grey"}">
         <h2>${this.t('volunteer')}</h2>
         <div class="support-links">
           ${this.supportLinks?.map((e) => this.renderSupportLink(e))}

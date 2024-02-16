@@ -80,7 +80,7 @@ export class Gallery extends DefaultComponent {
 
   render() {
     return this.config ? html`
-      <bnn-content-container>
+      <bnn-content-container .wide=${true}>
       ${guard([this.gallery], () => html`
         <div class="gallery">
           ${this.gallery?.map((e, index) => this.renderImage(e, index))}
