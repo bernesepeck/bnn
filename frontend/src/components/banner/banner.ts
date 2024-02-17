@@ -79,14 +79,19 @@ export class Banner extends DefaultComponent {
       }
       
       .sections-link {
-        display: block; 
+        display: block;
+        text-transform: uppercase;
         white-space: nowrap; 
         overflow: hidden; 
-        text-overflow: ellipsis; 
-        max-width: 250px; 
+        text-overflow: ellipsis;
+        width: max-content;
+        max-width: 250px;
         color: white; 
         text-decoration: none;
         cursor: pointer;
+        &:hover {
+          background-color: var(--color-primary);
+        }
       }
     `;
   }
