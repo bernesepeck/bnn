@@ -6,6 +6,7 @@ import "../menu/nav-menu";
 import { classMap } from "lit/directives/class-map";
 import { Section } from "../../types/types";
 import { City } from "../../city/city";
+import "../language/language-selector";
 
 @customElement("bnn-banner")
 export class Banner extends DefaultComponent {
@@ -93,6 +94,11 @@ export class Banner extends DefaultComponent {
           background-color: var(--color-primary);
         }
       }
+      bnn-language-selector {
+        position: absolute;
+        right: 16px;
+        top: 16px;
+      }
     `;
   }
 
@@ -108,6 +114,7 @@ export class Banner extends DefaultComponent {
           <div class="logo-nav-container">
             <bnn-logo></bnn-logo>
             <bnn-nav-menu></bnn-nav-menu>
+            <bnn-language-selector></bnn-language-selector>
           </div>
           <h1>${this.cityname}</h1>
           ${this.description?.length
