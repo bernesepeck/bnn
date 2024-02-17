@@ -35,6 +35,12 @@ export class EventList extends DefaultComponent {
           margin: 0;
         }
       }
+      img {
+        max-height: 400px;
+        object-fit: contain;
+        align-self: flex-start;
+      }
+      }
       h2 {
         background-color: var(--color-primary);
         color: white;
@@ -47,7 +53,7 @@ export class EventList extends DefaultComponent {
   render() {
     return html`
       <bnn-content-container .backgroundColor="${"grey"}">
-        <h2>${this.t('events')}</h2>
+        <h2>${this.t("events")}</h2>
         <div class="events">
           ${this.events?.map((e) => this.renderEvent(e))}
         </div>
@@ -58,17 +64,20 @@ export class EventList extends DefaultComponent {
   renderEvent(event: EventModel) {
     return html`
       <div class="event">
-      ${event.location
+        ${event.location
           ? html`<p .innerHTML="${event.location}" class="location"></p>`
           : html``}
         <h3>${event.name}</h3>
-        ${event.teaser ? html`<img src="${this.config?.apiUrl}/assets/${event.teaser}">` : html``}
-        
+        ${event.teaser
+          ? html`<img src="${this.config?.apiUrl}/assets/${event.teaser}" />`
+          : html``}
         ${event.customDates
           ? html`<p .innerHTML="${event.customDates}" class="dates"></p>`
           : html``}
         <p .innerHTML="${event.description}"></p>
-        ${event.link ? html`<a .href="${event.link}" target="_blank">Mehr</a>` : html``}
+        ${event.link
+          ? html`<a .href="${event.link}" target="_blank">Mehr</a>`
+          : html``}
       </div>
     `;
   }
