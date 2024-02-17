@@ -74,8 +74,8 @@ jobs:
             STORAGE_LOCATIONS=gcs
             STORAGE_GCS_DRIVER=gcs
             STORAGE_GCS_ROOT=./uploads
-            STORAGE_GCS_CREDENTIALS__PRIVATE_KEY=${{ secrets.GCP_SA_PRIVATE_KEY }}
-            STORAGE_GCS_CREDENTIALS__CLIENT_EMAIL=${{ secrets.GCP_SA_CLIENT_EMAIL }}
+            STORAGE_GOOGLE_CREDENTIALS__PRIVATE_KEY=${{ secrets.GCP_SA_PRIVATE_KEY }}
+            STORAGE_GOOGLE_CREDENTIALS__CLIENT_EMAIL=${{ secrets.GCP_SA_CLIENT_EMAIL }}
             STORAGE_GCS_BUCKET=directus-uploads
 
       - name: Get Directus Service URL

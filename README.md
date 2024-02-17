@@ -61,6 +61,6 @@ After Dropping the DB, create a fresh one.
 
 Ensure the database is created before attempting a restore.
 ```bash
-psql "sslmode=disable host=34.65.121.69 dbname=postgres user=directus password=$DB_PASSWORD" -c "CREATE DATABASE directus;"
+cat backend/directus_db_small.sql | psql "sslmode=disable host=34.65.121.69 dbname=directus user=directus password=$DB_PASSWORD"
 ```
 
