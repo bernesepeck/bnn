@@ -121,7 +121,7 @@ export class Form extends DefaultComponent {
   }
 
   private async sendFormData(payload: { [key: string]: FormDataEntryValue } ): Promise<void> {
-    const response = await fetch("http://localhost:8055/flows/trigger/fdcaf62f-a842-492d-9e73-c719f558a149", {
+    const response = await fetch(`${this.config.apiUrl}/flows/trigger/fdcaf62f-a842-492d-9e73-c719f558a149`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
