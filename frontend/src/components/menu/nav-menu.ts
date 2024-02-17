@@ -95,7 +95,7 @@ export class NavMenu extends DefaultComponent {
           animation: slideDownFadeIn 0.2s ease-out forwards; /* Apply the animation */
         }
       }
-      @media screen and (max-width: 640px) {
+      @media screen and (max-width: 820px) {
         .menu {
           position: fixed;
           top: 0;
@@ -136,7 +136,7 @@ export class NavMenu extends DefaultComponent {
           }
         }
       }
-      @media screen and (min-width: 640px) {
+      @media screen and (min-width: 821px) {
         .menu {
           display: flex;
         }
