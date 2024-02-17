@@ -46,6 +46,10 @@ jobs:
         with:
           credentials_json: ${{ secrets.GCP_SA_KEY }}
 
+      - name: Create GCP SA Key File
+        run: |
+          echo '${{ secrets.GCP_SA_KEY }}' > gcp-key.json
+
       - name: Deploy directus to Google Cloud Run
         uses: google-github-actions/deploy-cloudrun@v2
         with:
@@ -71,6 +75,11 @@ jobs:
             EMAIL_SMTP_PASSWORD=${{ secrets.DIRECTUS_SMTP_PASSWORD }}
             DB_CLIENT=pg
             DB_CONNECTION_STRING=${{ secrets.DIRECTUS_DB_CONNECTION_STRING }}
+            STORAGE_LOCATIONS=gcs
+            STORAGE_GCS_DRIVER=gcs
+            STORAGE_GCS_ROOT=./uploads
+            STORAGE_GCS_KEY_FILENAME=./gcp-key.json
+            STORAGE_GCS_BUCKET=directus-uploads
 
       - name: Get Directus Service URL
         id: get_backend_url
