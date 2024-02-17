@@ -4,6 +4,7 @@ import { css, html } from "lit";
 import "../content-container/content-container";
 import "../loader/loader";
 import { classMap } from "lit/directives/class-map";
+import "./successful-tick";
 
 type Field = {
   type: "text" | "textarea" | "number" | "checkbox";
@@ -54,65 +55,6 @@ export class Form extends DefaultComponent {
         align-items: center;
         gap: 4px;
       }
-      svg {
-        width: 24px;
-        display: block;
-      }
-      
-      .path {
-        stroke-dasharray: 1000;
-        stroke-dashoffset: 0;
-        &.circle {
-          -webkit-animation: dash .9s ease-in-out;
-          animation: dash .9s ease-in-out;
-        }
-        &.line {
-          stroke-dashoffset: 1000;
-          -webkit-animation: dash .9s .35s ease-in-out forwards;
-          animation: dash .9s .35s ease-in-out forwards;
-        }
-        &.check {
-          stroke-dashoffset: -100;
-          -webkit-animation: dash-check .9s .35s ease-in-out forwards;
-          animation: dash-check .9s .35s ease-in-out forwards;
-        }
-      }
-      }
-      @-webkit-keyframes dash {
-        0% {
-          stroke-dashoffset: 1000;
-        }
-        100% {
-          stroke-dashoffset: 0;
-        }
-      }
-      
-      @keyframes dash {
-        0% {
-          stroke-dashoffset: 1000;
-        }
-        100% {
-          stroke-dashoffset: 0;
-        }
-      }
-      
-      @-webkit-keyframes dash-check {
-        0% {
-          stroke-dashoffset: -100;
-        }
-        100% {
-          stroke-dashoffset: 900;
-        }
-      }
-      
-      @keyframes dash-check {
-        0% {
-          stroke-dashoffset: -100;
-        }
-        100% {
-          stroke-dashoffset: 900;
-        }
-      }
     `;
   }
 
@@ -128,7 +70,7 @@ export class Form extends DefaultComponent {
             class="${classMap({ submitted: this.wasSuccessful })}"
           >
             <div class="button-content">
-              ${this.wasSuccessful ? this.renderSuccessfulTick() : html``}
+              ${this.wasSuccessful ? html`<bnn-success-tick></bnn-success-tick>` : html``}
               ${this.isLoading ? html`<bnn-loader></bnn-loader>` : html``}
               ${this.wasSuccessful
                 ? this.form?.submittedButtonText
@@ -147,54 +89,61 @@ export class Form extends DefaultComponent {
     e.preventDefault();
     this.isLoading = true;
     this.message = ""; // Reset message on new submission
-    const form = this.shadowRoot?.getElementById("form") as HTMLFormElement;
-
+    const form = this.getForm();
     if (form) {
-      const formData = new FormData(form);
-      const values: { [key: string]: FormDataEntryValue } = {};
-
-      this.form?.fields.forEach((f) => {
-        const value = formData.get(f.label);
-        if (value) {
-          values[f.label] = value;
-        }
-      });
-
-      const payload = {
-        values: values,
-        ...this.form,
-      };
-
+      const payload = this.createPayload(form);
       try {
-        const response = await fetch(
-          "http://localhost:8055/flows/trigger/fdcaf62f-a842-492d-9e73-c719f558a149",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(payload),
-          }
-        );
+        await this.sendFormData(payload);
 
-        if (!response.ok) {
-          this.isLoading = false;
-          throw new Error("Failed to send email");
-        }
-        this.isLoading = false;
-        this.wasSuccessful = true;
-        //show sucess tick for 10s
-        setTimeout(() => {
-          this.wasSuccessful = false;
-          //Reset Form Data
-        }, 3000);
+        this.handleSuccess(form);
       } catch (error: any) {
+        this.handleError(error)
+      } finally {
         this.isLoading = false;
-        console.error("Error submitting form:", error);
-        // On failure, set an error message
-        this.message = `Error: ${error.message}`;
       }
     }
+  }
+
+  private getForm(): HTMLFormElement | null {
+    return (this.shadowRoot?.getElementById("form") as HTMLFormElement) || null;
+  }
+
+  private createPayload(form: HTMLFormElement): any {
+    const formData = new FormData(form);
+    const values: { [key: string]: FormDataEntryValue } = {};
+
+    this.form?.fields.forEach((field) => {
+      const value = formData.get(field.label);
+      if (value) values[field.label] = value;
+    });
+
+    return { values, ...this.form };
+  }
+
+  private async sendFormData(payload: { [key: string]: FormDataEntryValue } ): Promise<void> {
+    const response = await fetch("http://localhost:8055/flows/trigger/fdcaf62f-a842-492d-9e73-c719f558a149", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to send email");
+    }
+  }
+
+  private handleSuccess(form: HTMLFormElement) {
+    this.wasSuccessful = true;
+    // Show success tick for 10s
+    setTimeout(() => {
+      this.wasSuccessful = false;
+      form.reset(); // Reset Form Data
+    }, 2000);
+  }
+
+  private handleError(error: any) {
+    console.error("Error submitting form:", error);
+    this.message = `Error: ${error.message}`;
   }
 
   renderField(field: Field) {
@@ -237,35 +186,5 @@ export class Form extends DefaultComponent {
 
   renderLabel(name: string) {
     return html`<label>${name}</label>`;
-  }
-
-  renderSuccessfulTick() {
-    return html`
-      <svg
-        version="1.1"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 130.2 130.2"
-      >
-        <circle
-          class="path circle"
-          fill="none"
-          stroke="#fff"
-          stroke-width="8px"
-          stroke-miterlimit="10"
-          cx="65.1"
-          cy="65.1"
-          r="62.1"
-        />
-        <polyline
-          class="path check"
-          fill="none"
-          stroke="#fff"
-          stroke-width="8px"
-          stroke-linecap="round"
-          stroke-miterlimit="10"
-          points="100.2,40.2 51.5,88.8 29.8,67.5 "
-        />
-      </svg>
-    `;
   }
 }
