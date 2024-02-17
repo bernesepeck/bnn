@@ -5,6 +5,7 @@ import "../logo/logo";
 import "../menu/nav-menu";
 import { classMap } from "lit/directives/class-map";
 import { Section } from "../../types/types";
+import { City } from "../../city/city";
 
 @customElement("bnn-banner")
 export class Banner extends DefaultComponent {
@@ -104,12 +105,24 @@ export class Banner extends DefaultComponent {
             <bnn-nav-menu></bnn-nav-menu>
           </div>
           <h1>${this.cityname}</h1>
-          ${this.description?.length ? html`<p>${this.description}</p>` : html``}
+          ${this.description?.length
+            ? html`<p>${this.description}</p>`
+            : html``}
           <ul class="sections-list">
-            ${this.sections.map(section => 
-              section.fileId ? 
-                html`<li><a href="${this.config?.apiUrl}/assets/${section.fileId}" target="_blank" rel="noopener noreferrer" class="sections-link">${section.name}</a></li>` :
-                html`<li><a href="#${section.id}" class="sections-link">${section.name}</a></li>`
+            ${this.sections.map((section) =>
+              section.fileId
+                ? html`<li>
+                    <a
+                      href="${this.config?.apiUrl}/assets/${section.fileId}"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="sections-link"
+                      >${section.name}</a
+                    >
+                  </li>`
+                : html`<li>
+                    <span @click="${() => this.goTo(section.id)}" class="sections-link">${section.name}</span>
+                  </li>`
             )}
           </ul>
         </div>
@@ -117,4 +130,8 @@ export class Banner extends DefaultComponent {
     `;
   }
 
+  private goTo(id: string): void {
+    const event = new CustomEvent(City.SCROLL_INTO_VIEW_EVENT, { detail: id });
+    document.dispatchEvent(event);
+  }
 }
