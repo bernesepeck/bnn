@@ -40,6 +40,7 @@ export class DefaultComponent extends LitElement {
     this.configService = ConfigService.getInstance();
     await this.configService.fetchConfig();
     this.config = this.configService.getConfig();
+    console.log("initializeConfig: config", this.config)
   }
 
   /**

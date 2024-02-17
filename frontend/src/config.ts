@@ -22,6 +22,7 @@ async function fetchConfig(): Promise<AppConfig> {
         // In other environments, fetch the config.json.
         const response = await fetch('/config.json');
         const config = await response.json();
+        console.log("fetchConfig: config", config)
         return {
             apiUrl: config.apiUrl || '',
         };
