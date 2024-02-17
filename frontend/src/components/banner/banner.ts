@@ -46,7 +46,7 @@ export class Banner extends DefaultComponent {
 
       .max-content {
         width: 100%;
-        max-width: 1000px;
+        max-width: var(--max-content);
         display: flex;
         flex-direction: column;
       }

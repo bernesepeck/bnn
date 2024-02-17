@@ -12,12 +12,12 @@ export class ContentContainer extends DefaultComponent {
                 justify-content: center;
             }
             .max-content {
-                max-width: 1000px;
+                max-width: var(--max-content);
                 width: 100%;
                 margin: 0;
             }
             .wide {
-                max-width: 1600px;
+                max-width: none;
             }
         `;
     }

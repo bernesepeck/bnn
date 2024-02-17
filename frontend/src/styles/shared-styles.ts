@@ -3,9 +3,9 @@ import { css } from "lit";
 export default css`
   :host {
     --color-primary: #a3151a;
-    --color-highlight: #636e91;
-    --color-grey: #dadfed;
-    --color-secondary: #1e2148;
+    --color-highlight: #95C4D9;
+    --color-grey: #C1CFD7;
+    --color-secondary: #14173F;
     --color-white: white;
     --color-black: black;
     --color-success: #5cb85c;
@@ -19,6 +19,7 @@ export default css`
     --gutter-m: 32px;
     --breakpoint-medium: 768px;
     --breakpoint-large: 1024px;
+    --max-content: 1200px;
   }
   * {
     font-family: 'Libre Franklin', sans-serif;
