@@ -1,6 +1,7 @@
 import { html, css } from 'lit';
 import { customElement, state } from 'lit/decorators.js';
 import { DefaultComponent } from '../default.component';
+import { classMap } from 'lit/directives/class-map';
 
 @customElement('bnn-language-selector')
 export class LanguageSelector extends DefaultComponent {
@@ -14,29 +15,32 @@ export class LanguageSelector extends DefaultComponent {
 
     static get componentStyles() {
         return css`
-            select {
-                background-color: var(--color-primary);
-                border: 0;
-                font-size: var(--font-size-l);
-                color: white;
+            .language-wrapper {
+                display: flex;
+                gap: 8px;
+                color: var(--color-white);
+                text-transform: uppercase;
+                & .selected {
+                    background-color: var(--color-primary);
+                }
+                & span {
+                    cursor: pointer;
+                }
             }
         `;
     }
 
     render() {
         return html`
-            <li>
-                <select @change="${this.handleLanguageChange}">
-                    <option value="de" ?selected="${this.language === 'de'}">DE</option>
-                    <option value="fr" ?selected="${this.language === 'fr'}">FR</option>
-                </select>
+            <li class="language-wrapper">
+                <span class="${classMap({selected: this.language === 'de'})}" @click="${() => this.handleLanguageChange('de')}">DE</span>
+                <span class="${classMap({selected: this.language === 'fr'})}" @click="${() => this.handleLanguageChange('fr')}">FR</span>
             </li>
         `;
     }
 
-    handleLanguageChange(e: Event) {
-        const select = e.target as HTMLSelectElement;
-        this.language = select.value;
+    handleLanguageChange(value: 'de' | 'fr') {
+        this.language = value;
         sessionStorage.setItem('selectedLanguage', this.language);
         location.reload()
     }
