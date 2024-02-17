@@ -2,7 +2,6 @@
 import { html, css } from "lit";
 import { customElement, property, state } from "lit/decorators.js";
 import "../../city/city-selector";
-import "../language/language-selector";
 import { DefaultComponent } from "../default.component";
 import { classMap } from "lit/directives/class-map.js";
 import { CityService } from "../../city/city.service";
@@ -169,7 +168,6 @@ export class NavMenu extends DefaultComponent {
             ? this.renderMenuItemWithSubmenu(item)
             : html`<a class="main-link" href="${item.link}">${this.t(item.translationKey!)}</a>`
         )}
-        <bnn-language-selector></bnn-language-selector>
       </nav>
       <button
         class="hamburger-menu"
