@@ -2,7 +2,7 @@ import { css } from "lit";
 
 export default css`
   :host {
-    --color-primary: #522015;
+    --color-primary: #a3151a;
     --color-highlight: #636e91;
     --color-grey: #dadfed;
     --color-secondary: #1e2148;

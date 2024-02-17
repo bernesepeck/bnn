@@ -20,6 +20,6 @@ unzip backend/uploads.zip -d backend/uploads
 docker compose start directus
 
 # Fixing permissions might be necessary after restore, uncomment the following line if needed
-# docker compose exec -u root directus chown -R node:node /directus/database /directus/extensions /directus/uploads
+docker compose exec -u root directus chown -R node:node /directus/uploads
 
 echo "Restore process completed."

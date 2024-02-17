@@ -16,6 +16,8 @@ import "../components/form/form";
 
 @customElement("bnn-city")
 export class City extends DefaultComponent {
+  public static SCROLL_INTO_VIEW_EVENT = "city_scroll_into_view";
+
   private cityService!: CityService;
 
   @state()
@@ -28,10 +30,10 @@ export class City extends DefaultComponent {
     const sections = [];
 
     if (this.city?.events?.length) {
-      sections.push({ name: this.t('events'), id: 'events-section' });
+      sections.push({ name: this.t("events"), id: "events-section" });
     }
     if (this.city?.gallery?.length) {
-      sections.push({ name: this.t('gallery'), id: 'gallery-section' });
+      sections.push({ name: this.t("gallery"), id: "gallery-section" });
     }
     if (this.city?.customSections?.length) {
       this.city.customSections.forEach((section, index) => {
@@ -39,16 +41,21 @@ export class City extends DefaultComponent {
       });
     }
     if (this.city?.sponsors?.length) {
-      sections.push({ name: this.t('sponsors'), id: 'sponsors-section' });
+      sections.push({ name: this.t("sponsors"), id: "sponsors-section" });
     }
     if (this.city?.supportlinks?.length) {
-      sections.push({ name: this.t('volunteer'), id: 'support-section' });
+      sections.push({ name: this.t("volunteer"), id: "support-section" });
     }
     if (this.city?.flyer) {
-      sections.push({ name: 'Flyer', fileId: this.city.flyer });
+      sections.push({ name: "Flyer", fileId: this.city.flyer });
     }
 
     return sections;
+  }
+
+  constructor() {
+    super();
+    document.addEventListener(City.SCROLL_INTO_VIEW_EVENT, (event) => this.scrollSectionIntoView((event as CustomEvent).detail))
   }
 
   initializeSelectedCityFromURL() {
@@ -68,9 +75,11 @@ export class City extends DefaultComponent {
     this.requestUpdate();
   }
 
-  updated(changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>) {
+  updated(
+    changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>
+  ) {
     super.updated(changedProperties);
-    if (changedProperties.has('selectedCity')) {
+    if (changedProperties.has("selectedCity")) {
       this.fetchCityData();
     }
   }
@@ -92,7 +101,10 @@ export class City extends DefaultComponent {
     const sections = this.getSections(); // Dynamically generate the sections
 
     return html`
-      <bnn-banner .cityname="${this.city?.name}" .sections="${sections}"></bnn-banner>
+      <bnn-banner
+        .cityname="${this.city?.name}"
+        .sections="${sections}"
+      ></bnn-banner>
       <bnn-content-container>
         <h2>${this.city?.page_title}</h2>
         <p .innerHTML="${this.city?.description}"></p>
@@ -105,30 +117,38 @@ export class City extends DefaultComponent {
   }
 
   renderForm() {
-    return html`${this.city?.emailForm.map(form => {
+    return html`${this.city?.emailForm.map((form) => {
       return html`<bnn-form .form=${form}></bnn-form>`;
     })}`;
   }
 
   renderEventList() {
     return this.city?.events?.length
-      ? html`<bnn-event-list id="events-section" .events="${this.city?.events}"></bnn-event-list>`
+      ? html`<bnn-event-list
+          id="events-section"
+          .events="${this.city?.events}"
+        ></bnn-event-list>`
       : ``;
   }
 
   renderGallery() {
     return this.city?.gallery?.length
-      ? html`<bnn-gallery id="gallery-section" .gallery="${this.city?.gallery}"></bnn-gallery>`
+      ? html`<bnn-gallery
+          id="gallery-section"
+          .gallery="${this.city?.gallery}"
+        ></bnn-gallery>`
       : ``;
   }
 
   renderCustomSections() {
     return this.city?.customSections?.length
       ? html`
-          ${this.city.customSections.map((section, index) => 
-            html`<bnn-custom-section-list id="custom-section-${index}"
-              .customSections="${[section]}"
-            ></bnn-custom-section-list>`
+          ${this.city.customSections.map(
+            (section, index) =>
+              html`<bnn-custom-section-list
+                id="custom-section-${index}"
+                .customSections="${[section]}"
+              ></bnn-custom-section-list>`
           )}
         `
       : ``;
@@ -136,8 +156,9 @@ export class City extends DefaultComponent {
 
   renderSponsors() {
     return this.city?.sponsors
-      ? html`<bnn-text-content id="sponsors-section"
-          .title="${this.t('sponsors')}"
+      ? html`<bnn-text-content
+          id="sponsors-section"
+          .title="${this.t("sponsors")}"
           .text="${this.city?.sponsors}"
           .backgroundColor="${"blue"}"
         ></bnn-text-content>`
@@ -146,9 +167,15 @@ export class City extends DefaultComponent {
 
   renderSupportLinks() {
     return this.city?.supportlinks?.length
-      ? html` <bnn-support-link-list id="support-section"
+      ? html` <bnn-support-link-list
+          id="support-section"
           .supportLinks="${this.city?.supportlinks}"
         ></bnn-support-link-list>`
       : ``;
+  }
+
+  private scrollSectionIntoView(id: string): void {
+    const element = this.shadowRoot?.getElementById(id);
+    element?.scrollIntoView();
   }
 }
