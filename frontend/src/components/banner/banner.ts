@@ -143,7 +143,7 @@ export class Banner extends DefaultComponent {
           </div>
           ${this.cityname ? html`<h1>${this.cityname}</h1>` : html`<h1 class="placeholder"></h1>`}
           ${this.description?.length ? html`<p>${this.description}</p>` : html``}
-          ${this.sections.length > 0
+          ${this.sections.length > 0 || this.cityname
             ? html`<ul class="sections-list">
                 ${this.sections.map((section) =>
                   section.fileId
