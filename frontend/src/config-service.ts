@@ -22,7 +22,7 @@ export class ConfigService {
 
   public async fetchConfig() {
     if (!this.config) {
-      if (process.env.NODE_ENV === "development") {
+      if (process.env.NODE_ENV !== "development") {
         // In development, use environment variables directly.
         this.config = {
           apiUrl: process.env.PARCEL_API_URL || "",
