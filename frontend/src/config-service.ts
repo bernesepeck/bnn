@@ -12,6 +12,7 @@ declare var process: {
 export class ConfigService {
   private static instance: ConfigService;
   private config!: AppConfig;
+  private fetchPromise: Promise<void> | null = null;
 
   public static getInstance(): ConfigService {
     if (!ConfigService.instance) {
@@ -21,23 +22,29 @@ export class ConfigService {
   }
 
   public async fetchConfig() {
-    if (!this.config) {
-      if (process.env.NODE_ENV !== "development") {
-        // In development, use environment variables directly.
+    if (this.config) {
+      return;
+    }
+    if (!this.fetchPromise) {
+      this.fetchPromise = this.loadConfig();
+    }
+    await this.fetchPromise;
+  }
+
+  private async loadConfig() {
+    if (process.env.NODE_ENV === "development") {
+      this.config = {
+        apiUrl: process.env.PARCEL_API_URL || "",
+      };
+    } else {
+      try {
+        const response = await fetch("/config.json");
+        const responseJson = await response.json();
         this.config = {
-          apiUrl: process.env.PARCEL_API_URL || "",
+          apiUrl: responseJson.apiUrl || "",
         };
-      } else {
-        // In production or other environments, fetch the config.json.
-        try {
-          const response = await fetch("/config.json");
-          const responseJson = await response.json();
-          this.config = {
-            apiUrl: responseJson.apiUrl || "",
-          };
-        } catch (error) {
-          console.error("Failed to load config:", error);
-        }
+      } catch (error) {
+        console.error("Failed to load config:", error);
       }
     }
   }
@@ -46,3 +53,4 @@ export class ConfigService {
     return this.config;
   }
 }
+
