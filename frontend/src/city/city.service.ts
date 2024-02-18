@@ -16,11 +16,39 @@ export class CityService {
                     languages_code: {_eq: languageCode}
                 }
             }
-        }
+        };
     }
 
     async getCity(cityId: number): Promise<CityModel> {
-        const fields = [
+        return this.fetchCity({id: cityId});
+    }
+
+    async getCityByName(cityName: string): Promise<CityModel> {
+        return this.fetchCity({name: cityName});
+    }
+
+    private async fetchCity(criteria: {id?: number, name?: string}): Promise<CityModel> {
+        const fields = this.getFieldsArray();
+        const deep = this.getDeepFilters();
+
+        let response;
+        if (criteria.id !== undefined) {
+            response = await this.client.request(readItem('city', criteria.id, {fields, deep}));
+        } else if ('name' in criteria) {
+            const nameFilter = {
+                translations: {
+                    name: {_icontains: criteria.name}
+                }
+            };
+            response = await this.client.request(readItems('city', {fields, filter: nameFilter, deep}));
+            response = response[0];
+        }
+
+        return this.convertToCity(response);
+    }
+
+    private getFieldsArray(): string[] {
+        return [
             '*',
             'translations.*',
             'gallery.*',
@@ -29,16 +57,13 @@ export class CityService {
             ...this.modelsToTranslate.map(model => `${model}.*`),
             ...this.modelsToTranslate.map(model => `${model}.translations.*`),
         ];
+    }
 
-        const response = await this.client.request(readItem('city', cityId, {
-            fields: fields,
-            // Dynamically add all fields from modelsToTranslate
-            deep: this.modelsToTranslate.reduce((acc, model) => ({
-                ...acc,
-                [model]: this.langFilter,
-            }), {...this.langFilter}),
-        }));
-        return this.convertToCity(response);
+    private getDeepFilters(): any {
+        return this.modelsToTranslate.reduce((acc, model) => ({
+            ...acc,
+            [model]: this.langFilter,
+        }), {...this.langFilter});
     }
 
     async getCities(): Promise<any> {
