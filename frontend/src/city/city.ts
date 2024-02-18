@@ -13,6 +13,7 @@ import "./components/gallery/gallery";
 import "../components/footer/footer";
 import "../components/text-content/text-content";
 import "../components/form/form";
+import "../components/spinner/spinner";
 
 @customElement("bnn-city")
 export class City extends DefaultComponent {
@@ -25,6 +26,9 @@ export class City extends DefaultComponent {
 
   @state()
   protected selectedCityName!: string;
+
+  @state()
+  protected isLoading: boolean = true;
 
   getSections() {
     const sections = [];
@@ -88,8 +92,10 @@ export class City extends DefaultComponent {
         .getCityByName(this.selectedCityName)
         .then((cityData) => {
           this.city = cityData;
+          this.isLoading = false;
         })
         .catch((error) => {
+          this.isLoading = false;
           console.error("Failed to fetch city data", error);
         });
     }
@@ -97,27 +103,49 @@ export class City extends DefaultComponent {
 
   public render() {
     const sections = this.getSections(); // Dynamically generate the sections
-
+  
     return html`
       <bnn-banner
         .cityname="${this.city?.name}"
         .sections="${sections}"
+        .isLoading="${this.isLoading}"
       ></bnn-banner>
-      <bnn-content-container>
-        <h2>${this.city?.page_title}</h2>
-        <p .innerHTML="${this.city?.description}"></p>
-      </bnn-content-container>
-      ${this.renderEventList()} ${this.renderGallery()}
-      ${this.renderCustomSections()} ${this.renderSupportLinks()}
-      ${this.renderForm()} ${this.renderSponsors()}
-      <bnn-footer></bnn-footer>
+      ${
+        this.isLoading
+          ? html`<bnn-spinner></bnn-spinner>` // Use the spinner component
+          : html` 
+            ${this.renderDescription()} 
+            ${this.renderEventList()} 
+            ${this.renderGallery()}
+            ${this.renderCustomSections()} 
+            ${this.renderSupportLinks()}
+            ${this.renderForm()} 
+            ${this.renderSponsors()}
+          ` // Render the content if not loading
+      }
+      <bnn-footer .isLoading="${this.isLoading}"></bnn-footer>
     `;
+  }
+
+  renderSpinner() {
+    return html`<div class="spinner">Loading...</div>`;
   }
 
   renderForm() {
     return html`${this.city?.emailForm.map((form) => {
       return html`<bnn-form .form=${form}></bnn-form>`;
     })}`;
+  }
+
+  renderDescription() {
+    return this.city?.page_title
+      ? html`
+      <bnn-content-container>
+        <h2>${this.city?.page_title}</h2>
+        <p .innerHTML="${this.city?.description}"></p>
+      </bnn-content-container>
+      `
+      : ``;
   }
 
   renderEventList() {
