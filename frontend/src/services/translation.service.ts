@@ -10,6 +10,7 @@ export class TranslationService {
   private static instance: TranslationService;
   private client;
   private langFilter;
+  private translationsLoaded: boolean = false;
   private translations: TranslationModel[] | undefined;
 
   constructor(config: AppConfig) {
@@ -32,8 +33,10 @@ export class TranslationService {
   }
 
   async fetchTranslations() {
-    if (!this.translations) {
-      const response = await this.client
+    if(!this.translationsLoaded) {
+      this.translationsLoaded = true
+      try {
+        const response = await this.client
         .request(
           readItems("GeneralTranslations", {
             fields: ["key", "translations.text"],
@@ -43,10 +46,14 @@ export class TranslationService {
           })
         )
 
-      this.translations = response.map((t) => ({
-        key: t.key,
-        text: t.translations[0]?.text,
-      }));
+        this.translations = response.map((t) => ({
+          key: t.key,
+          text: t.translations[0]?.text,
+        }));
+      } 
+      catch (error) {
+        this.translationsLoaded = false
+      }
     }
   }
 
