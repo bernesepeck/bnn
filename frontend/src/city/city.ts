@@ -24,7 +24,7 @@ export class City extends DefaultComponent {
   protected city: CityModel | undefined;
 
   @state()
-  protected selectedCity!: number;
+  protected selectedCityName!: string;
 
   getSections() {
     const sections = [];
@@ -62,10 +62,8 @@ export class City extends DefaultComponent {
     const pathSegments = window.location.pathname.split("/");
     const cityIndex = pathSegments.findIndex((segment) => segment === "city");
     if (cityIndex !== -1 && pathSegments.length > cityIndex + 1) {
-      const cityId = parseInt(pathSegments[cityIndex + 1]);
-      if (!isNaN(cityId)) {
-        this.selectedCity = cityId;
-      }
+      const cityName = pathSegments[cityIndex + 1];
+      this.selectedCityName = cityName;
     }
   }
 
@@ -79,15 +77,15 @@ export class City extends DefaultComponent {
     changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>
   ) {
     super.updated(changedProperties);
-    if (changedProperties.has("selectedCity")) {
+    if (changedProperties.has("selectedCityName")) {
       this.fetchCityData();
     }
   }
 
   fetchCityData() {
-    if (this.selectedCity !== null) {
+    if (this.selectedCityName !== null) {
       this.cityService
-        .getCity(this.selectedCity)
+        .getCityByName(this.selectedCityName)
         .then((cityData) => {
           this.city = cityData;
         })
