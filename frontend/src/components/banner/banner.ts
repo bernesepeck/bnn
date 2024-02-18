@@ -1,7 +1,6 @@
 import { html, css } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { DefaultComponent } from "../default.component";
-import "../logo/logo";
 import "../menu/nav-menu";
 import { classMap } from "lit/directives/class-map";
 import { Section } from "../../types/types";
@@ -59,6 +58,10 @@ export class Banner extends DefaultComponent {
         gap: 16px;
       }
 
+      .logo-nav-container img {
+        height: 120px;
+      }
+
       bnn-nav-menu {
         margin-left: auto;
       }
@@ -103,10 +106,9 @@ export class Banner extends DefaultComponent {
 
       .placeholder {
         background-color: rgba(255, 255, 255, 0.3);
-        height: 20px;
+        height: 24px;
         width: 25%; 
         border-radius: 5px;
-        margin-bottom: 5px;
         animation: pulsate 2s ease-in-out infinite;
         &.placeholder-short {
           width: 20%; 
@@ -135,7 +137,7 @@ export class Banner extends DefaultComponent {
       >
         <div class="max-content">
           <div class="logo-nav-container">
-            <bnn-logo></bnn-logo>
+            <img src="/logo.webp" alt="Beimnamennennen Logo">
             <bnn-nav-menu></bnn-nav-menu>
             <bnn-language-selector></bnn-language-selector>
           </div>
@@ -162,6 +164,7 @@ export class Banner extends DefaultComponent {
             : html`
             <ul class="sections-list">
               <li class="placeholder placeholder-short"></li>
+              <li class="placeholder"></li>
               <li class="placeholder"></li>
               <li class="placeholder"></li>
               <li class="placeholder"></li>

@@ -47,6 +47,9 @@ export class NavMenu extends DefaultComponent {
   @state()
   isMenuOpen = false;
 
+  @state()
+  isInitialised = false;
+
   static get componentStyles() {
     return css`
       /* Keyframes for the slide-down and fade-in effect */
@@ -146,7 +149,7 @@ export class NavMenu extends DefaultComponent {
     `;
   }
 
-  override afterComponentInitialized(): void {
+  override async afterComponentInitialized(): Promise<void> {
     document.addEventListener("click", (e) => {
       if (this.menuItems.some((i) => i.submenuVisible)) {
         this.menuItems = this.menuItems.map((i) =>
@@ -154,11 +157,12 @@ export class NavMenu extends DefaultComponent {
         );
       }
     });
-    this.fetchCities()
+    await this.fetchCities()
+    this.isInitialised = true;
   }
 
   render() {
-    return html`
+    return this.isInitialised ? html`
       <nav
         class="menu"
         class="${classMap({ open: this.isMenuOpen, menu: true })}"
@@ -177,7 +181,7 @@ export class NavMenu extends DefaultComponent {
         <div></div>
         <div></div>
       </button>
-    `;
+    ` : ``;
   }
 
   renderMenuItemWithSubmenu(item: MenuItem) {
