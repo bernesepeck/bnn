@@ -94,10 +94,33 @@ export class Banner extends DefaultComponent {
           background-color: var(--color-primary);
         }
       }
+
       bnn-language-selector {
         position: absolute;
         right: 16px;
         top: 16px;
+      }
+
+      .placeholder {
+        background-color: rgba(255, 255, 255, 0.3);
+        height: 20px;
+        width: 25%; 
+        border-radius: 5px;
+        margin-bottom: 5px;
+        animation: pulsate 2s ease-in-out infinite;
+        &.placeholder-short {
+          width: 20%; 
+        }
+      }
+      
+      h1.placeholder {
+        height: var(--font-size-xl);
+      }
+
+      @keyframes pulsate {
+        0% { background-color: rgba(255, 255, 255, 0.3); }
+        50% { background-color: rgba(255, 255, 255, 0.5); }
+        100% { background-color: rgba(255, 255, 255, 0.3); }
       }
     `;
   }
@@ -116,27 +139,36 @@ export class Banner extends DefaultComponent {
             <bnn-nav-menu></bnn-nav-menu>
             <bnn-language-selector></bnn-language-selector>
           </div>
-          <h1>${this.cityname}</h1>
-          ${this.description?.length
-            ? html`<p>${this.description}</p>`
-            : html``}
-          <ul class="sections-list">
-            ${this.sections.map((section) =>
-              section.fileId
-                ? html`<li>
-                    <a
-                      href="${this.config?.apiUrl}/assets/${section.fileId}"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="sections-link"
-                      >${section.name}</a
-                    >
-                  </li>`
-                : html`<li>
-                    <span @click="${() => this.goTo(section.id)}" class="sections-link">${section.name}</span>
-                  </li>`
-            )}
-          </ul>
+          ${this.cityname ? html`<h1>${this.cityname}</h1>` : html`<h1 class="placeholder"></h1>`}
+          ${this.description?.length ? html`<p>${this.description}</p>` : html``}
+          ${this.sections.length > 0
+            ? html`<ul class="sections-list">
+                ${this.sections.map((section) =>
+                  section.fileId
+                    ? html`<li>
+                        <a
+                          href="${this.config?.apiUrl}/assets/${section.fileId}"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="sections-link"
+                          >${section.name}</a
+                        >
+                      </li>`
+                    : html`<li>
+                        <span @click="${() => this.goTo(section.id)}" class="sections-link">${section.name}</span>
+                      </li>`
+                )}
+              </ul>`
+            : html`
+            <ul class="sections-list">
+              <li class="placeholder placeholder-short"></li>
+              <li class="placeholder"></li>
+              <li class="placeholder"></li>
+              <li class="placeholder"></li>
+              <li class="placeholder"></li>
+            </ul>
+            `
+          }
         </div>
       </div>
     `;
