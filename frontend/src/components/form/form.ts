@@ -149,7 +149,7 @@ export class Form extends DefaultComponent {
   renderField(field: Field) {
     switch (field.FormFields_id.type) {
       case "text":
-        return html` ${this.renderLabel(field.label)}
+        return html` ${this.renderLabel(field)}
           <input
             type="text"
             id="${field.label}"
@@ -157,7 +157,7 @@ export class Form extends DefaultComponent {
             ?disabled="${this.wasSuccessful}"
           />`;
       case "number":
-        return html` ${this.renderLabel(field.label)}
+        return html` ${this.renderLabel(field)}
           <input
             type="number"
             id="${field.label}"
@@ -165,7 +165,7 @@ export class Form extends DefaultComponent {
             ?disabled="${this.wasSuccessful}"
           />`;
       case "textarea":
-        return html` ${this.renderLabel(field.label)}
+        return html` ${this.renderLabel(field)}
           <textarea
             id="${field.label}"
             name="${field.label}"
@@ -179,12 +179,12 @@ export class Form extends DefaultComponent {
             name="${field.label}"
             ?disabled="${this.wasSuccessful}"
           />
-          ${this.renderLabel(field.label)}
+          ${this.renderLabel(field)}
         </div>`;
     }
   }
 
-  renderLabel(name: string) {
-    return html`<label>${name}</label>`;
+  renderLabel(field: Field) {
+    return html`<label for="${field.label}">${field.label}</label>`;
   }
 }

@@ -15,7 +15,7 @@ export interface SupportLinkModel {
 export interface EventModel {
     id: number;
     status: string;
-    sort: number | null;
+    sort: number;
     date_updated: string;
     teaser: string | null;
     city: number;

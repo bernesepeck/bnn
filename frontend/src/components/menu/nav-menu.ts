@@ -175,7 +175,7 @@ export class NavMenu extends DefaultComponent {
   render() {
     return this.isInitialised
       ? html`
-          <nav
+          <menu
             class="menu"
             class="${classMap({ open: this.isMenuOpen, menu: true })}"
           >
@@ -187,7 +187,7 @@ export class NavMenu extends DefaultComponent {
                   >`
             )}
           <bnn-language-selector .darkMode=${true}></bnn-language-selector>
-          </nav>
+          </menu>
           <button
             class="hamburger-menu"
             @click="${() => (this.isMenuOpen = !this.isMenuOpen)}"

@@ -55,7 +55,7 @@ export class EventList extends DefaultComponent {
       <bnn-content-container .backgroundColor="${"grey"}">
         <h2>${this.t("events")}</h2>
         <div class="events">
-          ${this.events?.map((e) => this.renderEvent(e))}
+          ${this.events?.sort((a,b) => a.sort > b.sort ? 1 : -1).map((e) => this.renderEvent(e))}
         </div>
       </bnn-content-container>
     `;
@@ -69,7 +69,7 @@ export class EventList extends DefaultComponent {
           : html``}
         <h3>${event.name}</h3>
         ${event.teaser
-          ? html`<img src="${this.config?.apiUrl}/assets/${event.teaser}" />`
+          ? html`<img src="${this.config?.apiUrl}/assets/${event.teaser}" alt="${`image ${event.name}`}"/>`
           : html``}
         ${event.customDates
           ? html`<p .innerHTML="${event.customDates}" class="dates"></p>`
