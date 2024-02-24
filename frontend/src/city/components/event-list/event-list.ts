@@ -69,7 +69,7 @@ export class EventList extends DefaultComponent {
           : html``}
         <h3>${event.name}</h3>
         ${event.teaser
-          ? html`<img src="${this.config?.apiUrl}/assets/${event.teaser}" />`
+          ? html`<img src="${this.config?.apiUrl}/assets/${event.teaser}" alt="${`image ${event.name}`}"/>`
           : html``}
         ${event.customDates
           ? html`<p .innerHTML="${event.customDates}" class="dates"></p>`
