@@ -6,6 +6,7 @@ import { DefaultComponent } from "../default.component";
 import { classMap } from "lit/directives/class-map.js";
 import { CityService } from "../../city/city.service";
 import { CityModel, getCurrentCity } from "../../city/city.models";
+import "../language/language-selector";
 
 type MenuItem = {
   translationKey: string;
@@ -41,7 +42,7 @@ export class NavMenu extends DefaultComponent {
     },
   ];
 
-  @state() 
+  @state()
   cities: CityModel[] = [];
 
   @state()
@@ -137,12 +138,22 @@ export class NavMenu extends DefaultComponent {
             background-color: white;
           }
         }
+        bnn-language-selector {
+          display: block;
+          position: fixed;
+          top: 36px;
+          right: 100px;
+          z-index: 1000;
+        }
       }
       @media screen and (min-width: 821px) {
         .menu {
           display: flex;
         }
         .hamburger-menu {
+          display: none;
+        }
+        bnn-language-selector {
           display: none;
         }
       }
@@ -157,31 +168,36 @@ export class NavMenu extends DefaultComponent {
         );
       }
     });
-    await this.fetchCities()
+    await this.fetchCities();
     this.isInitialised = true;
   }
 
   render() {
-    return this.isInitialised ? html`
-      <nav
-        class="menu"
-        class="${classMap({ open: this.isMenuOpen, menu: true })}"
-      >
-        ${this.menuItems.map((item) =>
-          item.submenu
-            ? this.renderMenuItemWithSubmenu(item)
-            : html`<a class="main-link" href="${item.link}">${this.t(item.translationKey!)}</a>`
-        )}
-      </nav>
-      <button
-        class="hamburger-menu"
-        @click="${() => (this.isMenuOpen = !this.isMenuOpen)}"
-      >
-        <div></div>
-        <div></div>
-        <div></div>
-      </button>
-    ` : ``;
+    return this.isInitialised
+      ? html`
+          <nav
+            class="menu"
+            class="${classMap({ open: this.isMenuOpen, menu: true })}"
+          >
+            ${this.menuItems.map((item) =>
+              item.submenu
+                ? this.renderMenuItemWithSubmenu(item)
+                : html`<a class="main-link" href="${item.link}"
+                    >${this.t(item.translationKey!)}</a
+                  >`
+            )}
+          <bnn-language-selector .darkMode=${true}></bnn-language-selector>
+          </nav>
+          <button
+            class="hamburger-menu"
+            @click="${() => (this.isMenuOpen = !this.isMenuOpen)}"
+          >
+            <div></div>
+            <div></div>
+            <div></div>
+          </button>
+        `
+      : ``;
   }
 
   renderMenuItemWithSubmenu(item: MenuItem) {
@@ -214,7 +230,9 @@ export class NavMenu extends DefaultComponent {
     e.preventDefault();
     e.stopPropagation();
     this.menuItems = this.menuItems.map((i) =>
-      i === item ? { ...i, submenuVisible: !i.submenuVisible } : {...i, submenuVisible: false}
+      i === item
+        ? { ...i, submenuVisible: !i.submenuVisible }
+        : { ...i, submenuVisible: false }
     );
   }
 
@@ -230,7 +248,10 @@ export class NavMenu extends DefaultComponent {
   }
 
   private isCityItemSelected(item: MenuItem): boolean {
-    const selected = window.location.href.includes(item.urlParam!)
-    return selected && this.cities.find(c => c.id === getCurrentCity())?.country === item.key;
+    const selected = window.location.href.includes(item.urlParam!);
+    return (
+      selected &&
+      this.cities.find((c) => c.id === getCurrentCity())?.country === item.key
+    );
   }
 }
