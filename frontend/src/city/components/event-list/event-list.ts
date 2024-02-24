@@ -55,7 +55,7 @@ export class EventList extends DefaultComponent {
       <bnn-content-container .backgroundColor="${"grey"}">
         <h2>${this.t("events")}</h2>
         <div class="events">
-          ${this.events?.map((e) => this.renderEvent(e))}
+          ${this.events?.sort((a,b) => a.sort > b.sort ? 1 : -1).map((e) => this.renderEvent(e))}
         </div>
       </bnn-content-container>
     `;
