@@ -1,5 +1,5 @@
 import { html, css } from 'lit';
-import { customElement, state } from 'lit/decorators.js';
+import { customElement, property, state } from 'lit/decorators.js';
 import { DefaultComponent } from '../default.component';
 import { classMap } from 'lit/directives/class-map';
 
@@ -7,6 +7,9 @@ import { classMap } from 'lit/directives/class-map';
 export class LanguageSelector extends DefaultComponent {
     @state()
     private language: string;
+
+    @property()
+    private darkMode = false;
 
     constructor() {
         super();
@@ -27,12 +30,17 @@ export class LanguageSelector extends DefaultComponent {
                     cursor: pointer;
                 }
             }
+            .dark-mode {
+                & .selected {
+                    background-color: var(--color-secondary);
+                }
+            }
         `;
     }
 
     render() {
         return html`
-            <li class="language-wrapper">
+            <li class="${classMap({'language-wrapper': true, 'dark-mode': this.darkMode})}">
                 <span class="${classMap({selected: this.language === 'de'})}" @click="${() => this.handleLanguageChange('de')}">DE</span>
                 <span class="${classMap({selected: this.language === 'fr'})}" @click="${() => this.handleLanguageChange('fr')}">FR</span>
             </li>
