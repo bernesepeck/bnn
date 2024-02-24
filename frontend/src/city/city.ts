@@ -59,7 +59,9 @@ export class City extends DefaultComponent {
 
   constructor() {
     super();
-    document.addEventListener(City.SCROLL_INTO_VIEW_EVENT, (event) => this.scrollSectionIntoView((event as CustomEvent).detail))
+    document.addEventListener(City.SCROLL_INTO_VIEW_EVENT, (event) =>
+      this.scrollSectionIntoView((event as CustomEvent).detail)
+    );
   }
 
   initializeSelectedCityFromURL() {
@@ -92,6 +94,7 @@ export class City extends DefaultComponent {
         .getCityByName(this.selectedCityName)
         .then((cityData) => {
           this.city = cityData;
+          this.updateTitleTag(this.city.name);
           this.isLoading = false;
         })
         .catch((error) => {
@@ -101,9 +104,27 @@ export class City extends DefaultComponent {
     }
   }
 
+  updateTitleTag() {
+    const storedLanguage = sessionStorage.getItem("selectedLanguage");
+    // Create the meta description tag
+    var metaDescription = document.createElement("meta");
+    metaDescription.name = "description";
+
+    // Append the meta tag to the document head
+    if (storedLanguage === "de") {
+      document.title = `Beim Namen nennen - ${this.city?.name}`;
+      metaDescription.content = this.city?.description ?? 'Beim Namen nennen';
+    }
+    if (storedLanguage === "fr") {
+      document.title = `Les nommer par leur nom - ${this.city?.name}`;
+      metaDescription.content = this.city?.description ?? 'Beim Namen nennen';
+    }
+    document.head.appendChild(metaDescription);
+  }
+
   public render() {
     const sections = this.getSections(); // Dynamically generate the sections
-  
+
     return html`
       <bnn-banner
         .cityname="${this.city?.name}"
@@ -113,15 +134,12 @@ export class City extends DefaultComponent {
       ${
         this.isLoading
           ? html`<bnn-spinner></bnn-spinner>` // Use the spinner component
-          : html` 
-            ${this.renderDescription()} 
-            ${this.renderEventList()} 
-            ${this.renderGallery()}
-            ${this.renderCustomSections()} 
-            ${this.renderSupportLinks()}
-            ${this.renderForm()} 
-            ${this.renderSponsors()}
-          ` // Render the content if not loading
+          : html`
+              ${this.renderDescription()} ${this.renderEventList()}
+              ${this.renderGallery()} ${this.renderCustomSections()}
+              ${this.renderSupportLinks()} ${this.renderForm()}
+              ${this.renderSponsors()}
+            ` // Render the content if not loading
       }
       <bnn-footer .isLoading="${this.isLoading}"></bnn-footer>
     `;
@@ -140,11 +158,11 @@ export class City extends DefaultComponent {
   renderDescription() {
     return this.city?.page_title
       ? html`
-      <bnn-content-container>
-        <h2>${this.city?.page_title}</h2>
-        <p .innerHTML="${this.city?.description}"></p>
-      </bnn-content-container>
-      `
+          <bnn-content-container>
+            <h2>${this.city?.page_title}</h2>
+            <p .innerHTML="${this.city?.description}"></p>
+          </bnn-content-container>
+        `
       : ``;
   }
 

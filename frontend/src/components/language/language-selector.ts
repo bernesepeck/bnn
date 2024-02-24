@@ -23,10 +23,11 @@ export class LanguageSelector extends DefaultComponent {
                 gap: 8px;
                 color: var(--color-white);
                 text-transform: uppercase;
+                list-style-type: none;
                 & .selected {
                     background-color: var(--color-primary);
                 }
-                & span {
+                & li {
                     cursor: pointer;
                 }
             }
@@ -40,10 +41,10 @@ export class LanguageSelector extends DefaultComponent {
 
     render() {
         return html`
-            <li class="${classMap({'language-wrapper': true, 'dark-mode': this.darkMode})}">
-                <span class="${classMap({selected: this.language === 'de'})}" @click="${() => this.handleLanguageChange('de')}">DE</span>
-                <span class="${classMap({selected: this.language === 'fr'})}" @click="${() => this.handleLanguageChange('fr')}">FR</span>
-            </li>
+            <ul class="${classMap({'language-wrapper': true, 'dark-mode': this.darkMode})}">
+                <li class="${classMap({selected: this.language === 'de'})}" @click="${() => this.handleLanguageChange('de')}">DE</li>
+                <li class="${classMap({selected: this.language === 'fr'})}" @click="${() => this.handleLanguageChange('fr')}">FR</li>
+            </ul>
         `;
     }
 
