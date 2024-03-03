@@ -4,10 +4,10 @@ FROM node:21 as build-stage
 # Set the working directory
 WORKDIR /app
 
-# Copy package.json and package-lock.json
+# Copy project config fles
 COPY package*.json ./
-
 COPY tsconfig.json ./
+COPY .parcelrc ./
 
 # Install dependencies
 RUN npm install
