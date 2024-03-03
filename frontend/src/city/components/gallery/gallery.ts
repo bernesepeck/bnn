@@ -49,25 +49,55 @@ export class Gallery extends DefaultComponent {
         grid-column: span 1; 
         grid-row: span 1;
       }
+
       .lightbox {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
         background-color: rgba(0, 0, 0, 0.5);
-        display: flex;
-        justify-content: center;
-        align-items: center;
         z-index: 1000;
       }
-      .lightbox img {
+      
+      .lightbox-container {
+        display: flex; /* This will be the direct container for the image and navigation areas */
         max-width: 80%;
         max-height: 80%;
+        width: auto; /* Adjust based on your needs */
+        height: auto; /* Adjust based on your needs */
+        position: relative; /* To position arrows */
       }
-      .arrow {
-        cursor: pointer;
+      
+      .lightbox img {
+        object-fit: contain;
+        width: 100%; /* Let it fill the container */
+        height: auto; /* Maintain aspect ratio */
+      }
+      
+      .lightbox-left, .lightbox-right {
         position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 50%; /* Or any desired width */
+        cursor: pointer;
+        background-color: rgba(0, 0, 0, 0.2); /* For visibility, adjust as needed */
+      }
+      
+      .lightbox-left {
+        left: -50%;
+      }
+      
+      .lightbox-right {
+        right: -50%;
+      }
+      
+      .arrow {
+        position: fixed;
+        cursor: pointer;
         top: 50%;
         transform: translateY(-50%);
         font-size: 24px;
@@ -75,10 +105,10 @@ export class Gallery extends DefaultComponent {
         z-index: 1010;
       }
       .arrow.left {
-        left: 10px;
+        left: 4%;
       }
       .arrow.right {
-        right: 10px;
+        right: 4%;
       }
     `;
   }
@@ -111,9 +141,15 @@ export class Gallery extends DefaultComponent {
   renderLightbox(image: GalleryModel) {
     return html`
       <div class="lightbox" @click="${this.clearActiveImage}">
-        <span class="arrow left" @click="${this.prevImage}">&#10094;</span>
-        <img src="${this.config?.apiUrl}/assets/${image.directus_files_id}?quality=80">
-        <span class="arrow right" @click="${this.nextImage}">&#10095;</span>
+        <div class="lightbox-container">
+          <div class="lightbox-left" @click="${this.prevImage}">
+            <span class="arrow left">&#10094;</span>
+          </div>
+          <img src="${this.config?.apiUrl}/assets/${image.directus_files_id}?quality=80">
+          <div class="lightbox-right" @click="${this.nextImage}">
+            <span class="arrow right">&#10095;</span>
+          </div>
+        </div>
       </div>
     `;
   }
