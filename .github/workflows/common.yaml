@@ -1,13 +1,28 @@
-name: CI to Docker Hub and Deploy to Google Cloud Run
+name: Build and Deploy Common Workflow
 
 on:
-  push:
-    branches:
-      - 'main'
+  workflow_call:
+    inputs:
+      frontend_service_name:
+        required: true
+        type: string
+      directus_service_name:
+        required: true
+        type: string
+      environment:
+        required: true
+        type: string
+      frontend_url:
+        required: true
+        type: string
+      gcs_upload_directory:
+        required: true
+        type: string
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
     steps:
       - name: Check out the code
         uses: actions/checkout@v2
@@ -56,7 +71,7 @@ jobs:
         uses: google-github-actions/deploy-cloudrun@v2
         with:
           region: 'europe-west6'
-          service: 'bnn-directus'
+          service: ${{ inputs.directus_service_name }}
           image: j0hngnn0n/bnn-directus:${{ github.sha }}
           flags: '--add-cloudsql-instances=bnn-app-413420:europe-west6:bnn-database'
           env_vars: |
@@ -66,7 +81,7 @@ jobs:
             ADMIN_EMAIL=gannonline90@gmail.com
             ADMIN_PASSWORD=${{ secrets.DIRECTUS_ADMIN_PASSWORD }}
             CORS_ENABLED=true
-            CORS_ORIGIN=https://bnn-frontend-g5zcbtf63q-oa.a.run.app
+            CORS_ORIGIN=${{ inputs.frontend_url }}
             CORS_METHODS=GET,POST,PATCH,DELETE
             CORS_ALLOWED_HEADERS=Content-Type,Authorization
             CORS_EXPOSED_HEADERS=Content-Range
@@ -82,7 +97,7 @@ jobs:
             DB_CONNECTION_STRING=${{ secrets.DIRECTUS_DB_CONNECTION_STRING }}
             STORAGE_LOCATIONS=gcs
             STORAGE_GCS_DRIVER=gcs
-            STORAGE_GCS_ROOT=./uploads
+            STORAGE_GCS_ROOT=${{ inputs.gcs_upload_directory }}
             STORAGE_GOOGLE_CREDENTIALS__PRIVATE_KEY=${{ secrets.GCP_SA_PRIVATE_KEY }}
             STORAGE_GOOGLE_CREDENTIALS__CLIENT_EMAIL=${{ secrets.GCP_SA_CLIENT_EMAIL }}
             STORAGE_GCS_BUCKET=directus-uploads
@@ -91,14 +106,14 @@ jobs:
       - name: Get Directus Service URL
         id: get_backend_url
         run: |
-          BACKEND_SERVICE_URL=$(gcloud run services describe bnn-directus --platform managed --region europe-west6 --format 'value(status.url)')
+          BACKEND_SERVICE_URL=$(gcloud run services describe ${{ inputs.directus_service_name }} --platform managed --region europe-west6 --format 'value(status.url)')
           echo "BACKEND_SERVICE_URL=$BACKEND_SERVICE_URL" 
           echo "::set-output name=backend_service_url::$BACKEND_SERVICE_URL"
 
       - name: 'Deploy frontend to Google Cloud Run'
         uses: 'google-github-actions/deploy-cloudrun@v2'
         with:
-          service: 'bnn-frontend'
+          service: ${{ inputs.frontend_service_name }}
           image: 'j0hngnn0n/bnn-frontend:${{ github.sha }}'
           region: 'europe-west6'
           env_vars: |

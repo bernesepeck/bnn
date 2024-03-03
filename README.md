@@ -43,28 +43,32 @@ docker compose exec -u root directus chown -R node:node /directus/database /dire
 Create dump of prod DB.
 ```bash
 export DB_PASSWORD='YourPasswordHere'
-pg_dump "sslmode=disable host=34.65.121.69 dbname=directus user=directus password=$DB_PASSWORD" --no-acl --no-owner -f backend/directus_db_small.sql
+pg_dump "sslmode=disable host=34.65.121.69 dbname=directus user=directus password=$DB_PASSWORD" --no-acl --no-owner -f backend/directus_db_prod.sql
 ```
 
-## Drop Production Database
+## Drop all connections to staging db
+```bash
+psql "sslmode=disable host=34.65.121.69 dbname=directus-staging user=directus-staging password=$DB_PASSWORD"  -c "SELECT pg_terminate_backend(pg_stat_activity.pid) FROM pg_stat_activity WHERE pg_stat_activity.datname = 'directus-staging' AND pid <> pg_backend_pid();"
+```
 
-**Remove the existing production database**: This operation deletes the current production database. It's a critical action and should be performed with caution, ensuring that a backup exists before proceeding.
+## Drop Staging Database
+
+**Remove the existing staging database**: This operation deletes the current staging database. It's a critical action and should be performed with caution, ensuring that a backup exists before proceeding.
 ```bash
 export DB_PASSWORD='YourPasswordHere'
-psql "sslmode=disable host=34.65.121.69 dbname=postgres user=directus password=$DB_PASSWORD" -c "DROP DATABASE IF EXISTS directus;"
+psql "sslmode=disable host=34.65.121.69 dbname=postgres user=directus-staging password=$DB_PASSWORD" -c 'DROP DATABASE IF EXISTS "directus-staging";'
 ```
 
-## Create Production Database
+## Re-create Staging Database
 
 After Dropping the DB, create a fresh one.
-  ```bash
-  psql "sslmode=disable host=34.65.121.69 dbname=postgres user=directus password=$DB_PASSWORD" -c "CREATE DATABASE directus;"
-  ```
+```bash
+psql "sslmode=disable host=34.65.121.69 dbname=postgres user=directus-staging password=$DB_PASSWORD" -c 'CREATE DATABASE "directus-staging";'
+```
 
-## Restore Production Database
+## Restore Staging Database from prod backup
 
 Ensure the database is created before attempting a restore.
 ```bash
-cat backend/directus_db_small.sql | psql "sslmode=disable host=34.65.121.69 dbname=directus user=directus password=$DB_PASSWORD"
+cat backend/directus_db_prod.sql | psql "sslmode=disable host=34.65.121.69 dbname=directus-staging user=directus-staging password=$DB_PASSWORD"
 ```
-
