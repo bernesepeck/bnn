@@ -25,17 +25,20 @@ export class CityService {
   }
 
   async getCity(cityId: number): Promise<CityModel> {
-    return this.fetchCity({ id: cityId });
+    return this.fetchCity({ id: cityId }, true);
   }
 
   async getCityByName(cityName: string): Promise<CityModel> {
-    return this.fetchCity({ name: cityName });
+    return this.fetchCity({ name: cityName }, true);
   }
 
-  private async fetchCity(criteria: {
-    id?: number;
-    name?: string;
-  }): Promise<CityModel> {
+  private async fetchCity(
+    criteria: {
+      id?: number;
+      name?: string; 
+    },
+    langFallback?: boolean
+  ): Promise<CityModel> {
     const fields = this.getFieldsArray();
     const deep = this.getDeepFilters();
 
@@ -54,7 +57,24 @@ export class CityService {
       response = response[0];
     }
 
-    return this.convertToCity(response);
+    const city = this.convertToCity(response);
+
+    if (langFallback) {
+      // Check if page_title and description are empty, and refetch if necessary
+      if (!city?.page_title && !city?.description) {
+        const alternateLanguage = sessionStorage.getItem("selectedLanguage") === "de" ? "fr" : "de";
+        this.langFilter = {
+          translations: {
+            _filter: {
+              languages_code: { _eq: alternateLanguage },
+            },
+          },
+        }
+        return this.fetchCity({ name: city?.name });
+      }
+    }
+
+    return city
   }
 
   private getFieldsArray(): string[] {
@@ -127,7 +147,7 @@ export class CityService {
 
     // Dynamically flatten translations for related models and assign to cityObj
     this.modelsToTranslate.forEach((model) => {
-      if (city[model]) {
+      if (city && city[model]) {
         city[model] = city[model].map((item: any) =>
           this.flattenTranslations(item)
         );
