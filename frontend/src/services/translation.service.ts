@@ -10,8 +10,8 @@ export class TranslationService {
   private static instance: TranslationService;
   private client;
   private langFilter;
-  private translationsLoaded: boolean = false;
   private translations: TranslationModel[] | undefined;
+  private fetchPromise: Promise<void> | null = null;
 
   constructor(config: AppConfig) {
     this.client = createDirectus(config.apiUrl).with(rest());
@@ -32,28 +32,34 @@ export class TranslationService {
     return TranslationService.instance;
   }
 
-  async fetchTranslations() {
-    if(!this.translationsLoaded) {
-      this.translationsLoaded = true
-      try {
-        const response = await this.client
-        .request(
-          readItems("GeneralTranslations", {
-            fields: ["key", "translations.text"],
-            deep: {
-              ...this.langFilter,
-            },
-          })
-        )
+  public async fetchTranslations() {
+    if (this.translations) {
+      return;
+    }
+    if (!this.fetchPromise) {
+      this.fetchPromise = this.loadTranslations();
+    }
+    await this.fetchPromise;
+  }
 
-        this.translations = response.map((t) => ({
-          key: t.key,
-          text: t.translations[0]?.text,
-        }));
-      } 
-      catch (error) {
-        this.translationsLoaded = false
-      }
+  private async loadTranslations() {
+    try {
+      const response = await this.client
+      .request(
+        readItems("GeneralTranslations", {
+          fields: ["key", "translations.text"],
+          deep: {
+            ...this.langFilter,
+          },
+        })
+      )
+      this.translations = response.map((t) => ({
+        key: t.key,
+        text: t.translations[0]?.text,
+      }));
+    } 
+    catch (error) {
+      console.error("Failed to load translations:", error);
     }
   }
 
