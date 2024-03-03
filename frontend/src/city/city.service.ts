@@ -111,7 +111,6 @@ export class CityService {
     }
 
     // Recursively process each property
-    console.log(item);
     for (const key of Object.keys(item)) {
       if (Array.isArray(item[key])) {
         item[key] = item[key].map(this.flattenTranslations.bind(this)); // Process array items
