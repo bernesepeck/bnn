@@ -26,6 +26,10 @@
 ./restore-directus-environment.sh
 ```
 
+## Create snapshot of database schema
+```bash
+docker-compose exec directus npx directus schema snapshot ./snapshots/snapshot-latest.yaml
+```
 
 ## Fix Image Permissions
 
