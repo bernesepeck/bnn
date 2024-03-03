@@ -8,4 +8,5 @@ if [ "$APPLY_SNAPSHOT" = "true" ]; then
 fi
 
 # Start Directus normally
+echo "Executing command: $@"
 exec "$@"
