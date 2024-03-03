@@ -50,7 +50,7 @@ jobs:
         uses: 'google-github-actions/upload-cloud-storage@v2'
         with:
           path: './backend/snapshots/snapshot-latest.yaml'
-          destination: 'bnn-directus-snapshots/snapshot-latest.yaml'
+          destination: 'bnn-directus-snapshots/'
 
       - name: Deploy directus to Google Cloud Run
         uses: google-github-actions/deploy-cloudrun@v2
