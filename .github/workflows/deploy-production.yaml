@@ -7,7 +7,7 @@ on:
 
 jobs:
   build-and-push-staging:
-    uses: ./.github/workflows/common.yml
+    uses: ./.github/workflows/common.yaml
     with:
       environment: production
       frontend_service_name: 'bnn-frontend'
