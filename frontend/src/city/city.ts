@@ -94,7 +94,7 @@ export class City extends DefaultComponent {
         .getCityByName(this.selectedCityName)
         .then((cityData) => {
           this.city = cityData;
-          this.updateTitleTag(this.city.name);
+          this.updateTitleTag();
           this.isLoading = false;
         })
         .catch((error) => {
