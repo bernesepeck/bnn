@@ -46,9 +46,7 @@ export class CityService {
       );
     } else if ("name" in criteria) {
       const nameFilter = {
-        translations: {
-          name: { _icontains: criteria.name },
-        },
+        domainname: { _icontains: criteria.name },
       };
       response = await this.client.request(
         readItems("city", { fields, filter: nameFilter, deep })
@@ -84,7 +82,13 @@ export class CityService {
   async getCities(): Promise<any> {
     const response = await this.client.request(
       readItems("city", {
-        fields: ["id", "translations.city_id", "translations.name", "country"],
+        fields: [
+          "id",
+          "translations.city_id",
+          "domainname",
+          "translations.name",
+          "country",
+        ],
         deep: {
           ...this.langFilter,
           events: this.langFilter,
