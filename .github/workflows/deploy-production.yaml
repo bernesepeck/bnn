@@ -6,7 +6,7 @@ on:
       - 'main'
 
 jobs:
-  build-and-push-staging:
+  build-and-push-production:
     uses: ./.github/workflows/common.yaml
     with:
       environment: production
