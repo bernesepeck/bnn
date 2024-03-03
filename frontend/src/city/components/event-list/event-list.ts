@@ -37,6 +37,7 @@ export class EventList extends DefaultComponent {
       }
       img {
         max-height: 400px;
+        max-width: -webkit-fill-available;
         object-fit: contain;
         align-self: flex-start;
       }
