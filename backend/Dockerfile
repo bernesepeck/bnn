@@ -4,3 +4,8 @@ FROM directus/directus:10.9
 # Copy your extensions into the image
 # Ensure your extensions are compatible with Directus version you're extending
 COPY ./extensions /directus/extensions
+
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]

@@ -15,6 +15,7 @@ services:
     volumes:
       - ./backend/uploads:/directus/uploads
       - ./backend/extensions:/directus/extensions
+      - ./backend/snapshots:/directus/snapshots
     depends_on:
       - database
     env_file:
