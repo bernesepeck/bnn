@@ -70,7 +70,7 @@ export class CityService {
             },
           },
         }
-        return this.fetchCity({ name: city?.name });
+        return this.fetchCity({ name: city?.domainname });
       }
     }
 
