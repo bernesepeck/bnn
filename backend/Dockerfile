@@ -1,6 +1,14 @@
-# Use Directus official image as the base
 FROM directus/directus:10.9
 
-# Copy your extensions into the image
-# Ensure your extensions are compatible with Directus version you're extending
 COPY ./extensions /directus/extensions
+
+USER root
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+USER node
+
+ENTRYPOINT ["/entrypoint.sh"]
+CMD : \
+	&& node cli.js bootstrap \
+	&& pm2-runtime start ecosystem.config.cjs \
+	;

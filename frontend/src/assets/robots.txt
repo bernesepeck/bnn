@@ -1,0 +1,15 @@
+# Allowing all web crawlers access to all content
+User-agent: *
+Disallow:
+
+# Disallowing all web crawlers access to specific folders
+User-agent: *
+Disallow:
+
+# Specific instructions for a specific crawler
+# For example, to disallow Google's crawler from a specific folder
+User-agent: Googlebot
+Disallow:
+
+# Sitemap declaration (if you have a sitemap)
+Sitemap: https://www.beimnamennennen.ch/sitemap.xml

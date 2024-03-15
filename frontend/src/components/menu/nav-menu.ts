@@ -142,7 +142,7 @@ export class NavMenu extends DefaultComponent {
           display: block;
           position: fixed;
           top: 36px;
-          right: 100px;
+          left: 0;
           z-index: 1000;
         }
       }

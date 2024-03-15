@@ -52,7 +52,7 @@ export class CitySelector extends DefaultComponent {
                 class="${classMap({
                   selected: this.getCurrentCity() === city.id,
                 })}"
-                href="${`/city/${city.name.toLowerCase()}`}"
+                href="${`/city/${city.domainname?.toLowerCase()}`}"
                 @click="${(e) => e.stopPropagation()}"
                 >${city.name}</a
               >`
