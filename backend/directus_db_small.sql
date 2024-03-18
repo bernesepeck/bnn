@@ -1741,7 +1741,6 @@ COPY public."SupportLinks_translations" (id, "SupportLinks_id", languages_code, 
 --
 
 COPY public.city (id, status, sort, date_updated, country, flyer, domainname) FROM stdin;
-1	draft	\N	2024-03-03 14:37:37.928+00	ch	29dc4e20-a4e2-4dee-b936-57cf9fc88e64	basel
 2	draft	\N	2024-03-03 14:37:44.783+00	ch	74c0209d-8b93-4570-b6b0-01e39b3b317f	bern
 4	draft	\N	2024-03-03 14:37:50.731+00	ch	\N	genf
 5	draft	\N	2024-03-03 14:38:17.775+00	ch	\N	neuchatel
@@ -1755,6 +1754,7 @@ COPY public.city (id, status, sort, date_updated, country, flyer, domainname) FR
 13	draft	\N	2024-03-03 14:39:19.629+00	de	\N	dortmund
 14	draft	\N	2024-03-03 14:39:25.797+00	de	\N	essen
 15	draft	\N	2024-03-03 14:39:32.994+00	de	\N	berlin
+1	draft	\N	2024-03-18 23:31:22.476+00	ch	29dc4e20-a4e2-4dee-b936-57cf9fc88e64	basel
 \.
 
 
@@ -3181,6 +3181,58 @@ COPY public.directus_activity (id, action, "user", "timestamp", ip, user_agent, 
 1351	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-03-18 21:09:10.224+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36	directus_users	507e3800-1c28-454b-bcd2-766cda54a162	\N	http://localhost:8055
 1352	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-03-18 21:09:10.255+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36	directus_roles	68c58399-f145-49aa-9db1-ee94c793b427	\N	http://localhost:8055
 1353	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-03-18 21:11:14.554+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36	directus_roles	68c58399-f145-49aa-9db1-ee94c793b427	\N	http://localhost:8055
+1354	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-03-18 23:13:11.713+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36	directus_permissions	136	\N	http://localhost:8055
+1355	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-03-18 23:13:39.859+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36	directus_permissions	137	\N	http://localhost:8055
+1356	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-03-18 23:13:44.098+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36	directus_permissions	138	\N	http://localhost:8055
+1357	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-03-18 23:14:04.506+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36	directus_permissions	138	\N	http://localhost:8055
+1358	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-03-18 23:14:41.802+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36	directus_permissions	139	\N	http://localhost:8055
+1359	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-03-18 23:15:16.517+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36	directus_permissions	140	\N	http://localhost:8055
+1360	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-03-18 23:15:20.646+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36	directus_permissions	141	\N	http://localhost:8055
+1361	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-03-18 23:15:36.473+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36	directus_permissions	142	\N	http://localhost:8055
+1362	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-03-18 23:16:10.858+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36	directus_roles	68c58399-f145-49aa-9db1-ee94c793b427	\N	http://localhost:8055
+1363	login	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-03-18 23:17:46.882+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36	directus_users	db513aee-cd3a-47a9-95e5-a98f1cc92d13	\N	http://localhost:8055
+1364	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-03-18 23:18:19.104+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36	directus_users	b72f0403-29be-4440-8e53-bf50ecb3439e	\N	http://localhost:8055
+1365	login	b72f0403-29be-4440-8e53-bf50ecb3439e	2024-03-18 23:18:42.865+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36	directus_users	b72f0403-29be-4440-8e53-bf50ecb3439e	\N	http://localhost:8055
+1366	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-03-18 23:18:55.065+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36	directus_users	b72f0403-29be-4440-8e53-bf50ecb3439e	\N	http://localhost:8055
+1367	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-03-18 23:18:55.098+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36	directus_roles	cf1f4250-ccba-4734-a984-4edc3b98bbc8	\N	http://localhost:8055
+1368	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-03-18 23:22:45.185+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36	directus_permissions	213	\N	http://localhost:8055
+1369	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-03-18 23:23:05.63+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36	directus_permissions	209	\N	http://localhost:8055
+1370	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-03-18 23:23:46.849+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36	directus_permissions	132	\N	http://localhost:8055
+1371	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-03-18 23:23:56.594+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36	directus_permissions	133	\N	http://localhost:8055
+1372	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-03-18 23:24:06.012+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36	directus_permissions	134	\N	http://localhost:8055
+1373	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-03-18 23:24:34.152+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36	directus_permissions	126	\N	http://localhost:8055
+1374	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-03-18 23:24:42.063+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36	directus_permissions	127	\N	http://localhost:8055
+1375	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-03-18 23:24:49.148+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36	directus_permissions	128	\N	http://localhost:8055
+1376	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-03-18 23:25:21.191+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36	directus_permissions	33	\N	http://localhost:8055
+1377	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-03-18 23:25:52.756+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36	directus_permissions	36	\N	http://localhost:8055
+1378	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-03-18 23:26:20.48+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36	directus_permissions	75	\N	http://localhost:8055
+1379	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-03-18 23:26:40.186+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36	directus_permissions	116	\N	http://localhost:8055
+1380	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-03-18 23:28:09.65+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36	directus_roles	68c58399-f145-49aa-9db1-ee94c793b427	\N	http://localhost:8055
+1381	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-03-18 23:29:40.662+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36	directus_permissions	1312	\N	http://localhost:8055
+1382	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-03-18 23:30:05.28+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36	directus_permissions	1312	\N	http://localhost:8055
+1383	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-03-18 23:30:22.494+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36	directus_permissions	38	\N	http://localhost:8055
+1384	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-03-18 23:30:31.516+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36	directus_roles	68c58399-f145-49aa-9db1-ee94c793b427	\N	http://localhost:8055
+1385	update	b72f0403-29be-4440-8e53-bf50ecb3439e	2024-03-18 23:31:22.485+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36	city	1	\N	http://localhost:8055
+1386	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-03-18 23:32:14.806+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36	directus_permissions	138	\N	http://localhost:8055
+1387	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-03-18 23:32:32.876+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36	directus_permissions	138	\N	http://localhost:8055
+1388	login	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-03-18 23:33:37.869+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36	directus_users	db513aee-cd3a-47a9-95e5-a98f1cc92d13	\N	http://localhost:8055
+1389	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-03-18 23:33:57.216+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36	directus_permissions	138	\N	http://localhost:8055
+1390	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-03-18 23:34:07.889+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36	directus_roles	68c58399-f145-49aa-9db1-ee94c793b427	\N	http://localhost:8055
+1391	login	b72f0403-29be-4440-8e53-bf50ecb3439e	2024-03-18 23:34:25.43+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36	directus_users	b72f0403-29be-4440-8e53-bf50ecb3439e	\N	http://localhost:8055
+1392	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-03-18 23:35:12.76+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36	directus_permissions	4623	\N	http://localhost:8055
+1393	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-03-18 23:35:14.576+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36	directus_permissions	4623	\N	http://localhost:8055
+1394	login	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-03-18 23:35:30.411+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36	directus_users	db513aee-cd3a-47a9-95e5-a98f1cc92d13	\N	http://localhost:8055
+1395	create	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-03-18 23:35:44.373+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36	directus_permissions	4624	\N	http://localhost:8055
+1396	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-03-18 23:35:55.569+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36	directus_permissions	4624	\N	http://localhost:8055
+1397	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-03-18 23:36:03.099+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36	directus_roles	68c58399-f145-49aa-9db1-ee94c793b427	\N	http://localhost:8055
+1398	login	b72f0403-29be-4440-8e53-bf50ecb3439e	2024-03-18 23:36:09.6+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36	directus_users	b72f0403-29be-4440-8e53-bf50ecb3439e	\N	http://localhost:8055
+1399	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-03-18 23:37:12.985+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36	directus_users	b72f0403-29be-4440-8e53-bf50ecb3439e	\N	http://localhost:8055
+1400	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-03-18 23:37:13.008+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36	directus_roles	cf1f4250-ccba-4734-a984-4edc3b98bbc8	\N	http://localhost:8055
+1401	delete	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-03-18 23:37:23.767+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36	directus_users	b72f0403-29be-4440-8e53-bf50ecb3439e	\N	http://localhost:8055
+1402	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-03-18 23:37:53.113+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36	directus_users	507e3800-1c28-454b-bcd2-766cda54a162	\N	http://localhost:8055
+1403	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-03-18 23:38:11.437+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36	directus_users	507e3800-1c28-454b-bcd2-766cda54a162	\N	http://localhost:8055
+1404	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-03-18 23:38:11.465+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36	directus_roles	878f0264-16f3-4a54-a79e-82c27313bacc	\N	http://localhost:8055
+1405	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-03-18 23:38:33.459+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36	directus_users	db513aee-cd3a-47a9-95e5-a98f1cc92d13	\N	http://localhost:8055
 \.
 
 
@@ -3594,11 +3646,8 @@ COPY public.directus_permissions (id, role, collection, action, permissions, val
 93	68c58399-f145-49aa-9db1-ee94c793b427	EmailForm_translations	update	{}	{}	\N	*
 94	68c58399-f145-49aa-9db1-ee94c793b427	EmailForm_translations	delete	{}	{}	\N	*
 95	68c58399-f145-49aa-9db1-ee94c793b427	EmailForm_translations	share	{}	{}	\N	*
-33	68c58399-f145-49aa-9db1-ee94c793b427	event	create	\N	{"_and":[{"city":{"_eq":"1"}}]}	\N	status,sort,description,name,teaser,city,translations,link
 35	68c58399-f145-49aa-9db1-ee94c793b427	event	read	{"_and":[{"city":{"_eq":"1"}}]}	{}	\N	*
-36	68c58399-f145-49aa-9db1-ee94c793b427	event	update	{"_and":[{"city":{"_eq":"1"}}]}	\N	\N	teaser,name,status,sort,description
 74	68c58399-f145-49aa-9db1-ee94c793b427	CustomSections	create	\N	{"_and":[{"city":{"_eq":"1"}}]}	\N	id,date_created,link,city,date_updated,translations,sort,status
-75	68c58399-f145-49aa-9db1-ee94c793b427	CustomSections	read	{"_and":[{"city":{"_eq":"1"}}]}	\N	\N	\N
 81	68c58399-f145-49aa-9db1-ee94c793b427	CustomSections_translations	create	{}	{}	\N	*
 82	68c58399-f145-49aa-9db1-ee94c793b427	CustomSections_translations	read	{}	{}	\N	*
 83	68c58399-f145-49aa-9db1-ee94c793b427	CustomSections_translations	update	{}	{}	\N	*
@@ -3617,10 +3666,9 @@ COPY public.directus_permissions (id, role, collection, action, permissions, val
 113	68c58399-f145-49aa-9db1-ee94c793b427	city_translations	update	{"_and":[{"city_id":{"_eq":"1"}}]}	{}	\N	*
 37	68c58399-f145-49aa-9db1-ee94c793b427	city	read	{"_and":[{"id":{"_eq":"1"}}]}	{}	\N	*
 111	68c58399-f145-49aa-9db1-ee94c793b427	city_translations	create	{}	{"_and":[{"city_id":{"_eq":"1"}}]}	\N	*
-38	68c58399-f145-49aa-9db1-ee94c793b427	city	update	{"_and":[{"id":{"_eq":"1"}}]}	\N	\N	country,status,sort,supportlinks,emailForm,events,flyer,customSections,gallery,date_updated,translations,id
 106	68c58399-f145-49aa-9db1-ee94c793b427	SupportLinks_translations	create	{}	{}	\N	*
 114	68c58399-f145-49aa-9db1-ee94c793b427	city_translations	delete	{"_and":[{"city_id":{"_eq":"1"}}]}	{}	\N	*
-116	68c58399-f145-49aa-9db1-ee94c793b427	CustomSections	update	{"_and":[{"city":{"_eq":"1"}}]}	\N	\N	\N
+38	68c58399-f145-49aa-9db1-ee94c793b427	city	update	{"_and":[{"id":{"_eq":"1"}}]}	\N	\N	country,status,sort,supportlinks,emailForm,events,flyer,customSections,gallery,date_updated,translations,id,domainname
 117	68c58399-f145-49aa-9db1-ee94c793b427	CustomSections	delete	{"_and":[{"city":{"_eq":"1"}}]}	\N	\N	\N
 118	68c58399-f145-49aa-9db1-ee94c793b427	event_translations	create	{}	{}	\N	*
 119	68c58399-f145-49aa-9db1-ee94c793b427	event_translations	read	{}	{}	\N	*
@@ -3630,14 +3678,1160 @@ COPY public.directus_permissions (id, role, collection, action, permissions, val
 123	68c58399-f145-49aa-9db1-ee94c793b427	event	delete	{"_and":[{"city":{"_eq":"1"}}]}	\N	\N	\N
 124	68c58399-f145-49aa-9db1-ee94c793b427	event	share	{"_and":[{"city":{"_eq":"1"}}]}	\N	\N	\N
 125	68c58399-f145-49aa-9db1-ee94c793b427	CustomSections	share	{"_and":[{"city":{"_eq":"1"}}]}	\N	\N	\N
-126	68c58399-f145-49aa-9db1-ee94c793b427	EmailForm	create	\N	{"_and":[{"city":{"_eq":"1"}}]}	\N	id,status,date_created,translations,fields,date_updated,emailTo,sort,emailGreeting,emailBody,city
-127	68c58399-f145-49aa-9db1-ee94c793b427	EmailForm	read	{"_and":[{"city":{"_eq":"1"}}]}	\N	\N	date_created,status,date_updated,emailTo,sort,fields,translations,emailGreeting,emailBody,city
-128	68c58399-f145-49aa-9db1-ee94c793b427	EmailForm	update	{"_and":[{"city":{"_eq":"1"}}]}	\N	\N	status,date_created,translations,fields,date_updated,emailTo,sort,emailGreeting,emailBody,city
+36	68c58399-f145-49aa-9db1-ee94c793b427	event	update	{"_and":[{"city":{"_eq":"1"}}]}	\N	\N	teaser,name,status,sort,description,id,city,translations,link
+75	68c58399-f145-49aa-9db1-ee94c793b427	CustomSections	read	{"_and":[{"city":{"_eq":"1"}}]}	\N	\N	id,date_created,link,status,date_updated,city,translations,sort
 130	68c58399-f145-49aa-9db1-ee94c793b427	EmailForm	delete	{"_and":[{"city":{"_eq":"1"}}]}	\N	\N	\N
-132	68c58399-f145-49aa-9db1-ee94c793b427	SupportLinks	create	\N	{"_and":[{"city":{"_eq":"1"}}]}	\N	status,date_created,city,link,sort,translations
-133	68c58399-f145-49aa-9db1-ee94c793b427	SupportLinks	read	{"_and":[{"city":{"_eq":"1"}}]}	\N	\N	status,date_created,city,link,translations,sort
-134	68c58399-f145-49aa-9db1-ee94c793b427	SupportLinks	update	{"_and":[{"city":{"_eq":"1"}}]}	\N	\N	status,date_created,city,link,translations,sort
 135	68c58399-f145-49aa-9db1-ee94c793b427	SupportLinks	delete	{"_and":[{"city":{"_eq":"1"}}]}	\N	\N	\N
+136	68c58399-f145-49aa-9db1-ee94c793b427	languages	read	{}	{}	\N	*
+137	68c58399-f145-49aa-9db1-ee94c793b427	city_files	read	{}	{}	\N	*
+5621	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	EmailForm_translations	create	{}	{}	\N	*
+139	68c58399-f145-49aa-9db1-ee94c793b427	EmailForm_FormFields	read	{}	{}	\N	*
+140	68c58399-f145-49aa-9db1-ee94c793b427	countries	read	{}	{}	\N	*
+141	68c58399-f145-49aa-9db1-ee94c793b427	countries_translations	read	{}	{}	\N	*
+142	68c58399-f145-49aa-9db1-ee94c793b427	FormFields	read	{}	{}	\N	*
+5622	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	EmailForm_translations	read	{}	{}	\N	*
+138	68c58399-f145-49aa-9db1-ee94c793b427	city_files	update	{"_and":[{"city_id":{"_eq":"1"}}]}	\N	\N	id,directus_files_id,city_id
+5623	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	EmailForm_translations	update	{}	{}	\N	*
+5624	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	EmailForm_translations	delete	{}	{}	\N	*
+133	68c58399-f145-49aa-9db1-ee94c793b427	SupportLinks	read	{"_and":[{"city":{"_eq":"1"}}]}	\N	\N	status,date_created,city,link,translations,sort,id
+134	68c58399-f145-49aa-9db1-ee94c793b427	SupportLinks	update	{"_and":[{"city":{"_eq":"1"}}]}	\N	\N	status,date_created,city,link,translations,sort,id
+126	68c58399-f145-49aa-9db1-ee94c793b427	EmailForm	create	\N	{"_and":[{"city":{"_eq":"1"}}]}	\N	id,status,date_created,translations,fields,date_updated,emailTo,sort,emailGreeting,emailBody,city
+127	68c58399-f145-49aa-9db1-ee94c793b427	EmailForm	read	{"_and":[{"city":{"_eq":"1"}}]}	\N	\N	date_created,status,date_updated,emailTo,sort,fields,translations,emailGreeting,emailBody,city,id
+128	68c58399-f145-49aa-9db1-ee94c793b427	EmailForm	update	{"_and":[{"city":{"_eq":"1"}}]}	\N	\N	status,date_created,translations,fields,date_updated,emailTo,sort,emailGreeting,emailBody,city,id
+5625	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	EmailForm_translations	share	{}	{}	\N	*
+5626	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	event	read	{"_and":[{"city":{"_eq":15}}]}	{}	\N	*
+5627	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	CustomSections	create	\N	{"_and":[{"city":{"_eq":15}}]}	\N	id,date_created,link,city,date_updated,translations,sort,status
+5628	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	CustomSections_translations	create	{}	{}	\N	*
+5629	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	CustomSections_translations	read	{}	{}	\N	*
+5630	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	CustomSections_translations	update	{}	{}	\N	*
+5631	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	CustomSections_translations	delete	{}	{}	\N	*
+5632	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	CustomSections_translations	share	{}	{}	\N	*
+5633	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	EmailForm_FormFields_translations	create	{}	{}	\N	*
+5634	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	EmailForm_FormFields_translations	read	{}	{}	\N	*
+5635	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	EmailForm_FormFields_translations	update	{}	{}	\N	*
+5636	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	EmailForm_FormFields_translations	share	{}	{}	\N	*
+5637	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	EmailForm_FormFields_translations	delete	{}	{}	\N	*
+5638	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	SupportLinks_translations	read	{}	{}	\N	*
+5639	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	SupportLinks_translations	update	{}	{}	\N	*
+5640	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	SupportLinks_translations	delete	{}	{}	\N	*
+5641	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	SupportLinks_translations	share	{}	{}	\N	*
+5642	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	city_translations	read	{"_and":[{"city_id":{"_eq":15}}]}	{}	\N	*
+5643	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	city_translations	update	{"_and":[{"city_id":{"_eq":15}}]}	{}	\N	*
+5644	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	city	read	{"_and":[{"id":{"_eq":15}}]}	{}	\N	*
+5645	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	city_translations	create	{}	{"_and":[{"city_id":{"_eq":15}}]}	\N	*
+5646	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	SupportLinks_translations	create	{}	{}	\N	*
+5647	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	city_translations	delete	{"_and":[{"city_id":{"_eq":15}}]}	{}	\N	*
+5648	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	city	update	{"_and":[{"id":{"_eq":15}}]}	\N	\N	country,status,sort,supportlinks,emailForm,events,flyer,customSections,gallery,date_updated,translations,id,domainname
+5649	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	CustomSections	delete	{"_and":[{"city":{"_eq":15}}]}	\N	\N	\N
+5650	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	event_translations	create	{}	{}	\N	*
+5651	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	event_translations	read	{}	{}	\N	*
+5652	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	event_translations	update	{}	{}	\N	*
+5653	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	event_translations	delete	{}	{}	\N	*
+5654	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	event_translations	share	{}	{}	\N	*
+5655	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	event	delete	{"_and":[{"city":{"_eq":15}}]}	\N	\N	\N
+5656	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	event	share	{"_and":[{"city":{"_eq":15}}]}	\N	\N	\N
+5657	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	CustomSections	share	{"_and":[{"city":{"_eq":15}}]}	\N	\N	\N
+5658	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	event	update	{"_and":[{"city":{"_eq":15}}]}	\N	\N	teaser,name,status,sort,description,id,city,translations,link
+5659	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	CustomSections	read	{"_and":[{"city":{"_eq":15}}]}	\N	\N	id,date_created,link,status,date_updated,city,translations,sort
+5660	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	EmailForm	delete	{"_and":[{"city":{"_eq":15}}]}	\N	\N	\N
+5661	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	SupportLinks	delete	{"_and":[{"city":{"_eq":15}}]}	\N	\N	\N
+5662	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	languages	read	{}	{}	\N	*
+5663	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	city_files	read	{}	{}	\N	*
+5664	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	EmailForm_FormFields	read	{}	{}	\N	*
+5665	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	countries	read	{}	{}	\N	*
+5666	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	countries_translations	read	{}	{}	\N	*
+5667	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	FormFields	read	{}	{}	\N	*
+5668	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	city_files	update	{"_and":[{"city_id":{"_eq":15}}]}	\N	\N	id,directus_files_id,city_id
+5669	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	SupportLinks	read	{"_and":[{"city":{"_eq":15}}]}	\N	\N	status,date_created,city,link,translations,sort,id
+5670	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	SupportLinks	update	{"_and":[{"city":{"_eq":15}}]}	\N	\N	status,date_created,city,link,translations,sort,id
+5671	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	EmailForm	create	\N	{"_and":[{"city":{"_eq":15}}]}	\N	id,status,date_created,translations,fields,date_updated,emailTo,sort,emailGreeting,emailBody,city
+5672	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	EmailForm	read	{"_and":[{"city":{"_eq":15}}]}	\N	\N	date_created,status,date_updated,emailTo,sort,fields,translations,emailGreeting,emailBody,city,id
+5673	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	EmailForm	update	{"_and":[{"city":{"_eq":15}}]}	\N	\N	status,date_created,translations,fields,date_updated,emailTo,sort,emailGreeting,emailBody,city,id
+5674	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	city_files	create	\N	{"_and":[{"city_id":{"_eq":15}}]}	\N	id,directus_files_id,city_id
+5675	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	SupportLinks	create	\N	{"_and":[{"city":{"_eq":15}}]}	\N	status,date_created,city,link,sort,translations,id
+5676	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	event	create	\N	{"_and":[{"city":{"_eq":15}}]}	\N	status,sort,description,name,teaser,city,translations,link,id
+4624	68c58399-f145-49aa-9db1-ee94c793b427	city_files	create	\N	{"_and":[{"city_id":{"_eq":"1"}}]}	\N	id,directus_files_id,city_id
+5677	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	CustomSections	update	{"_and":[{"city":{"_eq":15}}]}	\N	\N	id,date_created,link,status,date_updated,city,sort,translations
+5678	cf1f4250-ccba-4734-a984-4edc3b98bbc8	directus_files	create	{}	\N	\N	*
+5679	cf1f4250-ccba-4734-a984-4edc3b98bbc8	directus_files	read	{}	\N	\N	*
+5680	cf1f4250-ccba-4734-a984-4edc3b98bbc8	directus_files	update	{}	\N	\N	*
+5681	cf1f4250-ccba-4734-a984-4edc3b98bbc8	directus_files	delete	{}	\N	\N	*
+5682	cf1f4250-ccba-4734-a984-4edc3b98bbc8	directus_dashboards	create	{}	\N	\N	*
+5683	cf1f4250-ccba-4734-a984-4edc3b98bbc8	directus_dashboards	read	{}	\N	\N	*
+5684	cf1f4250-ccba-4734-a984-4edc3b98bbc8	directus_dashboards	update	{}	\N	\N	*
+5685	cf1f4250-ccba-4734-a984-4edc3b98bbc8	directus_dashboards	delete	{}	\N	\N	*
+5686	cf1f4250-ccba-4734-a984-4edc3b98bbc8	directus_panels	create	{}	\N	\N	*
+5687	cf1f4250-ccba-4734-a984-4edc3b98bbc8	directus_panels	read	{}	\N	\N	*
+5688	cf1f4250-ccba-4734-a984-4edc3b98bbc8	directus_panels	update	{}	\N	\N	*
+5689	cf1f4250-ccba-4734-a984-4edc3b98bbc8	directus_panels	delete	{}	\N	\N	*
+5690	cf1f4250-ccba-4734-a984-4edc3b98bbc8	directus_folders	create	{}	\N	\N	*
+5691	cf1f4250-ccba-4734-a984-4edc3b98bbc8	directus_folders	read	{}	\N	\N	*
+5692	cf1f4250-ccba-4734-a984-4edc3b98bbc8	directus_folders	update	{}	\N	\N	*
+5693	cf1f4250-ccba-4734-a984-4edc3b98bbc8	directus_folders	delete	{}	\N	\N	\N
+5694	cf1f4250-ccba-4734-a984-4edc3b98bbc8	directus_users	read	{}	\N	\N	*
+5695	cf1f4250-ccba-4734-a984-4edc3b98bbc8	directus_users	update	{"id":{"_eq":"$CURRENT_USER"}}	\N	\N	first_name,last_name,email,password,location,title,description,avatar,language,appearance,theme_light,theme_dark,theme_light_overrides,theme_dark_overrides,tfa_secret
+5696	cf1f4250-ccba-4734-a984-4edc3b98bbc8	directus_roles	read	{}	\N	\N	*
+5697	cf1f4250-ccba-4734-a984-4edc3b98bbc8	directus_shares	read	{"_or":[{"role":{"_eq":"$CURRENT_ROLE"}},{"role":{"_null":true}}]}	\N	\N	*
+5698	cf1f4250-ccba-4734-a984-4edc3b98bbc8	directus_shares	create	{}	\N	\N	*
+5699	cf1f4250-ccba-4734-a984-4edc3b98bbc8	directus_shares	update	{"user_created":{"_eq":"$CURRENT_USER"}}	\N	\N	*
+5700	cf1f4250-ccba-4734-a984-4edc3b98bbc8	directus_shares	delete	{"user_created":{"_eq":"$CURRENT_USER"}}	\N	\N	*
+5701	cf1f4250-ccba-4734-a984-4edc3b98bbc8	directus_flows	read	{"trigger":{"_eq":"manual"}}	\N	\N	id,status,name,icon,color,options,trigger
+5702	cf1f4250-ccba-4734-a984-4edc3b98bbc8	EmailForm_translations	create	{}	{}	\N	*
+5703	cf1f4250-ccba-4734-a984-4edc3b98bbc8	EmailForm_translations	read	{}	{}	\N	*
+5704	cf1f4250-ccba-4734-a984-4edc3b98bbc8	EmailForm_translations	update	{}	{}	\N	*
+5705	cf1f4250-ccba-4734-a984-4edc3b98bbc8	EmailForm_translations	delete	{}	{}	\N	*
+5706	cf1f4250-ccba-4734-a984-4edc3b98bbc8	EmailForm_translations	share	{}	{}	\N	*
+5707	cf1f4250-ccba-4734-a984-4edc3b98bbc8	event	read	{"_and":[{"city":{"_eq":1}}]}	{}	\N	*
+5708	cf1f4250-ccba-4734-a984-4edc3b98bbc8	CustomSections	create	\N	{"_and":[{"city":{"_eq":1}}]}	\N	id,date_created,link,city,date_updated,translations,sort,status
+5709	cf1f4250-ccba-4734-a984-4edc3b98bbc8	CustomSections_translations	create	{}	{}	\N	*
+5710	cf1f4250-ccba-4734-a984-4edc3b98bbc8	CustomSections_translations	read	{}	{}	\N	*
+5711	cf1f4250-ccba-4734-a984-4edc3b98bbc8	CustomSections_translations	update	{}	{}	\N	*
+5712	cf1f4250-ccba-4734-a984-4edc3b98bbc8	CustomSections_translations	delete	{}	{}	\N	*
+5713	cf1f4250-ccba-4734-a984-4edc3b98bbc8	CustomSections_translations	share	{}	{}	\N	*
+5714	cf1f4250-ccba-4734-a984-4edc3b98bbc8	EmailForm_FormFields_translations	create	{}	{}	\N	*
+5715	cf1f4250-ccba-4734-a984-4edc3b98bbc8	EmailForm_FormFields_translations	read	{}	{}	\N	*
+5716	cf1f4250-ccba-4734-a984-4edc3b98bbc8	EmailForm_FormFields_translations	update	{}	{}	\N	*
+5717	cf1f4250-ccba-4734-a984-4edc3b98bbc8	EmailForm_FormFields_translations	share	{}	{}	\N	*
+5718	cf1f4250-ccba-4734-a984-4edc3b98bbc8	EmailForm_FormFields_translations	delete	{}	{}	\N	*
+5719	cf1f4250-ccba-4734-a984-4edc3b98bbc8	SupportLinks_translations	read	{}	{}	\N	*
+5720	cf1f4250-ccba-4734-a984-4edc3b98bbc8	SupportLinks_translations	update	{}	{}	\N	*
+5721	cf1f4250-ccba-4734-a984-4edc3b98bbc8	SupportLinks_translations	delete	{}	{}	\N	*
+5722	cf1f4250-ccba-4734-a984-4edc3b98bbc8	SupportLinks_translations	share	{}	{}	\N	*
+5723	cf1f4250-ccba-4734-a984-4edc3b98bbc8	city_translations	read	{"_and":[{"city_id":{"_eq":1}}]}	{}	\N	*
+5724	cf1f4250-ccba-4734-a984-4edc3b98bbc8	city_translations	update	{"_and":[{"city_id":{"_eq":1}}]}	{}	\N	*
+5725	cf1f4250-ccba-4734-a984-4edc3b98bbc8	city	read	{"_and":[{"id":{"_eq":1}}]}	{}	\N	*
+5726	cf1f4250-ccba-4734-a984-4edc3b98bbc8	city_translations	create	{}	{"_and":[{"city_id":{"_eq":1}}]}	\N	*
+5727	cf1f4250-ccba-4734-a984-4edc3b98bbc8	SupportLinks_translations	create	{}	{}	\N	*
+5728	cf1f4250-ccba-4734-a984-4edc3b98bbc8	city_translations	delete	{"_and":[{"city_id":{"_eq":1}}]}	{}	\N	*
+5729	cf1f4250-ccba-4734-a984-4edc3b98bbc8	city	update	{"_and":[{"id":{"_eq":1}}]}	\N	\N	country,status,sort,supportlinks,emailForm,events,flyer,customSections,gallery,date_updated,translations,id,domainname
+5730	cf1f4250-ccba-4734-a984-4edc3b98bbc8	CustomSections	delete	{"_and":[{"city":{"_eq":1}}]}	\N	\N	\N
+5731	cf1f4250-ccba-4734-a984-4edc3b98bbc8	event_translations	create	{}	{}	\N	*
+5732	cf1f4250-ccba-4734-a984-4edc3b98bbc8	event_translations	read	{}	{}	\N	*
+5733	cf1f4250-ccba-4734-a984-4edc3b98bbc8	event_translations	update	{}	{}	\N	*
+5734	cf1f4250-ccba-4734-a984-4edc3b98bbc8	event_translations	delete	{}	{}	\N	*
+5735	cf1f4250-ccba-4734-a984-4edc3b98bbc8	event_translations	share	{}	{}	\N	*
+5736	cf1f4250-ccba-4734-a984-4edc3b98bbc8	event	delete	{"_and":[{"city":{"_eq":1}}]}	\N	\N	\N
+5737	cf1f4250-ccba-4734-a984-4edc3b98bbc8	event	share	{"_and":[{"city":{"_eq":1}}]}	\N	\N	\N
+5738	cf1f4250-ccba-4734-a984-4edc3b98bbc8	CustomSections	share	{"_and":[{"city":{"_eq":1}}]}	\N	\N	\N
+5739	cf1f4250-ccba-4734-a984-4edc3b98bbc8	event	update	{"_and":[{"city":{"_eq":1}}]}	\N	\N	teaser,name,status,sort,description,id,city,translations,link
+5740	cf1f4250-ccba-4734-a984-4edc3b98bbc8	CustomSections	read	{"_and":[{"city":{"_eq":1}}]}	\N	\N	id,date_created,link,status,date_updated,city,translations,sort
+5741	cf1f4250-ccba-4734-a984-4edc3b98bbc8	EmailForm	delete	{"_and":[{"city":{"_eq":1}}]}	\N	\N	\N
+5742	cf1f4250-ccba-4734-a984-4edc3b98bbc8	SupportLinks	delete	{"_and":[{"city":{"_eq":1}}]}	\N	\N	\N
+5743	cf1f4250-ccba-4734-a984-4edc3b98bbc8	languages	read	{}	{}	\N	*
+5744	cf1f4250-ccba-4734-a984-4edc3b98bbc8	city_files	read	{}	{}	\N	*
+5745	cf1f4250-ccba-4734-a984-4edc3b98bbc8	EmailForm_FormFields	read	{}	{}	\N	*
+5746	cf1f4250-ccba-4734-a984-4edc3b98bbc8	countries	read	{}	{}	\N	*
+5747	cf1f4250-ccba-4734-a984-4edc3b98bbc8	countries_translations	read	{}	{}	\N	*
+5748	cf1f4250-ccba-4734-a984-4edc3b98bbc8	FormFields	read	{}	{}	\N	*
+5749	cf1f4250-ccba-4734-a984-4edc3b98bbc8	city_files	update	{"_and":[{"city_id":{"_eq":1}}]}	\N	\N	id,directus_files_id,city_id
+5750	cf1f4250-ccba-4734-a984-4edc3b98bbc8	SupportLinks	read	{"_and":[{"city":{"_eq":1}}]}	\N	\N	status,date_created,city,link,translations,sort,id
+5751	cf1f4250-ccba-4734-a984-4edc3b98bbc8	SupportLinks	update	{"_and":[{"city":{"_eq":1}}]}	\N	\N	status,date_created,city,link,translations,sort,id
+5752	cf1f4250-ccba-4734-a984-4edc3b98bbc8	EmailForm	create	\N	{"_and":[{"city":{"_eq":1}}]}	\N	id,status,date_created,translations,fields,date_updated,emailTo,sort,emailGreeting,emailBody,city
+4625	cfa54856-fa94-462a-97cf-0728760595d9	directus_files	create	{}	\N	\N	*
+4626	cfa54856-fa94-462a-97cf-0728760595d9	directus_files	read	{}	\N	\N	*
+4627	cfa54856-fa94-462a-97cf-0728760595d9	directus_files	update	{}	\N	\N	*
+4628	cfa54856-fa94-462a-97cf-0728760595d9	directus_files	delete	{}	\N	\N	*
+4629	cfa54856-fa94-462a-97cf-0728760595d9	directus_dashboards	create	{}	\N	\N	*
+4630	cfa54856-fa94-462a-97cf-0728760595d9	directus_dashboards	read	{}	\N	\N	*
+4631	cfa54856-fa94-462a-97cf-0728760595d9	directus_dashboards	update	{}	\N	\N	*
+4632	cfa54856-fa94-462a-97cf-0728760595d9	directus_dashboards	delete	{}	\N	\N	*
+4633	cfa54856-fa94-462a-97cf-0728760595d9	directus_panels	create	{}	\N	\N	*
+4634	cfa54856-fa94-462a-97cf-0728760595d9	directus_panels	read	{}	\N	\N	*
+4635	cfa54856-fa94-462a-97cf-0728760595d9	directus_panels	update	{}	\N	\N	*
+4636	cfa54856-fa94-462a-97cf-0728760595d9	directus_panels	delete	{}	\N	\N	*
+4637	cfa54856-fa94-462a-97cf-0728760595d9	directus_folders	create	{}	\N	\N	*
+4638	cfa54856-fa94-462a-97cf-0728760595d9	directus_folders	read	{}	\N	\N	*
+4639	cfa54856-fa94-462a-97cf-0728760595d9	directus_folders	update	{}	\N	\N	*
+4640	cfa54856-fa94-462a-97cf-0728760595d9	directus_folders	delete	{}	\N	\N	\N
+4641	cfa54856-fa94-462a-97cf-0728760595d9	directus_users	read	{}	\N	\N	*
+4642	cfa54856-fa94-462a-97cf-0728760595d9	directus_users	update	{"id":{"_eq":"$CURRENT_USER"}}	\N	\N	first_name,last_name,email,password,location,title,description,avatar,language,appearance,theme_light,theme_dark,theme_light_overrides,theme_dark_overrides,tfa_secret
+4643	cfa54856-fa94-462a-97cf-0728760595d9	directus_roles	read	{}	\N	\N	*
+4644	cfa54856-fa94-462a-97cf-0728760595d9	directus_shares	read	{"_or":[{"role":{"_eq":"$CURRENT_ROLE"}},{"role":{"_null":true}}]}	\N	\N	*
+4645	cfa54856-fa94-462a-97cf-0728760595d9	directus_shares	create	{}	\N	\N	*
+4646	cfa54856-fa94-462a-97cf-0728760595d9	directus_shares	update	{"user_created":{"_eq":"$CURRENT_USER"}}	\N	\N	*
+4647	cfa54856-fa94-462a-97cf-0728760595d9	directus_shares	delete	{"user_created":{"_eq":"$CURRENT_USER"}}	\N	\N	*
+4648	cfa54856-fa94-462a-97cf-0728760595d9	directus_flows	read	{"trigger":{"_eq":"manual"}}	\N	\N	id,status,name,icon,color,options,trigger
+4649	cfa54856-fa94-462a-97cf-0728760595d9	EmailForm_translations	create	{}	{}	\N	*
+4650	cfa54856-fa94-462a-97cf-0728760595d9	EmailForm_translations	read	{}	{}	\N	*
+4651	cfa54856-fa94-462a-97cf-0728760595d9	EmailForm_translations	update	{}	{}	\N	*
+4652	cfa54856-fa94-462a-97cf-0728760595d9	EmailForm_translations	delete	{}	{}	\N	*
+4653	cfa54856-fa94-462a-97cf-0728760595d9	EmailForm_translations	share	{}	{}	\N	*
+4654	cfa54856-fa94-462a-97cf-0728760595d9	event	read	{"_and":[{"city":{"_eq":2}}]}	{}	\N	*
+4655	cfa54856-fa94-462a-97cf-0728760595d9	CustomSections	create	\N	{"_and":[{"city":{"_eq":2}}]}	\N	id,date_created,link,city,date_updated,translations,sort,status
+4656	cfa54856-fa94-462a-97cf-0728760595d9	CustomSections_translations	create	{}	{}	\N	*
+4657	cfa54856-fa94-462a-97cf-0728760595d9	CustomSections_translations	read	{}	{}	\N	*
+4658	cfa54856-fa94-462a-97cf-0728760595d9	CustomSections_translations	update	{}	{}	\N	*
+4659	cfa54856-fa94-462a-97cf-0728760595d9	CustomSections_translations	delete	{}	{}	\N	*
+4660	cfa54856-fa94-462a-97cf-0728760595d9	CustomSections_translations	share	{}	{}	\N	*
+4661	cfa54856-fa94-462a-97cf-0728760595d9	EmailForm_FormFields_translations	create	{}	{}	\N	*
+4662	cfa54856-fa94-462a-97cf-0728760595d9	EmailForm_FormFields_translations	read	{}	{}	\N	*
+4663	cfa54856-fa94-462a-97cf-0728760595d9	EmailForm_FormFields_translations	update	{}	{}	\N	*
+4664	cfa54856-fa94-462a-97cf-0728760595d9	EmailForm_FormFields_translations	share	{}	{}	\N	*
+4665	cfa54856-fa94-462a-97cf-0728760595d9	EmailForm_FormFields_translations	delete	{}	{}	\N	*
+4666	cfa54856-fa94-462a-97cf-0728760595d9	SupportLinks_translations	read	{}	{}	\N	*
+4667	cfa54856-fa94-462a-97cf-0728760595d9	SupportLinks_translations	update	{}	{}	\N	*
+4668	cfa54856-fa94-462a-97cf-0728760595d9	SupportLinks_translations	delete	{}	{}	\N	*
+4669	cfa54856-fa94-462a-97cf-0728760595d9	SupportLinks_translations	share	{}	{}	\N	*
+4670	cfa54856-fa94-462a-97cf-0728760595d9	city_translations	read	{"_and":[{"city_id":{"_eq":2}}]}	{}	\N	*
+4671	cfa54856-fa94-462a-97cf-0728760595d9	city_translations	update	{"_and":[{"city_id":{"_eq":2}}]}	{}	\N	*
+4672	cfa54856-fa94-462a-97cf-0728760595d9	city	read	{"_and":[{"id":{"_eq":2}}]}	{}	\N	*
+4673	cfa54856-fa94-462a-97cf-0728760595d9	city_translations	create	{}	{"_and":[{"city_id":{"_eq":2}}]}	\N	*
+4674	cfa54856-fa94-462a-97cf-0728760595d9	SupportLinks_translations	create	{}	{}	\N	*
+4675	cfa54856-fa94-462a-97cf-0728760595d9	city_translations	delete	{"_and":[{"city_id":{"_eq":2}}]}	{}	\N	*
+4676	cfa54856-fa94-462a-97cf-0728760595d9	city	update	{"_and":[{"id":{"_eq":2}}]}	\N	\N	country,status,sort,supportlinks,emailForm,events,flyer,customSections,gallery,date_updated,translations,id,domainname
+4677	cfa54856-fa94-462a-97cf-0728760595d9	CustomSections	delete	{"_and":[{"city":{"_eq":2}}]}	\N	\N	\N
+4678	cfa54856-fa94-462a-97cf-0728760595d9	event_translations	create	{}	{}	\N	*
+4679	cfa54856-fa94-462a-97cf-0728760595d9	event_translations	read	{}	{}	\N	*
+4680	cfa54856-fa94-462a-97cf-0728760595d9	event_translations	update	{}	{}	\N	*
+4681	cfa54856-fa94-462a-97cf-0728760595d9	event_translations	delete	{}	{}	\N	*
+4682	cfa54856-fa94-462a-97cf-0728760595d9	event_translations	share	{}	{}	\N	*
+4683	cfa54856-fa94-462a-97cf-0728760595d9	event	delete	{"_and":[{"city":{"_eq":2}}]}	\N	\N	\N
+4684	cfa54856-fa94-462a-97cf-0728760595d9	event	share	{"_and":[{"city":{"_eq":2}}]}	\N	\N	\N
+4685	cfa54856-fa94-462a-97cf-0728760595d9	CustomSections	share	{"_and":[{"city":{"_eq":2}}]}	\N	\N	\N
+4686	cfa54856-fa94-462a-97cf-0728760595d9	event	update	{"_and":[{"city":{"_eq":2}}]}	\N	\N	teaser,name,status,sort,description,id,city,translations,link
+4687	cfa54856-fa94-462a-97cf-0728760595d9	CustomSections	read	{"_and":[{"city":{"_eq":2}}]}	\N	\N	id,date_created,link,status,date_updated,city,translations,sort
+4688	cfa54856-fa94-462a-97cf-0728760595d9	EmailForm	delete	{"_and":[{"city":{"_eq":2}}]}	\N	\N	\N
+4689	cfa54856-fa94-462a-97cf-0728760595d9	SupportLinks	delete	{"_and":[{"city":{"_eq":2}}]}	\N	\N	\N
+4690	cfa54856-fa94-462a-97cf-0728760595d9	languages	read	{}	{}	\N	*
+4691	cfa54856-fa94-462a-97cf-0728760595d9	city_files	read	{}	{}	\N	*
+4692	cfa54856-fa94-462a-97cf-0728760595d9	EmailForm_FormFields	read	{}	{}	\N	*
+4693	cfa54856-fa94-462a-97cf-0728760595d9	countries	read	{}	{}	\N	*
+4694	cfa54856-fa94-462a-97cf-0728760595d9	countries_translations	read	{}	{}	\N	*
+4695	cfa54856-fa94-462a-97cf-0728760595d9	FormFields	read	{}	{}	\N	*
+4696	cfa54856-fa94-462a-97cf-0728760595d9	city_files	update	{"_and":[{"city_id":{"_eq":2}}]}	\N	\N	id,directus_files_id,city_id
+4697	cfa54856-fa94-462a-97cf-0728760595d9	SupportLinks	read	{"_and":[{"city":{"_eq":2}}]}	\N	\N	status,date_created,city,link,translations,sort,id
+4698	cfa54856-fa94-462a-97cf-0728760595d9	SupportLinks	update	{"_and":[{"city":{"_eq":2}}]}	\N	\N	status,date_created,city,link,translations,sort,id
+4699	cfa54856-fa94-462a-97cf-0728760595d9	EmailForm	create	\N	{"_and":[{"city":{"_eq":2}}]}	\N	id,status,date_created,translations,fields,date_updated,emailTo,sort,emailGreeting,emailBody,city
+4700	cfa54856-fa94-462a-97cf-0728760595d9	EmailForm	read	{"_and":[{"city":{"_eq":2}}]}	\N	\N	date_created,status,date_updated,emailTo,sort,fields,translations,emailGreeting,emailBody,city,id
+4701	cfa54856-fa94-462a-97cf-0728760595d9	EmailForm	update	{"_and":[{"city":{"_eq":2}}]}	\N	\N	status,date_created,translations,fields,date_updated,emailTo,sort,emailGreeting,emailBody,city,id
+4702	cfa54856-fa94-462a-97cf-0728760595d9	city_files	create	\N	{"_and":[{"city_id":{"_eq":2}}]}	\N	id,directus_files_id,city_id
+4703	cfa54856-fa94-462a-97cf-0728760595d9	SupportLinks	create	\N	{"_and":[{"city":{"_eq":2}}]}	\N	status,date_created,city,link,sort,translations,id
+4704	cfa54856-fa94-462a-97cf-0728760595d9	event	create	\N	{"_and":[{"city":{"_eq":2}}]}	\N	status,sort,description,name,teaser,city,translations,link,id
+4705	cfa54856-fa94-462a-97cf-0728760595d9	CustomSections	update	{"_and":[{"city":{"_eq":2}}]}	\N	\N	id,date_created,link,status,date_updated,city,sort,translations
+4706	a94106a2-663e-4b16-b9bc-8774d2399872	directus_files	create	{}	\N	\N	*
+4707	a94106a2-663e-4b16-b9bc-8774d2399872	directus_files	read	{}	\N	\N	*
+4708	a94106a2-663e-4b16-b9bc-8774d2399872	directus_files	update	{}	\N	\N	*
+4709	a94106a2-663e-4b16-b9bc-8774d2399872	directus_files	delete	{}	\N	\N	*
+4710	a94106a2-663e-4b16-b9bc-8774d2399872	directus_dashboards	create	{}	\N	\N	*
+4711	a94106a2-663e-4b16-b9bc-8774d2399872	directus_dashboards	read	{}	\N	\N	*
+4712	a94106a2-663e-4b16-b9bc-8774d2399872	directus_dashboards	update	{}	\N	\N	*
+4713	a94106a2-663e-4b16-b9bc-8774d2399872	directus_dashboards	delete	{}	\N	\N	*
+4714	a94106a2-663e-4b16-b9bc-8774d2399872	directus_panels	create	{}	\N	\N	*
+4715	a94106a2-663e-4b16-b9bc-8774d2399872	directus_panels	read	{}	\N	\N	*
+4716	a94106a2-663e-4b16-b9bc-8774d2399872	directus_panels	update	{}	\N	\N	*
+4717	a94106a2-663e-4b16-b9bc-8774d2399872	directus_panels	delete	{}	\N	\N	*
+4718	a94106a2-663e-4b16-b9bc-8774d2399872	directus_folders	create	{}	\N	\N	*
+4719	a94106a2-663e-4b16-b9bc-8774d2399872	directus_folders	read	{}	\N	\N	*
+4720	a94106a2-663e-4b16-b9bc-8774d2399872	directus_folders	update	{}	\N	\N	*
+4721	a94106a2-663e-4b16-b9bc-8774d2399872	directus_folders	delete	{}	\N	\N	\N
+4722	a94106a2-663e-4b16-b9bc-8774d2399872	directus_users	read	{}	\N	\N	*
+4723	a94106a2-663e-4b16-b9bc-8774d2399872	directus_users	update	{"id":{"_eq":"$CURRENT_USER"}}	\N	\N	first_name,last_name,email,password,location,title,description,avatar,language,appearance,theme_light,theme_dark,theme_light_overrides,theme_dark_overrides,tfa_secret
+4724	a94106a2-663e-4b16-b9bc-8774d2399872	directus_roles	read	{}	\N	\N	*
+4725	a94106a2-663e-4b16-b9bc-8774d2399872	directus_shares	read	{"_or":[{"role":{"_eq":"$CURRENT_ROLE"}},{"role":{"_null":true}}]}	\N	\N	*
+4726	a94106a2-663e-4b16-b9bc-8774d2399872	directus_shares	create	{}	\N	\N	*
+4727	a94106a2-663e-4b16-b9bc-8774d2399872	directus_shares	update	{"user_created":{"_eq":"$CURRENT_USER"}}	\N	\N	*
+4728	a94106a2-663e-4b16-b9bc-8774d2399872	directus_shares	delete	{"user_created":{"_eq":"$CURRENT_USER"}}	\N	\N	*
+4729	a94106a2-663e-4b16-b9bc-8774d2399872	directus_flows	read	{"trigger":{"_eq":"manual"}}	\N	\N	id,status,name,icon,color,options,trigger
+4730	a94106a2-663e-4b16-b9bc-8774d2399872	EmailForm_translations	create	{}	{}	\N	*
+4731	a94106a2-663e-4b16-b9bc-8774d2399872	EmailForm_translations	read	{}	{}	\N	*
+4732	a94106a2-663e-4b16-b9bc-8774d2399872	EmailForm_translations	update	{}	{}	\N	*
+4733	a94106a2-663e-4b16-b9bc-8774d2399872	EmailForm_translations	delete	{}	{}	\N	*
+4734	a94106a2-663e-4b16-b9bc-8774d2399872	EmailForm_translations	share	{}	{}	\N	*
+4735	a94106a2-663e-4b16-b9bc-8774d2399872	event	read	{"_and":[{"city":{"_eq":4}}]}	{}	\N	*
+4736	a94106a2-663e-4b16-b9bc-8774d2399872	CustomSections	create	\N	{"_and":[{"city":{"_eq":4}}]}	\N	id,date_created,link,city,date_updated,translations,sort,status
+4737	a94106a2-663e-4b16-b9bc-8774d2399872	CustomSections_translations	create	{}	{}	\N	*
+4738	a94106a2-663e-4b16-b9bc-8774d2399872	CustomSections_translations	read	{}	{}	\N	*
+4739	a94106a2-663e-4b16-b9bc-8774d2399872	CustomSections_translations	update	{}	{}	\N	*
+4740	a94106a2-663e-4b16-b9bc-8774d2399872	CustomSections_translations	delete	{}	{}	\N	*
+4741	a94106a2-663e-4b16-b9bc-8774d2399872	CustomSections_translations	share	{}	{}	\N	*
+4742	a94106a2-663e-4b16-b9bc-8774d2399872	EmailForm_FormFields_translations	create	{}	{}	\N	*
+4743	a94106a2-663e-4b16-b9bc-8774d2399872	EmailForm_FormFields_translations	read	{}	{}	\N	*
+4744	a94106a2-663e-4b16-b9bc-8774d2399872	EmailForm_FormFields_translations	update	{}	{}	\N	*
+4745	a94106a2-663e-4b16-b9bc-8774d2399872	EmailForm_FormFields_translations	share	{}	{}	\N	*
+4746	a94106a2-663e-4b16-b9bc-8774d2399872	EmailForm_FormFields_translations	delete	{}	{}	\N	*
+4747	a94106a2-663e-4b16-b9bc-8774d2399872	SupportLinks_translations	read	{}	{}	\N	*
+4748	a94106a2-663e-4b16-b9bc-8774d2399872	SupportLinks_translations	update	{}	{}	\N	*
+4749	a94106a2-663e-4b16-b9bc-8774d2399872	SupportLinks_translations	delete	{}	{}	\N	*
+4750	a94106a2-663e-4b16-b9bc-8774d2399872	SupportLinks_translations	share	{}	{}	\N	*
+4751	a94106a2-663e-4b16-b9bc-8774d2399872	city_translations	read	{"_and":[{"city_id":{"_eq":4}}]}	{}	\N	*
+4752	a94106a2-663e-4b16-b9bc-8774d2399872	city_translations	update	{"_and":[{"city_id":{"_eq":4}}]}	{}	\N	*
+4753	a94106a2-663e-4b16-b9bc-8774d2399872	city	read	{"_and":[{"id":{"_eq":4}}]}	{}	\N	*
+4754	a94106a2-663e-4b16-b9bc-8774d2399872	city_translations	create	{}	{"_and":[{"city_id":{"_eq":4}}]}	\N	*
+4755	a94106a2-663e-4b16-b9bc-8774d2399872	SupportLinks_translations	create	{}	{}	\N	*
+4756	a94106a2-663e-4b16-b9bc-8774d2399872	city_translations	delete	{"_and":[{"city_id":{"_eq":4}}]}	{}	\N	*
+4757	a94106a2-663e-4b16-b9bc-8774d2399872	city	update	{"_and":[{"id":{"_eq":4}}]}	\N	\N	country,status,sort,supportlinks,emailForm,events,flyer,customSections,gallery,date_updated,translations,id,domainname
+4758	a94106a2-663e-4b16-b9bc-8774d2399872	CustomSections	delete	{"_and":[{"city":{"_eq":4}}]}	\N	\N	\N
+4759	a94106a2-663e-4b16-b9bc-8774d2399872	event_translations	create	{}	{}	\N	*
+4760	a94106a2-663e-4b16-b9bc-8774d2399872	event_translations	read	{}	{}	\N	*
+4761	a94106a2-663e-4b16-b9bc-8774d2399872	event_translations	update	{}	{}	\N	*
+4762	a94106a2-663e-4b16-b9bc-8774d2399872	event_translations	delete	{}	{}	\N	*
+4763	a94106a2-663e-4b16-b9bc-8774d2399872	event_translations	share	{}	{}	\N	*
+4764	a94106a2-663e-4b16-b9bc-8774d2399872	event	delete	{"_and":[{"city":{"_eq":4}}]}	\N	\N	\N
+4765	a94106a2-663e-4b16-b9bc-8774d2399872	event	share	{"_and":[{"city":{"_eq":4}}]}	\N	\N	\N
+4766	a94106a2-663e-4b16-b9bc-8774d2399872	CustomSections	share	{"_and":[{"city":{"_eq":4}}]}	\N	\N	\N
+4767	a94106a2-663e-4b16-b9bc-8774d2399872	event	update	{"_and":[{"city":{"_eq":4}}]}	\N	\N	teaser,name,status,sort,description,id,city,translations,link
+4768	a94106a2-663e-4b16-b9bc-8774d2399872	CustomSections	read	{"_and":[{"city":{"_eq":4}}]}	\N	\N	id,date_created,link,status,date_updated,city,translations,sort
+4769	a94106a2-663e-4b16-b9bc-8774d2399872	EmailForm	delete	{"_and":[{"city":{"_eq":4}}]}	\N	\N	\N
+4770	a94106a2-663e-4b16-b9bc-8774d2399872	SupportLinks	delete	{"_and":[{"city":{"_eq":4}}]}	\N	\N	\N
+4771	a94106a2-663e-4b16-b9bc-8774d2399872	languages	read	{}	{}	\N	*
+4772	a94106a2-663e-4b16-b9bc-8774d2399872	city_files	read	{}	{}	\N	*
+4773	a94106a2-663e-4b16-b9bc-8774d2399872	EmailForm_FormFields	read	{}	{}	\N	*
+4774	a94106a2-663e-4b16-b9bc-8774d2399872	countries	read	{}	{}	\N	*
+4775	a94106a2-663e-4b16-b9bc-8774d2399872	countries_translations	read	{}	{}	\N	*
+4776	a94106a2-663e-4b16-b9bc-8774d2399872	FormFields	read	{}	{}	\N	*
+4777	a94106a2-663e-4b16-b9bc-8774d2399872	city_files	update	{"_and":[{"city_id":{"_eq":4}}]}	\N	\N	id,directus_files_id,city_id
+4778	a94106a2-663e-4b16-b9bc-8774d2399872	SupportLinks	read	{"_and":[{"city":{"_eq":4}}]}	\N	\N	status,date_created,city,link,translations,sort,id
+4779	a94106a2-663e-4b16-b9bc-8774d2399872	SupportLinks	update	{"_and":[{"city":{"_eq":4}}]}	\N	\N	status,date_created,city,link,translations,sort,id
+4780	a94106a2-663e-4b16-b9bc-8774d2399872	EmailForm	create	\N	{"_and":[{"city":{"_eq":4}}]}	\N	id,status,date_created,translations,fields,date_updated,emailTo,sort,emailGreeting,emailBody,city
+4781	a94106a2-663e-4b16-b9bc-8774d2399872	EmailForm	read	{"_and":[{"city":{"_eq":4}}]}	\N	\N	date_created,status,date_updated,emailTo,sort,fields,translations,emailGreeting,emailBody,city,id
+4782	a94106a2-663e-4b16-b9bc-8774d2399872	EmailForm	update	{"_and":[{"city":{"_eq":4}}]}	\N	\N	status,date_created,translations,fields,date_updated,emailTo,sort,emailGreeting,emailBody,city,id
+4783	a94106a2-663e-4b16-b9bc-8774d2399872	city_files	create	\N	{"_and":[{"city_id":{"_eq":4}}]}	\N	id,directus_files_id,city_id
+4784	a94106a2-663e-4b16-b9bc-8774d2399872	SupportLinks	create	\N	{"_and":[{"city":{"_eq":4}}]}	\N	status,date_created,city,link,sort,translations,id
+4785	a94106a2-663e-4b16-b9bc-8774d2399872	event	create	\N	{"_and":[{"city":{"_eq":4}}]}	\N	status,sort,description,name,teaser,city,translations,link,id
+4786	a94106a2-663e-4b16-b9bc-8774d2399872	CustomSections	update	{"_and":[{"city":{"_eq":4}}]}	\N	\N	id,date_created,link,status,date_updated,city,sort,translations
+4787	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	directus_files	create	{}	\N	\N	*
+4788	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	directus_files	read	{}	\N	\N	*
+4789	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	directus_files	update	{}	\N	\N	*
+4790	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	directus_files	delete	{}	\N	\N	*
+4791	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	directus_dashboards	create	{}	\N	\N	*
+4792	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	directus_dashboards	read	{}	\N	\N	*
+4793	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	directus_dashboards	update	{}	\N	\N	*
+4794	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	directus_dashboards	delete	{}	\N	\N	*
+4795	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	directus_panels	create	{}	\N	\N	*
+4796	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	directus_panels	read	{}	\N	\N	*
+4797	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	directus_panels	update	{}	\N	\N	*
+4798	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	directus_panels	delete	{}	\N	\N	*
+4799	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	directus_folders	create	{}	\N	\N	*
+4800	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	directus_folders	read	{}	\N	\N	*
+4801	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	directus_folders	update	{}	\N	\N	*
+4802	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	directus_folders	delete	{}	\N	\N	\N
+4803	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	directus_users	read	{}	\N	\N	*
+4804	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	directus_users	update	{"id":{"_eq":"$CURRENT_USER"}}	\N	\N	first_name,last_name,email,password,location,title,description,avatar,language,appearance,theme_light,theme_dark,theme_light_overrides,theme_dark_overrides,tfa_secret
+4805	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	directus_roles	read	{}	\N	\N	*
+4806	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	directus_shares	read	{"_or":[{"role":{"_eq":"$CURRENT_ROLE"}},{"role":{"_null":true}}]}	\N	\N	*
+4807	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	directus_shares	create	{}	\N	\N	*
+4808	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	directus_shares	update	{"user_created":{"_eq":"$CURRENT_USER"}}	\N	\N	*
+4809	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	directus_shares	delete	{"user_created":{"_eq":"$CURRENT_USER"}}	\N	\N	*
+4810	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	directus_flows	read	{"trigger":{"_eq":"manual"}}	\N	\N	id,status,name,icon,color,options,trigger
+4811	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	EmailForm_translations	create	{}	{}	\N	*
+4812	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	EmailForm_translations	read	{}	{}	\N	*
+4813	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	EmailForm_translations	update	{}	{}	\N	*
+4814	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	EmailForm_translations	delete	{}	{}	\N	*
+4815	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	EmailForm_translations	share	{}	{}	\N	*
+4816	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	event	read	{"_and":[{"city":{"_eq":5}}]}	{}	\N	*
+4817	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	CustomSections	create	\N	{"_and":[{"city":{"_eq":5}}]}	\N	id,date_created,link,city,date_updated,translations,sort,status
+4818	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	CustomSections_translations	create	{}	{}	\N	*
+4819	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	CustomSections_translations	read	{}	{}	\N	*
+4820	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	CustomSections_translations	update	{}	{}	\N	*
+4821	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	CustomSections_translations	delete	{}	{}	\N	*
+4822	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	CustomSections_translations	share	{}	{}	\N	*
+4823	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	EmailForm_FormFields_translations	create	{}	{}	\N	*
+4824	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	EmailForm_FormFields_translations	read	{}	{}	\N	*
+4825	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	EmailForm_FormFields_translations	update	{}	{}	\N	*
+4826	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	EmailForm_FormFields_translations	share	{}	{}	\N	*
+4827	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	EmailForm_FormFields_translations	delete	{}	{}	\N	*
+4828	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	SupportLinks_translations	read	{}	{}	\N	*
+4829	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	SupportLinks_translations	update	{}	{}	\N	*
+4830	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	SupportLinks_translations	delete	{}	{}	\N	*
+4831	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	SupportLinks_translations	share	{}	{}	\N	*
+4832	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	city_translations	read	{"_and":[{"city_id":{"_eq":5}}]}	{}	\N	*
+4833	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	city_translations	update	{"_and":[{"city_id":{"_eq":5}}]}	{}	\N	*
+4834	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	city	read	{"_and":[{"id":{"_eq":5}}]}	{}	\N	*
+4835	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	city_translations	create	{}	{"_and":[{"city_id":{"_eq":5}}]}	\N	*
+4836	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	SupportLinks_translations	create	{}	{}	\N	*
+4837	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	city_translations	delete	{"_and":[{"city_id":{"_eq":5}}]}	{}	\N	*
+4838	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	city	update	{"_and":[{"id":{"_eq":5}}]}	\N	\N	country,status,sort,supportlinks,emailForm,events,flyer,customSections,gallery,date_updated,translations,id,domainname
+4839	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	CustomSections	delete	{"_and":[{"city":{"_eq":5}}]}	\N	\N	\N
+4840	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	event_translations	create	{}	{}	\N	*
+4841	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	event_translations	read	{}	{}	\N	*
+4842	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	event_translations	update	{}	{}	\N	*
+4843	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	event_translations	delete	{}	{}	\N	*
+4844	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	event_translations	share	{}	{}	\N	*
+4845	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	event	delete	{"_and":[{"city":{"_eq":5}}]}	\N	\N	\N
+4846	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	event	share	{"_and":[{"city":{"_eq":5}}]}	\N	\N	\N
+4847	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	CustomSections	share	{"_and":[{"city":{"_eq":5}}]}	\N	\N	\N
+4848	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	event	update	{"_and":[{"city":{"_eq":5}}]}	\N	\N	teaser,name,status,sort,description,id,city,translations,link
+4849	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	CustomSections	read	{"_and":[{"city":{"_eq":5}}]}	\N	\N	id,date_created,link,status,date_updated,city,translations,sort
+4850	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	EmailForm	delete	{"_and":[{"city":{"_eq":5}}]}	\N	\N	\N
+4851	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	SupportLinks	delete	{"_and":[{"city":{"_eq":5}}]}	\N	\N	\N
+4852	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	languages	read	{}	{}	\N	*
+4853	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	city_files	read	{}	{}	\N	*
+4854	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	EmailForm_FormFields	read	{}	{}	\N	*
+4855	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	countries	read	{}	{}	\N	*
+4856	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	countries_translations	read	{}	{}	\N	*
+4857	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	FormFields	read	{}	{}	\N	*
+4858	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	city_files	update	{"_and":[{"city_id":{"_eq":5}}]}	\N	\N	id,directus_files_id,city_id
+4859	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	SupportLinks	read	{"_and":[{"city":{"_eq":5}}]}	\N	\N	status,date_created,city,link,translations,sort,id
+4860	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	SupportLinks	update	{"_and":[{"city":{"_eq":5}}]}	\N	\N	status,date_created,city,link,translations,sort,id
+4861	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	EmailForm	create	\N	{"_and":[{"city":{"_eq":5}}]}	\N	id,status,date_created,translations,fields,date_updated,emailTo,sort,emailGreeting,emailBody,city
+4862	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	EmailForm	read	{"_and":[{"city":{"_eq":5}}]}	\N	\N	date_created,status,date_updated,emailTo,sort,fields,translations,emailGreeting,emailBody,city,id
+4863	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	EmailForm	update	{"_and":[{"city":{"_eq":5}}]}	\N	\N	status,date_created,translations,fields,date_updated,emailTo,sort,emailGreeting,emailBody,city,id
+4864	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	city_files	create	\N	{"_and":[{"city_id":{"_eq":5}}]}	\N	id,directus_files_id,city_id
+4865	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	SupportLinks	create	\N	{"_and":[{"city":{"_eq":5}}]}	\N	status,date_created,city,link,sort,translations,id
+4866	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	event	create	\N	{"_and":[{"city":{"_eq":5}}]}	\N	status,sort,description,name,teaser,city,translations,link,id
+4867	5640d567-9ecd-4e4b-b121-d9dae3c5eb49	CustomSections	update	{"_and":[{"city":{"_eq":5}}]}	\N	\N	id,date_created,link,status,date_updated,city,sort,translations
+4868	002e2d7f-83e3-4800-84b7-44cdc295f9ae	directus_files	create	{}	\N	\N	*
+4869	002e2d7f-83e3-4800-84b7-44cdc295f9ae	directus_files	read	{}	\N	\N	*
+4870	002e2d7f-83e3-4800-84b7-44cdc295f9ae	directus_files	update	{}	\N	\N	*
+4871	002e2d7f-83e3-4800-84b7-44cdc295f9ae	directus_files	delete	{}	\N	\N	*
+4872	002e2d7f-83e3-4800-84b7-44cdc295f9ae	directus_dashboards	create	{}	\N	\N	*
+4873	002e2d7f-83e3-4800-84b7-44cdc295f9ae	directus_dashboards	read	{}	\N	\N	*
+4874	002e2d7f-83e3-4800-84b7-44cdc295f9ae	directus_dashboards	update	{}	\N	\N	*
+4875	002e2d7f-83e3-4800-84b7-44cdc295f9ae	directus_dashboards	delete	{}	\N	\N	*
+4876	002e2d7f-83e3-4800-84b7-44cdc295f9ae	directus_panels	create	{}	\N	\N	*
+4877	002e2d7f-83e3-4800-84b7-44cdc295f9ae	directus_panels	read	{}	\N	\N	*
+4878	002e2d7f-83e3-4800-84b7-44cdc295f9ae	directus_panels	update	{}	\N	\N	*
+4879	002e2d7f-83e3-4800-84b7-44cdc295f9ae	directus_panels	delete	{}	\N	\N	*
+4880	002e2d7f-83e3-4800-84b7-44cdc295f9ae	directus_folders	create	{}	\N	\N	*
+4881	002e2d7f-83e3-4800-84b7-44cdc295f9ae	directus_folders	read	{}	\N	\N	*
+4882	002e2d7f-83e3-4800-84b7-44cdc295f9ae	directus_folders	update	{}	\N	\N	*
+4883	002e2d7f-83e3-4800-84b7-44cdc295f9ae	directus_folders	delete	{}	\N	\N	\N
+4884	002e2d7f-83e3-4800-84b7-44cdc295f9ae	directus_users	read	{}	\N	\N	*
+4885	002e2d7f-83e3-4800-84b7-44cdc295f9ae	directus_users	update	{"id":{"_eq":"$CURRENT_USER"}}	\N	\N	first_name,last_name,email,password,location,title,description,avatar,language,appearance,theme_light,theme_dark,theme_light_overrides,theme_dark_overrides,tfa_secret
+4886	002e2d7f-83e3-4800-84b7-44cdc295f9ae	directus_roles	read	{}	\N	\N	*
+4887	002e2d7f-83e3-4800-84b7-44cdc295f9ae	directus_shares	read	{"_or":[{"role":{"_eq":"$CURRENT_ROLE"}},{"role":{"_null":true}}]}	\N	\N	*
+4888	002e2d7f-83e3-4800-84b7-44cdc295f9ae	directus_shares	create	{}	\N	\N	*
+4889	002e2d7f-83e3-4800-84b7-44cdc295f9ae	directus_shares	update	{"user_created":{"_eq":"$CURRENT_USER"}}	\N	\N	*
+4890	002e2d7f-83e3-4800-84b7-44cdc295f9ae	directus_shares	delete	{"user_created":{"_eq":"$CURRENT_USER"}}	\N	\N	*
+4891	002e2d7f-83e3-4800-84b7-44cdc295f9ae	directus_flows	read	{"trigger":{"_eq":"manual"}}	\N	\N	id,status,name,icon,color,options,trigger
+4892	002e2d7f-83e3-4800-84b7-44cdc295f9ae	EmailForm_translations	create	{}	{}	\N	*
+4893	002e2d7f-83e3-4800-84b7-44cdc295f9ae	EmailForm_translations	read	{}	{}	\N	*
+4894	002e2d7f-83e3-4800-84b7-44cdc295f9ae	EmailForm_translations	update	{}	{}	\N	*
+4895	002e2d7f-83e3-4800-84b7-44cdc295f9ae	EmailForm_translations	delete	{}	{}	\N	*
+4896	002e2d7f-83e3-4800-84b7-44cdc295f9ae	EmailForm_translations	share	{}	{}	\N	*
+4897	002e2d7f-83e3-4800-84b7-44cdc295f9ae	event	read	{"_and":[{"city":{"_eq":6}}]}	{}	\N	*
+4898	002e2d7f-83e3-4800-84b7-44cdc295f9ae	CustomSections	create	\N	{"_and":[{"city":{"_eq":6}}]}	\N	id,date_created,link,city,date_updated,translations,sort,status
+4899	002e2d7f-83e3-4800-84b7-44cdc295f9ae	CustomSections_translations	create	{}	{}	\N	*
+4900	002e2d7f-83e3-4800-84b7-44cdc295f9ae	CustomSections_translations	read	{}	{}	\N	*
+4901	002e2d7f-83e3-4800-84b7-44cdc295f9ae	CustomSections_translations	update	{}	{}	\N	*
+4902	002e2d7f-83e3-4800-84b7-44cdc295f9ae	CustomSections_translations	delete	{}	{}	\N	*
+4903	002e2d7f-83e3-4800-84b7-44cdc295f9ae	CustomSections_translations	share	{}	{}	\N	*
+4904	002e2d7f-83e3-4800-84b7-44cdc295f9ae	EmailForm_FormFields_translations	create	{}	{}	\N	*
+4905	002e2d7f-83e3-4800-84b7-44cdc295f9ae	EmailForm_FormFields_translations	read	{}	{}	\N	*
+4906	002e2d7f-83e3-4800-84b7-44cdc295f9ae	EmailForm_FormFields_translations	update	{}	{}	\N	*
+4907	002e2d7f-83e3-4800-84b7-44cdc295f9ae	EmailForm_FormFields_translations	share	{}	{}	\N	*
+4908	002e2d7f-83e3-4800-84b7-44cdc295f9ae	EmailForm_FormFields_translations	delete	{}	{}	\N	*
+4909	002e2d7f-83e3-4800-84b7-44cdc295f9ae	SupportLinks_translations	read	{}	{}	\N	*
+4910	002e2d7f-83e3-4800-84b7-44cdc295f9ae	SupportLinks_translations	update	{}	{}	\N	*
+4911	002e2d7f-83e3-4800-84b7-44cdc295f9ae	SupportLinks_translations	delete	{}	{}	\N	*
+4912	002e2d7f-83e3-4800-84b7-44cdc295f9ae	SupportLinks_translations	share	{}	{}	\N	*
+4913	002e2d7f-83e3-4800-84b7-44cdc295f9ae	city_translations	read	{"_and":[{"city_id":{"_eq":6}}]}	{}	\N	*
+4914	002e2d7f-83e3-4800-84b7-44cdc295f9ae	city_translations	update	{"_and":[{"city_id":{"_eq":6}}]}	{}	\N	*
+4915	002e2d7f-83e3-4800-84b7-44cdc295f9ae	city	read	{"_and":[{"id":{"_eq":6}}]}	{}	\N	*
+4916	002e2d7f-83e3-4800-84b7-44cdc295f9ae	city_translations	create	{}	{"_and":[{"city_id":{"_eq":6}}]}	\N	*
+4917	002e2d7f-83e3-4800-84b7-44cdc295f9ae	SupportLinks_translations	create	{}	{}	\N	*
+4918	002e2d7f-83e3-4800-84b7-44cdc295f9ae	city_translations	delete	{"_and":[{"city_id":{"_eq":6}}]}	{}	\N	*
+4919	002e2d7f-83e3-4800-84b7-44cdc295f9ae	city	update	{"_and":[{"id":{"_eq":6}}]}	\N	\N	country,status,sort,supportlinks,emailForm,events,flyer,customSections,gallery,date_updated,translations,id,domainname
+4920	002e2d7f-83e3-4800-84b7-44cdc295f9ae	CustomSections	delete	{"_and":[{"city":{"_eq":6}}]}	\N	\N	\N
+4921	002e2d7f-83e3-4800-84b7-44cdc295f9ae	event_translations	create	{}	{}	\N	*
+4922	002e2d7f-83e3-4800-84b7-44cdc295f9ae	event_translations	read	{}	{}	\N	*
+4923	002e2d7f-83e3-4800-84b7-44cdc295f9ae	event_translations	update	{}	{}	\N	*
+4924	002e2d7f-83e3-4800-84b7-44cdc295f9ae	event_translations	delete	{}	{}	\N	*
+4925	002e2d7f-83e3-4800-84b7-44cdc295f9ae	event_translations	share	{}	{}	\N	*
+4926	002e2d7f-83e3-4800-84b7-44cdc295f9ae	event	delete	{"_and":[{"city":{"_eq":6}}]}	\N	\N	\N
+4927	002e2d7f-83e3-4800-84b7-44cdc295f9ae	event	share	{"_and":[{"city":{"_eq":6}}]}	\N	\N	\N
+4928	002e2d7f-83e3-4800-84b7-44cdc295f9ae	CustomSections	share	{"_and":[{"city":{"_eq":6}}]}	\N	\N	\N
+4929	002e2d7f-83e3-4800-84b7-44cdc295f9ae	event	update	{"_and":[{"city":{"_eq":6}}]}	\N	\N	teaser,name,status,sort,description,id,city,translations,link
+4930	002e2d7f-83e3-4800-84b7-44cdc295f9ae	CustomSections	read	{"_and":[{"city":{"_eq":6}}]}	\N	\N	id,date_created,link,status,date_updated,city,translations,sort
+4931	002e2d7f-83e3-4800-84b7-44cdc295f9ae	EmailForm	delete	{"_and":[{"city":{"_eq":6}}]}	\N	\N	\N
+4932	002e2d7f-83e3-4800-84b7-44cdc295f9ae	SupportLinks	delete	{"_and":[{"city":{"_eq":6}}]}	\N	\N	\N
+4933	002e2d7f-83e3-4800-84b7-44cdc295f9ae	languages	read	{}	{}	\N	*
+4934	002e2d7f-83e3-4800-84b7-44cdc295f9ae	city_files	read	{}	{}	\N	*
+4935	002e2d7f-83e3-4800-84b7-44cdc295f9ae	EmailForm_FormFields	read	{}	{}	\N	*
+4936	002e2d7f-83e3-4800-84b7-44cdc295f9ae	countries	read	{}	{}	\N	*
+4937	002e2d7f-83e3-4800-84b7-44cdc295f9ae	countries_translations	read	{}	{}	\N	*
+4938	002e2d7f-83e3-4800-84b7-44cdc295f9ae	FormFields	read	{}	{}	\N	*
+4939	002e2d7f-83e3-4800-84b7-44cdc295f9ae	city_files	update	{"_and":[{"city_id":{"_eq":6}}]}	\N	\N	id,directus_files_id,city_id
+4940	002e2d7f-83e3-4800-84b7-44cdc295f9ae	SupportLinks	read	{"_and":[{"city":{"_eq":6}}]}	\N	\N	status,date_created,city,link,translations,sort,id
+4941	002e2d7f-83e3-4800-84b7-44cdc295f9ae	SupportLinks	update	{"_and":[{"city":{"_eq":6}}]}	\N	\N	status,date_created,city,link,translations,sort,id
+4942	002e2d7f-83e3-4800-84b7-44cdc295f9ae	EmailForm	create	\N	{"_and":[{"city":{"_eq":6}}]}	\N	id,status,date_created,translations,fields,date_updated,emailTo,sort,emailGreeting,emailBody,city
+4943	002e2d7f-83e3-4800-84b7-44cdc295f9ae	EmailForm	read	{"_and":[{"city":{"_eq":6}}]}	\N	\N	date_created,status,date_updated,emailTo,sort,fields,translations,emailGreeting,emailBody,city,id
+4944	002e2d7f-83e3-4800-84b7-44cdc295f9ae	EmailForm	update	{"_and":[{"city":{"_eq":6}}]}	\N	\N	status,date_created,translations,fields,date_updated,emailTo,sort,emailGreeting,emailBody,city,id
+4945	002e2d7f-83e3-4800-84b7-44cdc295f9ae	city_files	create	\N	{"_and":[{"city_id":{"_eq":6}}]}	\N	id,directus_files_id,city_id
+4946	002e2d7f-83e3-4800-84b7-44cdc295f9ae	SupportLinks	create	\N	{"_and":[{"city":{"_eq":6}}]}	\N	status,date_created,city,link,sort,translations,id
+4947	002e2d7f-83e3-4800-84b7-44cdc295f9ae	event	create	\N	{"_and":[{"city":{"_eq":6}}]}	\N	status,sort,description,name,teaser,city,translations,link,id
+4948	002e2d7f-83e3-4800-84b7-44cdc295f9ae	CustomSections	update	{"_and":[{"city":{"_eq":6}}]}	\N	\N	id,date_created,link,status,date_updated,city,sort,translations
+4949	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	directus_files	create	{}	\N	\N	*
+4950	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	directus_files	read	{}	\N	\N	*
+4951	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	directus_files	update	{}	\N	\N	*
+4952	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	directus_files	delete	{}	\N	\N	*
+4953	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	directus_dashboards	create	{}	\N	\N	*
+4954	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	directus_dashboards	read	{}	\N	\N	*
+4955	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	directus_dashboards	update	{}	\N	\N	*
+4956	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	directus_dashboards	delete	{}	\N	\N	*
+4957	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	directus_panels	create	{}	\N	\N	*
+4958	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	directus_panels	read	{}	\N	\N	*
+4959	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	directus_panels	update	{}	\N	\N	*
+4960	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	directus_panels	delete	{}	\N	\N	*
+4961	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	directus_folders	create	{}	\N	\N	*
+4962	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	directus_folders	read	{}	\N	\N	*
+4963	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	directus_folders	update	{}	\N	\N	*
+4964	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	directus_folders	delete	{}	\N	\N	\N
+4965	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	directus_users	read	{}	\N	\N	*
+4966	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	directus_users	update	{"id":{"_eq":"$CURRENT_USER"}}	\N	\N	first_name,last_name,email,password,location,title,description,avatar,language,appearance,theme_light,theme_dark,theme_light_overrides,theme_dark_overrides,tfa_secret
+4967	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	directus_roles	read	{}	\N	\N	*
+4968	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	directus_shares	read	{"_or":[{"role":{"_eq":"$CURRENT_ROLE"}},{"role":{"_null":true}}]}	\N	\N	*
+4969	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	directus_shares	create	{}	\N	\N	*
+4970	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	directus_shares	update	{"user_created":{"_eq":"$CURRENT_USER"}}	\N	\N	*
+4971	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	directus_shares	delete	{"user_created":{"_eq":"$CURRENT_USER"}}	\N	\N	*
+4972	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	directus_flows	read	{"trigger":{"_eq":"manual"}}	\N	\N	id,status,name,icon,color,options,trigger
+4973	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	EmailForm_translations	create	{}	{}	\N	*
+4974	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	EmailForm_translations	read	{}	{}	\N	*
+4975	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	EmailForm_translations	update	{}	{}	\N	*
+4976	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	EmailForm_translations	delete	{}	{}	\N	*
+4977	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	EmailForm_translations	share	{}	{}	\N	*
+4978	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	event	read	{"_and":[{"city":{"_eq":7}}]}	{}	\N	*
+4979	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	CustomSections	create	\N	{"_and":[{"city":{"_eq":7}}]}	\N	id,date_created,link,city,date_updated,translations,sort,status
+4980	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	CustomSections_translations	create	{}	{}	\N	*
+4981	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	CustomSections_translations	read	{}	{}	\N	*
+4982	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	CustomSections_translations	update	{}	{}	\N	*
+4983	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	CustomSections_translations	delete	{}	{}	\N	*
+4984	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	CustomSections_translations	share	{}	{}	\N	*
+4985	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	EmailForm_FormFields_translations	create	{}	{}	\N	*
+4986	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	EmailForm_FormFields_translations	read	{}	{}	\N	*
+4987	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	EmailForm_FormFields_translations	update	{}	{}	\N	*
+4988	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	EmailForm_FormFields_translations	share	{}	{}	\N	*
+4989	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	EmailForm_FormFields_translations	delete	{}	{}	\N	*
+4990	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	SupportLinks_translations	read	{}	{}	\N	*
+4991	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	SupportLinks_translations	update	{}	{}	\N	*
+4992	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	SupportLinks_translations	delete	{}	{}	\N	*
+4993	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	SupportLinks_translations	share	{}	{}	\N	*
+4994	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	city_translations	read	{"_and":[{"city_id":{"_eq":7}}]}	{}	\N	*
+4995	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	city_translations	update	{"_and":[{"city_id":{"_eq":7}}]}	{}	\N	*
+4996	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	city	read	{"_and":[{"id":{"_eq":7}}]}	{}	\N	*
+4997	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	city_translations	create	{}	{"_and":[{"city_id":{"_eq":7}}]}	\N	*
+4998	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	SupportLinks_translations	create	{}	{}	\N	*
+4999	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	city_translations	delete	{"_and":[{"city_id":{"_eq":7}}]}	{}	\N	*
+5000	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	city	update	{"_and":[{"id":{"_eq":7}}]}	\N	\N	country,status,sort,supportlinks,emailForm,events,flyer,customSections,gallery,date_updated,translations,id,domainname
+5001	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	CustomSections	delete	{"_and":[{"city":{"_eq":7}}]}	\N	\N	\N
+5002	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	event_translations	create	{}	{}	\N	*
+5003	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	event_translations	read	{}	{}	\N	*
+5004	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	event_translations	update	{}	{}	\N	*
+5005	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	event_translations	delete	{}	{}	\N	*
+5006	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	event_translations	share	{}	{}	\N	*
+5007	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	event	delete	{"_and":[{"city":{"_eq":7}}]}	\N	\N	\N
+5008	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	event	share	{"_and":[{"city":{"_eq":7}}]}	\N	\N	\N
+5009	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	CustomSections	share	{"_and":[{"city":{"_eq":7}}]}	\N	\N	\N
+5010	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	event	update	{"_and":[{"city":{"_eq":7}}]}	\N	\N	teaser,name,status,sort,description,id,city,translations,link
+5011	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	CustomSections	read	{"_and":[{"city":{"_eq":7}}]}	\N	\N	id,date_created,link,status,date_updated,city,translations,sort
+5012	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	EmailForm	delete	{"_and":[{"city":{"_eq":7}}]}	\N	\N	\N
+5013	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	SupportLinks	delete	{"_and":[{"city":{"_eq":7}}]}	\N	\N	\N
+5014	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	languages	read	{}	{}	\N	*
+5015	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	city_files	read	{}	{}	\N	*
+5016	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	EmailForm_FormFields	read	{}	{}	\N	*
+5017	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	countries	read	{}	{}	\N	*
+5018	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	countries_translations	read	{}	{}	\N	*
+5019	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	FormFields	read	{}	{}	\N	*
+5020	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	city_files	update	{"_and":[{"city_id":{"_eq":7}}]}	\N	\N	id,directus_files_id,city_id
+5021	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	SupportLinks	read	{"_and":[{"city":{"_eq":7}}]}	\N	\N	status,date_created,city,link,translations,sort,id
+5022	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	SupportLinks	update	{"_and":[{"city":{"_eq":7}}]}	\N	\N	status,date_created,city,link,translations,sort,id
+5023	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	EmailForm	create	\N	{"_and":[{"city":{"_eq":7}}]}	\N	id,status,date_created,translations,fields,date_updated,emailTo,sort,emailGreeting,emailBody,city
+5024	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	EmailForm	read	{"_and":[{"city":{"_eq":7}}]}	\N	\N	date_created,status,date_updated,emailTo,sort,fields,translations,emailGreeting,emailBody,city,id
+5025	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	EmailForm	update	{"_and":[{"city":{"_eq":7}}]}	\N	\N	status,date_created,translations,fields,date_updated,emailTo,sort,emailGreeting,emailBody,city,id
+5026	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	city_files	create	\N	{"_and":[{"city_id":{"_eq":7}}]}	\N	id,directus_files_id,city_id
+5027	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	SupportLinks	create	\N	{"_and":[{"city":{"_eq":7}}]}	\N	status,date_created,city,link,sort,translations,id
+5028	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	event	create	\N	{"_and":[{"city":{"_eq":7}}]}	\N	status,sort,description,name,teaser,city,translations,link,id
+5029	1338a1fb-b7e2-4ace-8165-aa0a064f23bf	CustomSections	update	{"_and":[{"city":{"_eq":7}}]}	\N	\N	id,date_created,link,status,date_updated,city,sort,translations
+5030	494b3e8a-f132-4fbc-9975-83f3d61c3205	directus_files	create	{}	\N	\N	*
+5031	494b3e8a-f132-4fbc-9975-83f3d61c3205	directus_files	read	{}	\N	\N	*
+5032	494b3e8a-f132-4fbc-9975-83f3d61c3205	directus_files	update	{}	\N	\N	*
+5033	494b3e8a-f132-4fbc-9975-83f3d61c3205	directus_files	delete	{}	\N	\N	*
+5034	494b3e8a-f132-4fbc-9975-83f3d61c3205	directus_dashboards	create	{}	\N	\N	*
+5035	494b3e8a-f132-4fbc-9975-83f3d61c3205	directus_dashboards	read	{}	\N	\N	*
+5036	494b3e8a-f132-4fbc-9975-83f3d61c3205	directus_dashboards	update	{}	\N	\N	*
+5037	494b3e8a-f132-4fbc-9975-83f3d61c3205	directus_dashboards	delete	{}	\N	\N	*
+5038	494b3e8a-f132-4fbc-9975-83f3d61c3205	directus_panels	create	{}	\N	\N	*
+5039	494b3e8a-f132-4fbc-9975-83f3d61c3205	directus_panels	read	{}	\N	\N	*
+5040	494b3e8a-f132-4fbc-9975-83f3d61c3205	directus_panels	update	{}	\N	\N	*
+5041	494b3e8a-f132-4fbc-9975-83f3d61c3205	directus_panels	delete	{}	\N	\N	*
+5042	494b3e8a-f132-4fbc-9975-83f3d61c3205	directus_folders	create	{}	\N	\N	*
+5043	494b3e8a-f132-4fbc-9975-83f3d61c3205	directus_folders	read	{}	\N	\N	*
+5044	494b3e8a-f132-4fbc-9975-83f3d61c3205	directus_folders	update	{}	\N	\N	*
+5045	494b3e8a-f132-4fbc-9975-83f3d61c3205	directus_folders	delete	{}	\N	\N	\N
+5046	494b3e8a-f132-4fbc-9975-83f3d61c3205	directus_users	read	{}	\N	\N	*
+5047	494b3e8a-f132-4fbc-9975-83f3d61c3205	directus_users	update	{"id":{"_eq":"$CURRENT_USER"}}	\N	\N	first_name,last_name,email,password,location,title,description,avatar,language,appearance,theme_light,theme_dark,theme_light_overrides,theme_dark_overrides,tfa_secret
+5048	494b3e8a-f132-4fbc-9975-83f3d61c3205	directus_roles	read	{}	\N	\N	*
+5049	494b3e8a-f132-4fbc-9975-83f3d61c3205	directus_shares	read	{"_or":[{"role":{"_eq":"$CURRENT_ROLE"}},{"role":{"_null":true}}]}	\N	\N	*
+5050	494b3e8a-f132-4fbc-9975-83f3d61c3205	directus_shares	create	{}	\N	\N	*
+5051	494b3e8a-f132-4fbc-9975-83f3d61c3205	directus_shares	update	{"user_created":{"_eq":"$CURRENT_USER"}}	\N	\N	*
+5052	494b3e8a-f132-4fbc-9975-83f3d61c3205	directus_shares	delete	{"user_created":{"_eq":"$CURRENT_USER"}}	\N	\N	*
+5053	494b3e8a-f132-4fbc-9975-83f3d61c3205	directus_flows	read	{"trigger":{"_eq":"manual"}}	\N	\N	id,status,name,icon,color,options,trigger
+5054	494b3e8a-f132-4fbc-9975-83f3d61c3205	EmailForm_translations	create	{}	{}	\N	*
+5055	494b3e8a-f132-4fbc-9975-83f3d61c3205	EmailForm_translations	read	{}	{}	\N	*
+5056	494b3e8a-f132-4fbc-9975-83f3d61c3205	EmailForm_translations	update	{}	{}	\N	*
+5057	494b3e8a-f132-4fbc-9975-83f3d61c3205	EmailForm_translations	delete	{}	{}	\N	*
+5058	494b3e8a-f132-4fbc-9975-83f3d61c3205	EmailForm_translations	share	{}	{}	\N	*
+5059	494b3e8a-f132-4fbc-9975-83f3d61c3205	event	read	{"_and":[{"city":{"_eq":8}}]}	{}	\N	*
+5060	494b3e8a-f132-4fbc-9975-83f3d61c3205	CustomSections	create	\N	{"_and":[{"city":{"_eq":8}}]}	\N	id,date_created,link,city,date_updated,translations,sort,status
+5061	494b3e8a-f132-4fbc-9975-83f3d61c3205	CustomSections_translations	create	{}	{}	\N	*
+5062	494b3e8a-f132-4fbc-9975-83f3d61c3205	CustomSections_translations	read	{}	{}	\N	*
+5063	494b3e8a-f132-4fbc-9975-83f3d61c3205	CustomSections_translations	update	{}	{}	\N	*
+5064	494b3e8a-f132-4fbc-9975-83f3d61c3205	CustomSections_translations	delete	{}	{}	\N	*
+5065	494b3e8a-f132-4fbc-9975-83f3d61c3205	CustomSections_translations	share	{}	{}	\N	*
+5066	494b3e8a-f132-4fbc-9975-83f3d61c3205	EmailForm_FormFields_translations	create	{}	{}	\N	*
+5067	494b3e8a-f132-4fbc-9975-83f3d61c3205	EmailForm_FormFields_translations	read	{}	{}	\N	*
+5068	494b3e8a-f132-4fbc-9975-83f3d61c3205	EmailForm_FormFields_translations	update	{}	{}	\N	*
+5069	494b3e8a-f132-4fbc-9975-83f3d61c3205	EmailForm_FormFields_translations	share	{}	{}	\N	*
+5070	494b3e8a-f132-4fbc-9975-83f3d61c3205	EmailForm_FormFields_translations	delete	{}	{}	\N	*
+5071	494b3e8a-f132-4fbc-9975-83f3d61c3205	SupportLinks_translations	read	{}	{}	\N	*
+5072	494b3e8a-f132-4fbc-9975-83f3d61c3205	SupportLinks_translations	update	{}	{}	\N	*
+5073	494b3e8a-f132-4fbc-9975-83f3d61c3205	SupportLinks_translations	delete	{}	{}	\N	*
+5074	494b3e8a-f132-4fbc-9975-83f3d61c3205	SupportLinks_translations	share	{}	{}	\N	*
+5075	494b3e8a-f132-4fbc-9975-83f3d61c3205	city_translations	read	{"_and":[{"city_id":{"_eq":8}}]}	{}	\N	*
+5076	494b3e8a-f132-4fbc-9975-83f3d61c3205	city_translations	update	{"_and":[{"city_id":{"_eq":8}}]}	{}	\N	*
+5077	494b3e8a-f132-4fbc-9975-83f3d61c3205	city	read	{"_and":[{"id":{"_eq":8}}]}	{}	\N	*
+5078	494b3e8a-f132-4fbc-9975-83f3d61c3205	city_translations	create	{}	{"_and":[{"city_id":{"_eq":8}}]}	\N	*
+5079	494b3e8a-f132-4fbc-9975-83f3d61c3205	SupportLinks_translations	create	{}	{}	\N	*
+5080	494b3e8a-f132-4fbc-9975-83f3d61c3205	city_translations	delete	{"_and":[{"city_id":{"_eq":8}}]}	{}	\N	*
+5081	494b3e8a-f132-4fbc-9975-83f3d61c3205	city	update	{"_and":[{"id":{"_eq":8}}]}	\N	\N	country,status,sort,supportlinks,emailForm,events,flyer,customSections,gallery,date_updated,translations,id,domainname
+5082	494b3e8a-f132-4fbc-9975-83f3d61c3205	CustomSections	delete	{"_and":[{"city":{"_eq":8}}]}	\N	\N	\N
+5083	494b3e8a-f132-4fbc-9975-83f3d61c3205	event_translations	create	{}	{}	\N	*
+5084	494b3e8a-f132-4fbc-9975-83f3d61c3205	event_translations	read	{}	{}	\N	*
+5085	494b3e8a-f132-4fbc-9975-83f3d61c3205	event_translations	update	{}	{}	\N	*
+5086	494b3e8a-f132-4fbc-9975-83f3d61c3205	event_translations	delete	{}	{}	\N	*
+5087	494b3e8a-f132-4fbc-9975-83f3d61c3205	event_translations	share	{}	{}	\N	*
+5088	494b3e8a-f132-4fbc-9975-83f3d61c3205	event	delete	{"_and":[{"city":{"_eq":8}}]}	\N	\N	\N
+5089	494b3e8a-f132-4fbc-9975-83f3d61c3205	event	share	{"_and":[{"city":{"_eq":8}}]}	\N	\N	\N
+5090	494b3e8a-f132-4fbc-9975-83f3d61c3205	CustomSections	share	{"_and":[{"city":{"_eq":8}}]}	\N	\N	\N
+5091	494b3e8a-f132-4fbc-9975-83f3d61c3205	event	update	{"_and":[{"city":{"_eq":8}}]}	\N	\N	teaser,name,status,sort,description,id,city,translations,link
+5092	494b3e8a-f132-4fbc-9975-83f3d61c3205	CustomSections	read	{"_and":[{"city":{"_eq":8}}]}	\N	\N	id,date_created,link,status,date_updated,city,translations,sort
+5093	494b3e8a-f132-4fbc-9975-83f3d61c3205	EmailForm	delete	{"_and":[{"city":{"_eq":8}}]}	\N	\N	\N
+5094	494b3e8a-f132-4fbc-9975-83f3d61c3205	SupportLinks	delete	{"_and":[{"city":{"_eq":8}}]}	\N	\N	\N
+5095	494b3e8a-f132-4fbc-9975-83f3d61c3205	languages	read	{}	{}	\N	*
+5096	494b3e8a-f132-4fbc-9975-83f3d61c3205	city_files	read	{}	{}	\N	*
+5097	494b3e8a-f132-4fbc-9975-83f3d61c3205	EmailForm_FormFields	read	{}	{}	\N	*
+5098	494b3e8a-f132-4fbc-9975-83f3d61c3205	countries	read	{}	{}	\N	*
+5099	494b3e8a-f132-4fbc-9975-83f3d61c3205	countries_translations	read	{}	{}	\N	*
+5100	494b3e8a-f132-4fbc-9975-83f3d61c3205	FormFields	read	{}	{}	\N	*
+5101	494b3e8a-f132-4fbc-9975-83f3d61c3205	city_files	update	{"_and":[{"city_id":{"_eq":8}}]}	\N	\N	id,directus_files_id,city_id
+5102	494b3e8a-f132-4fbc-9975-83f3d61c3205	SupportLinks	read	{"_and":[{"city":{"_eq":8}}]}	\N	\N	status,date_created,city,link,translations,sort,id
+5103	494b3e8a-f132-4fbc-9975-83f3d61c3205	SupportLinks	update	{"_and":[{"city":{"_eq":8}}]}	\N	\N	status,date_created,city,link,translations,sort,id
+5104	494b3e8a-f132-4fbc-9975-83f3d61c3205	EmailForm	create	\N	{"_and":[{"city":{"_eq":8}}]}	\N	id,status,date_created,translations,fields,date_updated,emailTo,sort,emailGreeting,emailBody,city
+5105	494b3e8a-f132-4fbc-9975-83f3d61c3205	EmailForm	read	{"_and":[{"city":{"_eq":8}}]}	\N	\N	date_created,status,date_updated,emailTo,sort,fields,translations,emailGreeting,emailBody,city,id
+5106	494b3e8a-f132-4fbc-9975-83f3d61c3205	EmailForm	update	{"_and":[{"city":{"_eq":8}}]}	\N	\N	status,date_created,translations,fields,date_updated,emailTo,sort,emailGreeting,emailBody,city,id
+5107	494b3e8a-f132-4fbc-9975-83f3d61c3205	city_files	create	\N	{"_and":[{"city_id":{"_eq":8}}]}	\N	id,directus_files_id,city_id
+5108	494b3e8a-f132-4fbc-9975-83f3d61c3205	SupportLinks	create	\N	{"_and":[{"city":{"_eq":8}}]}	\N	status,date_created,city,link,sort,translations,id
+5109	494b3e8a-f132-4fbc-9975-83f3d61c3205	event	create	\N	{"_and":[{"city":{"_eq":8}}]}	\N	status,sort,description,name,teaser,city,translations,link,id
+5110	494b3e8a-f132-4fbc-9975-83f3d61c3205	CustomSections	update	{"_and":[{"city":{"_eq":8}}]}	\N	\N	id,date_created,link,status,date_updated,city,sort,translations
+5111	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	directus_files	create	{}	\N	\N	*
+5112	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	directus_files	read	{}	\N	\N	*
+5113	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	directus_files	update	{}	\N	\N	*
+5114	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	directus_files	delete	{}	\N	\N	*
+5115	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	directus_dashboards	create	{}	\N	\N	*
+5116	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	directus_dashboards	read	{}	\N	\N	*
+5117	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	directus_dashboards	update	{}	\N	\N	*
+5118	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	directus_dashboards	delete	{}	\N	\N	*
+5119	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	directus_panels	create	{}	\N	\N	*
+5120	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	directus_panels	read	{}	\N	\N	*
+5121	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	directus_panels	update	{}	\N	\N	*
+5122	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	directus_panels	delete	{}	\N	\N	*
+5123	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	directus_folders	create	{}	\N	\N	*
+5124	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	directus_folders	read	{}	\N	\N	*
+5125	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	directus_folders	update	{}	\N	\N	*
+5126	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	directus_folders	delete	{}	\N	\N	\N
+5127	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	directus_users	read	{}	\N	\N	*
+5128	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	directus_users	update	{"id":{"_eq":"$CURRENT_USER"}}	\N	\N	first_name,last_name,email,password,location,title,description,avatar,language,appearance,theme_light,theme_dark,theme_light_overrides,theme_dark_overrides,tfa_secret
+5129	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	directus_roles	read	{}	\N	\N	*
+5130	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	directus_shares	read	{"_or":[{"role":{"_eq":"$CURRENT_ROLE"}},{"role":{"_null":true}}]}	\N	\N	*
+5131	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	directus_shares	create	{}	\N	\N	*
+5132	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	directus_shares	update	{"user_created":{"_eq":"$CURRENT_USER"}}	\N	\N	*
+5133	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	directus_shares	delete	{"user_created":{"_eq":"$CURRENT_USER"}}	\N	\N	*
+5134	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	directus_flows	read	{"trigger":{"_eq":"manual"}}	\N	\N	id,status,name,icon,color,options,trigger
+5135	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	EmailForm_translations	create	{}	{}	\N	*
+5136	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	EmailForm_translations	read	{}	{}	\N	*
+5137	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	EmailForm_translations	update	{}	{}	\N	*
+5138	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	EmailForm_translations	delete	{}	{}	\N	*
+5139	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	EmailForm_translations	share	{}	{}	\N	*
+5140	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	event	read	{"_and":[{"city":{"_eq":9}}]}	{}	\N	*
+5141	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	CustomSections	create	\N	{"_and":[{"city":{"_eq":9}}]}	\N	id,date_created,link,city,date_updated,translations,sort,status
+5142	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	CustomSections_translations	create	{}	{}	\N	*
+5143	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	CustomSections_translations	read	{}	{}	\N	*
+5144	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	CustomSections_translations	update	{}	{}	\N	*
+5145	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	CustomSections_translations	delete	{}	{}	\N	*
+5146	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	CustomSections_translations	share	{}	{}	\N	*
+5147	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	EmailForm_FormFields_translations	create	{}	{}	\N	*
+5148	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	EmailForm_FormFields_translations	read	{}	{}	\N	*
+5149	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	EmailForm_FormFields_translations	update	{}	{}	\N	*
+5150	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	EmailForm_FormFields_translations	share	{}	{}	\N	*
+5151	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	EmailForm_FormFields_translations	delete	{}	{}	\N	*
+5152	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	SupportLinks_translations	read	{}	{}	\N	*
+5153	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	SupportLinks_translations	update	{}	{}	\N	*
+5154	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	SupportLinks_translations	delete	{}	{}	\N	*
+5155	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	SupportLinks_translations	share	{}	{}	\N	*
+5156	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	city_translations	read	{"_and":[{"city_id":{"_eq":9}}]}	{}	\N	*
+5157	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	city_translations	update	{"_and":[{"city_id":{"_eq":9}}]}	{}	\N	*
+5158	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	city	read	{"_and":[{"id":{"_eq":9}}]}	{}	\N	*
+5159	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	city_translations	create	{}	{"_and":[{"city_id":{"_eq":9}}]}	\N	*
+5160	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	SupportLinks_translations	create	{}	{}	\N	*
+5161	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	city_translations	delete	{"_and":[{"city_id":{"_eq":9}}]}	{}	\N	*
+5753	cf1f4250-ccba-4734-a984-4edc3b98bbc8	EmailForm	read	{"_and":[{"city":{"_eq":1}}]}	\N	\N	date_created,status,date_updated,emailTo,sort,fields,translations,emailGreeting,emailBody,city,id
+5162	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	city	update	{"_and":[{"id":{"_eq":9}}]}	\N	\N	country,status,sort,supportlinks,emailForm,events,flyer,customSections,gallery,date_updated,translations,id,domainname
+5163	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	CustomSections	delete	{"_and":[{"city":{"_eq":9}}]}	\N	\N	\N
+5164	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	event_translations	create	{}	{}	\N	*
+5165	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	event_translations	read	{}	{}	\N	*
+5166	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	event_translations	update	{}	{}	\N	*
+5167	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	event_translations	delete	{}	{}	\N	*
+5168	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	event_translations	share	{}	{}	\N	*
+5169	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	event	delete	{"_and":[{"city":{"_eq":9}}]}	\N	\N	\N
+5170	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	event	share	{"_and":[{"city":{"_eq":9}}]}	\N	\N	\N
+5171	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	CustomSections	share	{"_and":[{"city":{"_eq":9}}]}	\N	\N	\N
+5172	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	event	update	{"_and":[{"city":{"_eq":9}}]}	\N	\N	teaser,name,status,sort,description,id,city,translations,link
+5173	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	CustomSections	read	{"_and":[{"city":{"_eq":9}}]}	\N	\N	id,date_created,link,status,date_updated,city,translations,sort
+5174	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	EmailForm	delete	{"_and":[{"city":{"_eq":9}}]}	\N	\N	\N
+5175	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	SupportLinks	delete	{"_and":[{"city":{"_eq":9}}]}	\N	\N	\N
+5176	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	languages	read	{}	{}	\N	*
+5177	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	city_files	read	{}	{}	\N	*
+5178	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	EmailForm_FormFields	read	{}	{}	\N	*
+5179	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	countries	read	{}	{}	\N	*
+5180	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	countries_translations	read	{}	{}	\N	*
+5181	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	FormFields	read	{}	{}	\N	*
+5182	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	city_files	update	{"_and":[{"city_id":{"_eq":9}}]}	\N	\N	id,directus_files_id,city_id
+5183	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	SupportLinks	read	{"_and":[{"city":{"_eq":9}}]}	\N	\N	status,date_created,city,link,translations,sort,id
+5184	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	SupportLinks	update	{"_and":[{"city":{"_eq":9}}]}	\N	\N	status,date_created,city,link,translations,sort,id
+5185	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	EmailForm	create	\N	{"_and":[{"city":{"_eq":9}}]}	\N	id,status,date_created,translations,fields,date_updated,emailTo,sort,emailGreeting,emailBody,city
+5186	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	EmailForm	read	{"_and":[{"city":{"_eq":9}}]}	\N	\N	date_created,status,date_updated,emailTo,sort,fields,translations,emailGreeting,emailBody,city,id
+5187	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	EmailForm	update	{"_and":[{"city":{"_eq":9}}]}	\N	\N	status,date_created,translations,fields,date_updated,emailTo,sort,emailGreeting,emailBody,city,id
+5188	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	city_files	create	\N	{"_and":[{"city_id":{"_eq":9}}]}	\N	id,directus_files_id,city_id
+5189	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	SupportLinks	create	\N	{"_and":[{"city":{"_eq":9}}]}	\N	status,date_created,city,link,sort,translations,id
+5190	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	event	create	\N	{"_and":[{"city":{"_eq":9}}]}	\N	status,sort,description,name,teaser,city,translations,link,id
+5191	b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	CustomSections	update	{"_and":[{"city":{"_eq":9}}]}	\N	\N	id,date_created,link,status,date_updated,city,sort,translations
+5192	94238fc9-fb40-4941-89cf-a9909765ab50	directus_files	create	{}	\N	\N	*
+5193	94238fc9-fb40-4941-89cf-a9909765ab50	directus_files	read	{}	\N	\N	*
+5194	94238fc9-fb40-4941-89cf-a9909765ab50	directus_files	update	{}	\N	\N	*
+5195	94238fc9-fb40-4941-89cf-a9909765ab50	directus_files	delete	{}	\N	\N	*
+5196	94238fc9-fb40-4941-89cf-a9909765ab50	directus_dashboards	create	{}	\N	\N	*
+5197	94238fc9-fb40-4941-89cf-a9909765ab50	directus_dashboards	read	{}	\N	\N	*
+5198	94238fc9-fb40-4941-89cf-a9909765ab50	directus_dashboards	update	{}	\N	\N	*
+5199	94238fc9-fb40-4941-89cf-a9909765ab50	directus_dashboards	delete	{}	\N	\N	*
+5200	94238fc9-fb40-4941-89cf-a9909765ab50	directus_panels	create	{}	\N	\N	*
+5201	94238fc9-fb40-4941-89cf-a9909765ab50	directus_panels	read	{}	\N	\N	*
+5202	94238fc9-fb40-4941-89cf-a9909765ab50	directus_panels	update	{}	\N	\N	*
+5203	94238fc9-fb40-4941-89cf-a9909765ab50	directus_panels	delete	{}	\N	\N	*
+5204	94238fc9-fb40-4941-89cf-a9909765ab50	directus_folders	create	{}	\N	\N	*
+5205	94238fc9-fb40-4941-89cf-a9909765ab50	directus_folders	read	{}	\N	\N	*
+5206	94238fc9-fb40-4941-89cf-a9909765ab50	directus_folders	update	{}	\N	\N	*
+5207	94238fc9-fb40-4941-89cf-a9909765ab50	directus_folders	delete	{}	\N	\N	\N
+5208	94238fc9-fb40-4941-89cf-a9909765ab50	directus_users	read	{}	\N	\N	*
+5209	94238fc9-fb40-4941-89cf-a9909765ab50	directus_users	update	{"id":{"_eq":"$CURRENT_USER"}}	\N	\N	first_name,last_name,email,password,location,title,description,avatar,language,appearance,theme_light,theme_dark,theme_light_overrides,theme_dark_overrides,tfa_secret
+5210	94238fc9-fb40-4941-89cf-a9909765ab50	directus_roles	read	{}	\N	\N	*
+5211	94238fc9-fb40-4941-89cf-a9909765ab50	directus_shares	read	{"_or":[{"role":{"_eq":"$CURRENT_ROLE"}},{"role":{"_null":true}}]}	\N	\N	*
+5212	94238fc9-fb40-4941-89cf-a9909765ab50	directus_shares	create	{}	\N	\N	*
+5213	94238fc9-fb40-4941-89cf-a9909765ab50	directus_shares	update	{"user_created":{"_eq":"$CURRENT_USER"}}	\N	\N	*
+5214	94238fc9-fb40-4941-89cf-a9909765ab50	directus_shares	delete	{"user_created":{"_eq":"$CURRENT_USER"}}	\N	\N	*
+5215	94238fc9-fb40-4941-89cf-a9909765ab50	directus_flows	read	{"trigger":{"_eq":"manual"}}	\N	\N	id,status,name,icon,color,options,trigger
+5216	94238fc9-fb40-4941-89cf-a9909765ab50	EmailForm_translations	create	{}	{}	\N	*
+5217	94238fc9-fb40-4941-89cf-a9909765ab50	EmailForm_translations	read	{}	{}	\N	*
+5218	94238fc9-fb40-4941-89cf-a9909765ab50	EmailForm_translations	update	{}	{}	\N	*
+5219	94238fc9-fb40-4941-89cf-a9909765ab50	EmailForm_translations	delete	{}	{}	\N	*
+5220	94238fc9-fb40-4941-89cf-a9909765ab50	EmailForm_translations	share	{}	{}	\N	*
+5221	94238fc9-fb40-4941-89cf-a9909765ab50	event	read	{"_and":[{"city":{"_eq":10}}]}	{}	\N	*
+5222	94238fc9-fb40-4941-89cf-a9909765ab50	CustomSections	create	\N	{"_and":[{"city":{"_eq":10}}]}	\N	id,date_created,link,city,date_updated,translations,sort,status
+5223	94238fc9-fb40-4941-89cf-a9909765ab50	CustomSections_translations	create	{}	{}	\N	*
+5224	94238fc9-fb40-4941-89cf-a9909765ab50	CustomSections_translations	read	{}	{}	\N	*
+5225	94238fc9-fb40-4941-89cf-a9909765ab50	CustomSections_translations	update	{}	{}	\N	*
+5226	94238fc9-fb40-4941-89cf-a9909765ab50	CustomSections_translations	delete	{}	{}	\N	*
+5227	94238fc9-fb40-4941-89cf-a9909765ab50	CustomSections_translations	share	{}	{}	\N	*
+5228	94238fc9-fb40-4941-89cf-a9909765ab50	EmailForm_FormFields_translations	create	{}	{}	\N	*
+5229	94238fc9-fb40-4941-89cf-a9909765ab50	EmailForm_FormFields_translations	read	{}	{}	\N	*
+5230	94238fc9-fb40-4941-89cf-a9909765ab50	EmailForm_FormFields_translations	update	{}	{}	\N	*
+5231	94238fc9-fb40-4941-89cf-a9909765ab50	EmailForm_FormFields_translations	share	{}	{}	\N	*
+5232	94238fc9-fb40-4941-89cf-a9909765ab50	EmailForm_FormFields_translations	delete	{}	{}	\N	*
+5233	94238fc9-fb40-4941-89cf-a9909765ab50	SupportLinks_translations	read	{}	{}	\N	*
+5234	94238fc9-fb40-4941-89cf-a9909765ab50	SupportLinks_translations	update	{}	{}	\N	*
+5235	94238fc9-fb40-4941-89cf-a9909765ab50	SupportLinks_translations	delete	{}	{}	\N	*
+5236	94238fc9-fb40-4941-89cf-a9909765ab50	SupportLinks_translations	share	{}	{}	\N	*
+5237	94238fc9-fb40-4941-89cf-a9909765ab50	city_translations	read	{"_and":[{"city_id":{"_eq":10}}]}	{}	\N	*
+5238	94238fc9-fb40-4941-89cf-a9909765ab50	city_translations	update	{"_and":[{"city_id":{"_eq":10}}]}	{}	\N	*
+5239	94238fc9-fb40-4941-89cf-a9909765ab50	city	read	{"_and":[{"id":{"_eq":10}}]}	{}	\N	*
+5240	94238fc9-fb40-4941-89cf-a9909765ab50	city_translations	create	{}	{"_and":[{"city_id":{"_eq":10}}]}	\N	*
+5241	94238fc9-fb40-4941-89cf-a9909765ab50	SupportLinks_translations	create	{}	{}	\N	*
+5242	94238fc9-fb40-4941-89cf-a9909765ab50	city_translations	delete	{"_and":[{"city_id":{"_eq":10}}]}	{}	\N	*
+5243	94238fc9-fb40-4941-89cf-a9909765ab50	city	update	{"_and":[{"id":{"_eq":10}}]}	\N	\N	country,status,sort,supportlinks,emailForm,events,flyer,customSections,gallery,date_updated,translations,id,domainname
+5244	94238fc9-fb40-4941-89cf-a9909765ab50	CustomSections	delete	{"_and":[{"city":{"_eq":10}}]}	\N	\N	\N
+5245	94238fc9-fb40-4941-89cf-a9909765ab50	event_translations	create	{}	{}	\N	*
+5246	94238fc9-fb40-4941-89cf-a9909765ab50	event_translations	read	{}	{}	\N	*
+5247	94238fc9-fb40-4941-89cf-a9909765ab50	event_translations	update	{}	{}	\N	*
+5248	94238fc9-fb40-4941-89cf-a9909765ab50	event_translations	delete	{}	{}	\N	*
+5249	94238fc9-fb40-4941-89cf-a9909765ab50	event_translations	share	{}	{}	\N	*
+5250	94238fc9-fb40-4941-89cf-a9909765ab50	event	delete	{"_and":[{"city":{"_eq":10}}]}	\N	\N	\N
+5251	94238fc9-fb40-4941-89cf-a9909765ab50	event	share	{"_and":[{"city":{"_eq":10}}]}	\N	\N	\N
+5252	94238fc9-fb40-4941-89cf-a9909765ab50	CustomSections	share	{"_and":[{"city":{"_eq":10}}]}	\N	\N	\N
+5253	94238fc9-fb40-4941-89cf-a9909765ab50	event	update	{"_and":[{"city":{"_eq":10}}]}	\N	\N	teaser,name,status,sort,description,id,city,translations,link
+5254	94238fc9-fb40-4941-89cf-a9909765ab50	CustomSections	read	{"_and":[{"city":{"_eq":10}}]}	\N	\N	id,date_created,link,status,date_updated,city,translations,sort
+5255	94238fc9-fb40-4941-89cf-a9909765ab50	EmailForm	delete	{"_and":[{"city":{"_eq":10}}]}	\N	\N	\N
+5256	94238fc9-fb40-4941-89cf-a9909765ab50	SupportLinks	delete	{"_and":[{"city":{"_eq":10}}]}	\N	\N	\N
+5257	94238fc9-fb40-4941-89cf-a9909765ab50	languages	read	{}	{}	\N	*
+5258	94238fc9-fb40-4941-89cf-a9909765ab50	city_files	read	{}	{}	\N	*
+5259	94238fc9-fb40-4941-89cf-a9909765ab50	EmailForm_FormFields	read	{}	{}	\N	*
+5260	94238fc9-fb40-4941-89cf-a9909765ab50	countries	read	{}	{}	\N	*
+5261	94238fc9-fb40-4941-89cf-a9909765ab50	countries_translations	read	{}	{}	\N	*
+5262	94238fc9-fb40-4941-89cf-a9909765ab50	FormFields	read	{}	{}	\N	*
+5263	94238fc9-fb40-4941-89cf-a9909765ab50	city_files	update	{"_and":[{"city_id":{"_eq":10}}]}	\N	\N	id,directus_files_id,city_id
+5264	94238fc9-fb40-4941-89cf-a9909765ab50	SupportLinks	read	{"_and":[{"city":{"_eq":10}}]}	\N	\N	status,date_created,city,link,translations,sort,id
+5265	94238fc9-fb40-4941-89cf-a9909765ab50	SupportLinks	update	{"_and":[{"city":{"_eq":10}}]}	\N	\N	status,date_created,city,link,translations,sort,id
+5266	94238fc9-fb40-4941-89cf-a9909765ab50	EmailForm	create	\N	{"_and":[{"city":{"_eq":10}}]}	\N	id,status,date_created,translations,fields,date_updated,emailTo,sort,emailGreeting,emailBody,city
+5267	94238fc9-fb40-4941-89cf-a9909765ab50	EmailForm	read	{"_and":[{"city":{"_eq":10}}]}	\N	\N	date_created,status,date_updated,emailTo,sort,fields,translations,emailGreeting,emailBody,city,id
+5268	94238fc9-fb40-4941-89cf-a9909765ab50	EmailForm	update	{"_and":[{"city":{"_eq":10}}]}	\N	\N	status,date_created,translations,fields,date_updated,emailTo,sort,emailGreeting,emailBody,city,id
+5269	94238fc9-fb40-4941-89cf-a9909765ab50	city_files	create	\N	{"_and":[{"city_id":{"_eq":10}}]}	\N	id,directus_files_id,city_id
+5270	94238fc9-fb40-4941-89cf-a9909765ab50	SupportLinks	create	\N	{"_and":[{"city":{"_eq":10}}]}	\N	status,date_created,city,link,sort,translations,id
+5271	94238fc9-fb40-4941-89cf-a9909765ab50	event	create	\N	{"_and":[{"city":{"_eq":10}}]}	\N	status,sort,description,name,teaser,city,translations,link,id
+5272	94238fc9-fb40-4941-89cf-a9909765ab50	CustomSections	update	{"_and":[{"city":{"_eq":10}}]}	\N	\N	id,date_created,link,status,date_updated,city,sort,translations
+5273	f740aee0-f5f7-4b34-8a0e-76bafe286275	directus_files	create	{}	\N	\N	*
+5274	f740aee0-f5f7-4b34-8a0e-76bafe286275	directus_files	read	{}	\N	\N	*
+5275	f740aee0-f5f7-4b34-8a0e-76bafe286275	directus_files	update	{}	\N	\N	*
+5276	f740aee0-f5f7-4b34-8a0e-76bafe286275	directus_files	delete	{}	\N	\N	*
+5277	f740aee0-f5f7-4b34-8a0e-76bafe286275	directus_dashboards	create	{}	\N	\N	*
+5278	f740aee0-f5f7-4b34-8a0e-76bafe286275	directus_dashboards	read	{}	\N	\N	*
+5279	f740aee0-f5f7-4b34-8a0e-76bafe286275	directus_dashboards	update	{}	\N	\N	*
+5280	f740aee0-f5f7-4b34-8a0e-76bafe286275	directus_dashboards	delete	{}	\N	\N	*
+5281	f740aee0-f5f7-4b34-8a0e-76bafe286275	directus_panels	create	{}	\N	\N	*
+5282	f740aee0-f5f7-4b34-8a0e-76bafe286275	directus_panels	read	{}	\N	\N	*
+5283	f740aee0-f5f7-4b34-8a0e-76bafe286275	directus_panels	update	{}	\N	\N	*
+5284	f740aee0-f5f7-4b34-8a0e-76bafe286275	directus_panels	delete	{}	\N	\N	*
+5285	f740aee0-f5f7-4b34-8a0e-76bafe286275	directus_folders	create	{}	\N	\N	*
+5286	f740aee0-f5f7-4b34-8a0e-76bafe286275	directus_folders	read	{}	\N	\N	*
+5287	f740aee0-f5f7-4b34-8a0e-76bafe286275	directus_folders	update	{}	\N	\N	*
+5288	f740aee0-f5f7-4b34-8a0e-76bafe286275	directus_folders	delete	{}	\N	\N	\N
+5289	f740aee0-f5f7-4b34-8a0e-76bafe286275	directus_users	read	{}	\N	\N	*
+5290	f740aee0-f5f7-4b34-8a0e-76bafe286275	directus_users	update	{"id":{"_eq":"$CURRENT_USER"}}	\N	\N	first_name,last_name,email,password,location,title,description,avatar,language,appearance,theme_light,theme_dark,theme_light_overrides,theme_dark_overrides,tfa_secret
+5291	f740aee0-f5f7-4b34-8a0e-76bafe286275	directus_roles	read	{}	\N	\N	*
+5292	f740aee0-f5f7-4b34-8a0e-76bafe286275	directus_shares	read	{"_or":[{"role":{"_eq":"$CURRENT_ROLE"}},{"role":{"_null":true}}]}	\N	\N	*
+5293	f740aee0-f5f7-4b34-8a0e-76bafe286275	directus_shares	create	{}	\N	\N	*
+5294	f740aee0-f5f7-4b34-8a0e-76bafe286275	directus_shares	update	{"user_created":{"_eq":"$CURRENT_USER"}}	\N	\N	*
+5295	f740aee0-f5f7-4b34-8a0e-76bafe286275	directus_shares	delete	{"user_created":{"_eq":"$CURRENT_USER"}}	\N	\N	*
+5296	f740aee0-f5f7-4b34-8a0e-76bafe286275	directus_flows	read	{"trigger":{"_eq":"manual"}}	\N	\N	id,status,name,icon,color,options,trigger
+5297	f740aee0-f5f7-4b34-8a0e-76bafe286275	EmailForm_translations	create	{}	{}	\N	*
+5298	f740aee0-f5f7-4b34-8a0e-76bafe286275	EmailForm_translations	read	{}	{}	\N	*
+5299	f740aee0-f5f7-4b34-8a0e-76bafe286275	EmailForm_translations	update	{}	{}	\N	*
+5300	f740aee0-f5f7-4b34-8a0e-76bafe286275	EmailForm_translations	delete	{}	{}	\N	*
+5301	f740aee0-f5f7-4b34-8a0e-76bafe286275	EmailForm_translations	share	{}	{}	\N	*
+5302	f740aee0-f5f7-4b34-8a0e-76bafe286275	event	read	{"_and":[{"city":{"_eq":11}}]}	{}	\N	*
+5303	f740aee0-f5f7-4b34-8a0e-76bafe286275	CustomSections	create	\N	{"_and":[{"city":{"_eq":11}}]}	\N	id,date_created,link,city,date_updated,translations,sort,status
+5304	f740aee0-f5f7-4b34-8a0e-76bafe286275	CustomSections_translations	create	{}	{}	\N	*
+5305	f740aee0-f5f7-4b34-8a0e-76bafe286275	CustomSections_translations	read	{}	{}	\N	*
+5306	f740aee0-f5f7-4b34-8a0e-76bafe286275	CustomSections_translations	update	{}	{}	\N	*
+5307	f740aee0-f5f7-4b34-8a0e-76bafe286275	CustomSections_translations	delete	{}	{}	\N	*
+5308	f740aee0-f5f7-4b34-8a0e-76bafe286275	CustomSections_translations	share	{}	{}	\N	*
+5309	f740aee0-f5f7-4b34-8a0e-76bafe286275	EmailForm_FormFields_translations	create	{}	{}	\N	*
+5310	f740aee0-f5f7-4b34-8a0e-76bafe286275	EmailForm_FormFields_translations	read	{}	{}	\N	*
+5311	f740aee0-f5f7-4b34-8a0e-76bafe286275	EmailForm_FormFields_translations	update	{}	{}	\N	*
+5312	f740aee0-f5f7-4b34-8a0e-76bafe286275	EmailForm_FormFields_translations	share	{}	{}	\N	*
+5313	f740aee0-f5f7-4b34-8a0e-76bafe286275	EmailForm_FormFields_translations	delete	{}	{}	\N	*
+5314	f740aee0-f5f7-4b34-8a0e-76bafe286275	SupportLinks_translations	read	{}	{}	\N	*
+5315	f740aee0-f5f7-4b34-8a0e-76bafe286275	SupportLinks_translations	update	{}	{}	\N	*
+5316	f740aee0-f5f7-4b34-8a0e-76bafe286275	SupportLinks_translations	delete	{}	{}	\N	*
+5317	f740aee0-f5f7-4b34-8a0e-76bafe286275	SupportLinks_translations	share	{}	{}	\N	*
+5318	f740aee0-f5f7-4b34-8a0e-76bafe286275	city_translations	read	{"_and":[{"city_id":{"_eq":11}}]}	{}	\N	*
+5319	f740aee0-f5f7-4b34-8a0e-76bafe286275	city_translations	update	{"_and":[{"city_id":{"_eq":11}}]}	{}	\N	*
+5320	f740aee0-f5f7-4b34-8a0e-76bafe286275	city	read	{"_and":[{"id":{"_eq":11}}]}	{}	\N	*
+5321	f740aee0-f5f7-4b34-8a0e-76bafe286275	city_translations	create	{}	{"_and":[{"city_id":{"_eq":11}}]}	\N	*
+5322	f740aee0-f5f7-4b34-8a0e-76bafe286275	SupportLinks_translations	create	{}	{}	\N	*
+5323	f740aee0-f5f7-4b34-8a0e-76bafe286275	city_translations	delete	{"_and":[{"city_id":{"_eq":11}}]}	{}	\N	*
+5324	f740aee0-f5f7-4b34-8a0e-76bafe286275	city	update	{"_and":[{"id":{"_eq":11}}]}	\N	\N	country,status,sort,supportlinks,emailForm,events,flyer,customSections,gallery,date_updated,translations,id,domainname
+5325	f740aee0-f5f7-4b34-8a0e-76bafe286275	CustomSections	delete	{"_and":[{"city":{"_eq":11}}]}	\N	\N	\N
+5326	f740aee0-f5f7-4b34-8a0e-76bafe286275	event_translations	create	{}	{}	\N	*
+5327	f740aee0-f5f7-4b34-8a0e-76bafe286275	event_translations	read	{}	{}	\N	*
+5328	f740aee0-f5f7-4b34-8a0e-76bafe286275	event_translations	update	{}	{}	\N	*
+5329	f740aee0-f5f7-4b34-8a0e-76bafe286275	event_translations	delete	{}	{}	\N	*
+5330	f740aee0-f5f7-4b34-8a0e-76bafe286275	event_translations	share	{}	{}	\N	*
+5331	f740aee0-f5f7-4b34-8a0e-76bafe286275	event	delete	{"_and":[{"city":{"_eq":11}}]}	\N	\N	\N
+5332	f740aee0-f5f7-4b34-8a0e-76bafe286275	event	share	{"_and":[{"city":{"_eq":11}}]}	\N	\N	\N
+5333	f740aee0-f5f7-4b34-8a0e-76bafe286275	CustomSections	share	{"_and":[{"city":{"_eq":11}}]}	\N	\N	\N
+5334	f740aee0-f5f7-4b34-8a0e-76bafe286275	event	update	{"_and":[{"city":{"_eq":11}}]}	\N	\N	teaser,name,status,sort,description,id,city,translations,link
+5335	f740aee0-f5f7-4b34-8a0e-76bafe286275	CustomSections	read	{"_and":[{"city":{"_eq":11}}]}	\N	\N	id,date_created,link,status,date_updated,city,translations,sort
+5336	f740aee0-f5f7-4b34-8a0e-76bafe286275	EmailForm	delete	{"_and":[{"city":{"_eq":11}}]}	\N	\N	\N
+5337	f740aee0-f5f7-4b34-8a0e-76bafe286275	SupportLinks	delete	{"_and":[{"city":{"_eq":11}}]}	\N	\N	\N
+5338	f740aee0-f5f7-4b34-8a0e-76bafe286275	languages	read	{}	{}	\N	*
+5339	f740aee0-f5f7-4b34-8a0e-76bafe286275	city_files	read	{}	{}	\N	*
+5340	f740aee0-f5f7-4b34-8a0e-76bafe286275	EmailForm_FormFields	read	{}	{}	\N	*
+5341	f740aee0-f5f7-4b34-8a0e-76bafe286275	countries	read	{}	{}	\N	*
+5342	f740aee0-f5f7-4b34-8a0e-76bafe286275	countries_translations	read	{}	{}	\N	*
+5343	f740aee0-f5f7-4b34-8a0e-76bafe286275	FormFields	read	{}	{}	\N	*
+5344	f740aee0-f5f7-4b34-8a0e-76bafe286275	city_files	update	{"_and":[{"city_id":{"_eq":11}}]}	\N	\N	id,directus_files_id,city_id
+5345	f740aee0-f5f7-4b34-8a0e-76bafe286275	SupportLinks	read	{"_and":[{"city":{"_eq":11}}]}	\N	\N	status,date_created,city,link,translations,sort,id
+5346	f740aee0-f5f7-4b34-8a0e-76bafe286275	SupportLinks	update	{"_and":[{"city":{"_eq":11}}]}	\N	\N	status,date_created,city,link,translations,sort,id
+5347	f740aee0-f5f7-4b34-8a0e-76bafe286275	EmailForm	create	\N	{"_and":[{"city":{"_eq":11}}]}	\N	id,status,date_created,translations,fields,date_updated,emailTo,sort,emailGreeting,emailBody,city
+5348	f740aee0-f5f7-4b34-8a0e-76bafe286275	EmailForm	read	{"_and":[{"city":{"_eq":11}}]}	\N	\N	date_created,status,date_updated,emailTo,sort,fields,translations,emailGreeting,emailBody,city,id
+5349	f740aee0-f5f7-4b34-8a0e-76bafe286275	EmailForm	update	{"_and":[{"city":{"_eq":11}}]}	\N	\N	status,date_created,translations,fields,date_updated,emailTo,sort,emailGreeting,emailBody,city,id
+5350	f740aee0-f5f7-4b34-8a0e-76bafe286275	city_files	create	\N	{"_and":[{"city_id":{"_eq":11}}]}	\N	id,directus_files_id,city_id
+5351	f740aee0-f5f7-4b34-8a0e-76bafe286275	SupportLinks	create	\N	{"_and":[{"city":{"_eq":11}}]}	\N	status,date_created,city,link,sort,translations,id
+5352	f740aee0-f5f7-4b34-8a0e-76bafe286275	event	create	\N	{"_and":[{"city":{"_eq":11}}]}	\N	status,sort,description,name,teaser,city,translations,link,id
+5353	f740aee0-f5f7-4b34-8a0e-76bafe286275	CustomSections	update	{"_and":[{"city":{"_eq":11}}]}	\N	\N	id,date_created,link,status,date_updated,city,sort,translations
+5354	dd19f721-4a98-4770-80cc-42d94d5521f9	directus_files	create	{}	\N	\N	*
+5355	dd19f721-4a98-4770-80cc-42d94d5521f9	directus_files	read	{}	\N	\N	*
+5356	dd19f721-4a98-4770-80cc-42d94d5521f9	directus_files	update	{}	\N	\N	*
+5357	dd19f721-4a98-4770-80cc-42d94d5521f9	directus_files	delete	{}	\N	\N	*
+5358	dd19f721-4a98-4770-80cc-42d94d5521f9	directus_dashboards	create	{}	\N	\N	*
+5359	dd19f721-4a98-4770-80cc-42d94d5521f9	directus_dashboards	read	{}	\N	\N	*
+5360	dd19f721-4a98-4770-80cc-42d94d5521f9	directus_dashboards	update	{}	\N	\N	*
+5361	dd19f721-4a98-4770-80cc-42d94d5521f9	directus_dashboards	delete	{}	\N	\N	*
+5362	dd19f721-4a98-4770-80cc-42d94d5521f9	directus_panels	create	{}	\N	\N	*
+5363	dd19f721-4a98-4770-80cc-42d94d5521f9	directus_panels	read	{}	\N	\N	*
+5364	dd19f721-4a98-4770-80cc-42d94d5521f9	directus_panels	update	{}	\N	\N	*
+5365	dd19f721-4a98-4770-80cc-42d94d5521f9	directus_panels	delete	{}	\N	\N	*
+5366	dd19f721-4a98-4770-80cc-42d94d5521f9	directus_folders	create	{}	\N	\N	*
+5367	dd19f721-4a98-4770-80cc-42d94d5521f9	directus_folders	read	{}	\N	\N	*
+5368	dd19f721-4a98-4770-80cc-42d94d5521f9	directus_folders	update	{}	\N	\N	*
+5369	dd19f721-4a98-4770-80cc-42d94d5521f9	directus_folders	delete	{}	\N	\N	\N
+5370	dd19f721-4a98-4770-80cc-42d94d5521f9	directus_users	read	{}	\N	\N	*
+5371	dd19f721-4a98-4770-80cc-42d94d5521f9	directus_users	update	{"id":{"_eq":"$CURRENT_USER"}}	\N	\N	first_name,last_name,email,password,location,title,description,avatar,language,appearance,theme_light,theme_dark,theme_light_overrides,theme_dark_overrides,tfa_secret
+5372	dd19f721-4a98-4770-80cc-42d94d5521f9	directus_roles	read	{}	\N	\N	*
+5373	dd19f721-4a98-4770-80cc-42d94d5521f9	directus_shares	read	{"_or":[{"role":{"_eq":"$CURRENT_ROLE"}},{"role":{"_null":true}}]}	\N	\N	*
+5374	dd19f721-4a98-4770-80cc-42d94d5521f9	directus_shares	create	{}	\N	\N	*
+5375	dd19f721-4a98-4770-80cc-42d94d5521f9	directus_shares	update	{"user_created":{"_eq":"$CURRENT_USER"}}	\N	\N	*
+5376	dd19f721-4a98-4770-80cc-42d94d5521f9	directus_shares	delete	{"user_created":{"_eq":"$CURRENT_USER"}}	\N	\N	*
+5377	dd19f721-4a98-4770-80cc-42d94d5521f9	directus_flows	read	{"trigger":{"_eq":"manual"}}	\N	\N	id,status,name,icon,color,options,trigger
+5378	dd19f721-4a98-4770-80cc-42d94d5521f9	EmailForm_translations	create	{}	{}	\N	*
+5379	dd19f721-4a98-4770-80cc-42d94d5521f9	EmailForm_translations	read	{}	{}	\N	*
+5380	dd19f721-4a98-4770-80cc-42d94d5521f9	EmailForm_translations	update	{}	{}	\N	*
+5381	dd19f721-4a98-4770-80cc-42d94d5521f9	EmailForm_translations	delete	{}	{}	\N	*
+5382	dd19f721-4a98-4770-80cc-42d94d5521f9	EmailForm_translations	share	{}	{}	\N	*
+5383	dd19f721-4a98-4770-80cc-42d94d5521f9	event	read	{"_and":[{"city":{"_eq":12}}]}	{}	\N	*
+5384	dd19f721-4a98-4770-80cc-42d94d5521f9	CustomSections	create	\N	{"_and":[{"city":{"_eq":12}}]}	\N	id,date_created,link,city,date_updated,translations,sort,status
+5385	dd19f721-4a98-4770-80cc-42d94d5521f9	CustomSections_translations	create	{}	{}	\N	*
+5386	dd19f721-4a98-4770-80cc-42d94d5521f9	CustomSections_translations	read	{}	{}	\N	*
+5387	dd19f721-4a98-4770-80cc-42d94d5521f9	CustomSections_translations	update	{}	{}	\N	*
+5388	dd19f721-4a98-4770-80cc-42d94d5521f9	CustomSections_translations	delete	{}	{}	\N	*
+5389	dd19f721-4a98-4770-80cc-42d94d5521f9	CustomSections_translations	share	{}	{}	\N	*
+5390	dd19f721-4a98-4770-80cc-42d94d5521f9	EmailForm_FormFields_translations	create	{}	{}	\N	*
+5391	dd19f721-4a98-4770-80cc-42d94d5521f9	EmailForm_FormFields_translations	read	{}	{}	\N	*
+5392	dd19f721-4a98-4770-80cc-42d94d5521f9	EmailForm_FormFields_translations	update	{}	{}	\N	*
+5393	dd19f721-4a98-4770-80cc-42d94d5521f9	EmailForm_FormFields_translations	share	{}	{}	\N	*
+5394	dd19f721-4a98-4770-80cc-42d94d5521f9	EmailForm_FormFields_translations	delete	{}	{}	\N	*
+5395	dd19f721-4a98-4770-80cc-42d94d5521f9	SupportLinks_translations	read	{}	{}	\N	*
+5396	dd19f721-4a98-4770-80cc-42d94d5521f9	SupportLinks_translations	update	{}	{}	\N	*
+5397	dd19f721-4a98-4770-80cc-42d94d5521f9	SupportLinks_translations	delete	{}	{}	\N	*
+5398	dd19f721-4a98-4770-80cc-42d94d5521f9	SupportLinks_translations	share	{}	{}	\N	*
+5399	dd19f721-4a98-4770-80cc-42d94d5521f9	city_translations	read	{"_and":[{"city_id":{"_eq":12}}]}	{}	\N	*
+5400	dd19f721-4a98-4770-80cc-42d94d5521f9	city_translations	update	{"_and":[{"city_id":{"_eq":12}}]}	{}	\N	*
+5401	dd19f721-4a98-4770-80cc-42d94d5521f9	city	read	{"_and":[{"id":{"_eq":12}}]}	{}	\N	*
+5402	dd19f721-4a98-4770-80cc-42d94d5521f9	city_translations	create	{}	{"_and":[{"city_id":{"_eq":12}}]}	\N	*
+5403	dd19f721-4a98-4770-80cc-42d94d5521f9	SupportLinks_translations	create	{}	{}	\N	*
+5404	dd19f721-4a98-4770-80cc-42d94d5521f9	city_translations	delete	{"_and":[{"city_id":{"_eq":12}}]}	{}	\N	*
+5405	dd19f721-4a98-4770-80cc-42d94d5521f9	city	update	{"_and":[{"id":{"_eq":12}}]}	\N	\N	country,status,sort,supportlinks,emailForm,events,flyer,customSections,gallery,date_updated,translations,id,domainname
+5406	dd19f721-4a98-4770-80cc-42d94d5521f9	CustomSections	delete	{"_and":[{"city":{"_eq":12}}]}	\N	\N	\N
+5407	dd19f721-4a98-4770-80cc-42d94d5521f9	event_translations	create	{}	{}	\N	*
+5408	dd19f721-4a98-4770-80cc-42d94d5521f9	event_translations	read	{}	{}	\N	*
+5409	dd19f721-4a98-4770-80cc-42d94d5521f9	event_translations	update	{}	{}	\N	*
+5410	dd19f721-4a98-4770-80cc-42d94d5521f9	event_translations	delete	{}	{}	\N	*
+5411	dd19f721-4a98-4770-80cc-42d94d5521f9	event_translations	share	{}	{}	\N	*
+5412	dd19f721-4a98-4770-80cc-42d94d5521f9	event	delete	{"_and":[{"city":{"_eq":12}}]}	\N	\N	\N
+5413	dd19f721-4a98-4770-80cc-42d94d5521f9	event	share	{"_and":[{"city":{"_eq":12}}]}	\N	\N	\N
+5414	dd19f721-4a98-4770-80cc-42d94d5521f9	CustomSections	share	{"_and":[{"city":{"_eq":12}}]}	\N	\N	\N
+5415	dd19f721-4a98-4770-80cc-42d94d5521f9	event	update	{"_and":[{"city":{"_eq":12}}]}	\N	\N	teaser,name,status,sort,description,id,city,translations,link
+5416	dd19f721-4a98-4770-80cc-42d94d5521f9	CustomSections	read	{"_and":[{"city":{"_eq":12}}]}	\N	\N	id,date_created,link,status,date_updated,city,translations,sort
+5417	dd19f721-4a98-4770-80cc-42d94d5521f9	EmailForm	delete	{"_and":[{"city":{"_eq":12}}]}	\N	\N	\N
+5418	dd19f721-4a98-4770-80cc-42d94d5521f9	SupportLinks	delete	{"_and":[{"city":{"_eq":12}}]}	\N	\N	\N
+5419	dd19f721-4a98-4770-80cc-42d94d5521f9	languages	read	{}	{}	\N	*
+5420	dd19f721-4a98-4770-80cc-42d94d5521f9	city_files	read	{}	{}	\N	*
+5421	dd19f721-4a98-4770-80cc-42d94d5521f9	EmailForm_FormFields	read	{}	{}	\N	*
+5422	dd19f721-4a98-4770-80cc-42d94d5521f9	countries	read	{}	{}	\N	*
+5423	dd19f721-4a98-4770-80cc-42d94d5521f9	countries_translations	read	{}	{}	\N	*
+5424	dd19f721-4a98-4770-80cc-42d94d5521f9	FormFields	read	{}	{}	\N	*
+5425	dd19f721-4a98-4770-80cc-42d94d5521f9	city_files	update	{"_and":[{"city_id":{"_eq":12}}]}	\N	\N	id,directus_files_id,city_id
+5426	dd19f721-4a98-4770-80cc-42d94d5521f9	SupportLinks	read	{"_and":[{"city":{"_eq":12}}]}	\N	\N	status,date_created,city,link,translations,sort,id
+5427	dd19f721-4a98-4770-80cc-42d94d5521f9	SupportLinks	update	{"_and":[{"city":{"_eq":12}}]}	\N	\N	status,date_created,city,link,translations,sort,id
+5428	dd19f721-4a98-4770-80cc-42d94d5521f9	EmailForm	create	\N	{"_and":[{"city":{"_eq":12}}]}	\N	id,status,date_created,translations,fields,date_updated,emailTo,sort,emailGreeting,emailBody,city
+5429	dd19f721-4a98-4770-80cc-42d94d5521f9	EmailForm	read	{"_and":[{"city":{"_eq":12}}]}	\N	\N	date_created,status,date_updated,emailTo,sort,fields,translations,emailGreeting,emailBody,city,id
+5430	dd19f721-4a98-4770-80cc-42d94d5521f9	EmailForm	update	{"_and":[{"city":{"_eq":12}}]}	\N	\N	status,date_created,translations,fields,date_updated,emailTo,sort,emailGreeting,emailBody,city,id
+5431	dd19f721-4a98-4770-80cc-42d94d5521f9	city_files	create	\N	{"_and":[{"city_id":{"_eq":12}}]}	\N	id,directus_files_id,city_id
+5432	dd19f721-4a98-4770-80cc-42d94d5521f9	SupportLinks	create	\N	{"_and":[{"city":{"_eq":12}}]}	\N	status,date_created,city,link,sort,translations,id
+5433	dd19f721-4a98-4770-80cc-42d94d5521f9	event	create	\N	{"_and":[{"city":{"_eq":12}}]}	\N	status,sort,description,name,teaser,city,translations,link,id
+5434	dd19f721-4a98-4770-80cc-42d94d5521f9	CustomSections	update	{"_and":[{"city":{"_eq":12}}]}	\N	\N	id,date_created,link,status,date_updated,city,sort,translations
+5435	a26a0b08-fbdf-4008-af08-52cda78b47cf	directus_files	create	{}	\N	\N	*
+5436	a26a0b08-fbdf-4008-af08-52cda78b47cf	directus_files	read	{}	\N	\N	*
+5437	a26a0b08-fbdf-4008-af08-52cda78b47cf	directus_files	update	{}	\N	\N	*
+5438	a26a0b08-fbdf-4008-af08-52cda78b47cf	directus_files	delete	{}	\N	\N	*
+5439	a26a0b08-fbdf-4008-af08-52cda78b47cf	directus_dashboards	create	{}	\N	\N	*
+5440	a26a0b08-fbdf-4008-af08-52cda78b47cf	directus_dashboards	read	{}	\N	\N	*
+5441	a26a0b08-fbdf-4008-af08-52cda78b47cf	directus_dashboards	update	{}	\N	\N	*
+5442	a26a0b08-fbdf-4008-af08-52cda78b47cf	directus_dashboards	delete	{}	\N	\N	*
+5443	a26a0b08-fbdf-4008-af08-52cda78b47cf	directus_panels	create	{}	\N	\N	*
+5444	a26a0b08-fbdf-4008-af08-52cda78b47cf	directus_panels	read	{}	\N	\N	*
+5445	a26a0b08-fbdf-4008-af08-52cda78b47cf	directus_panels	update	{}	\N	\N	*
+5446	a26a0b08-fbdf-4008-af08-52cda78b47cf	directus_panels	delete	{}	\N	\N	*
+5447	a26a0b08-fbdf-4008-af08-52cda78b47cf	directus_folders	create	{}	\N	\N	*
+5448	a26a0b08-fbdf-4008-af08-52cda78b47cf	directus_folders	read	{}	\N	\N	*
+5449	a26a0b08-fbdf-4008-af08-52cda78b47cf	directus_folders	update	{}	\N	\N	*
+5450	a26a0b08-fbdf-4008-af08-52cda78b47cf	directus_folders	delete	{}	\N	\N	\N
+5451	a26a0b08-fbdf-4008-af08-52cda78b47cf	directus_users	read	{}	\N	\N	*
+5452	a26a0b08-fbdf-4008-af08-52cda78b47cf	directus_users	update	{"id":{"_eq":"$CURRENT_USER"}}	\N	\N	first_name,last_name,email,password,location,title,description,avatar,language,appearance,theme_light,theme_dark,theme_light_overrides,theme_dark_overrides,tfa_secret
+5453	a26a0b08-fbdf-4008-af08-52cda78b47cf	directus_roles	read	{}	\N	\N	*
+5454	a26a0b08-fbdf-4008-af08-52cda78b47cf	directus_shares	read	{"_or":[{"role":{"_eq":"$CURRENT_ROLE"}},{"role":{"_null":true}}]}	\N	\N	*
+5455	a26a0b08-fbdf-4008-af08-52cda78b47cf	directus_shares	create	{}	\N	\N	*
+5456	a26a0b08-fbdf-4008-af08-52cda78b47cf	directus_shares	update	{"user_created":{"_eq":"$CURRENT_USER"}}	\N	\N	*
+5457	a26a0b08-fbdf-4008-af08-52cda78b47cf	directus_shares	delete	{"user_created":{"_eq":"$CURRENT_USER"}}	\N	\N	*
+5458	a26a0b08-fbdf-4008-af08-52cda78b47cf	directus_flows	read	{"trigger":{"_eq":"manual"}}	\N	\N	id,status,name,icon,color,options,trigger
+5459	a26a0b08-fbdf-4008-af08-52cda78b47cf	EmailForm_translations	create	{}	{}	\N	*
+5460	a26a0b08-fbdf-4008-af08-52cda78b47cf	EmailForm_translations	read	{}	{}	\N	*
+5461	a26a0b08-fbdf-4008-af08-52cda78b47cf	EmailForm_translations	update	{}	{}	\N	*
+5462	a26a0b08-fbdf-4008-af08-52cda78b47cf	EmailForm_translations	delete	{}	{}	\N	*
+5463	a26a0b08-fbdf-4008-af08-52cda78b47cf	EmailForm_translations	share	{}	{}	\N	*
+5464	a26a0b08-fbdf-4008-af08-52cda78b47cf	event	read	{"_and":[{"city":{"_eq":13}}]}	{}	\N	*
+5465	a26a0b08-fbdf-4008-af08-52cda78b47cf	CustomSections	create	\N	{"_and":[{"city":{"_eq":13}}]}	\N	id,date_created,link,city,date_updated,translations,sort,status
+5466	a26a0b08-fbdf-4008-af08-52cda78b47cf	CustomSections_translations	create	{}	{}	\N	*
+5467	a26a0b08-fbdf-4008-af08-52cda78b47cf	CustomSections_translations	read	{}	{}	\N	*
+5468	a26a0b08-fbdf-4008-af08-52cda78b47cf	CustomSections_translations	update	{}	{}	\N	*
+5469	a26a0b08-fbdf-4008-af08-52cda78b47cf	CustomSections_translations	delete	{}	{}	\N	*
+5470	a26a0b08-fbdf-4008-af08-52cda78b47cf	CustomSections_translations	share	{}	{}	\N	*
+5471	a26a0b08-fbdf-4008-af08-52cda78b47cf	EmailForm_FormFields_translations	create	{}	{}	\N	*
+5472	a26a0b08-fbdf-4008-af08-52cda78b47cf	EmailForm_FormFields_translations	read	{}	{}	\N	*
+5473	a26a0b08-fbdf-4008-af08-52cda78b47cf	EmailForm_FormFields_translations	update	{}	{}	\N	*
+5474	a26a0b08-fbdf-4008-af08-52cda78b47cf	EmailForm_FormFields_translations	share	{}	{}	\N	*
+5475	a26a0b08-fbdf-4008-af08-52cda78b47cf	EmailForm_FormFields_translations	delete	{}	{}	\N	*
+5476	a26a0b08-fbdf-4008-af08-52cda78b47cf	SupportLinks_translations	read	{}	{}	\N	*
+5477	a26a0b08-fbdf-4008-af08-52cda78b47cf	SupportLinks_translations	update	{}	{}	\N	*
+5478	a26a0b08-fbdf-4008-af08-52cda78b47cf	SupportLinks_translations	delete	{}	{}	\N	*
+5479	a26a0b08-fbdf-4008-af08-52cda78b47cf	SupportLinks_translations	share	{}	{}	\N	*
+5480	a26a0b08-fbdf-4008-af08-52cda78b47cf	city_translations	read	{"_and":[{"city_id":{"_eq":13}}]}	{}	\N	*
+5481	a26a0b08-fbdf-4008-af08-52cda78b47cf	city_translations	update	{"_and":[{"city_id":{"_eq":13}}]}	{}	\N	*
+5482	a26a0b08-fbdf-4008-af08-52cda78b47cf	city	read	{"_and":[{"id":{"_eq":13}}]}	{}	\N	*
+5483	a26a0b08-fbdf-4008-af08-52cda78b47cf	city_translations	create	{}	{"_and":[{"city_id":{"_eq":13}}]}	\N	*
+5484	a26a0b08-fbdf-4008-af08-52cda78b47cf	SupportLinks_translations	create	{}	{}	\N	*
+5485	a26a0b08-fbdf-4008-af08-52cda78b47cf	city_translations	delete	{"_and":[{"city_id":{"_eq":13}}]}	{}	\N	*
+5486	a26a0b08-fbdf-4008-af08-52cda78b47cf	city	update	{"_and":[{"id":{"_eq":13}}]}	\N	\N	country,status,sort,supportlinks,emailForm,events,flyer,customSections,gallery,date_updated,translations,id,domainname
+5487	a26a0b08-fbdf-4008-af08-52cda78b47cf	CustomSections	delete	{"_and":[{"city":{"_eq":13}}]}	\N	\N	\N
+5488	a26a0b08-fbdf-4008-af08-52cda78b47cf	event_translations	create	{}	{}	\N	*
+5489	a26a0b08-fbdf-4008-af08-52cda78b47cf	event_translations	read	{}	{}	\N	*
+5490	a26a0b08-fbdf-4008-af08-52cda78b47cf	event_translations	update	{}	{}	\N	*
+5491	a26a0b08-fbdf-4008-af08-52cda78b47cf	event_translations	delete	{}	{}	\N	*
+5492	a26a0b08-fbdf-4008-af08-52cda78b47cf	event_translations	share	{}	{}	\N	*
+5493	a26a0b08-fbdf-4008-af08-52cda78b47cf	event	delete	{"_and":[{"city":{"_eq":13}}]}	\N	\N	\N
+5494	a26a0b08-fbdf-4008-af08-52cda78b47cf	event	share	{"_and":[{"city":{"_eq":13}}]}	\N	\N	\N
+5495	a26a0b08-fbdf-4008-af08-52cda78b47cf	CustomSections	share	{"_and":[{"city":{"_eq":13}}]}	\N	\N	\N
+5496	a26a0b08-fbdf-4008-af08-52cda78b47cf	event	update	{"_and":[{"city":{"_eq":13}}]}	\N	\N	teaser,name,status,sort,description,id,city,translations,link
+5497	a26a0b08-fbdf-4008-af08-52cda78b47cf	CustomSections	read	{"_and":[{"city":{"_eq":13}}]}	\N	\N	id,date_created,link,status,date_updated,city,translations,sort
+5498	a26a0b08-fbdf-4008-af08-52cda78b47cf	EmailForm	delete	{"_and":[{"city":{"_eq":13}}]}	\N	\N	\N
+5499	a26a0b08-fbdf-4008-af08-52cda78b47cf	SupportLinks	delete	{"_and":[{"city":{"_eq":13}}]}	\N	\N	\N
+5500	a26a0b08-fbdf-4008-af08-52cda78b47cf	languages	read	{}	{}	\N	*
+5501	a26a0b08-fbdf-4008-af08-52cda78b47cf	city_files	read	{}	{}	\N	*
+5502	a26a0b08-fbdf-4008-af08-52cda78b47cf	EmailForm_FormFields	read	{}	{}	\N	*
+5503	a26a0b08-fbdf-4008-af08-52cda78b47cf	countries	read	{}	{}	\N	*
+5504	a26a0b08-fbdf-4008-af08-52cda78b47cf	countries_translations	read	{}	{}	\N	*
+5505	a26a0b08-fbdf-4008-af08-52cda78b47cf	FormFields	read	{}	{}	\N	*
+5506	a26a0b08-fbdf-4008-af08-52cda78b47cf	city_files	update	{"_and":[{"city_id":{"_eq":13}}]}	\N	\N	id,directus_files_id,city_id
+5507	a26a0b08-fbdf-4008-af08-52cda78b47cf	SupportLinks	read	{"_and":[{"city":{"_eq":13}}]}	\N	\N	status,date_created,city,link,translations,sort,id
+5508	a26a0b08-fbdf-4008-af08-52cda78b47cf	SupportLinks	update	{"_and":[{"city":{"_eq":13}}]}	\N	\N	status,date_created,city,link,translations,sort,id
+5509	a26a0b08-fbdf-4008-af08-52cda78b47cf	EmailForm	create	\N	{"_and":[{"city":{"_eq":13}}]}	\N	id,status,date_created,translations,fields,date_updated,emailTo,sort,emailGreeting,emailBody,city
+5510	a26a0b08-fbdf-4008-af08-52cda78b47cf	EmailForm	read	{"_and":[{"city":{"_eq":13}}]}	\N	\N	date_created,status,date_updated,emailTo,sort,fields,translations,emailGreeting,emailBody,city,id
+5511	a26a0b08-fbdf-4008-af08-52cda78b47cf	EmailForm	update	{"_and":[{"city":{"_eq":13}}]}	\N	\N	status,date_created,translations,fields,date_updated,emailTo,sort,emailGreeting,emailBody,city,id
+5512	a26a0b08-fbdf-4008-af08-52cda78b47cf	city_files	create	\N	{"_and":[{"city_id":{"_eq":13}}]}	\N	id,directus_files_id,city_id
+5513	a26a0b08-fbdf-4008-af08-52cda78b47cf	SupportLinks	create	\N	{"_and":[{"city":{"_eq":13}}]}	\N	status,date_created,city,link,sort,translations,id
+5514	a26a0b08-fbdf-4008-af08-52cda78b47cf	event	create	\N	{"_and":[{"city":{"_eq":13}}]}	\N	status,sort,description,name,teaser,city,translations,link,id
+5515	a26a0b08-fbdf-4008-af08-52cda78b47cf	CustomSections	update	{"_and":[{"city":{"_eq":13}}]}	\N	\N	id,date_created,link,status,date_updated,city,sort,translations
+5516	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	directus_files	create	{}	\N	\N	*
+5517	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	directus_files	read	{}	\N	\N	*
+5518	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	directus_files	update	{}	\N	\N	*
+5519	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	directus_files	delete	{}	\N	\N	*
+5520	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	directus_dashboards	create	{}	\N	\N	*
+5521	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	directus_dashboards	read	{}	\N	\N	*
+5522	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	directus_dashboards	update	{}	\N	\N	*
+5523	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	directus_dashboards	delete	{}	\N	\N	*
+5524	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	directus_panels	create	{}	\N	\N	*
+5525	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	directus_panels	read	{}	\N	\N	*
+5526	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	directus_panels	update	{}	\N	\N	*
+5527	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	directus_panels	delete	{}	\N	\N	*
+5528	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	directus_folders	create	{}	\N	\N	*
+5529	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	directus_folders	read	{}	\N	\N	*
+5530	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	directus_folders	update	{}	\N	\N	*
+5531	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	directus_folders	delete	{}	\N	\N	\N
+5532	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	directus_users	read	{}	\N	\N	*
+5533	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	directus_users	update	{"id":{"_eq":"$CURRENT_USER"}}	\N	\N	first_name,last_name,email,password,location,title,description,avatar,language,appearance,theme_light,theme_dark,theme_light_overrides,theme_dark_overrides,tfa_secret
+5534	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	directus_roles	read	{}	\N	\N	*
+5535	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	directus_shares	read	{"_or":[{"role":{"_eq":"$CURRENT_ROLE"}},{"role":{"_null":true}}]}	\N	\N	*
+5536	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	directus_shares	create	{}	\N	\N	*
+5537	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	directus_shares	update	{"user_created":{"_eq":"$CURRENT_USER"}}	\N	\N	*
+5538	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	directus_shares	delete	{"user_created":{"_eq":"$CURRENT_USER"}}	\N	\N	*
+5539	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	directus_flows	read	{"trigger":{"_eq":"manual"}}	\N	\N	id,status,name,icon,color,options,trigger
+5540	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	EmailForm_translations	create	{}	{}	\N	*
+5541	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	EmailForm_translations	read	{}	{}	\N	*
+5542	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	EmailForm_translations	update	{}	{}	\N	*
+5543	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	EmailForm_translations	delete	{}	{}	\N	*
+5544	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	EmailForm_translations	share	{}	{}	\N	*
+5545	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	event	read	{"_and":[{"city":{"_eq":14}}]}	{}	\N	*
+5546	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	CustomSections	create	\N	{"_and":[{"city":{"_eq":14}}]}	\N	id,date_created,link,city,date_updated,translations,sort,status
+5547	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	CustomSections_translations	create	{}	{}	\N	*
+5548	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	CustomSections_translations	read	{}	{}	\N	*
+5549	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	CustomSections_translations	update	{}	{}	\N	*
+5550	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	CustomSections_translations	delete	{}	{}	\N	*
+5551	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	CustomSections_translations	share	{}	{}	\N	*
+5552	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	EmailForm_FormFields_translations	create	{}	{}	\N	*
+5553	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	EmailForm_FormFields_translations	read	{}	{}	\N	*
+5554	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	EmailForm_FormFields_translations	update	{}	{}	\N	*
+5555	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	EmailForm_FormFields_translations	share	{}	{}	\N	*
+5556	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	EmailForm_FormFields_translations	delete	{}	{}	\N	*
+5557	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	SupportLinks_translations	read	{}	{}	\N	*
+5558	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	SupportLinks_translations	update	{}	{}	\N	*
+5559	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	SupportLinks_translations	delete	{}	{}	\N	*
+5560	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	SupportLinks_translations	share	{}	{}	\N	*
+5561	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	city_translations	read	{"_and":[{"city_id":{"_eq":14}}]}	{}	\N	*
+5562	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	city_translations	update	{"_and":[{"city_id":{"_eq":14}}]}	{}	\N	*
+5563	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	city	read	{"_and":[{"id":{"_eq":14}}]}	{}	\N	*
+5564	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	city_translations	create	{}	{"_and":[{"city_id":{"_eq":14}}]}	\N	*
+5565	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	SupportLinks_translations	create	{}	{}	\N	*
+5566	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	city_translations	delete	{"_and":[{"city_id":{"_eq":14}}]}	{}	\N	*
+5567	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	city	update	{"_and":[{"id":{"_eq":14}}]}	\N	\N	country,status,sort,supportlinks,emailForm,events,flyer,customSections,gallery,date_updated,translations,id,domainname
+5568	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	CustomSections	delete	{"_and":[{"city":{"_eq":14}}]}	\N	\N	\N
+5569	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	event_translations	create	{}	{}	\N	*
+5570	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	event_translations	read	{}	{}	\N	*
+5571	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	event_translations	update	{}	{}	\N	*
+5572	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	event_translations	delete	{}	{}	\N	*
+5573	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	event_translations	share	{}	{}	\N	*
+5574	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	event	delete	{"_and":[{"city":{"_eq":14}}]}	\N	\N	\N
+5575	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	event	share	{"_and":[{"city":{"_eq":14}}]}	\N	\N	\N
+5576	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	CustomSections	share	{"_and":[{"city":{"_eq":14}}]}	\N	\N	\N
+5577	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	event	update	{"_and":[{"city":{"_eq":14}}]}	\N	\N	teaser,name,status,sort,description,id,city,translations,link
+5578	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	CustomSections	read	{"_and":[{"city":{"_eq":14}}]}	\N	\N	id,date_created,link,status,date_updated,city,translations,sort
+5579	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	EmailForm	delete	{"_and":[{"city":{"_eq":14}}]}	\N	\N	\N
+132	68c58399-f145-49aa-9db1-ee94c793b427	SupportLinks	create	\N	{"_and":[{"city":{"_eq":"1"}}]}	\N	status,date_created,city,link,sort,translations,id
+33	68c58399-f145-49aa-9db1-ee94c793b427	event	create	\N	{"_and":[{"city":{"_eq":"1"}}]}	\N	status,sort,description,name,teaser,city,translations,link,id
+116	68c58399-f145-49aa-9db1-ee94c793b427	CustomSections	update	{"_and":[{"city":{"_eq":"1"}}]}	\N	\N	id,date_created,link,status,date_updated,city,sort,translations
+5580	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	SupportLinks	delete	{"_and":[{"city":{"_eq":14}}]}	\N	\N	\N
+5581	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	languages	read	{}	{}	\N	*
+5582	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	city_files	read	{}	{}	\N	*
+5583	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	EmailForm_FormFields	read	{}	{}	\N	*
+5584	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	countries	read	{}	{}	\N	*
+5585	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	countries_translations	read	{}	{}	\N	*
+5586	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	FormFields	read	{}	{}	\N	*
+5587	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	city_files	update	{"_and":[{"city_id":{"_eq":14}}]}	\N	\N	id,directus_files_id,city_id
+5588	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	SupportLinks	read	{"_and":[{"city":{"_eq":14}}]}	\N	\N	status,date_created,city,link,translations,sort,id
+5589	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	SupportLinks	update	{"_and":[{"city":{"_eq":14}}]}	\N	\N	status,date_created,city,link,translations,sort,id
+5590	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	EmailForm	create	\N	{"_and":[{"city":{"_eq":14}}]}	\N	id,status,date_created,translations,fields,date_updated,emailTo,sort,emailGreeting,emailBody,city
+5591	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	EmailForm	read	{"_and":[{"city":{"_eq":14}}]}	\N	\N	date_created,status,date_updated,emailTo,sort,fields,translations,emailGreeting,emailBody,city,id
+5592	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	EmailForm	update	{"_and":[{"city":{"_eq":14}}]}	\N	\N	status,date_created,translations,fields,date_updated,emailTo,sort,emailGreeting,emailBody,city,id
+5593	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	city_files	create	\N	{"_and":[{"city_id":{"_eq":14}}]}	\N	id,directus_files_id,city_id
+5594	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	SupportLinks	create	\N	{"_and":[{"city":{"_eq":14}}]}	\N	status,date_created,city,link,sort,translations,id
+5595	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	event	create	\N	{"_and":[{"city":{"_eq":14}}]}	\N	status,sort,description,name,teaser,city,translations,link,id
+5596	b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	CustomSections	update	{"_and":[{"city":{"_eq":14}}]}	\N	\N	id,date_created,link,status,date_updated,city,sort,translations
+5597	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	directus_files	create	{}	\N	\N	*
+5598	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	directus_files	read	{}	\N	\N	*
+5599	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	directus_files	update	{}	\N	\N	*
+5600	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	directus_files	delete	{}	\N	\N	*
+5601	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	directus_dashboards	create	{}	\N	\N	*
+5602	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	directus_dashboards	read	{}	\N	\N	*
+5603	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	directus_dashboards	update	{}	\N	\N	*
+5604	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	directus_dashboards	delete	{}	\N	\N	*
+5605	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	directus_panels	create	{}	\N	\N	*
+5606	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	directus_panels	read	{}	\N	\N	*
+5607	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	directus_panels	update	{}	\N	\N	*
+5608	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	directus_panels	delete	{}	\N	\N	*
+5609	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	directus_folders	create	{}	\N	\N	*
+5610	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	directus_folders	read	{}	\N	\N	*
+5611	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	directus_folders	update	{}	\N	\N	*
+5612	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	directus_folders	delete	{}	\N	\N	\N
+5613	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	directus_users	read	{}	\N	\N	*
+5614	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	directus_users	update	{"id":{"_eq":"$CURRENT_USER"}}	\N	\N	first_name,last_name,email,password,location,title,description,avatar,language,appearance,theme_light,theme_dark,theme_light_overrides,theme_dark_overrides,tfa_secret
+5615	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	directus_roles	read	{}	\N	\N	*
+5616	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	directus_shares	read	{"_or":[{"role":{"_eq":"$CURRENT_ROLE"}},{"role":{"_null":true}}]}	\N	\N	*
+5617	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	directus_shares	create	{}	\N	\N	*
+5618	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	directus_shares	update	{"user_created":{"_eq":"$CURRENT_USER"}}	\N	\N	*
+5619	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	directus_shares	delete	{"user_created":{"_eq":"$CURRENT_USER"}}	\N	\N	*
+5620	bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	directus_flows	read	{"trigger":{"_eq":"manual"}}	\N	\N	id,status,name,icon,color,options,trigger
+5754	cf1f4250-ccba-4734-a984-4edc3b98bbc8	EmailForm	update	{"_and":[{"city":{"_eq":1}}]}	\N	\N	status,date_created,translations,fields,date_updated,emailTo,sort,emailGreeting,emailBody,city,id
+5755	cf1f4250-ccba-4734-a984-4edc3b98bbc8	city_files	create	\N	{"_and":[{"city_id":{"_eq":1}}]}	\N	id,directus_files_id,city_id
+5756	cf1f4250-ccba-4734-a984-4edc3b98bbc8	SupportLinks	create	\N	{"_and":[{"city":{"_eq":1}}]}	\N	status,date_created,city,link,sort,translations,id
+5757	cf1f4250-ccba-4734-a984-4edc3b98bbc8	event	create	\N	{"_and":[{"city":{"_eq":1}}]}	\N	status,sort,description,name,teaser,city,translations,link,id
+5758	cf1f4250-ccba-4734-a984-4edc3b98bbc8	CustomSections	update	{"_and":[{"city":{"_eq":1}}]}	\N	\N	id,date_created,link,status,date_updated,city,sort,translations
 \.
 
 
@@ -3652,6 +4846,7 @@ COPY public.directus_presets (id, bookmark, "user", role, collection, search, la
 1	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	\N	languages	\N	\N	{"tabular":{"page":1}}	\N	\N	\N	bookmark	\N
 6	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	\N	EmailForm	\N	\N	{"tabular":{"page":1,"fields":["emailTo","fields","status","translations"]}}	{"tabular":{"widths":{"translations":256.5}}}	\N	\N	bookmark	\N
 5	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	\N	directus_files	\N	cards	{"cards":{"sort":["-uploaded_on"],"page":1}}	{"cards":{"icon":"insert_drive_file","title":"{{ title }}","subtitle":"{{ type }} • {{ filesize }}","size":4,"imageFit":"crop"}}	\N	\N	bookmark	\N
+7	\N	db513aee-cd3a-47a9-95e5-a98f1cc92d13	\N	directus_users	\N	cards	{"cards":{"sort":["email"],"page":1}}	{"cards":{"icon":"account_circle","title":"{{ first_name }} {{ last_name }}","subtitle":"{{ email }}","size":4}}	\N	\N	bookmark	\N
 \.
 
 
@@ -4371,6 +5566,7 @@ COPY public.directus_revisions (id, activity, collection, item, data, delta, par
 692	776	directus_flows	fdcaf62f-a842-492d-9e73-c719f558a149	{"steps":[{"operation":"4a75c41a-1b24-48bc-b4d9-9f4f39bfa9e1","key":"mail_vy7n5","status":"reject","options":{"subject":"neue Bestellung","body":{"Flaggentyp":"awdawd","Betrag":"2","Next Day Delivery?":"on"},"to":"gannonline90@gmail.com"}}],"data":{"$trigger":{"path":"/trigger/fdcaf62f-a842-492d-9e73-c719f558a149","query":{},"body":{"values":{"Flaggentyp":"awdawd","Betrag":"2","Next Day Delivery?":"on"},"emailTo":"gannonline90@gmail.com","subject":"neue Bestellung"},"method":"POST","headers":{"host":"localhost:8055","connection":"keep-alive","content-length":"136","pragma":"no-cache","cache-control":"no-cache","sec-ch-ua":"\\"Not A(Brand\\";v=\\"99\\", \\"Google Chrome\\";v=\\"121\\", \\"Chromium\\";v=\\"121\\"","sec-ch-ua-platform":"\\"Linux\\"","sec-ch-ua-mobile":"?0","user-agent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36","content-type":"application/json","accept":"*/*","origin":"http://localhost:1234","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:1234/","accept-encoding":"gzip, deflate, br","accept-language":""}},"$last":{"name":"Error","message":"write EPIPE"},"$accountability":{"user":null,"role":null,"admin":false,"app":false,"ip":"172.21.0.1","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36","origin":"http://localhost:1234"},"$env":{},"mail_vy7n5":{"name":"Error","message":"write EPIPE"}}}	\N	\N	\N
 693	777	directus_flows	fdcaf62f-a842-492d-9e73-c719f558a149	{"steps":[{"operation":"4a75c41a-1b24-48bc-b4d9-9f4f39bfa9e1","key":"mail_vy7n5","status":"reject","options":{"subject":"neue Bestellung","body":{"Flaggentyp":"awdawd","Betrag":"2","Next Day Delivery?":"on"},"to":"gannonline90@gmail.com"}}],"data":{"$trigger":{"path":"/trigger/fdcaf62f-a842-492d-9e73-c719f558a149","query":{},"body":{"values":{"Flaggentyp":"awdawd","Betrag":"2","Next Day Delivery?":"on"},"emailTo":"gannonline90@gmail.com","subject":"neue Bestellung"},"method":"POST","headers":{"host":"localhost:8055","connection":"keep-alive","content-length":"136","pragma":"no-cache","cache-control":"no-cache","sec-ch-ua":"\\"Not A(Brand\\";v=\\"99\\", \\"Google Chrome\\";v=\\"121\\", \\"Chromium\\";v=\\"121\\"","sec-ch-ua-platform":"\\"Linux\\"","sec-ch-ua-mobile":"?0","user-agent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36","content-type":"application/json","accept":"*/*","origin":"http://localhost:1234","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:1234/","accept-encoding":"gzip, deflate, br","accept-language":""}},"$last":{"name":"Error","message":"write EPIPE"},"$accountability":{"user":null,"role":null,"admin":false,"app":false,"ip":"172.21.0.1","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36","origin":"http://localhost:1234"},"$env":{},"mail_vy7n5":{"name":"Error","message":"write EPIPE"}}}	\N	\N	\N
 787	914	city_files	39	{"city_id":"2","directus_files_id":{"id":"7bbf3ce8-3443-4a82-9530-c0f48a73fa82"}}	{"city_id":"2","directus_files_id":{"id":"7bbf3ce8-3443-4a82-9530-c0f48a73fa82"}}	788	\N
+1208	1364	directus_users	b72f0403-29be-4440-8e53-bf50ecb3439e	{"first_name":"John","last_name":"Gannon","email":"johgannon@gmail.com","password":"**********"}	{"first_name":"John","last_name":"Gannon","email":"johgannon@gmail.com","password":"**********"}	\N	\N
 694	783	directus_flows	fdcaf62f-a842-492d-9e73-c719f558a149	{"steps":[{"operation":"4a75c41a-1b24-48bc-b4d9-9f4f39bfa9e1","key":"mail_vy7n5","status":"reject","options":{"subject":"neue Bestellung","body":{"Flaggentyp":"awdawd","Betrag":"2","Next Day Delivery?":"on"},"to":"gannonline90@gmail.com"}}],"data":{"$trigger":{"path":"/trigger/fdcaf62f-a842-492d-9e73-c719f558a149","query":{},"body":{"values":{"Flaggentyp":"awdawd","Betrag":"2","Next Day Delivery?":"on"},"emailTo":"gannonline90@gmail.com","subject":"neue Bestellung"},"method":"POST","headers":{"host":"localhost:8055","connection":"keep-alive","content-length":"136","pragma":"no-cache","cache-control":"no-cache","sec-ch-ua":"\\"Not A(Brand\\";v=\\"99\\", \\"Google Chrome\\";v=\\"121\\", \\"Chromium\\";v=\\"121\\"","sec-ch-ua-platform":"\\"Linux\\"","sec-ch-ua-mobile":"?0","user-agent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36","content-type":"application/json","accept":"*/*","origin":"http://localhost:1234","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:1234/","accept-encoding":"gzip, deflate, br","accept-language":""}},"$last":{"name":"Error","message":"write EPIPE"},"$accountability":{"user":null,"role":null,"admin":false,"app":false,"ip":"172.21.0.1","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36","origin":"http://localhost:1234"},"$env":{},"mail_vy7n5":{"name":"Error","message":"write EPIPE"}}}	\N	\N	\N
 695	785	directus_flows	fdcaf62f-a842-492d-9e73-c719f558a149	{"steps":[{"operation":"4a75c41a-1b24-48bc-b4d9-9f4f39bfa9e1","key":"mail_vy7n5","status":"resolve","options":{"subject":"neue Bestellung","body":{"Flaggentyp":"awdawd","Betrag":"2","Next Day Delivery?":"on"},"to":"gannonline90@gmail.com"}}],"data":{"$trigger":{"path":"/trigger/fdcaf62f-a842-492d-9e73-c719f558a149","query":{},"body":{"values":{"Flaggentyp":"awdawd","Betrag":"2","Next Day Delivery?":"on"},"emailTo":"gannonline90@gmail.com","subject":"neue Bestellung"},"method":"POST","headers":{"host":"localhost:8055","connection":"keep-alive","content-length":"136","pragma":"no-cache","cache-control":"no-cache","sec-ch-ua":"\\"Not A(Brand\\";v=\\"99\\", \\"Google Chrome\\";v=\\"121\\", \\"Chromium\\";v=\\"121\\"","sec-ch-ua-platform":"\\"Linux\\"","sec-ch-ua-mobile":"?0","user-agent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36","content-type":"application/json","accept":"*/*","origin":"http://localhost:1234","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:1234/","accept-encoding":"gzip, deflate, br","accept-language":""}},"$last":null,"$accountability":{"user":null,"role":null,"admin":false,"app":false,"ip":"172.21.0.1","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36","origin":"http://localhost:1234"},"$env":{},"mail_vy7n5":null}}	\N	\N	\N
 697	787	directus_flows	fdcaf62f-a842-492d-9e73-c719f558a149	{"steps":[{"operation":"4a75c41a-1b24-48bc-b4d9-9f4f39bfa9e1","key":"mail_vy7n5","status":"resolve","options":{"subject":"neue Bestellung","body":{"Flaggentyp":"I wonder if you get this, if you do, this is the prototype of the email sending feature","Betrag":"2","Next Day Delivery?":"on"},"to":"gannonline90@gmail.com"}}],"data":{"$trigger":{"path":"/trigger/fdcaf62f-a842-492d-9e73-c719f558a149","query":{},"body":{"values":{"Flaggentyp":"I wonder if you get this, if you do, this is the prototype of the email sending feature","Betrag":"2","Next Day Delivery?":"on"},"emailTo":"gannonline90@gmail.com","subject":"neue Bestellung"},"method":"POST","headers":{"host":"localhost:8055","connection":"keep-alive","content-length":"217","pragma":"no-cache","cache-control":"no-cache","sec-ch-ua":"\\"Not A(Brand\\";v=\\"99\\", \\"Google Chrome\\";v=\\"121\\", \\"Chromium\\";v=\\"121\\"","sec-ch-ua-platform":"\\"Linux\\"","sec-ch-ua-mobile":"?0","user-agent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36","content-type":"application/json","accept":"*/*","origin":"http://localhost:1234","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:1234/","accept-encoding":"gzip, deflate, br","accept-language":""}},"$last":null,"$accountability":{"user":null,"role":null,"admin":false,"app":false,"ip":"172.21.0.1","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36","origin":"http://localhost:1234"},"$env":{},"mail_vy7n5":null}}	\N	\N	\N
@@ -4418,6 +5614,7 @@ COPY public.directus_revisions (id, activity, collection, item, data, delta, par
 734	828	directus_fields	171	{"sort":3,"interface":"input","special":null,"collection":"GeneralTranslations","field":"key"}	{"sort":3,"interface":"input","special":null,"collection":"GeneralTranslations","field":"key"}	\N	\N
 789	917	city	2	{"id":2,"status":"draft","sort":null,"date_updated":"2024-02-16T17:35:09.835Z","country":"ch","translations":[3,4],"gallery":[],"supportlinks":[1,2,3,4,5,6,7,8],"events":[1,4,5],"customSections":[1],"emailForm":[1]}	{"date_updated":"2024-02-16T17:35:09.835Z"}	\N	\N
 790	918	directus_files	0e050f6c-a9ad-444b-8142-f978c9f49266	{"title":"Ok Bnn Mf R5772","filename_download":"OK_BNN_MFR5772.jpg","type":"image/jpeg","storage":"local"}	{"title":"Ok Bnn Mf R5772","filename_download":"OK_BNN_MFR5772.jpg","type":"image/jpeg","storage":"local"}	\N	\N
+1198	1353	directus_roles	68c58399-f145-49aa-9db1-ee94c793b427	{"id":"68c58399-f145-49aa-9db1-ee94c793b427","name":"City Template Admin","icon":"supervised_user_circle","description":"DO NOT DELETE OR RENAME. This reference role serves as a template for permissions. Whenever a new city is added, this role's permissions are copied to create a new role specifically for that city. If the permissions of the reference role change, those changes are automatically applied to all city-specific roles, ensuring they all have the latest permission settings.","ip_access":null,"enforce_tfa":false,"admin_access":false,"app_access":true,"users":[]}	{"description":"DO NOT DELETE OR RENAME. This reference role serves as a template for permissions. Whenever a new city is added, this role's permissions are copied to create a new role specifically for that city. If the permissions of the reference role change, those changes are automatically applied to all city-specific roles, ensuring they all have the latest permission settings."}	\N	\N
 760	858	directus_flows	fdcaf62f-a842-492d-9e73-c719f558a149	{"steps":[{"operation":"4a75c41a-1b24-48bc-b4d9-9f4f39bfa9e1","key":"mail_vy7n5","status":"reject","options":{"subject":"neue Bestellung","body":{"Flaggentyp":"sdfsdf"},"to":"gannonline90@gmail.com"}}],"data":{"$trigger":{"path":"/trigger/fdcaf62f-a842-492d-9e73-c719f558a149","query":{},"body":{"values":{"Flaggentyp":"sdfsdf"},"id":1,"status":"draft","sort":null,"date_created":"2024-02-03T14:57:39.131Z","date_updated":"2024-02-03T18:44:41.352Z","emailTo":"gannonline90@gmail.com","city":2,"fields":[{"FormFields_id":{"type":"text"},"id":1,"EmailForm_FormFields_id":1,"languages_code":"de","label":"Flaggentyp"},{"FormFields_id":{"type":"number"},"id":3,"EmailForm_FormFields_id":2,"languages_code":"de","label":"Betrag"},{"FormFields_id":{"type":"checkbox"},"id":5,"EmailForm_FormFields_id":3,"languages_code":"de","label":"Next Day Delivery?"}],"EmailForm_id":1,"languages_code":"de","subject":"neue Bestellung","title":"Flaggen bestellen","description":"Um Ihre Fahnen zu bestellen, geben Sie bitte die Anzahl und die Art der Fahnen an, die Sie wünschen. ","submitText":"Bestellung"},"method":"POST","headers":{"host":"localhost:8055","user-agent":"Mozilla/5.0 (X11; Linux x86_64; rv:121.0) Gecko/20100101 Firefox/121.0","accept":"*/*","accept-language":"de,en-US;q=0.7,en;q=0.3","accept-encoding":"gzip, deflate, br","referer":"http://localhost:1234/","content-type":"application/json","content-length":"795","origin":"http://localhost:1234","connection":"keep-alive","sec-fetch-dest":"empty","sec-fetch-mode":"cors","sec-fetch-site":"same-site"}},"$last":{"name":"Error","message":"write EPIPE"},"$accountability":{"user":null,"role":null,"admin":false,"app":false,"ip":"172.18.0.1","userAgent":"Mozilla/5.0 (X11; Linux x86_64; rv:121.0) Gecko/20100101 Firefox/121.0","origin":"http://localhost:1234"},"$env":{},"mail_vy7n5":{"name":"Error","message":"write EPIPE"}}}	\N	\N	\N
 774	881	directus_flows	fdcaf62f-a842-492d-9e73-c719f558a149	{"steps":[{"operation":"4a75c41a-1b24-48bc-b4d9-9f4f39bfa9e1","key":"mail_vy7n5","status":"reject","options":{"subject":"neue Bestellung","body":{"Flaggentyp":"sdfsdf","Betrag":"34"},"to":"gannonline90@gmail.com"}}],"data":{"$trigger":{"path":"/trigger/fdcaf62f-a842-492d-9e73-c719f558a149","query":{},"body":{"values":{"Flaggentyp":"sdfsdf","Betrag":"34"},"id":1,"status":"draft","sort":null,"date_created":"2024-02-03T14:57:39.131Z","date_updated":"2024-02-03T18:44:41.352Z","emailTo":"gannonline90@gmail.com","city":2,"fields":[{"FormFields_id":{"type":"text"},"id":1,"EmailForm_FormFields_id":1,"languages_code":"de","label":"Flaggentyp"},{"FormFields_id":{"type":"number"},"id":3,"EmailForm_FormFields_id":2,"languages_code":"de","label":"Betrag"},{"FormFields_id":{"type":"checkbox"},"id":5,"EmailForm_FormFields_id":3,"languages_code":"de","label":"Next Day Delivery?"}],"EmailForm_id":1,"languages_code":"de","subject":"neue Bestellung","title":"Flaggen bestellen","description":"Um Ihre Fahnen zu bestellen, geben Sie bitte die Anzahl und die Art der Fahnen an, die Sie wünschen. ","submitText":"Bestellung"},"method":"POST","headers":{"host":"localhost:8055","connection":"keep-alive","content-length":"809","sec-ch-ua":"\\"Not.A/Brand\\";v=\\"8\\", \\"Chromium\\";v=\\"114\\", \\"Google Chrome\\";v=\\"114\\"","sec-ch-ua-platform":"\\"Linux\\"","sec-ch-ua-mobile":"?0","user-agent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36","content-type":"application/json","accept":"*/*","origin":"http://localhost:1234","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:1234/","accept-encoding":"gzip, deflate, br","accept-language":"en-US,en;q=0.9"}},"$last":{"name":"Error","message":"write EPIPE"},"$accountability":{"user":null,"role":null,"admin":false,"app":false,"ip":"172.18.0.1","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36","origin":"http://localhost:1234"},"$env":{},"mail_vy7n5":{"name":"Error","message":"write EPIPE"}}}	\N	\N	\N
 722	816	city	3	{"translations":{"create":[{"name":"Berlin","languages_code":{"code":"de"}}],"update":[],"delete":[]},"country":"de"}	{"translations":{"create":[{"name":"Berlin","languages_code":{"code":"de"}}],"update":[],"delete":[]},"country":"de"}	\N	\N
@@ -4483,6 +5680,7 @@ COPY public.directus_revisions (id, activity, collection, item, data, delta, par
 798	926	directus_files	713bcc4f-d02f-4994-adba-f41cbd505ba0	{"title":"Bern Lesen Schreiben 09","filename_download":"bern_lesen-schreiben-09.jpg","type":"image/jpeg","storage":"local"}	{"title":"Bern Lesen Schreiben 09","filename_download":"bern_lesen-schreiben-09.jpg","type":"image/jpeg","storage":"local"}	\N	\N
 801	929	directus_files	b0b25705-4497-4f3f-8d6b-c47376a68a28	{"title":"Cde C O2 N Mf R2867","filename_download":"CDE_CO2N_MFR2867.jpg","type":"image/jpeg","storage":"local"}	{"title":"Cde C O2 N Mf R2867","filename_download":"CDE_CO2N_MFR2867.jpg","type":"image/jpeg","storage":"local"}	\N	\N
 799	927	directus_files	3ce48e40-265a-4784-9492-e3163a44cb1b	{"title":"Bern Lesen Schreiben 10","filename_download":"bern_lesen-schreiben-10.jpg","type":"image/jpeg","storage":"local"}	{"title":"Bern Lesen Schreiben 10","filename_download":"bern_lesen-schreiben-10.jpg","type":"image/jpeg","storage":"local"}	\N	\N
+1232	1392	directus_permissions	4623	{"role":"cf1f4250-ccba-4734-a984-4edc3b98bbc8","collection":"city_files","action":"create"}	{"role":"cf1f4250-ccba-4734-a984-4edc3b98bbc8","collection":"city_files","action":"create"}	\N	\N
 800	928	directus_files	4c56ba5e-2daf-4890-92e5-3be7819302ad	{"title":"Cde C O2 N Mf R2853","filename_download":"CDE_CO2N_MFR2853.jpg","type":"image/jpeg","storage":"local"}	{"title":"Cde C O2 N Mf R2853","filename_download":"CDE_CO2N_MFR2853.jpg","type":"image/jpeg","storage":"local"}	\N	\N
 805	933	directus_files	2c2df418-b913-4ea8-bd4b-693ee788d746	{"title":"Ok Bnn Mf R5701","filename_download":"OK_BNN_MFR5701.jpg","type":"image/jpeg","storage":"local"}	{"title":"Ok Bnn Mf R5701","filename_download":"OK_BNN_MFR5701.jpg","type":"image/jpeg","storage":"local"}	\N	\N
 808	936	directus_files	b2797f18-fc39-42f2-8359-443ceca645fb	{"title":"Ok Bnn Mf R5718","filename_download":"OK_BNN_MFR5718.jpg","type":"image/jpeg","storage":"local"}	{"title":"Ok Bnn Mf R5718","filename_download":"OK_BNN_MFR5718.jpg","type":"image/jpeg","storage":"local"}	\N	\N
@@ -4651,6 +5849,7 @@ COPY public.directus_revisions (id, activity, collection, item, data, delta, par
 1074	1213	directus_permissions	105	{"role":"68c58399-f145-49aa-9db1-ee94c793b427","collection":"GeneralTranslations_translations","action":"update","fields":["*"],"permissions":{},"validation":{}}	{"role":"68c58399-f145-49aa-9db1-ee94c793b427","collection":"GeneralTranslations_translations","action":"update","fields":["*"],"permissions":{},"validation":{}}	\N	\N
 906	1037	event_translations	13	{"name":"Gottesdienst zum internationalen Flüchtlingstag","languages_code":{"code":"de"},"location":"Heiliggeistkirche, Spitalgasse, Bern","customDates":"18. Juni 2023 10:30","event_id":10}	{"name":"Gottesdienst zum internationalen Flüchtlingstag","languages_code":{"code":"de"},"location":"Heiliggeistkirche, Spitalgasse, Bern","customDates":"18. Juni 2023 10:30","event_id":10}	907	\N
 1184	1338	city	4	{"id":4,"status":"draft","sort":null,"date_updated":"2024-03-03T14:37:50.731Z","country":"ch","flyer":null,"domainname":"genf","gallery":[],"supportlinks":[],"translations":[6,7],"emailForm":[],"events":[],"customSections":[]}	{"domainname":"genf","date_updated":"2024-03-03T14:37:50.731Z"}	\N	\N
+1199	1354	directus_permissions	136	{"role":"68c58399-f145-49aa-9db1-ee94c793b427","collection":"languages","action":"read","fields":["*"],"permissions":{},"validation":{}}	{"role":"68c58399-f145-49aa-9db1-ee94c793b427","collection":"languages","action":"read","fields":["*"],"permissions":{},"validation":{}}	\N	\N
 908	1039	event_translations	14	{"name":"Dialogische Rundgänge - «Wie nähert man sich dem Unsagbaren?»","languages_code":{"code":"de"},"description":"<div id=\\"comp-lg6j2ajq3__bb3f8d60-3c5b-4633-b2e1-5884bde6b14e\\" class=\\"BaOVQ8 tz5f0K comp-lg6j2ajq3 wixui-rich-text\\" data-testid=\\"richTextElement\\">\\n<p class=\\"font_8\\">&laquo;Wie n&auml;hert man sich dem Unsagbaren?&raquo; Das Kornhausforum Bern zeigt vom 5. Mai bis am 30. Juli die Ausstellung &laquo;Postcards from Europe&raquo; von Eva Leitolf. Die Fotografin r&uuml;ckt Orte ins Bild, die von Flucht und Migration gepr&auml;gt sind, ohne dass dies zu sehen ist. Wie unterscheiden sich die Zug&auml;nge zu den Themen Flucht und Migration im Kirchenraum und Ausstellungsraum? Mit welchen Haltungen und W&uuml;nschen wenden wir uns dem Unsagbaren zu? Die dialogischen Rundg&auml;nge beginnen jeweils in der Heiliggeistkirche und enden im Kornhausforum. Eine Kooperation zwischen Kornhausforum Bern und offene kirche bern.</p>\\n</div>\\n<div id=\\"comp-lg6lg5d8__bb3f8d60-3c5b-4633-b2e1-5884bde6b14e\\" class=\\"BaOVQ8 tz5f0K comp-lg6lg5d8 wixui-rich-text\\" data-testid=\\"richTextElement\\"></div>","customDates":"27. Juni 2023 12:30\\n27. Juni 2023 19:00","location":"Heiliggeistkirche, Spitalgasse, Bern - Treffpunkt in der Heiliggeistkirche","event_id":11}	{"name":"Dialogische Rundgänge - «Wie nähert man sich dem Unsagbaren?»","languages_code":{"code":"de"},"description":"<div id=\\"comp-lg6j2ajq3__bb3f8d60-3c5b-4633-b2e1-5884bde6b14e\\" class=\\"BaOVQ8 tz5f0K comp-lg6j2ajq3 wixui-rich-text\\" data-testid=\\"richTextElement\\">\\n<p class=\\"font_8\\">&laquo;Wie n&auml;hert man sich dem Unsagbaren?&raquo; Das Kornhausforum Bern zeigt vom 5. Mai bis am 30. Juli die Ausstellung &laquo;Postcards from Europe&raquo; von Eva Leitolf. Die Fotografin r&uuml;ckt Orte ins Bild, die von Flucht und Migration gepr&auml;gt sind, ohne dass dies zu sehen ist. Wie unterscheiden sich die Zug&auml;nge zu den Themen Flucht und Migration im Kirchenraum und Ausstellungsraum? Mit welchen Haltungen und W&uuml;nschen wenden wir uns dem Unsagbaren zu? Die dialogischen Rundg&auml;nge beginnen jeweils in der Heiliggeistkirche und enden im Kornhausforum. Eine Kooperation zwischen Kornhausforum Bern und offene kirche bern.</p>\\n</div>\\n<div id=\\"comp-lg6lg5d8__bb3f8d60-3c5b-4633-b2e1-5884bde6b14e\\" class=\\"BaOVQ8 tz5f0K comp-lg6lg5d8 wixui-rich-text\\" data-testid=\\"richTextElement\\"></div>","customDates":"27. Juni 2023 12:30\\n27. Juni 2023 19:00","location":"Heiliggeistkirche, Spitalgasse, Bern - Treffpunkt in der Heiliggeistkirche","event_id":11}	909	\N
 907	1038	event	10	{"translations":{"create":[{"name":"Gottesdienst zum internationalen Flüchtlingstag","languages_code":{"code":"de"},"location":"Heiliggeistkirche, Spitalgasse, Bern","customDates":"18. Juni 2023 10:30"}],"update":[],"delete":[]},"sort":7,"city":"2"}	{"translations":{"create":[{"name":"Gottesdienst zum internationalen Flüchtlingstag","languages_code":{"code":"de"},"location":"Heiliggeistkirche, Spitalgasse, Bern","customDates":"18. Juni 2023 10:30"}],"update":[],"delete":[]},"sort":7,"city":"2"}	912	\N
 994	1125	directus_files	ca73e820-eaec-4c94-99db-9fa100b3a498	{"title":" Ds C0262","filename_download":"_DSC0262.jpg","type":"image/jpeg","storage":"local"}	{"title":" Ds C0262","filename_download":"_DSC0262.jpg","type":"image/jpeg","storage":"local"}	\N	\N
@@ -4678,6 +5877,7 @@ COPY public.directus_revisions (id, activity, collection, item, data, delta, par
 1065	1204	directus_permissions	96	{"role":"68c58399-f145-49aa-9db1-ee94c793b427","collection":"GeneralTranslations","action":"create","fields":["*"],"permissions":{},"validation":{}}	{"role":"68c58399-f145-49aa-9db1-ee94c793b427","collection":"GeneralTranslations","action":"create","fields":["*"],"permissions":{},"validation":{}}	\N	\N
 1071	1210	directus_permissions	102	{"role":"68c58399-f145-49aa-9db1-ee94c793b427","collection":"GeneralTranslations_translations","action":"read","fields":["*"],"permissions":{},"validation":{}}	{"role":"68c58399-f145-49aa-9db1-ee94c793b427","collection":"GeneralTranslations_translations","action":"read","fields":["*"],"permissions":{},"validation":{}}	\N	\N
 1076	1215	directus_permissions	107	{"role":"68c58399-f145-49aa-9db1-ee94c793b427","collection":"SupportLinks_translations","action":"read","fields":["*"],"permissions":{},"validation":{}}	{"role":"68c58399-f145-49aa-9db1-ee94c793b427","collection":"SupportLinks_translations","action":"read","fields":["*"],"permissions":{},"validation":{}}	\N	\N
+1233	1395	directus_permissions	4624	{"role":"68c58399-f145-49aa-9db1-ee94c793b427","collection":"city_files","action":"create"}	{"role":"68c58399-f145-49aa-9db1-ee94c793b427","collection":"city_files","action":"create"}	\N	\N
 1082	1221	directus_permissions	113	{"role":"68c58399-f145-49aa-9db1-ee94c793b427","collection":"city_translations","action":"update","fields":["*"],"permissions":{},"validation":{}}	{"role":"68c58399-f145-49aa-9db1-ee94c793b427","collection":"city_translations","action":"update","fields":["*"],"permissions":{},"validation":{}}	\N	\N
 1085	1224	directus_permissions	111	{"id":111,"role":"68c58399-f145-49aa-9db1-ee94c793b427","collection":"city_translations","action":"create","permissions":{},"validation":{},"presets":null,"fields":["*"]}	{"permissions":{},"validation":{},"fields":["*"]}	\N	\N
 915	1046	directus_collections	city	{"collection":"city","icon":null,"note":null,"display_template":"{{translations.name}}","hidden":false,"singleton":false,"translations":null,"archive_field":null,"archive_app_filter":true,"archive_value":"archived","unarchive_value":"draft","sort_field":null,"accountability":"all","color":null,"item_duplication_fields":null,"sort":1,"group":null,"collapse":"open","preview_url":"http://localhost:1234/city/{{translations.name}}","versioning":false}	{"preview_url":"http://localhost:1234/city/{{translations.name}}"}	\N	\N
@@ -4815,6 +6015,8 @@ COPY public.directus_revisions (id, activity, collection, item, data, delta, par
 1141	1294	directus_flows	299650bc-3540-4cfa-93d4-bfc911450bbf	{"steps":[],"data":{"$trigger":{"event":"city.items.create","payload":{"translations":{"create":[{"name":"Neuchâtel","languages_code":{"code":"fr"},"page_title":"Journée des réfugié-es 2023 à Neuchâtel Les nommer par leur nom - plus de 51000 victimes de la forteresse Europe","description":"<p>Depuis de nombreuses ann&eacute;es, un drame silencieux se d&eacute;roule sur les mers et aux fronti&egrave;res de l&rsquo;Europe. Il n&rsquo;attire que rarement l&rsquo;attention des m&eacute;dias. 51000 enfants, femmes et hommes sont morts depuis 1993. Ils sont victimes d&rsquo;une politique d&rsquo;accueil<br><br>toujours plus restrictive de la part des pays europ&eacute;ens, emp&ecirc;chant que ces personnes puissent entrer l&eacute;galement en Europe pour y d&eacute;poser une demande d&rsquo;asile. Elles doivent fuir des situations dangereuses et mettent leur vie en p&eacute;ril en fuyant. Elles restent bloqu&eacute;es dans des camps de r&eacute;fugi&eacute;s indignes, sans approvisionnement et soins ad&eacute;quats, et sans savoir si, quand et comment leur chemin pourra se poursuivre. Cela nous r&eacute;volte et nous exigeons des voies de fuite s&ucirc;res! Par diverses actions, nous nous souvenons des victimes et protestons publiquement contre cette situation intenable.</p>","sponsors":"Association de la Journée des réfugié-es de Neuchâtel; Communauté des sœurs de Grandchamp, Areuse; Communauté Israélite du Canton de Neuchâtel, La Chaux-de Fonds; Communauté Orthodoxe Érythréenne de Neuchâtel; Droit de rester Neuchâtel; Église catholique-chrétienne du canton de Neuchâtel; Église catholique romaine de Neuchâtel; Église orthodoxe neuchâteloise; Église réformée évangélique du canton de Neuchâtel (EREN); Groupe d’accueil À la rencontre (RequérEnsemble); Groupe d’accueil Req’EREN; Paroisse réformée de Neuchâtel – Groupe Accueil Café Migrants; Regards et Récits, Neuchâtel; Service de la cohésion multiculturelle du canton de Neuchâtel (COSM); SOS Méditerranée – antenne neuchâteloise; Unia.\\n\\npersonnes de contact: Denise Graf, denise.graf@bluemail.ch, 076 523 59 36;\\nPierre Bühler, pierre.buehler@theol.uzh.ch, tél. 032 724 46 06"}],"update":[],"delete":[]}},"key":5,"collection":"city"},"$last":{"event":"city.items.create","payload":{"translations":{"create":[{"name":"Neuchâtel","languages_code":{"code":"fr"},"page_title":"Journée des réfugié-es 2023 à Neuchâtel Les nommer par leur nom - plus de 51000 victimes de la forteresse Europe","description":"<p>Depuis de nombreuses ann&eacute;es, un drame silencieux se d&eacute;roule sur les mers et aux fronti&egrave;res de l&rsquo;Europe. Il n&rsquo;attire que rarement l&rsquo;attention des m&eacute;dias. 51000 enfants, femmes et hommes sont morts depuis 1993. Ils sont victimes d&rsquo;une politique d&rsquo;accueil<br><br>toujours plus restrictive de la part des pays europ&eacute;ens, emp&ecirc;chant que ces personnes puissent entrer l&eacute;galement en Europe pour y d&eacute;poser une demande d&rsquo;asile. Elles doivent fuir des situations dangereuses et mettent leur vie en p&eacute;ril en fuyant. Elles restent bloqu&eacute;es dans des camps de r&eacute;fugi&eacute;s indignes, sans approvisionnement et soins ad&eacute;quats, et sans savoir si, quand et comment leur chemin pourra se poursuivre. Cela nous r&eacute;volte et nous exigeons des voies de fuite s&ucirc;res! Par diverses actions, nous nous souvenons des victimes et protestons publiquement contre cette situation intenable.</p>","sponsors":"Association de la Journée des réfugié-es de Neuchâtel; Communauté des sœurs de Grandchamp, Areuse; Communauté Israélite du Canton de Neuchâtel, La Chaux-de Fonds; Communauté Orthodoxe Érythréenne de Neuchâtel; Droit de rester Neuchâtel; Église catholique-chrétienne du canton de Neuchâtel; Église catholique romaine de Neuchâtel; Église orthodoxe neuchâteloise; Église réformée évangélique du canton de Neuchâtel (EREN); Groupe d’accueil À la rencontre (RequérEnsemble); Groupe d’accueil Req’EREN; Paroisse réformée de Neuchâtel – Groupe Accueil Café Migrants; Regards et Récits, Neuchâtel; Service de la cohésion multiculturelle du canton de Neuchâtel (COSM); SOS Méditerranée – antenne neuchâteloise; Unia.\\n\\npersonnes de contact: Denise Graf, denise.graf@bluemail.ch, 076 523 59 36;\\nPierre Bühler, pierre.buehler@theol.uzh.ch, tél. 032 724 46 06"}],"update":[],"delete":[]}},"key":5,"collection":"city"},"$accountability":{"user":"db513aee-cd3a-47a9-95e5-a98f1cc92d13","role":"878f0264-16f3-4a54-a79e-82c27313bacc","admin":true,"app":true,"ip":"172.18.0.1","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36","origin":"http://localhost:8055"},"$env":{}}}	\N	\N	\N
 1153	1306	directus_flows	299650bc-3540-4cfa-93d4-bfc911450bbf	{"steps":[],"data":{"$trigger":{"event":"city.items.create","payload":{"translations":{"create":[{"name":"Chur","languages_code":{"code":"de"},"page_title":"Flüchtlingstag 2023 Beim Namen nennen - über 51 000 Opfer der Festung Europa - 24 Stunden vom Samstag, 17. Juni, 11 Uhr bis Sonntag, 18. Juni 11 Uhr, Martinskirche Chur","description":"<p>Der Krieg in der Ukraine f&uuml;hrt uns erneut vor Augen, wie dramatisch und schlimm es ist, wenn Menschen fl&uuml;chten m&uuml;ssen. Niemand fl&uuml;chtet gern &ndash; auch nicht aus anderen Kriegsschaupl&auml;tzen und Konfliktregionen, zum Beispiel aus Afghanistan, Syrien oder Eritrea. Seit 1993 sind fast 51&lsquo;000 Menschen beim Versuch, nach Europa zu fl&uuml;chten, gestorben. Die meisten sind im Mittelmeer ertrunken. Andere wurden an Grenz&uuml;berg&auml;ngen erschossen. M&auml;nner, Frauen, Jugendliche, Kinder und Babys. F&uuml;r die meisten Fl&uuml;chtlinge ist Europa eine Festung. An den europ&auml;ischen Aussengrenzen leben aktuell hunderttausende Menschen in erb&auml;rmlichen Verh&auml;ltnissen und Lagern.<br><br>Das ist traurig. Das ist und bleibt ein Skandal.</p>"}],"update":[],"delete":[]}},"key":9,"collection":"city"},"$last":{"event":"city.items.create","payload":{"translations":{"create":[{"name":"Chur","languages_code":{"code":"de"},"page_title":"Flüchtlingstag 2023 Beim Namen nennen - über 51 000 Opfer der Festung Europa - 24 Stunden vom Samstag, 17. Juni, 11 Uhr bis Sonntag, 18. Juni 11 Uhr, Martinskirche Chur","description":"<p>Der Krieg in der Ukraine f&uuml;hrt uns erneut vor Augen, wie dramatisch und schlimm es ist, wenn Menschen fl&uuml;chten m&uuml;ssen. Niemand fl&uuml;chtet gern &ndash; auch nicht aus anderen Kriegsschaupl&auml;tzen und Konfliktregionen, zum Beispiel aus Afghanistan, Syrien oder Eritrea. Seit 1993 sind fast 51&lsquo;000 Menschen beim Versuch, nach Europa zu fl&uuml;chten, gestorben. Die meisten sind im Mittelmeer ertrunken. Andere wurden an Grenz&uuml;berg&auml;ngen erschossen. M&auml;nner, Frauen, Jugendliche, Kinder und Babys. F&uuml;r die meisten Fl&uuml;chtlinge ist Europa eine Festung. An den europ&auml;ischen Aussengrenzen leben aktuell hunderttausende Menschen in erb&auml;rmlichen Verh&auml;ltnissen und Lagern.<br><br>Das ist traurig. Das ist und bleibt ein Skandal.</p>"}],"update":[],"delete":[]}},"key":9,"collection":"city"},"$accountability":{"user":"db513aee-cd3a-47a9-95e5-a98f1cc92d13","role":"878f0264-16f3-4a54-a79e-82c27313bacc","admin":true,"app":true,"ip":"172.18.0.1","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36","origin":"http://localhost:8055"},"$env":{}}}	\N	\N	\N
 1157	1310	city_translations	14	{"name":"Braunschweig","languages_code":{"code":"de"},"page_title":"Beim Namen nennen / Aktion zum Weltflüchtlingstag 2023","description":"<p>Im zweiten Jahr beteiligen sich die Kirchengemeinden St. Blasius und St. Magni in Braunschweig an der Aktion \\"Beim Namen nennen\\" zum Internationalen Weltfl&uuml;chtlingstag.<br><br>Vom 12. bis 22. Juni 2023 soll dazu im Braunschweiger Dom ein Mahnmal der Menschenw&uuml;rde entstehen. Gemeinsam mit vielen Menschen aus Stadt und Region Braunschweig beschreiben wir Stoffstreifen mit den Namen und Todesumst&auml;nden von auf der Flucht verstorbenen Menschen. Diese werden aus der sogenannten \\"List of Deaths\\" der Hilfsorganisation \\"UNITED f&uuml;r Intercultural Action\\" (Amsterdam) &uuml;bertragen und im Seitenschiff des Doms zu einer tempor&auml;ren Installation zusammengesetzt. Die Stoffstreifen stehen f&uuml;r Menschen, die unterwegs waren - mit Hoffnung wie wir. Ihr Schicksal soll ins Bewusstsein der Stadt r&uuml;cken.<br><br>Parallel zum Schreiben der Namen werden diese am Wochenende 17./18. Juni 2023 im Braunschweiger Dom jeweils von 8 bis 20 Uhr &ouml;ffentlich verlesen. Jeweils zur halben und vollen Stunde erklingt Musik f&uuml;r eine kurze Atempause. Auch der Gottesdienst am Sonntagmorgen wird im Zeichen der Gedenkaktion stehen.</p>","sponsors":"Ev. Domkirche zu Braunschweig\\nArbeitskreis Nagelkreuzgemeinschaft am Braunschweiger Dom\\nEv. Kirchengemeinde St. Blasius\\nEv. Kirchengemeinde St. Magni","city_id":11}	{"name":"Braunschweig","languages_code":{"code":"de"},"page_title":"Beim Namen nennen / Aktion zum Weltflüchtlingstag 2023","description":"<p>Im zweiten Jahr beteiligen sich die Kirchengemeinden St. Blasius und St. Magni in Braunschweig an der Aktion \\"Beim Namen nennen\\" zum Internationalen Weltfl&uuml;chtlingstag.<br><br>Vom 12. bis 22. Juni 2023 soll dazu im Braunschweiger Dom ein Mahnmal der Menschenw&uuml;rde entstehen. Gemeinsam mit vielen Menschen aus Stadt und Region Braunschweig beschreiben wir Stoffstreifen mit den Namen und Todesumst&auml;nden von auf der Flucht verstorbenen Menschen. Diese werden aus der sogenannten \\"List of Deaths\\" der Hilfsorganisation \\"UNITED f&uuml;r Intercultural Action\\" (Amsterdam) &uuml;bertragen und im Seitenschiff des Doms zu einer tempor&auml;ren Installation zusammengesetzt. Die Stoffstreifen stehen f&uuml;r Menschen, die unterwegs waren - mit Hoffnung wie wir. Ihr Schicksal soll ins Bewusstsein der Stadt r&uuml;cken.<br><br>Parallel zum Schreiben der Namen werden diese am Wochenende 17./18. Juni 2023 im Braunschweiger Dom jeweils von 8 bis 20 Uhr &ouml;ffentlich verlesen. Jeweils zur halben und vollen Stunde erklingt Musik f&uuml;r eine kurze Atempause. Auch der Gottesdienst am Sonntagmorgen wird im Zeichen der Gedenkaktion stehen.</p>","sponsors":"Ev. Domkirche zu Braunschweig\\nArbeitskreis Nagelkreuzgemeinschaft am Braunschweiger Dom\\nEv. Kirchengemeinde St. Blasius\\nEv. Kirchengemeinde St. Magni","city_id":11}	1158	\N
+1200	1355	directus_permissions	137	{"role":"68c58399-f145-49aa-9db1-ee94c793b427","collection":"city_files","action":"read","fields":["*"],"permissions":{},"validation":{}}	{"role":"68c58399-f145-49aa-9db1-ee94c793b427","collection":"city_files","action":"read","fields":["*"],"permissions":{},"validation":{}}	\N	\N
+1201	1356	directus_permissions	138	{"role":"68c58399-f145-49aa-9db1-ee94c793b427","collection":"city_files","action":"update"}	{"role":"68c58399-f145-49aa-9db1-ee94c793b427","collection":"city_files","action":"update"}	\N	\N
 1160	1313	city_translations	15	{"name":"Kehl","languages_code":{"code":"de"},"page_title":"Weltflüchtlingstag 2023 Beim Namen nennen – über 51'000 Opfer der Festung Europa","description":"<p>Am Weltfl&uuml;chtlingstag, dem 20. Juni, erinnern wir an den Mut und die W&uuml;rde der<br>Menschen auf der Flucht, und an ihre unaufhebbaren Menschenrechte.<br>In der Kehler Stadtmitte lassen wir in diesem Jahr erneut gemeinsam ein Mahnmal<br>entstehen: die Installation &bdquo;Beim Namen nennen&ldquo;.<br>Wir beschreiben Stoff-Streifen mit den Namen und Todesumst&auml;nden der<br>Gefl&uuml;chteten und befestigen sie an der Au&szlig;enfassade der Friedenskirche. So<br>erinnern sie uns an die auf der Flucht Verstorbenen und ihr Leid. Mit unserem Mahnmal fordern wir von unseren Regierungen, den Fl&uuml;chtlingsschutz<br>zu st&auml;rken und Menschenrechte einzuhalten. Seit 1993 sind mehr als 51.000 Menschen beim Versuch, nach Europa zu fl&uuml;chten,<br>gestorben. Die meisten sind im Mittelmeer ertrunken. Andere wurden an Grenz&uuml;berg&auml;ngen erschossen. M&auml;nner, Frauen, Jugendliche, Kinder und Babys. Mit<br>einem Mahnmal aus ihren Namen gedenken wir der Opfer und protestieren<br>&ouml;ffentlich gegen die unhaltbare Situation.</p>","sponsors":"Evangelische Kirchengemeinde Kehl, Diakonisches Werk im Evangelischen Kirchenbezirk Ortenau, Caritasverband Offenburg-Kehl e.V., Evangelische Erwachsenenbildung Ortenau, Katholische Kirchengemeinde Kehl","city_id":12}	{"name":"Kehl","languages_code":{"code":"de"},"page_title":"Weltflüchtlingstag 2023 Beim Namen nennen – über 51'000 Opfer der Festung Europa","description":"<p>Am Weltfl&uuml;chtlingstag, dem 20. Juni, erinnern wir an den Mut und die W&uuml;rde der<br>Menschen auf der Flucht, und an ihre unaufhebbaren Menschenrechte.<br>In der Kehler Stadtmitte lassen wir in diesem Jahr erneut gemeinsam ein Mahnmal<br>entstehen: die Installation &bdquo;Beim Namen nennen&ldquo;.<br>Wir beschreiben Stoff-Streifen mit den Namen und Todesumst&auml;nden der<br>Gefl&uuml;chteten und befestigen sie an der Au&szlig;enfassade der Friedenskirche. So<br>erinnern sie uns an die auf der Flucht Verstorbenen und ihr Leid. Mit unserem Mahnmal fordern wir von unseren Regierungen, den Fl&uuml;chtlingsschutz<br>zu st&auml;rken und Menschenrechte einzuhalten. Seit 1993 sind mehr als 51.000 Menschen beim Versuch, nach Europa zu fl&uuml;chten,<br>gestorben. Die meisten sind im Mittelmeer ertrunken. Andere wurden an Grenz&uuml;berg&auml;ngen erschossen. M&auml;nner, Frauen, Jugendliche, Kinder und Babys. Mit<br>einem Mahnmal aus ihren Namen gedenken wir der Opfer und protestieren<br>&ouml;ffentlich gegen die unhaltbare Situation.</p>","sponsors":"Evangelische Kirchengemeinde Kehl, Diakonisches Werk im Evangelischen Kirchenbezirk Ortenau, Caritasverband Offenburg-Kehl e.V., Evangelische Erwachsenenbildung Ortenau, Katholische Kirchengemeinde Kehl","city_id":12}	1161	\N
 1162	1315	directus_flows	299650bc-3540-4cfa-93d4-bfc911450bbf	{"steps":[],"data":{"$trigger":{"event":"city.items.create","payload":{"translations":{"create":[{"name":"Kehl","languages_code":{"code":"de"},"page_title":"Weltflüchtlingstag 2023 Beim Namen nennen – über 51'000 Opfer der Festung Europa","description":"<p>Am Weltfl&uuml;chtlingstag, dem 20. Juni, erinnern wir an den Mut und die W&uuml;rde der<br>Menschen auf der Flucht, und an ihre unaufhebbaren Menschenrechte.<br>In der Kehler Stadtmitte lassen wir in diesem Jahr erneut gemeinsam ein Mahnmal<br>entstehen: die Installation &bdquo;Beim Namen nennen&ldquo;.<br>Wir beschreiben Stoff-Streifen mit den Namen und Todesumst&auml;nden der<br>Gefl&uuml;chteten und befestigen sie an der Au&szlig;enfassade der Friedenskirche. So<br>erinnern sie uns an die auf der Flucht Verstorbenen und ihr Leid. Mit unserem Mahnmal fordern wir von unseren Regierungen, den Fl&uuml;chtlingsschutz<br>zu st&auml;rken und Menschenrechte einzuhalten. Seit 1993 sind mehr als 51.000 Menschen beim Versuch, nach Europa zu fl&uuml;chten,<br>gestorben. Die meisten sind im Mittelmeer ertrunken. Andere wurden an Grenz&uuml;berg&auml;ngen erschossen. M&auml;nner, Frauen, Jugendliche, Kinder und Babys. Mit<br>einem Mahnmal aus ihren Namen gedenken wir der Opfer und protestieren<br>&ouml;ffentlich gegen die unhaltbare Situation.</p>","sponsors":"Evangelische Kirchengemeinde Kehl, Diakonisches Werk im Evangelischen Kirchenbezirk Ortenau, Caritasverband Offenburg-Kehl e.V., Evangelische Erwachsenenbildung Ortenau, Katholische Kirchengemeinde Kehl"}],"update":[],"delete":[]}},"key":12,"collection":"city"},"$last":{"event":"city.items.create","payload":{"translations":{"create":[{"name":"Kehl","languages_code":{"code":"de"},"page_title":"Weltflüchtlingstag 2023 Beim Namen nennen – über 51'000 Opfer der Festung Europa","description":"<p>Am Weltfl&uuml;chtlingstag, dem 20. Juni, erinnern wir an den Mut und die W&uuml;rde der<br>Menschen auf der Flucht, und an ihre unaufhebbaren Menschenrechte.<br>In der Kehler Stadtmitte lassen wir in diesem Jahr erneut gemeinsam ein Mahnmal<br>entstehen: die Installation &bdquo;Beim Namen nennen&ldquo;.<br>Wir beschreiben Stoff-Streifen mit den Namen und Todesumst&auml;nden der<br>Gefl&uuml;chteten und befestigen sie an der Au&szlig;enfassade der Friedenskirche. So<br>erinnern sie uns an die auf der Flucht Verstorbenen und ihr Leid. Mit unserem Mahnmal fordern wir von unseren Regierungen, den Fl&uuml;chtlingsschutz<br>zu st&auml;rken und Menschenrechte einzuhalten. Seit 1993 sind mehr als 51.000 Menschen beim Versuch, nach Europa zu fl&uuml;chten,<br>gestorben. Die meisten sind im Mittelmeer ertrunken. Andere wurden an Grenz&uuml;berg&auml;ngen erschossen. M&auml;nner, Frauen, Jugendliche, Kinder und Babys. Mit<br>einem Mahnmal aus ihren Namen gedenken wir der Opfer und protestieren<br>&ouml;ffentlich gegen die unhaltbare Situation.</p>","sponsors":"Evangelische Kirchengemeinde Kehl, Diakonisches Werk im Evangelischen Kirchenbezirk Ortenau, Caritasverband Offenburg-Kehl e.V., Evangelische Erwachsenenbildung Ortenau, Katholische Kirchengemeinde Kehl"}],"update":[],"delete":[]}},"key":12,"collection":"city"},"$accountability":{"user":"db513aee-cd3a-47a9-95e5-a98f1cc92d13","role":"878f0264-16f3-4a54-a79e-82c27313bacc","admin":true,"app":true,"ip":"172.18.0.1","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36","origin":"http://localhost:8055"},"$env":{}}}	\N	\N	\N
 1165	1318	directus_flows	299650bc-3540-4cfa-93d4-bfc911450bbf	{"steps":[],"data":{"$trigger":{"event":"city.items.create","payload":{"translations":{"create":[{"name":"Dortmund","languages_code":{"code":"de"},"page_title":"Weltflüchtlingstag 2023 Beim Namen nennen","description":"<p>Seit zwei Jahrzehnten passieren an den Au&szlig;engrenzen Europas Trag&ouml;dien, die nicht geschehen d&uuml;rften und in der &Ouml;ffentlichkeit viel zu wenig Beachtung bekommen oder in Vergessenheit geraten. Durch die europ&auml;ische Fl&uuml;chtlingspolitik versch&auml;rft sich die Lage derzeit weiter. Viele Engagierte in Dortmund sind damit nicht einverstanden.<br>Treten ein gegen das Vergessen von Gefl&uuml;chteten, die an unseren Grenzen starben und dort unter uns&auml;glichen Bedingungen leben. Und erheben gemeinsam und auf verschiedene Weise mit Veranstaltungen zum Weltfl&uuml;chtlingstag Einspruch.<br><br>Weil Menschen Menschen nicht sterben lassen d&uuml;rfen.</p>","sponsors":"Organisation in Dortmund: CJD Standort Zeche Germania BvB P Maßnahme Schwerpunkt Holzwerken, Diakonisches Werk Dortmund und Lünen gGmbH, Diaspora & Development \\"D&D\\" e.V., Ev. Erwachsenenbildungswerk Westfalen-Lippe, Ev. Kirchenkreis Dortmund/Referat Ökumene, Ev. Stadtkirche St. Reinoldi, ESG-Ruhr Ev. Studierendengemeinde, Kontaktstelle Ev. Jugend, Flüchtlingshilfe im Stadtbezirk Aplerbeck e.V., Flüchtlingspaten Dortmund e.V., Grenzenlose Wärme e.V., Konrad-Adenauer Stiftung e.V. Regionalbüro Westfalen, Pauluskirche Ev. Lydia-Kirchengemeinde Dortmund, Projekt Ankommen e.V, Schulreferat des Ev. Kirchenkreis Dortmund, Termiten Bau/Staffan Gettys, TRAIN OF HOPE Dortmund e.V., VMDO Verbund der sozial-kulturellen Migrantenvereine in Dortmund e.V., privat Engagierte\\n\\nRegionale Unterstützer:innen: Ev. Kirchenkreis Dortmund, Ev. Kirche von Westfalen, forum JUGEND! e.V., Gast-Haus – Ökumenische-Wohnungslosen-Initiative e.V., oikos- Institut für Mission und Ökumene, Referat für Gesellschaftliche Verantwortung des Ev. KK Dortmund, United4Rescue – Gemeinsam Retten e.V. , Welthaus e.V.\\n\\nSchirmherrschaft von „Beim Namen nennen“ in Deutschland: Ratsvorsitzende der Ev. Kirche Deutschland und Präses der Ev. Kirche vonWestfalen, Annette Kurschus"}],"update":[],"delete":[]},"country":"de"},"key":13,"collection":"city"},"$last":{"event":"city.items.create","payload":{"translations":{"create":[{"name":"Dortmund","languages_code":{"code":"de"},"page_title":"Weltflüchtlingstag 2023 Beim Namen nennen","description":"<p>Seit zwei Jahrzehnten passieren an den Au&szlig;engrenzen Europas Trag&ouml;dien, die nicht geschehen d&uuml;rften und in der &Ouml;ffentlichkeit viel zu wenig Beachtung bekommen oder in Vergessenheit geraten. Durch die europ&auml;ische Fl&uuml;chtlingspolitik versch&auml;rft sich die Lage derzeit weiter. Viele Engagierte in Dortmund sind damit nicht einverstanden.<br>Treten ein gegen das Vergessen von Gefl&uuml;chteten, die an unseren Grenzen starben und dort unter uns&auml;glichen Bedingungen leben. Und erheben gemeinsam und auf verschiedene Weise mit Veranstaltungen zum Weltfl&uuml;chtlingstag Einspruch.<br><br>Weil Menschen Menschen nicht sterben lassen d&uuml;rfen.</p>","sponsors":"Organisation in Dortmund: CJD Standort Zeche Germania BvB P Maßnahme Schwerpunkt Holzwerken, Diakonisches Werk Dortmund und Lünen gGmbH, Diaspora & Development \\"D&D\\" e.V., Ev. Erwachsenenbildungswerk Westfalen-Lippe, Ev. Kirchenkreis Dortmund/Referat Ökumene, Ev. Stadtkirche St. Reinoldi, ESG-Ruhr Ev. Studierendengemeinde, Kontaktstelle Ev. Jugend, Flüchtlingshilfe im Stadtbezirk Aplerbeck e.V., Flüchtlingspaten Dortmund e.V., Grenzenlose Wärme e.V., Konrad-Adenauer Stiftung e.V. Regionalbüro Westfalen, Pauluskirche Ev. Lydia-Kirchengemeinde Dortmund, Projekt Ankommen e.V, Schulreferat des Ev. Kirchenkreis Dortmund, Termiten Bau/Staffan Gettys, TRAIN OF HOPE Dortmund e.V., VMDO Verbund der sozial-kulturellen Migrantenvereine in Dortmund e.V., privat Engagierte\\n\\nRegionale Unterstützer:innen: Ev. Kirchenkreis Dortmund, Ev. Kirche von Westfalen, forum JUGEND! e.V., Gast-Haus – Ökumenische-Wohnungslosen-Initiative e.V., oikos- Institut für Mission und Ökumene, Referat für Gesellschaftliche Verantwortung des Ev. KK Dortmund, United4Rescue – Gemeinsam Retten e.V. , Welthaus e.V.\\n\\nSchirmherrschaft von „Beim Namen nennen“ in Deutschland: Ratsvorsitzende der Ev. Kirche Deutschland und Präses der Ev. Kirche vonWestfalen, Annette Kurschus"}],"update":[],"delete":[]},"country":"de"},"key":13,"collection":"city"},"$accountability":{"user":"db513aee-cd3a-47a9-95e5-a98f1cc92d13","role":"878f0264-16f3-4a54-a79e-82c27313bacc","admin":true,"app":true,"ip":"172.18.0.1","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36","origin":"http://localhost:8055"},"$env":{}}}	\N	\N	\N
@@ -4834,6 +6036,8 @@ COPY public.directus_revisions (id, activity, collection, item, data, delta, par
 1144	1297	directus_flows	299650bc-3540-4cfa-93d4-bfc911450bbf	{"steps":[],"data":{"$trigger":{"event":"city.items.create","payload":{"translations":{"create":[{"name":"St. Gallen","languages_code":{"code":"de"},"page_title":"Aktion Beim Namen nennen 2023","description":"<p>Zum Weltfl&uuml;chtlingstag 2023 fand auch in St. Gallen die Aktion Beim Namen nennen statt. Anders als in den vergangenen Jahren fand das Lesen der Namen der &uuml;ber 52'760 Menschen, die seit 1993 beim Versuch in Europa Schutz und Aufnahme zu finden, gestorben sind, an verschiedenen Orten im ganzen Kanton St. Gallen statt. In den Gottesdiensten, in Kl&ouml;stern, in einer Moschee, wurden ihrer gedacht und die Namen gelesen.<br>In verschiedenen Familien, Zuhause und Schulen wurden Namen auf Stoffstreifen geschrieben. Am Begegnungstag &ndash; Fest der Kulturen &ndash; der Stadt St. Gallen wurden am Infostand &laquo;Beim Namen nennen&raquo; anhand vom Gl&uuml;cksrad der Cityseelsorge &uuml;ber Flucht und Migration informiert, diskutiert. Viele Besucherinnen und Besucher schrieben auch Namen auf Stoffstreifen dort weiter. Die geschriebenen Streifen wurden auch am Stand aufgeh&auml;ngt und sp&auml;ter in Rollen aufbewahrt.<br>Am Wochenende 7. &ndash; 9. Juni 2024 werden im Rahmen der grossen Aktion Beim Namen nennen mit 24-Stunden Gedenkfeier in St. Gallen die Streifen wieder an die Fassade der Kirche St. Laurenzen aufgeh&auml;ngt.<br>Im Rahmen diesj&auml;hriger Aktion wurde schweizweit eine Petition an den Regierungsrat des jeweiligen Kantons f&uuml;r die Wiederaufnahme des Resettlement Programs in der Schweiz geschrieben. Am 12. Juli durfte ich in der Begleitung vom Solihaus St. Gallen die Petitionsb&ouml;gen mit 171 Unterschriften der Staatskanzlei der St. Galler Kantonalregierung &uuml;berreichen.<br>Ich danke allen von ganzem Herzen, die zum Gelingen des Auftritts beigetragen haben.<br>Chika Uzor, Cityseelsorge, kath. Kirche St. Gallen</p>","sponsors":"Cityseelsorge St. Gallen, Katholische Kirchgemeinde St. Gallen, Evang.-ref. Kirchgemeinde St.Gallen Tablat, Ref. Kirchgemeinde St. Gallen Centrum, Evang.-ref. Kirchgemeinde Straubenzell St. Gallen West, Kath. Pfarr- und Kirchgemeinde Wil / SG, Wirkraumkirche St.Gallen, Röm.-kath. Kirche des Kantons St. Gallen, Evang.-ref. Kirche des Kantons St. Gallen, Evang.-methodistische Kirche St. Gallen-Teufen, Katholische Pfarrei Appenzell AI, Caritas St.Gallen-Appenzell, Amt für Gesellschaftsfragen Stadt St. Gallen, Solinetz Ostschweiz, Solihaus St.Gallen, El Hidaje Moschee, ZEN-ZENTRUM IM GRÜNEN RING, DIGO, Sans-Papiers Anlaufstelle St.Gallen, Arbeitsgemeinschaft Christlicher Kirchen SG/AI/AR (ACK).\\n\\nChika Uzor, Flüchtlings- und Migrationsseelsorge, Cityseelsorge, Gallusstrasse 34, PF 1117,\\n9001 St. Gallen. 071 224 06 13, chika.uzor@kathsg.ch\\nPfrn. Birke Müller, evang.-ref. Kirche St.Gallen Tablat, 071 245 03 83, birke.mueller@tablat.ch"}],"update":[],"delete":[]}},"key":6,"collection":"city"},"$last":{"event":"city.items.create","payload":{"translations":{"create":[{"name":"St. Gallen","languages_code":{"code":"de"},"page_title":"Aktion Beim Namen nennen 2023","description":"<p>Zum Weltfl&uuml;chtlingstag 2023 fand auch in St. Gallen die Aktion Beim Namen nennen statt. Anders als in den vergangenen Jahren fand das Lesen der Namen der &uuml;ber 52'760 Menschen, die seit 1993 beim Versuch in Europa Schutz und Aufnahme zu finden, gestorben sind, an verschiedenen Orten im ganzen Kanton St. Gallen statt. In den Gottesdiensten, in Kl&ouml;stern, in einer Moschee, wurden ihrer gedacht und die Namen gelesen.<br>In verschiedenen Familien, Zuhause und Schulen wurden Namen auf Stoffstreifen geschrieben. Am Begegnungstag &ndash; Fest der Kulturen &ndash; der Stadt St. Gallen wurden am Infostand &laquo;Beim Namen nennen&raquo; anhand vom Gl&uuml;cksrad der Cityseelsorge &uuml;ber Flucht und Migration informiert, diskutiert. Viele Besucherinnen und Besucher schrieben auch Namen auf Stoffstreifen dort weiter. Die geschriebenen Streifen wurden auch am Stand aufgeh&auml;ngt und sp&auml;ter in Rollen aufbewahrt.<br>Am Wochenende 7. &ndash; 9. Juni 2024 werden im Rahmen der grossen Aktion Beim Namen nennen mit 24-Stunden Gedenkfeier in St. Gallen die Streifen wieder an die Fassade der Kirche St. Laurenzen aufgeh&auml;ngt.<br>Im Rahmen diesj&auml;hriger Aktion wurde schweizweit eine Petition an den Regierungsrat des jeweiligen Kantons f&uuml;r die Wiederaufnahme des Resettlement Programs in der Schweiz geschrieben. Am 12. Juli durfte ich in der Begleitung vom Solihaus St. Gallen die Petitionsb&ouml;gen mit 171 Unterschriften der Staatskanzlei der St. Galler Kantonalregierung &uuml;berreichen.<br>Ich danke allen von ganzem Herzen, die zum Gelingen des Auftritts beigetragen haben.<br>Chika Uzor, Cityseelsorge, kath. Kirche St. Gallen</p>","sponsors":"Cityseelsorge St. Gallen, Katholische Kirchgemeinde St. Gallen, Evang.-ref. Kirchgemeinde St.Gallen Tablat, Ref. Kirchgemeinde St. Gallen Centrum, Evang.-ref. Kirchgemeinde Straubenzell St. Gallen West, Kath. Pfarr- und Kirchgemeinde Wil / SG, Wirkraumkirche St.Gallen, Röm.-kath. Kirche des Kantons St. Gallen, Evang.-ref. Kirche des Kantons St. Gallen, Evang.-methodistische Kirche St. Gallen-Teufen, Katholische Pfarrei Appenzell AI, Caritas St.Gallen-Appenzell, Amt für Gesellschaftsfragen Stadt St. Gallen, Solinetz Ostschweiz, Solihaus St.Gallen, El Hidaje Moschee, ZEN-ZENTRUM IM GRÜNEN RING, DIGO, Sans-Papiers Anlaufstelle St.Gallen, Arbeitsgemeinschaft Christlicher Kirchen SG/AI/AR (ACK).\\n\\nChika Uzor, Flüchtlings- und Migrationsseelsorge, Cityseelsorge, Gallusstrasse 34, PF 1117,\\n9001 St. Gallen. 071 224 06 13, chika.uzor@kathsg.ch\\nPfrn. Birke Müller, evang.-ref. Kirche St.Gallen Tablat, 071 245 03 83, birke.mueller@tablat.ch"}],"update":[],"delete":[]}},"key":6,"collection":"city"},"$accountability":{"user":"db513aee-cd3a-47a9-95e5-a98f1cc92d13","role":"878f0264-16f3-4a54-a79e-82c27313bacc","admin":true,"app":true,"ip":"172.18.0.1","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36","origin":"http://localhost:8055"},"$env":{}}}	\N	\N	\N
 1155	1308	city	10	{"translations":{"create":[{"name":"Zürich","languages_code":{"code":"de"},"page_title":"Aktionsmonat in Zürich Beim Namen nennen – über 51000 Opfer der Festung Europa","description":"<p>24 Stunden vom Samstag, 17. Juni 10 Uhr, bis Sonntag, 18. Juni, 10 Uhr, Grossm&uuml;nster und Wasserkirche Z&uuml;rich Ein stilles Drama geht seit Jahren auf den Meeren und an den Grenzen Europas vor sich und schafft es nur gelegentlich in die Medien. Seit 1993 sind &uuml;ber 51000 Kinder, Frauen und M&auml;nner gestorben. Oder m&uuml;ssen wir die Frage stellen, ob sie get&ouml;tet wurden? Von einer immer h&auml;rteren Politik der L&auml;nder Europas, die verhindert, dass diese Menschen legal in Europa einreisen k&ouml;nnen, um hier ein Asylgesuch zu stellen. Sie m&uuml;ssen vor lebensgef&auml;hrlichen Situationen fliehen und setzen ihr Leben aufs Spiel. Sie verharren in unw&uuml;rdigen Fl&uuml;chtlingslagern ohne angemessene Versorgung oder das Wissen, ob, wann und wie es weiter geht.<br>Dar&uuml;ber sind wir entsetzt und fordern sichere Fluchtwege!<br>Mit verschiedenen Aktionen und einem Mahnmal gedenken wir der Opfer und protestieren &ouml;ffentlich gegen die unhaltbare Situation.</p>","sponsors":"about us, accompagno, Alarmphone, Alte Kirche Fluntern, Capacity Zürich, Caritas und youngCaritas Zürich, Christkatholische Kirche im Kanton Zürich, Citykirche Offener St. Jakob, ExpoTrans- kultur Zürich, Face Migration, Grossmünster Zürich, Helferei Zürich, Islamische Gemeinschaft Volketswil, Jesuiten Flüchtlingsdienst Schweiz, Johanneskirche Zürich, Katholische Kirche Liebfrauen Zürich, Kath. Pfarrei St.Benignus Pfäffikon, Kirche St. Peter Zürich, NCBI, Reformierte Kirche Zürich KK9, Sans Papiers Anlaufstelle Zürich, Seebrücke Schweiz, Solinetz Zürich, SIGNA Switzerland, SOS MEDITRERRANEE Ortsgruppe Zürich, Wasserkirche Zürich, We are AIA/Awareness in Art Zürich"}],"update":[],"delete":[]}}	{"translations":{"create":[{"name":"Zürich","languages_code":{"code":"de"},"page_title":"Aktionsmonat in Zürich Beim Namen nennen – über 51000 Opfer der Festung Europa","description":"<p>24 Stunden vom Samstag, 17. Juni 10 Uhr, bis Sonntag, 18. Juni, 10 Uhr, Grossm&uuml;nster und Wasserkirche Z&uuml;rich Ein stilles Drama geht seit Jahren auf den Meeren und an den Grenzen Europas vor sich und schafft es nur gelegentlich in die Medien. Seit 1993 sind &uuml;ber 51000 Kinder, Frauen und M&auml;nner gestorben. Oder m&uuml;ssen wir die Frage stellen, ob sie get&ouml;tet wurden? Von einer immer h&auml;rteren Politik der L&auml;nder Europas, die verhindert, dass diese Menschen legal in Europa einreisen k&ouml;nnen, um hier ein Asylgesuch zu stellen. Sie m&uuml;ssen vor lebensgef&auml;hrlichen Situationen fliehen und setzen ihr Leben aufs Spiel. Sie verharren in unw&uuml;rdigen Fl&uuml;chtlingslagern ohne angemessene Versorgung oder das Wissen, ob, wann und wie es weiter geht.<br>Dar&uuml;ber sind wir entsetzt und fordern sichere Fluchtwege!<br>Mit verschiedenen Aktionen und einem Mahnmal gedenken wir der Opfer und protestieren &ouml;ffentlich gegen die unhaltbare Situation.</p>","sponsors":"about us, accompagno, Alarmphone, Alte Kirche Fluntern, Capacity Zürich, Caritas und youngCaritas Zürich, Christkatholische Kirche im Kanton Zürich, Citykirche Offener St. Jakob, ExpoTrans- kultur Zürich, Face Migration, Grossmünster Zürich, Helferei Zürich, Islamische Gemeinschaft Volketswil, Jesuiten Flüchtlingsdienst Schweiz, Johanneskirche Zürich, Katholische Kirche Liebfrauen Zürich, Kath. Pfarrei St.Benignus Pfäffikon, Kirche St. Peter Zürich, NCBI, Reformierte Kirche Zürich KK9, Sans Papiers Anlaufstelle Zürich, Seebrücke Schweiz, Solinetz Zürich, SIGNA Switzerland, SOS MEDITRERRANEE Ortsgruppe Zürich, Wasserkirche Zürich, We are AIA/Awareness in Art Zürich"}],"update":[],"delete":[]}}	\N	\N
 1154	1307	city_translations	13	{"name":"Zürich","languages_code":{"code":"de"},"page_title":"Aktionsmonat in Zürich Beim Namen nennen – über 51000 Opfer der Festung Europa","description":"<p>24 Stunden vom Samstag, 17. Juni 10 Uhr, bis Sonntag, 18. Juni, 10 Uhr, Grossm&uuml;nster und Wasserkirche Z&uuml;rich Ein stilles Drama geht seit Jahren auf den Meeren und an den Grenzen Europas vor sich und schafft es nur gelegentlich in die Medien. Seit 1993 sind &uuml;ber 51000 Kinder, Frauen und M&auml;nner gestorben. Oder m&uuml;ssen wir die Frage stellen, ob sie get&ouml;tet wurden? Von einer immer h&auml;rteren Politik der L&auml;nder Europas, die verhindert, dass diese Menschen legal in Europa einreisen k&ouml;nnen, um hier ein Asylgesuch zu stellen. Sie m&uuml;ssen vor lebensgef&auml;hrlichen Situationen fliehen und setzen ihr Leben aufs Spiel. Sie verharren in unw&uuml;rdigen Fl&uuml;chtlingslagern ohne angemessene Versorgung oder das Wissen, ob, wann und wie es weiter geht.<br>Dar&uuml;ber sind wir entsetzt und fordern sichere Fluchtwege!<br>Mit verschiedenen Aktionen und einem Mahnmal gedenken wir der Opfer und protestieren &ouml;ffentlich gegen die unhaltbare Situation.</p>","sponsors":"about us, accompagno, Alarmphone, Alte Kirche Fluntern, Capacity Zürich, Caritas und youngCaritas Zürich, Christkatholische Kirche im Kanton Zürich, Citykirche Offener St. Jakob, ExpoTrans- kultur Zürich, Face Migration, Grossmünster Zürich, Helferei Zürich, Islamische Gemeinschaft Volketswil, Jesuiten Flüchtlingsdienst Schweiz, Johanneskirche Zürich, Katholische Kirche Liebfrauen Zürich, Kath. Pfarrei St.Benignus Pfäffikon, Kirche St. Peter Zürich, NCBI, Reformierte Kirche Zürich KK9, Sans Papiers Anlaufstelle Zürich, Seebrücke Schweiz, Solinetz Zürich, SIGNA Switzerland, SOS MEDITRERRANEE Ortsgruppe Zürich, Wasserkirche Zürich, We are AIA/Awareness in Art Zürich","city_id":10}	{"name":"Zürich","languages_code":{"code":"de"},"page_title":"Aktionsmonat in Zürich Beim Namen nennen – über 51000 Opfer der Festung Europa","description":"<p>24 Stunden vom Samstag, 17. Juni 10 Uhr, bis Sonntag, 18. Juni, 10 Uhr, Grossm&uuml;nster und Wasserkirche Z&uuml;rich Ein stilles Drama geht seit Jahren auf den Meeren und an den Grenzen Europas vor sich und schafft es nur gelegentlich in die Medien. Seit 1993 sind &uuml;ber 51000 Kinder, Frauen und M&auml;nner gestorben. Oder m&uuml;ssen wir die Frage stellen, ob sie get&ouml;tet wurden? Von einer immer h&auml;rteren Politik der L&auml;nder Europas, die verhindert, dass diese Menschen legal in Europa einreisen k&ouml;nnen, um hier ein Asylgesuch zu stellen. Sie m&uuml;ssen vor lebensgef&auml;hrlichen Situationen fliehen und setzen ihr Leben aufs Spiel. Sie verharren in unw&uuml;rdigen Fl&uuml;chtlingslagern ohne angemessene Versorgung oder das Wissen, ob, wann und wie es weiter geht.<br>Dar&uuml;ber sind wir entsetzt und fordern sichere Fluchtwege!<br>Mit verschiedenen Aktionen und einem Mahnmal gedenken wir der Opfer und protestieren &ouml;ffentlich gegen die unhaltbare Situation.</p>","sponsors":"about us, accompagno, Alarmphone, Alte Kirche Fluntern, Capacity Zürich, Caritas und youngCaritas Zürich, Christkatholische Kirche im Kanton Zürich, Citykirche Offener St. Jakob, ExpoTrans- kultur Zürich, Face Migration, Grossmünster Zürich, Helferei Zürich, Islamische Gemeinschaft Volketswil, Jesuiten Flüchtlingsdienst Schweiz, Johanneskirche Zürich, Katholische Kirche Liebfrauen Zürich, Kath. Pfarrei St.Benignus Pfäffikon, Kirche St. Peter Zürich, NCBI, Reformierte Kirche Zürich KK9, Sans Papiers Anlaufstelle Zürich, Seebrücke Schweiz, Solinetz Zürich, SIGNA Switzerland, SOS MEDITRERRANEE Ortsgruppe Zürich, Wasserkirche Zürich, We are AIA/Awareness in Art Zürich","city_id":10}	1155	\N
+1202	1357	directus_permissions	138	{"id":138,"role":"68c58399-f145-49aa-9db1-ee94c793b427","collection":"city_files","action":"update","permissions":null,"validation":{"_and":[{"city_id":{"_eq":"1"}}]},"presets":null,"fields":["id","directus_files_id","city_id"]}	{"role":"68c58399-f145-49aa-9db1-ee94c793b427","collection":"city_files","action":"update","permissions":null,"validation":{"_and":[{"city_id":{"_eq":"1"}}]},"presets":null,"fields":["id","directus_files_id","city_id"]}	\N	\N
+1203	1358	directus_permissions	139	{"role":"68c58399-f145-49aa-9db1-ee94c793b427","collection":"EmailForm_FormFields","action":"read","fields":["*"],"permissions":{},"validation":{}}	{"role":"68c58399-f145-49aa-9db1-ee94c793b427","collection":"EmailForm_FormFields","action":"read","fields":["*"],"permissions":{},"validation":{}}	\N	\N
 1159	1312	directus_flows	299650bc-3540-4cfa-93d4-bfc911450bbf	{"steps":[],"data":{"$trigger":{"event":"city.items.create","payload":{"translations":{"create":[{"name":"Braunschweig","languages_code":{"code":"de"},"page_title":"Beim Namen nennen / Aktion zum Weltflüchtlingstag 2023","description":"<p>Im zweiten Jahr beteiligen sich die Kirchengemeinden St. Blasius und St. Magni in Braunschweig an der Aktion \\"Beim Namen nennen\\" zum Internationalen Weltfl&uuml;chtlingstag.<br><br>Vom 12. bis 22. Juni 2023 soll dazu im Braunschweiger Dom ein Mahnmal der Menschenw&uuml;rde entstehen. Gemeinsam mit vielen Menschen aus Stadt und Region Braunschweig beschreiben wir Stoffstreifen mit den Namen und Todesumst&auml;nden von auf der Flucht verstorbenen Menschen. Diese werden aus der sogenannten \\"List of Deaths\\" der Hilfsorganisation \\"UNITED f&uuml;r Intercultural Action\\" (Amsterdam) &uuml;bertragen und im Seitenschiff des Doms zu einer tempor&auml;ren Installation zusammengesetzt. Die Stoffstreifen stehen f&uuml;r Menschen, die unterwegs waren - mit Hoffnung wie wir. Ihr Schicksal soll ins Bewusstsein der Stadt r&uuml;cken.<br><br>Parallel zum Schreiben der Namen werden diese am Wochenende 17./18. Juni 2023 im Braunschweiger Dom jeweils von 8 bis 20 Uhr &ouml;ffentlich verlesen. Jeweils zur halben und vollen Stunde erklingt Musik f&uuml;r eine kurze Atempause. Auch der Gottesdienst am Sonntagmorgen wird im Zeichen der Gedenkaktion stehen.</p>","sponsors":"Ev. Domkirche zu Braunschweig\\nArbeitskreis Nagelkreuzgemeinschaft am Braunschweiger Dom\\nEv. Kirchengemeinde St. Blasius\\nEv. Kirchengemeinde St. Magni"}],"update":[],"delete":[]},"country":"de"},"key":11,"collection":"city"},"$last":{"event":"city.items.create","payload":{"translations":{"create":[{"name":"Braunschweig","languages_code":{"code":"de"},"page_title":"Beim Namen nennen / Aktion zum Weltflüchtlingstag 2023","description":"<p>Im zweiten Jahr beteiligen sich die Kirchengemeinden St. Blasius und St. Magni in Braunschweig an der Aktion \\"Beim Namen nennen\\" zum Internationalen Weltfl&uuml;chtlingstag.<br><br>Vom 12. bis 22. Juni 2023 soll dazu im Braunschweiger Dom ein Mahnmal der Menschenw&uuml;rde entstehen. Gemeinsam mit vielen Menschen aus Stadt und Region Braunschweig beschreiben wir Stoffstreifen mit den Namen und Todesumst&auml;nden von auf der Flucht verstorbenen Menschen. Diese werden aus der sogenannten \\"List of Deaths\\" der Hilfsorganisation \\"UNITED f&uuml;r Intercultural Action\\" (Amsterdam) &uuml;bertragen und im Seitenschiff des Doms zu einer tempor&auml;ren Installation zusammengesetzt. Die Stoffstreifen stehen f&uuml;r Menschen, die unterwegs waren - mit Hoffnung wie wir. Ihr Schicksal soll ins Bewusstsein der Stadt r&uuml;cken.<br><br>Parallel zum Schreiben der Namen werden diese am Wochenende 17./18. Juni 2023 im Braunschweiger Dom jeweils von 8 bis 20 Uhr &ouml;ffentlich verlesen. Jeweils zur halben und vollen Stunde erklingt Musik f&uuml;r eine kurze Atempause. Auch der Gottesdienst am Sonntagmorgen wird im Zeichen der Gedenkaktion stehen.</p>","sponsors":"Ev. Domkirche zu Braunschweig\\nArbeitskreis Nagelkreuzgemeinschaft am Braunschweiger Dom\\nEv. Kirchengemeinde St. Blasius\\nEv. Kirchengemeinde St. Magni"}],"update":[],"delete":[]},"country":"de"},"key":11,"collection":"city"},"$accountability":{"user":"db513aee-cd3a-47a9-95e5-a98f1cc92d13","role":"878f0264-16f3-4a54-a79e-82c27313bacc","admin":true,"app":true,"ip":"172.18.0.1","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36","origin":"http://localhost:8055"},"$env":{}}}	\N	\N	\N
 1167	1320	city	14	{"translations":{"create":[{"name":"Essen","languages_code":{"code":"de"},"page_title":"Weltflüchtlingstag 2023 Beim Namen nennen Wir bauen weiter am Essener Mahnmal der Menschenwürde.","description":"<p>Zwei Tage in der Essener Innenstadt<br>Montag, 19. Juni &amp; Dienstag, 20. Juni<br><br>Ein stilles Drama geht seit Jahren auf den Meeren und an den Grenzen&nbsp;Europas vor sich und schafft es nur<br>gelegentlich in die Medien.<br>Seit 1993 sind &uuml;ber 51.000&nbsp;Kinder, Frauen und M&auml;nner gestorben.<br>Oder m&uuml;ssen wir die Frage stellen, ob sie get&ouml;tet wurden? Von einer immer h&auml;rteren Politik der L&auml;nder Europas. Sie verhindert, dass Menschen legal in Europa einreisen und ein Asylgesuch stellen k&ouml;nnen. Sie m&uuml;ssen vor lebensgef&auml;hrlichen Situationen fliehen und setzen ihr Leben aufs Spiel. Sie verharren in unw&uuml;rdigen Fl&uuml;chtlingslagern ohne angemessene Versorgung oder das Wissen, ob, wann und wie es weiter geht.&nbsp;Dar&uuml;ber sind wir entsetzt.<br>Ihr Sterben ist und bleibt ein Skandal. 2022 haben wir begonnen, nun geht es weiter: In der Essener Stadtmitte bauen wir mit an der internationalen Mahnmalinstallation &raquo;Beim Namen nennen&laquo;.<br>Mit diesem Mahnmal gedenken wir der Opfer.<br>Wir schreiben &amp; verlesen ihre Namen. Unser Mahnmal ist zugleich Forderung, den<br>Fl&uuml;chtlingsschutz zu st&auml;rken und Menschenrechte einzuhalten.<br>Auch in diesem Jahr tr&auml;gt und unterst&uuml;tzt ein breites zivilgesellschaftliches B&uuml;ndnis von Menschen aus Kirchen, Vereinen, Wohlfahrt und Initiativen die Aktion.</p>","sponsors":"Organisation in Essen: Ev. Studierendenzentrum DIE BRÜCKE | KD 11/13 gGmbh – Zentrum für Kooperation\\nund Inklusion | Citykirchenarbeit an der Marktkirche Essen | Pro Asyl/Flüchtlingsrat Essen e.V. | Seebrücke Essen\\n| Evangelisches Schulreferat und Ehrenamtsmanagement Essen\\nUnterstützer*innen: AWO KV Essen e.V | Aufstehen gegen Rassimus Essen | Caritasverbund für die Stadt\\nEssen e.V. | Chancenwerk e.V. | Diakoniewerk Essen e.V. | Kirchenkreis Essen | MediNetz Essen | pax christi\\nDiözesanverband Essen | Tulpe Plattform für Jugend und Familie e.V || deutschlandweit: United4Rescue e.V. ||\\nAlle Mitveranstaltenden DE/CH siehe www.beimnamennennen.ch\\nGefördert aus Mitteln des kommunalen Integrationsbudget der Stadt Essen. Wir danken herzlich.\\nBildrechte: Marcus Wernery: Laila Sieber/Sea Watch | Hände beim Aufhängen: Bianca\\nBaldauf/deinehochzeitdeluxe.de"}],"update":[],"delete":[]}}	{"translations":{"create":[{"name":"Essen","languages_code":{"code":"de"},"page_title":"Weltflüchtlingstag 2023 Beim Namen nennen Wir bauen weiter am Essener Mahnmal der Menschenwürde.","description":"<p>Zwei Tage in der Essener Innenstadt<br>Montag, 19. Juni &amp; Dienstag, 20. Juni<br><br>Ein stilles Drama geht seit Jahren auf den Meeren und an den Grenzen&nbsp;Europas vor sich und schafft es nur<br>gelegentlich in die Medien.<br>Seit 1993 sind &uuml;ber 51.000&nbsp;Kinder, Frauen und M&auml;nner gestorben.<br>Oder m&uuml;ssen wir die Frage stellen, ob sie get&ouml;tet wurden? Von einer immer h&auml;rteren Politik der L&auml;nder Europas. Sie verhindert, dass Menschen legal in Europa einreisen und ein Asylgesuch stellen k&ouml;nnen. Sie m&uuml;ssen vor lebensgef&auml;hrlichen Situationen fliehen und setzen ihr Leben aufs Spiel. Sie verharren in unw&uuml;rdigen Fl&uuml;chtlingslagern ohne angemessene Versorgung oder das Wissen, ob, wann und wie es weiter geht.&nbsp;Dar&uuml;ber sind wir entsetzt.<br>Ihr Sterben ist und bleibt ein Skandal. 2022 haben wir begonnen, nun geht es weiter: In der Essener Stadtmitte bauen wir mit an der internationalen Mahnmalinstallation &raquo;Beim Namen nennen&laquo;.<br>Mit diesem Mahnmal gedenken wir der Opfer.<br>Wir schreiben &amp; verlesen ihre Namen. Unser Mahnmal ist zugleich Forderung, den<br>Fl&uuml;chtlingsschutz zu st&auml;rken und Menschenrechte einzuhalten.<br>Auch in diesem Jahr tr&auml;gt und unterst&uuml;tzt ein breites zivilgesellschaftliches B&uuml;ndnis von Menschen aus Kirchen, Vereinen, Wohlfahrt und Initiativen die Aktion.</p>","sponsors":"Organisation in Essen: Ev. Studierendenzentrum DIE BRÜCKE | KD 11/13 gGmbh – Zentrum für Kooperation\\nund Inklusion | Citykirchenarbeit an der Marktkirche Essen | Pro Asyl/Flüchtlingsrat Essen e.V. | Seebrücke Essen\\n| Evangelisches Schulreferat und Ehrenamtsmanagement Essen\\nUnterstützer*innen: AWO KV Essen e.V | Aufstehen gegen Rassimus Essen | Caritasverbund für die Stadt\\nEssen e.V. | Chancenwerk e.V. | Diakoniewerk Essen e.V. | Kirchenkreis Essen | MediNetz Essen | pax christi\\nDiözesanverband Essen | Tulpe Plattform für Jugend und Familie e.V || deutschlandweit: United4Rescue e.V. ||\\nAlle Mitveranstaltenden DE/CH siehe www.beimnamennennen.ch\\nGefördert aus Mitteln des kommunalen Integrationsbudget der Stadt Essen. Wir danken herzlich.\\nBildrechte: Marcus Wernery: Laila Sieber/Sea Watch | Hände beim Aufhängen: Bianca\\nBaldauf/deinehochzeitdeluxe.de"}],"update":[],"delete":[]}}	\N	\N
 1166	1319	city_translations	17	{"name":"Essen","languages_code":{"code":"de"},"page_title":"Weltflüchtlingstag 2023 Beim Namen nennen Wir bauen weiter am Essener Mahnmal der Menschenwürde.","description":"<p>Zwei Tage in der Essener Innenstadt<br>Montag, 19. Juni &amp; Dienstag, 20. Juni<br><br>Ein stilles Drama geht seit Jahren auf den Meeren und an den Grenzen&nbsp;Europas vor sich und schafft es nur<br>gelegentlich in die Medien.<br>Seit 1993 sind &uuml;ber 51.000&nbsp;Kinder, Frauen und M&auml;nner gestorben.<br>Oder m&uuml;ssen wir die Frage stellen, ob sie get&ouml;tet wurden? Von einer immer h&auml;rteren Politik der L&auml;nder Europas. Sie verhindert, dass Menschen legal in Europa einreisen und ein Asylgesuch stellen k&ouml;nnen. Sie m&uuml;ssen vor lebensgef&auml;hrlichen Situationen fliehen und setzen ihr Leben aufs Spiel. Sie verharren in unw&uuml;rdigen Fl&uuml;chtlingslagern ohne angemessene Versorgung oder das Wissen, ob, wann und wie es weiter geht.&nbsp;Dar&uuml;ber sind wir entsetzt.<br>Ihr Sterben ist und bleibt ein Skandal. 2022 haben wir begonnen, nun geht es weiter: In der Essener Stadtmitte bauen wir mit an der internationalen Mahnmalinstallation &raquo;Beim Namen nennen&laquo;.<br>Mit diesem Mahnmal gedenken wir der Opfer.<br>Wir schreiben &amp; verlesen ihre Namen. Unser Mahnmal ist zugleich Forderung, den<br>Fl&uuml;chtlingsschutz zu st&auml;rken und Menschenrechte einzuhalten.<br>Auch in diesem Jahr tr&auml;gt und unterst&uuml;tzt ein breites zivilgesellschaftliches B&uuml;ndnis von Menschen aus Kirchen, Vereinen, Wohlfahrt und Initiativen die Aktion.</p>","sponsors":"Organisation in Essen: Ev. Studierendenzentrum DIE BRÜCKE | KD 11/13 gGmbh – Zentrum für Kooperation\\nund Inklusion | Citykirchenarbeit an der Marktkirche Essen | Pro Asyl/Flüchtlingsrat Essen e.V. | Seebrücke Essen\\n| Evangelisches Schulreferat und Ehrenamtsmanagement Essen\\nUnterstützer*innen: AWO KV Essen e.V | Aufstehen gegen Rassimus Essen | Caritasverbund für die Stadt\\nEssen e.V. | Chancenwerk e.V. | Diakoniewerk Essen e.V. | Kirchenkreis Essen | MediNetz Essen | pax christi\\nDiözesanverband Essen | Tulpe Plattform für Jugend und Familie e.V || deutschlandweit: United4Rescue e.V. ||\\nAlle Mitveranstaltenden DE/CH siehe www.beimnamennennen.ch\\nGefördert aus Mitteln des kommunalen Integrationsbudget der Stadt Essen. Wir danken herzlich.\\nBildrechte: Marcus Wernery: Laila Sieber/Sea Watch | Hände beim Aufhängen: Bianca\\nBaldauf/deinehochzeitdeluxe.de","city_id":14}	{"name":"Essen","languages_code":{"code":"de"},"page_title":"Weltflüchtlingstag 2023 Beim Namen nennen Wir bauen weiter am Essener Mahnmal der Menschenwürde.","description":"<p>Zwei Tage in der Essener Innenstadt<br>Montag, 19. Juni &amp; Dienstag, 20. Juni<br><br>Ein stilles Drama geht seit Jahren auf den Meeren und an den Grenzen&nbsp;Europas vor sich und schafft es nur<br>gelegentlich in die Medien.<br>Seit 1993 sind &uuml;ber 51.000&nbsp;Kinder, Frauen und M&auml;nner gestorben.<br>Oder m&uuml;ssen wir die Frage stellen, ob sie get&ouml;tet wurden? Von einer immer h&auml;rteren Politik der L&auml;nder Europas. Sie verhindert, dass Menschen legal in Europa einreisen und ein Asylgesuch stellen k&ouml;nnen. Sie m&uuml;ssen vor lebensgef&auml;hrlichen Situationen fliehen und setzen ihr Leben aufs Spiel. Sie verharren in unw&uuml;rdigen Fl&uuml;chtlingslagern ohne angemessene Versorgung oder das Wissen, ob, wann und wie es weiter geht.&nbsp;Dar&uuml;ber sind wir entsetzt.<br>Ihr Sterben ist und bleibt ein Skandal. 2022 haben wir begonnen, nun geht es weiter: In der Essener Stadtmitte bauen wir mit an der internationalen Mahnmalinstallation &raquo;Beim Namen nennen&laquo;.<br>Mit diesem Mahnmal gedenken wir der Opfer.<br>Wir schreiben &amp; verlesen ihre Namen. Unser Mahnmal ist zugleich Forderung, den<br>Fl&uuml;chtlingsschutz zu st&auml;rken und Menschenrechte einzuhalten.<br>Auch in diesem Jahr tr&auml;gt und unterst&uuml;tzt ein breites zivilgesellschaftliches B&uuml;ndnis von Menschen aus Kirchen, Vereinen, Wohlfahrt und Initiativen die Aktion.</p>","sponsors":"Organisation in Essen: Ev. Studierendenzentrum DIE BRÜCKE | KD 11/13 gGmbh – Zentrum für Kooperation\\nund Inklusion | Citykirchenarbeit an der Marktkirche Essen | Pro Asyl/Flüchtlingsrat Essen e.V. | Seebrücke Essen\\n| Evangelisches Schulreferat und Ehrenamtsmanagement Essen\\nUnterstützer*innen: AWO KV Essen e.V | Aufstehen gegen Rassimus Essen | Caritasverbund für die Stadt\\nEssen e.V. | Chancenwerk e.V. | Diakoniewerk Essen e.V. | Kirchenkreis Essen | MediNetz Essen | pax christi\\nDiözesanverband Essen | Tulpe Plattform für Jugend und Familie e.V || deutschlandweit: United4Rescue e.V. ||\\nAlle Mitveranstaltenden DE/CH siehe www.beimnamennennen.ch\\nGefördert aus Mitteln des kommunalen Integrationsbudget der Stadt Essen. Wir danken herzlich.\\nBildrechte: Marcus Wernery: Laila Sieber/Sea Watch | Hände beim Aufhängen: Bianca\\nBaldauf/deinehochzeitdeluxe.de","city_id":14}	1167	\N
@@ -4854,7 +6058,39 @@ COPY public.directus_revisions (id, activity, collection, item, data, delta, par
 1177	1330	city	9	{"id":9,"status":"draft","sort":null,"date_updated":"2024-03-03T12:26:55.494Z","country":"ch","flyer":null,"gallery":[],"supportlinks":[],"translations":[12],"emailForm":[],"events":[],"customSections":[]}	{"country":"ch","date_updated":"2024-03-03T12:26:55.494Z"}	\N	\N
 1178	1331	city	10	{"id":10,"status":"draft","sort":null,"date_updated":"2024-03-03T12:27:02.686Z","country":"ch","flyer":null,"gallery":[],"supportlinks":[],"translations":[13],"emailForm":[],"events":[],"customSections":[]}	{"country":"ch","date_updated":"2024-03-03T12:27:02.686Z"}	\N	\N
 1197	1352	directus_roles	68c58399-f145-49aa-9db1-ee94c793b427	{"id":"68c58399-f145-49aa-9db1-ee94c793b427","name":"City Template Admin","icon":"supervised_user_circle","description":"The reference role serves as a template for permissions. Whenever a new city is added, this role's permissions are copied to create a new role specifically for that city. If the permissions of the reference role change, those changes are automatically applied to all city-specific roles, ensuring they all have the latest permission settings.","ip_access":null,"enforce_tfa":false,"admin_access":false,"app_access":true,"users":[]}	{"name":"City Template Admin","description":"The reference role serves as a template for permissions. Whenever a new city is added, this role's permissions are copied to create a new role specifically for that city. If the permissions of the reference role change, those changes are automatically applied to all city-specific roles, ensuring they all have the latest permission settings."}	\N	\N
-1198	1353	directus_roles	68c58399-f145-49aa-9db1-ee94c793b427	{"id":"68c58399-f145-49aa-9db1-ee94c793b427","name":"City Template Admin","icon":"supervised_user_circle","description":"DO NOT DELETE OR RENAME. This reference role serves as a template for permissions. Whenever a new city is added, this role's permissions are copied to create a new role specifically for that city. If the permissions of the reference role change, those changes are automatically applied to all city-specific roles, ensuring they all have the latest permission settings.","ip_access":null,"enforce_tfa":false,"admin_access":false,"app_access":true,"users":[]}	{"description":"DO NOT DELETE OR RENAME. This reference role serves as a template for permissions. Whenever a new city is added, this role's permissions are copied to create a new role specifically for that city. If the permissions of the reference role change, those changes are automatically applied to all city-specific roles, ensuring they all have the latest permission settings."}	\N	\N
+1204	1359	directus_permissions	140	{"role":"68c58399-f145-49aa-9db1-ee94c793b427","collection":"countries","action":"read","fields":["*"],"permissions":{},"validation":{}}	{"role":"68c58399-f145-49aa-9db1-ee94c793b427","collection":"countries","action":"read","fields":["*"],"permissions":{},"validation":{}}	\N	\N
+1205	1360	directus_permissions	141	{"role":"68c58399-f145-49aa-9db1-ee94c793b427","collection":"countries_translations","action":"read","fields":["*"],"permissions":{},"validation":{}}	{"role":"68c58399-f145-49aa-9db1-ee94c793b427","collection":"countries_translations","action":"read","fields":["*"],"permissions":{},"validation":{}}	\N	\N
+1206	1361	directus_permissions	142	{"role":"68c58399-f145-49aa-9db1-ee94c793b427","collection":"FormFields","action":"read","fields":["*"],"permissions":{},"validation":{}}	{"role":"68c58399-f145-49aa-9db1-ee94c793b427","collection":"FormFields","action":"read","fields":["*"],"permissions":{},"validation":{}}	\N	\N
+1207	1362	directus_roles	68c58399-f145-49aa-9db1-ee94c793b427	{"id":"68c58399-f145-49aa-9db1-ee94c793b427","name":"City Template Admin","icon":"vpn_key","description":"DO NOT DELETE OR RENAME. This reference role serves as a template for permissions. Whenever a new city is added, this role's permissions are copied to create a new role specifically for that city. If the permissions of the reference role change, those changes are automatically applied to all city-specific roles, ensuring they all have the latest permission settings.","ip_access":null,"enforce_tfa":false,"admin_access":false,"app_access":true,"users":[]}	{"icon":"vpn_key"}	\N	\N
+1209	1366	directus_users	b72f0403-29be-4440-8e53-bf50ecb3439e	{"id":"b72f0403-29be-4440-8e53-bf50ecb3439e","first_name":"John","last_name":"Gannon","email":"johgannon@gmail.com","password":"**********","location":null,"title":null,"description":null,"tags":null,"avatar":null,"language":null,"tfa_secret":null,"status":"active","role":"cf1f4250-ccba-4734-a984-4edc3b98bbc8","token":null,"last_access":"2024-03-18T23:18:42.868Z","last_page":"/content/city/1","provider":"default","external_identifier":null,"auth_data":null,"email_notifications":true,"appearance":null,"theme_dark":null,"theme_light":null,"theme_light_overrides":null,"theme_dark_overrides":null}	{"role":"cf1f4250-ccba-4734-a984-4edc3b98bbc8"}	\N	\N
+1210	1368	directus_permissions	213	{"id":213,"role":"cf1f4250-ccba-4734-a984-4edc3b98bbc8","collection":"SupportLinks","action":"read","permissions":{"_and":[{"city":{"_eq":1}}]},"validation":null,"presets":null,"fields":["status","date_created","city","link","translations","sort","id"]}	{"role":"cf1f4250-ccba-4734-a984-4edc3b98bbc8","collection":"SupportLinks","action":"read","permissions":{"_and":[{"city":{"_eq":1}}]},"validation":null,"presets":null,"fields":["status","date_created","city","link","translations","sort","id"]}	\N	\N
+1211	1369	directus_permissions	209	{"id":209,"role":"cf1f4250-ccba-4734-a984-4edc3b98bbc8","collection":"EmailForm","action":"read","permissions":{"_and":[{"city":{"_eq":1}}]},"validation":null,"presets":null,"fields":["date_created","status","date_updated","emailTo","sort","fields","translations","emailGreeting","emailBody","city","id"]}	{"role":"cf1f4250-ccba-4734-a984-4edc3b98bbc8","collection":"EmailForm","action":"read","permissions":{"_and":[{"city":{"_eq":1}}]},"validation":null,"presets":null,"fields":["date_created","status","date_updated","emailTo","sort","fields","translations","emailGreeting","emailBody","city","id"]}	\N	\N
+1212	1370	directus_permissions	132	{"id":132,"role":"68c58399-f145-49aa-9db1-ee94c793b427","collection":"SupportLinks","action":"create","permissions":null,"validation":{"_and":[{"city":{"_eq":"1"}}]},"presets":null,"fields":["status","date_created","city","link","sort","translations","id"]}	{"role":"68c58399-f145-49aa-9db1-ee94c793b427","collection":"SupportLinks","action":"create","permissions":null,"validation":{"_and":[{"city":{"_eq":"1"}}]},"presets":null,"fields":["status","date_created","city","link","sort","translations","id"]}	\N	\N
+1213	1371	directus_permissions	133	{"id":133,"role":"68c58399-f145-49aa-9db1-ee94c793b427","collection":"SupportLinks","action":"read","permissions":{"_and":[{"city":{"_eq":"1"}}]},"validation":null,"presets":null,"fields":["status","date_created","city","link","translations","sort","id"]}	{"role":"68c58399-f145-49aa-9db1-ee94c793b427","collection":"SupportLinks","action":"read","permissions":{"_and":[{"city":{"_eq":"1"}}]},"validation":null,"presets":null,"fields":["status","date_created","city","link","translations","sort","id"]}	\N	\N
+1214	1372	directus_permissions	134	{"id":134,"role":"68c58399-f145-49aa-9db1-ee94c793b427","collection":"SupportLinks","action":"update","permissions":{"_and":[{"city":{"_eq":"1"}}]},"validation":null,"presets":null,"fields":["status","date_created","city","link","translations","sort","id"]}	{"role":"68c58399-f145-49aa-9db1-ee94c793b427","collection":"SupportLinks","action":"update","permissions":{"_and":[{"city":{"_eq":"1"}}]},"validation":null,"presets":null,"fields":["status","date_created","city","link","translations","sort","id"]}	\N	\N
+1215	1373	directus_permissions	126	{"id":126,"role":"68c58399-f145-49aa-9db1-ee94c793b427","collection":"EmailForm","action":"create","permissions":null,"validation":{"_and":[{"city":{"_eq":"1"}}]},"presets":null,"fields":["id","status","date_created","translations","fields","date_updated","emailTo","sort","emailGreeting","emailBody","city"]}	{"role":"68c58399-f145-49aa-9db1-ee94c793b427","collection":"EmailForm","action":"create","permissions":null,"validation":{"_and":[{"city":{"_eq":"1"}}]},"presets":null,"fields":["id","status","date_created","translations","fields","date_updated","emailTo","sort","emailGreeting","emailBody","city"]}	\N	\N
+1216	1374	directus_permissions	127	{"id":127,"role":"68c58399-f145-49aa-9db1-ee94c793b427","collection":"EmailForm","action":"read","permissions":{"_and":[{"city":{"_eq":"1"}}]},"validation":null,"presets":null,"fields":["date_created","status","date_updated","emailTo","sort","fields","translations","emailGreeting","emailBody","city","id"]}	{"role":"68c58399-f145-49aa-9db1-ee94c793b427","collection":"EmailForm","action":"read","permissions":{"_and":[{"city":{"_eq":"1"}}]},"validation":null,"presets":null,"fields":["date_created","status","date_updated","emailTo","sort","fields","translations","emailGreeting","emailBody","city","id"]}	\N	\N
+1217	1375	directus_permissions	128	{"id":128,"role":"68c58399-f145-49aa-9db1-ee94c793b427","collection":"EmailForm","action":"update","permissions":{"_and":[{"city":{"_eq":"1"}}]},"validation":null,"presets":null,"fields":["status","date_created","translations","fields","date_updated","emailTo","sort","emailGreeting","emailBody","city","id"]}	{"role":"68c58399-f145-49aa-9db1-ee94c793b427","collection":"EmailForm","action":"update","permissions":{"_and":[{"city":{"_eq":"1"}}]},"validation":null,"presets":null,"fields":["status","date_created","translations","fields","date_updated","emailTo","sort","emailGreeting","emailBody","city","id"]}	\N	\N
+1218	1376	directus_permissions	33	{"id":33,"role":"68c58399-f145-49aa-9db1-ee94c793b427","collection":"event","action":"create","permissions":null,"validation":{"_and":[{"city":{"_eq":"1"}}]},"presets":null,"fields":["status","sort","description","name","teaser","city","translations","link","id"]}	{"role":"68c58399-f145-49aa-9db1-ee94c793b427","collection":"event","action":"create","permissions":null,"validation":{"_and":[{"city":{"_eq":"1"}}]},"presets":null,"fields":["status","sort","description","name","teaser","city","translations","link","id"]}	\N	\N
+1219	1377	directus_permissions	36	{"id":36,"role":"68c58399-f145-49aa-9db1-ee94c793b427","collection":"event","action":"update","permissions":{"_and":[{"city":{"_eq":"1"}}]},"validation":null,"presets":null,"fields":["teaser","name","status","sort","description","id","city","translations","link"]}	{"role":"68c58399-f145-49aa-9db1-ee94c793b427","collection":"event","action":"update","permissions":{"_and":[{"city":{"_eq":"1"}}]},"validation":null,"presets":null,"fields":["teaser","name","status","sort","description","id","city","translations","link"]}	\N	\N
+1221	1379	directus_permissions	116	{"id":116,"role":"68c58399-f145-49aa-9db1-ee94c793b427","collection":"CustomSections","action":"update","permissions":{"_and":[{"city":{"_eq":"1"}}]},"validation":null,"presets":null,"fields":["id","date_created","link","status","date_updated","city","sort","translations"]}	{"role":"68c58399-f145-49aa-9db1-ee94c793b427","collection":"CustomSections","action":"update","permissions":{"_and":[{"city":{"_eq":"1"}}]},"validation":null,"presets":null,"fields":["id","date_created","link","status","date_updated","city","sort","translations"]}	\N	\N
+1222	1380	directus_roles	68c58399-f145-49aa-9db1-ee94c793b427	{"id":"68c58399-f145-49aa-9db1-ee94c793b427","name":"City Template Admin","icon":"warning_off","description":"DO NOT DELETE OR RENAME. This reference role serves as a template for permissions. Whenever a new city is added, this role's permissions are copied to create a new role specifically for that city. If the permissions of the reference role change, those changes are automatically applied to all city-specific roles, ensuring they all have the latest permission settings.","ip_access":null,"enforce_tfa":false,"admin_access":false,"app_access":true,"users":[]}	{"icon":"warning_off"}	\N	\N
+1220	1378	directus_permissions	75	{"id":75,"role":"68c58399-f145-49aa-9db1-ee94c793b427","collection":"CustomSections","action":"read","permissions":{"_and":[{"city":{"_eq":"1"}}]},"validation":null,"presets":null,"fields":["id","date_created","link","status","date_updated","city","translations","sort"]}	{"role":"68c58399-f145-49aa-9db1-ee94c793b427","collection":"CustomSections","action":"read","permissions":{"_and":[{"city":{"_eq":"1"}}]},"validation":null,"presets":null,"fields":["id","date_created","link","status","date_updated","city","translations","sort"]}	\N	\N
+1223	1381	directus_permissions	1312	{"id":1312,"role":"cf1f4250-ccba-4734-a984-4edc3b98bbc8","collection":"city","action":"update","permissions":{"_and":[{"id":{"_eq":1}}]},"validation":null,"presets":null,"fields":["country","status","sort","supportlinks","emailForm","events","flyer","customSections","gallery","date_updated","translations","id","domainname"]}	{"role":"cf1f4250-ccba-4734-a984-4edc3b98bbc8","collection":"city","action":"update","permissions":{"_and":[{"id":{"_eq":1}}]},"validation":null,"presets":null,"fields":["country","status","sort","supportlinks","emailForm","events","flyer","customSections","gallery","date_updated","translations","id","domainname"]}	\N	\N
+1224	1382	directus_permissions	1312	{"id":1312,"role":"cf1f4250-ccba-4734-a984-4edc3b98bbc8","collection":"city","action":"update","permissions":{"_and":[{"id":{"_eq":1}}]},"validation":null,"presets":null,"fields":["country","status","sort","supportlinks","emailForm","events","flyer","customSections","gallery","date_updated","translations","id"]}	{"role":"cf1f4250-ccba-4734-a984-4edc3b98bbc8","collection":"city","action":"update","permissions":{"_and":[{"id":{"_eq":1}}]},"validation":null,"presets":null,"fields":["country","status","sort","supportlinks","emailForm","events","flyer","customSections","gallery","date_updated","translations","id"]}	\N	\N
+1225	1383	directus_permissions	38	{"id":38,"role":"68c58399-f145-49aa-9db1-ee94c793b427","collection":"city","action":"update","permissions":{"_and":[{"id":{"_eq":"1"}}]},"validation":null,"presets":null,"fields":["country","status","sort","supportlinks","emailForm","events","flyer","customSections","gallery","date_updated","translations","id","domainname"]}	{"role":"68c58399-f145-49aa-9db1-ee94c793b427","collection":"city","action":"update","permissions":{"_and":[{"id":{"_eq":"1"}}]},"validation":null,"presets":null,"fields":["country","status","sort","supportlinks","emailForm","events","flyer","customSections","gallery","date_updated","translations","id","domainname"]}	\N	\N
+1226	1384	directus_roles	68c58399-f145-49aa-9db1-ee94c793b427	{"id":"68c58399-f145-49aa-9db1-ee94c793b427","name":"City Template Admin","icon":"warning","description":"DO NOT DELETE OR RENAME. This reference role serves as a template for permissions. Whenever a new city is added, this role's permissions are copied to create a new role specifically for that city. If the permissions of the reference role change, those changes are automatically applied to all city-specific roles, ensuring they all have the latest permission settings.","ip_access":null,"enforce_tfa":false,"admin_access":false,"app_access":true,"users":[]}	{"icon":"warning"}	\N	\N
+1227	1385	city	1	{"id":1,"status":"draft","sort":null,"date_updated":"2024-03-18T23:31:22.476Z","country":"ch","flyer":"29dc4e20-a4e2-4dee-b936-57cf9fc88e64","domainname":"basel","gallery":[59,63,64,65,66,67,68,69,70,71,72,73,74,75,76],"supportlinks":[],"translations":[1,2],"emailForm":[],"events":[2,13,14,15,16,17,18,19,20,21,22],"customSections":[]}	{"date_updated":"2024-03-18T23:31:22.476Z"}	\N	\N
+1228	1386	directus_permissions	138	{"id":138,"role":"68c58399-f145-49aa-9db1-ee94c793b427","collection":"city_files","action":"update","permissions":{"_and":[{"city_id":{"_eq":"1"}}]},"validation":{"_and":[{"city_id":{"_eq":"1"}}]},"presets":null,"fields":["id","directus_files_id","city_id"]}	{"role":"68c58399-f145-49aa-9db1-ee94c793b427","collection":"city_files","action":"update","permissions":{"_and":[{"city_id":{"_eq":"1"}}]},"validation":{"_and":[{"city_id":{"_eq":"1"}}]},"presets":null,"fields":["id","directus_files_id","city_id"]}	\N	\N
+1229	1387	directus_permissions	138	{"id":138,"role":"68c58399-f145-49aa-9db1-ee94c793b427","collection":"city_files","action":"update","permissions":{"_and":[{"city_id":{"_eq":"1"}}]},"validation":null,"presets":null,"fields":["id","directus_files_id","city_id"]}	{"role":"68c58399-f145-49aa-9db1-ee94c793b427","collection":"city_files","action":"update","permissions":{"_and":[{"city_id":{"_eq":"1"}}]},"validation":null,"presets":null,"fields":["id","directus_files_id","city_id"]}	\N	\N
+1230	1389	directus_permissions	138	{"id":138,"role":"68c58399-f145-49aa-9db1-ee94c793b427","collection":"city_files","action":"update","permissions":{"_and":[{"city_id":{"_eq":"1"}}]},"validation":null,"presets":null,"fields":["id","directus_files_id","city_id"]}	{"role":"68c58399-f145-49aa-9db1-ee94c793b427","collection":"city_files","action":"update","permissions":{"_and":[{"city_id":{"_eq":"1"}}]},"validation":null,"presets":null,"fields":["id","directus_files_id","city_id"]}	\N	\N
+1231	1390	directus_roles	68c58399-f145-49aa-9db1-ee94c793b427	{"id":"68c58399-f145-49aa-9db1-ee94c793b427","name":"City Template Admin","icon":"warning_off","description":"DO NOT DELETE OR RENAME. This reference role serves as a template for permissions. Whenever a new city is added, this role's permissions are copied to create a new role specifically for that city. If the permissions of the reference role change, those changes are automatically applied to all city-specific roles, ensuring they all have the latest permission settings.","ip_access":null,"enforce_tfa":false,"admin_access":false,"app_access":true,"users":[]}	{"icon":"warning_off"}	\N	\N
+1234	1396	directus_permissions	4624	{"id":4624,"role":"68c58399-f145-49aa-9db1-ee94c793b427","collection":"city_files","action":"create","permissions":null,"validation":{"_and":[{"city_id":{"_eq":"1"}}]},"presets":null,"fields":["id","directus_files_id","city_id"]}	{"role":"68c58399-f145-49aa-9db1-ee94c793b427","collection":"city_files","action":"create","permissions":null,"validation":{"_and":[{"city_id":{"_eq":"1"}}]},"presets":null,"fields":["id","directus_files_id","city_id"]}	\N	\N
+1235	1397	directus_roles	68c58399-f145-49aa-9db1-ee94c793b427	{"id":"68c58399-f145-49aa-9db1-ee94c793b427","name":"City Template Admin","icon":"warning","description":"DO NOT DELETE OR RENAME. This reference role serves as a template for permissions. Whenever a new city is added, this role's permissions are copied to create a new role specifically for that city. If the permissions of the reference role change, those changes are automatically applied to all city-specific roles, ensuring they all have the latest permission settings.","ip_access":null,"enforce_tfa":false,"admin_access":false,"app_access":true,"users":[]}	{"icon":"warning"}	\N	\N
+1236	1399	directus_users	b72f0403-29be-4440-8e53-bf50ecb3439e	{"id":"b72f0403-29be-4440-8e53-bf50ecb3439e","first_name":"John","last_name":"Gannon","email":"johgannon@gmail.com","password":"**********","location":null,"title":null,"description":null,"tags":null,"avatar":null,"language":null,"tfa_secret":null,"status":"active","role":null,"token":null,"last_access":"2024-03-18T23:36:09.605Z","last_page":"/content/city/1","provider":"default","external_identifier":null,"auth_data":null,"email_notifications":true,"appearance":null,"theme_dark":null,"theme_light":null,"theme_light_overrides":null,"theme_dark_overrides":null}	{"role":null}	\N	\N
+1237	1402	directus_users	507e3800-1c28-454b-bcd2-766cda54a162	{"id":"507e3800-1c28-454b-bcd2-766cda54a162","first_name":"Mirjam","last_name":"Thomet","email":"mirjamthomet@gmail.com","password":"**********","location":null,"title":null,"description":null,"tags":null,"avatar":null,"language":null,"tfa_secret":null,"status":"active","role":null,"token":null,"last_access":"2024-01-20T14:42:17.910Z","last_page":"/content/city","provider":"default","external_identifier":null,"auth_data":null,"email_notifications":true,"appearance":null,"theme_dark":null,"theme_light":null,"theme_light_overrides":null,"theme_dark_overrides":null}	{"first_name":"Mirjam","last_name":"Thomet"}	\N	\N
+1238	1403	directus_users	507e3800-1c28-454b-bcd2-766cda54a162	{"id":"507e3800-1c28-454b-bcd2-766cda54a162","first_name":"Mirjam","last_name":"Thomet","email":"mirjamthomet@gmail.com","password":"**********","location":null,"title":null,"description":null,"tags":null,"avatar":null,"language":null,"tfa_secret":null,"status":"active","role":"878f0264-16f3-4a54-a79e-82c27313bacc","token":null,"last_access":"2024-01-20T14:42:17.910Z","last_page":"/content/city","provider":"default","external_identifier":null,"auth_data":null,"email_notifications":true,"appearance":null,"theme_dark":null,"theme_light":null,"theme_light_overrides":null,"theme_dark_overrides":null}	{"role":"878f0264-16f3-4a54-a79e-82c27313bacc"}	\N	\N
+1239	1405	directus_users	db513aee-cd3a-47a9-95e5-a98f1cc92d13	{"id":"db513aee-cd3a-47a9-95e5-a98f1cc92d13","first_name":"John","last_name":"Gannon","email":"gannonline90@gmail.com","password":"**********","location":null,"title":null,"description":null,"tags":null,"avatar":null,"language":null,"tfa_secret":null,"status":"active","role":"878f0264-16f3-4a54-a79e-82c27313bacc","token":null,"last_access":"2024-03-18T23:35:30.415Z","last_page":"/users/db513aee-cd3a-47a9-95e5-a98f1cc92d13","provider":"default","external_identifier":null,"auth_data":null,"email_notifications":true,"appearance":null,"theme_dark":null,"theme_light":null,"theme_light_overrides":null,"theme_dark_overrides":null}	{"first_name":"John","last_name":"Gannon"}	\N	\N
 \.
 
 
@@ -4864,7 +6100,21 @@ COPY public.directus_revisions (id, activity, collection, item, data, delta, par
 
 COPY public.directus_roles (id, name, icon, description, ip_access, enforce_tfa, admin_access, app_access) FROM stdin;
 878f0264-16f3-4a54-a79e-82c27313bacc	Administrator	verified	$t:admin_description	\N	f	t	t
-68c58399-f145-49aa-9db1-ee94c793b427	City Template Admin	supervised_user_circle	DO NOT DELETE OR RENAME. This reference role serves as a template for permissions. Whenever a new city is added, this role's permissions are copied to create a new role specifically for that city. If the permissions of the reference role change, those changes are automatically applied to all city-specific roles, ensuring they all have the latest permission settings.	\N	f	f	t
+cf1f4250-ccba-4734-a984-4edc3b98bbc8	City Manager - Basel	supervised_user_circle	Manage data for city Basel (City ID: 1)	\N	f	f	t
+cfa54856-fa94-462a-97cf-0728760595d9	City Manager - Bern	supervised_user_circle	Manage data for city Bern (City ID: 2)	\N	f	f	t
+a94106a2-663e-4b16-b9bc-8774d2399872	City Manager - Genf	supervised_user_circle	Manage data for city Genf (City ID: 4)	\N	f	f	t
+5640d567-9ecd-4e4b-b121-d9dae3c5eb49	City Manager - Neuchatel	supervised_user_circle	Manage data for city Neuchatel (City ID: 5)	\N	f	f	t
+002e2d7f-83e3-4800-84b7-44cdc295f9ae	City Manager - Stgallen	supervised_user_circle	Manage data for city Stgallen (City ID: 6)	\N	f	f	t
+1338a1fb-b7e2-4ace-8165-aa0a064f23bf	City Manager - Thun	supervised_user_circle	Manage data for city Thun (City ID: 7)	\N	f	f	t
+494b3e8a-f132-4fbc-9975-83f3d61c3205	City Manager - Luzern	supervised_user_circle	Manage data for city Luzern (City ID: 8)	\N	f	f	t
+b34fa3dd-e4b7-41ae-92fd-e2b849b00ada	City Manager - Chur	supervised_user_circle	Manage data for city Chur (City ID: 9)	\N	f	f	t
+94238fc9-fb40-4941-89cf-a9909765ab50	City Manager - Zuerich	supervised_user_circle	Manage data for city Zuerich (City ID: 10)	\N	f	f	t
+f740aee0-f5f7-4b34-8a0e-76bafe286275	City Manager - Braunschweig	supervised_user_circle	Manage data for city Braunschweig (City ID: 11)	\N	f	f	t
+dd19f721-4a98-4770-80cc-42d94d5521f9	City Manager - Kehl	supervised_user_circle	Manage data for city Kehl (City ID: 12)	\N	f	f	t
+a26a0b08-fbdf-4008-af08-52cda78b47cf	City Manager - Dortmund	supervised_user_circle	Manage data for city Dortmund (City ID: 13)	\N	f	f	t
+b810e6de-dbf0-4337-a1f9-bcaf5b7fbae9	City Manager - Essen	supervised_user_circle	Manage data for city Essen (City ID: 14)	\N	f	f	t
+bf6b4fe1-5d81-4b6c-99a6-b7b9b48883b0	City Manager - Berlin	supervised_user_circle	Manage data for city Berlin (City ID: 15)	\N	f	f	t
+68c58399-f145-49aa-9db1-ee94c793b427	City Template Admin	warning	DO NOT DELETE OR RENAME. This reference role serves as a template for permissions. Whenever a new city is added, this role's permissions are copied to create a new role specifically for that city. If the permissions of the reference role change, those changes are automatically applied to all city-specific roles, ensuring they all have the latest permission settings.	\N	f	f	t
 \.
 
 
@@ -4874,6 +6124,7 @@ COPY public.directus_roles (id, name, icon, description, ip_access, enforce_tfa,
 
 COPY public.directus_sessions (token, "user", expires, ip, user_agent, share, origin) FROM stdin;
 sNdqaUS6n-v7EWpqIwWIbKzMud-oUCLvOdGpXDjSuP6-Ocd2wlsRc2lvUI68QAgU	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-03-25 21:04:58.724+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36	\N	http://localhost:8055
+FYomEGmU3yaXD_pZnov1rnyCwDAOqWizYZVjifiyz7IytxAeO3mwHJKiMfP6Zvvp	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-03-25 23:17:46.865+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36	\N	http://localhost:8055
 \.
 
 
@@ -4906,8 +6157,8 @@ COPY public.directus_translations (id, language, key, value) FROM stdin;
 --
 
 COPY public.directus_users (id, first_name, last_name, email, password, location, title, description, tags, avatar, language, tfa_secret, status, role, token, last_access, last_page, provider, external_identifier, auth_data, email_notifications, appearance, theme_dark, theme_light, theme_light_overrides, theme_dark_overrides) FROM stdin;
-507e3800-1c28-454b-bcd2-766cda54a162	Basel	Admin	mirjamthomet@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$rEXyXmboQoJtEolz1V+VwQ$0mpZ0yfRnbyl8LchcvwSg1zkRSH516jNbFYv2TCGJ0s	\N	\N	\N	\N	\N	\N	\N	active	\N	\N	2024-01-20 14:42:17.91+00	/content/city	default	\N	\N	t	\N	\N	\N	\N	\N
-db513aee-cd3a-47a9-95e5-a98f1cc92d13	Admin	User	gannonline90@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$8mOx4/9GjUaVmWJRCxhc1Q$O2PmAQbgGlqxaNAnsgyyJRQxPl+9HeBKZ5z7JMZjqbo	\N	\N	\N	\N	\N	\N	\N	active	878f0264-16f3-4a54-a79e-82c27313bacc	\N	2024-03-18 21:04:58.758+00	/settings/roles	default	\N	\N	t	\N	\N	\N	\N	\N
+507e3800-1c28-454b-bcd2-766cda54a162	Mirjam	Thomet	mirjamthomet@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$rEXyXmboQoJtEolz1V+VwQ$0mpZ0yfRnbyl8LchcvwSg1zkRSH516jNbFYv2TCGJ0s	\N	\N	\N	\N	\N	\N	\N	active	878f0264-16f3-4a54-a79e-82c27313bacc	\N	2024-01-20 14:42:17.91+00	/content/city	default	\N	\N	t	\N	\N	\N	\N	\N
+db513aee-cd3a-47a9-95e5-a98f1cc92d13	John	Gannon	gannonline90@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$8mOx4/9GjUaVmWJRCxhc1Q$O2PmAQbgGlqxaNAnsgyyJRQxPl+9HeBKZ5z7JMZjqbo	\N	\N	\N	\N	\N	\N	\N	active	878f0264-16f3-4a54-a79e-82c27313bacc	\N	2024-03-18 23:35:30.415+00	/settings/data-model	default	\N	\N	t	\N	\N	\N	\N	\N
 \.
 
 
@@ -5142,7 +6393,7 @@ SELECT pg_catalog.setval('public.countries_translations_id_seq', 2, true);
 -- Name: directus_activity_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.directus_activity_id_seq', 1353, true);
+SELECT pg_catalog.setval('public.directus_activity_id_seq', 1405, true);
 
 
 --
@@ -5163,14 +6414,14 @@ SELECT pg_catalog.setval('public.directus_notifications_id_seq', 1, false);
 -- Name: directus_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.directus_permissions_id_seq', 135, true);
+SELECT pg_catalog.setval('public.directus_permissions_id_seq', 5758, true);
 
 
 --
 -- Name: directus_presets_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.directus_presets_id_seq', 6, true);
+SELECT pg_catalog.setval('public.directus_presets_id_seq', 7, true);
 
 
 --
@@ -5184,7 +6435,7 @@ SELECT pg_catalog.setval('public.directus_relations_id_seq', 44, true);
 -- Name: directus_revisions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.directus_revisions_id_seq', 1198, true);
+SELECT pg_catalog.setval('public.directus_revisions_id_seq', 1239, true);
 
 
 --
