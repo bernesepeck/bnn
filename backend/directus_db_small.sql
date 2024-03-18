@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 16.1 (Debian 16.1-1.pgdg120+1)
--- Dumped by pg_dump version 16.1 (Debian 16.1-1.pgdg120+1)
+-- Dumped from database version 16.2 (Debian 16.2-1.pgdg120+2)
+-- Dumped by pg_dump version 16.2 (Debian 16.2-1.pgdg120+2)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -3177,6 +3177,10 @@ COPY public.directus_activity (id, action, "user", "timestamp", ip, user_agent, 
 1347	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-03-03 14:39:19.63+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	city	13	\N	http://localhost:8055
 1348	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-03-03 14:39:25.798+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	city	14	\N	http://localhost:8055
 1349	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-03-03 14:39:32.996+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	city	15	\N	http://localhost:8055
+1350	login	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-03-18 21:04:58.748+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36	directus_users	db513aee-cd3a-47a9-95e5-a98f1cc92d13	\N	http://localhost:8055
+1351	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-03-18 21:09:10.224+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36	directus_users	507e3800-1c28-454b-bcd2-766cda54a162	\N	http://localhost:8055
+1352	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-03-18 21:09:10.255+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36	directus_roles	68c58399-f145-49aa-9db1-ee94c793b427	\N	http://localhost:8055
+1353	update	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-03-18 21:11:14.554+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36	directus_roles	68c58399-f145-49aa-9db1-ee94c793b427	\N	http://localhost:8055
 \.
 
 
@@ -3223,6 +3227,7 @@ COPY public.directus_dashboards (id, name, icon, note, date_created, user_create
 --
 
 COPY public.directus_extensions (name, enabled) FROM stdin;
+directus-extension-hook-manage-city-permissions:hook	t
 \.
 
 
@@ -4511,6 +4516,7 @@ COPY public.directus_revisions (id, activity, collection, item, data, delta, par
 848	978	directus_fields	176	{"sort":10,"interface":"input","special":null,"collection":"EmailForm","field":"emailGreeting"}	{"sort":10,"interface":"input","special":null,"collection":"EmailForm","field":"emailGreeting"}	\N	\N
 865	995	city	2	{"id":2,"status":"draft","sort":null,"date_updated":"2024-02-24T08:17:34.715Z","country":"ch","flyer":"74c0209d-8b93-4570-b6b0-01e39b3b317f","translations":[3,4],"gallery":[40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58],"supportlinks":[1,2,3,4,5,6,7,8],"events":[4,5,6],"customSections":[1],"emailForm":[1]}	{"date_updated":"2024-02-24T08:17:34.715Z"}	\N	\N
 1179	1333	city	14	{"id":14,"status":"draft","sort":null,"date_updated":"2024-03-03T12:29:01.333Z","country":"de","flyer":null,"gallery":[],"supportlinks":[],"translations":[17],"emailForm":[],"events":[],"customSections":[]}	{"country":"de","date_updated":"2024-03-03T12:29:01.333Z"}	\N	\N
+1196	1351	directus_users	507e3800-1c28-454b-bcd2-766cda54a162	{"id":"507e3800-1c28-454b-bcd2-766cda54a162","first_name":"Basel","last_name":"Admin","email":"mirjamthomet@gmail.com","password":"**********","location":null,"title":null,"description":null,"tags":null,"avatar":null,"language":null,"tfa_secret":null,"status":"active","role":null,"token":null,"last_access":"2024-01-20T14:42:17.910Z","last_page":"/content/city","provider":"default","external_identifier":null,"auth_data":null,"email_notifications":true,"appearance":null,"theme_dark":null,"theme_light":null,"theme_light_overrides":null,"theme_dark_overrides":null}	{"role":null}	1197	\N
 863	993	event	6	{"translations":{"create":[{"name":"Bücher der Erinnerung","languages_code":{"code":"de"},"description":"<div id=\\"comp-lg6j2ajq3__5543b1b8-4f92-4700-800d-5ab9092b7bc2\\" class=\\"BaOVQ8 tz5f0K comp-lg6j2ajq3 wixui-rich-text\\" data-testid=\\"richTextElement\\">\\n<p class=\\"font_8\\">2021 haben wir die 44 000 Stoffstreifen zu 10 sch&ouml;n gebundenen B&uuml;chern zusammengen&auml;ht. Diese k&ouml;nnen bei uns ausgeliehen werden.</p>\\n</div>\\n<div id=\\"comp-lg6lg5d8__5543b1b8-4f92-4700-800d-5ab9092b7bc2\\" class=\\"BaOVQ8 tz5f0K comp-lg6lg5d8 wixui-rich-text\\" data-testid=\\"richTextElement\\"></div>"}],"update":[],"delete":[]},"city":"2"}	{"translations":{"create":[{"name":"Bücher der Erinnerung","languages_code":{"code":"de"},"description":"<div id=\\"comp-lg6j2ajq3__5543b1b8-4f92-4700-800d-5ab9092b7bc2\\" class=\\"BaOVQ8 tz5f0K comp-lg6j2ajq3 wixui-rich-text\\" data-testid=\\"richTextElement\\">\\n<p class=\\"font_8\\">2021 haben wir die 44 000 Stoffstreifen zu 10 sch&ouml;n gebundenen B&uuml;chern zusammengen&auml;ht. Diese k&ouml;nnen bei uns ausgeliehen werden.</p>\\n</div>\\n<div id=\\"comp-lg6lg5d8__5543b1b8-4f92-4700-800d-5ab9092b7bc2\\" class=\\"BaOVQ8 tz5f0K comp-lg6lg5d8 wixui-rich-text\\" data-testid=\\"richTextElement\\"></div>"}],"update":[],"delete":[]},"city":"2"}	865	\N
 864	994	event	1	{"id":1,"status":"draft","sort":null,"date_updated":"2024-02-24T08:17:34.809Z","teaser":"fcfe069e-01e8-4a08-b15c-4c2c4e2892df","city":null,"link":null,"translations":[1,2]}	{"city":null,"date_updated":"2024-02-24T08:17:34.809Z"}	865	\N
 953	1084	directus_fields	44	{"id":44,"collection":"city","field":"gallery","special":["files"],"interface":"files","options":null,"display":null,"display_options":null,"readonly":false,"hidden":true,"sort":8,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"city","field":"gallery","special":["files"],"interface":"files","options":null,"display":null,"display_options":null,"readonly":false,"hidden":true,"sort":8,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	\N	\N
@@ -4847,6 +4853,8 @@ COPY public.directus_revisions (id, activity, collection, item, data, delta, par
 1176	1329	city	8	{"id":8,"status":"draft","sort":null,"date_updated":"2024-03-03T12:26:43.022Z","country":"ch","flyer":null,"gallery":[],"supportlinks":[],"translations":[11],"emailForm":[],"events":[],"customSections":[]}	{"country":"ch","date_updated":"2024-03-03T12:26:43.022Z"}	\N	\N
 1177	1330	city	9	{"id":9,"status":"draft","sort":null,"date_updated":"2024-03-03T12:26:55.494Z","country":"ch","flyer":null,"gallery":[],"supportlinks":[],"translations":[12],"emailForm":[],"events":[],"customSections":[]}	{"country":"ch","date_updated":"2024-03-03T12:26:55.494Z"}	\N	\N
 1178	1331	city	10	{"id":10,"status":"draft","sort":null,"date_updated":"2024-03-03T12:27:02.686Z","country":"ch","flyer":null,"gallery":[],"supportlinks":[],"translations":[13],"emailForm":[],"events":[],"customSections":[]}	{"country":"ch","date_updated":"2024-03-03T12:27:02.686Z"}	\N	\N
+1197	1352	directus_roles	68c58399-f145-49aa-9db1-ee94c793b427	{"id":"68c58399-f145-49aa-9db1-ee94c793b427","name":"City Template Admin","icon":"supervised_user_circle","description":"The reference role serves as a template for permissions. Whenever a new city is added, this role's permissions are copied to create a new role specifically for that city. If the permissions of the reference role change, those changes are automatically applied to all city-specific roles, ensuring they all have the latest permission settings.","ip_access":null,"enforce_tfa":false,"admin_access":false,"app_access":true,"users":[]}	{"name":"City Template Admin","description":"The reference role serves as a template for permissions. Whenever a new city is added, this role's permissions are copied to create a new role specifically for that city. If the permissions of the reference role change, those changes are automatically applied to all city-specific roles, ensuring they all have the latest permission settings."}	\N	\N
+1198	1353	directus_roles	68c58399-f145-49aa-9db1-ee94c793b427	{"id":"68c58399-f145-49aa-9db1-ee94c793b427","name":"City Template Admin","icon":"supervised_user_circle","description":"DO NOT DELETE OR RENAME. This reference role serves as a template for permissions. Whenever a new city is added, this role's permissions are copied to create a new role specifically for that city. If the permissions of the reference role change, those changes are automatically applied to all city-specific roles, ensuring they all have the latest permission settings.","ip_access":null,"enforce_tfa":false,"admin_access":false,"app_access":true,"users":[]}	{"description":"DO NOT DELETE OR RENAME. This reference role serves as a template for permissions. Whenever a new city is added, this role's permissions are copied to create a new role specifically for that city. If the permissions of the reference role change, those changes are automatically applied to all city-specific roles, ensuring they all have the latest permission settings."}	\N	\N
 \.
 
 
@@ -4856,7 +4864,7 @@ COPY public.directus_revisions (id, activity, collection, item, data, delta, par
 
 COPY public.directus_roles (id, name, icon, description, ip_access, enforce_tfa, admin_access, app_access) FROM stdin;
 878f0264-16f3-4a54-a79e-82c27313bacc	Administrator	verified	$t:admin_description	\N	f	t	t
-68c58399-f145-49aa-9db1-ee94c793b427	Basel City Admin	supervised_user_circle	\N	\N	f	f	t
+68c58399-f145-49aa-9db1-ee94c793b427	City Template Admin	supervised_user_circle	DO NOT DELETE OR RENAME. This reference role serves as a template for permissions. Whenever a new city is added, this role's permissions are copied to create a new role specifically for that city. If the permissions of the reference role change, those changes are automatically applied to all city-specific roles, ensuring they all have the latest permission settings.	\N	f	f	t
 \.
 
 
@@ -4865,7 +4873,7 @@ COPY public.directus_roles (id, name, icon, description, ip_access, enforce_tfa,
 --
 
 COPY public.directus_sessions (token, "user", expires, ip, user_agent, share, origin) FROM stdin;
--MCTCqPxIiphCRPQZ_6F0dO1lCtFdtVFTr-BjbkqNL-umUJw4xncW7oD-OvavQ43	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-03-10 14:44:56.654+00	172.18.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36	\N	http://localhost:8055
+sNdqaUS6n-v7EWpqIwWIbKzMud-oUCLvOdGpXDjSuP6-Ocd2wlsRc2lvUI68QAgU	db513aee-cd3a-47a9-95e5-a98f1cc92d13	2024-03-25 21:04:58.724+00	172.20.0.1	Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36	\N	http://localhost:8055
 \.
 
 
@@ -4898,8 +4906,8 @@ COPY public.directus_translations (id, language, key, value) FROM stdin;
 --
 
 COPY public.directus_users (id, first_name, last_name, email, password, location, title, description, tags, avatar, language, tfa_secret, status, role, token, last_access, last_page, provider, external_identifier, auth_data, email_notifications, appearance, theme_dark, theme_light, theme_light_overrides, theme_dark_overrides) FROM stdin;
-507e3800-1c28-454b-bcd2-766cda54a162	Basel	Admin	mirjamthomet@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$rEXyXmboQoJtEolz1V+VwQ$0mpZ0yfRnbyl8LchcvwSg1zkRSH516jNbFYv2TCGJ0s	\N	\N	\N	\N	\N	\N	\N	active	68c58399-f145-49aa-9db1-ee94c793b427	\N	2024-01-20 14:42:17.91+00	/content/city	default	\N	\N	t	\N	\N	\N	\N	\N
-db513aee-cd3a-47a9-95e5-a98f1cc92d13	Admin	User	gannonline90@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$8mOx4/9GjUaVmWJRCxhc1Q$O2PmAQbgGlqxaNAnsgyyJRQxPl+9HeBKZ5z7JMZjqbo	\N	\N	\N	\N	\N	\N	\N	active	878f0264-16f3-4a54-a79e-82c27313bacc	\N	2024-03-03 14:44:56.666+00	/content/city	default	\N	\N	t	\N	\N	\N	\N	\N
+507e3800-1c28-454b-bcd2-766cda54a162	Basel	Admin	mirjamthomet@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$rEXyXmboQoJtEolz1V+VwQ$0mpZ0yfRnbyl8LchcvwSg1zkRSH516jNbFYv2TCGJ0s	\N	\N	\N	\N	\N	\N	\N	active	\N	\N	2024-01-20 14:42:17.91+00	/content/city	default	\N	\N	t	\N	\N	\N	\N	\N
+db513aee-cd3a-47a9-95e5-a98f1cc92d13	Admin	User	gannonline90@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$8mOx4/9GjUaVmWJRCxhc1Q$O2PmAQbgGlqxaNAnsgyyJRQxPl+9HeBKZ5z7JMZjqbo	\N	\N	\N	\N	\N	\N	\N	active	878f0264-16f3-4a54-a79e-82c27313bacc	\N	2024-03-18 21:04:58.758+00	/settings/roles	default	\N	\N	t	\N	\N	\N	\N	\N
 \.
 
 
@@ -5134,7 +5142,7 @@ SELECT pg_catalog.setval('public.countries_translations_id_seq', 2, true);
 -- Name: directus_activity_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.directus_activity_id_seq', 1349, true);
+SELECT pg_catalog.setval('public.directus_activity_id_seq', 1353, true);
 
 
 --
@@ -5176,7 +5184,7 @@ SELECT pg_catalog.setval('public.directus_relations_id_seq', 44, true);
 -- Name: directus_revisions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.directus_revisions_id_seq', 1195, true);
+SELECT pg_catalog.setval('public.directus_revisions_id_seq', 1198, true);
 
 
 --

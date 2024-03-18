@@ -15,9 +15,9 @@
 ## Backup Directus Environment
 
 - **Backup the Directus database and files**: This script  backs up both the Directus database and the associated files. This way you can maintain the DB state in the repo.
-  ```bash
-  ./backup-directus-environment.sh
-  ```
+```bash
+./backup-directus-environment.sh
+```
 
 ## Restore Directus Environment
 
