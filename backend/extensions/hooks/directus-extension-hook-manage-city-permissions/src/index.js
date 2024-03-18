@@ -3,7 +3,7 @@ export default ({ action }) => {
   action('items.create', async ({ key: newCityId, collection, payload }, { database }) => {
     if (collection === 'city') {
       // Fetch permissions from the reference role
-      const referencePermissions = await fetchRolePermissions("Basel City Admin", database);
+      const referencePermissions = await fetchRolePermissions("City Template Admin", database);
       const [role] = await createRoleForCity(payload, database, newCityId);
       const rolePermissions = generateRolePermissions(referencePermissions, role.id, newCityId);
       await insertRolePermissions(rolePermissions, database);
