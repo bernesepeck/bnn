@@ -7,12 +7,14 @@
   },
   "dependencies": {
     "@directus/sdk": "^14.0.0",
+    "@sentry/browser": "^7.107.0",
     "lit": "^3.1.1"
   },
   "devDependencies": {
     "@parcel/packager-xml": "^2.11.0",
     "@parcel/transformer-xml": "^2.11.0",
     "parcel": "^2.11.0",
+    "process": "^0.11.10",
     "typescript": "^5.3.3"
   }
 }

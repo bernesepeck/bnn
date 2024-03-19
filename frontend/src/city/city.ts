@@ -14,6 +14,7 @@ import "../components/footer/footer";
 import "../components/text-content/text-content";
 import "../components/form/form";
 import "../components/spinner/spinner";
+import { initializeSentry } from "../services/sentry.service";
 
 @customElement("bnn-city")
 export class City extends DefaultComponent {
@@ -74,6 +75,7 @@ export class City extends DefaultComponent {
   }
 
   override afterComponentInitialized(): void {
+    initializeSentry(this.config)
     this.cityService = new CityService(this.config);
     this.initializeSelectedCityFromURL();
     this.requestUpdate();

@@ -2,7 +2,8 @@
 
 # Generate config.json
 echo "{
-  \"apiUrl\": \"$API_URL\" 
+  \"apiUrl\": \"$API_URL\",
+  \"environment\": \"$ENV\"
 }" > /usr/share/nginx/html/config.json
 
 # Substitute environment variables in Nginx configuration
