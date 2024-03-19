@@ -6,6 +6,7 @@ import "./components/footer/footer";
 import "./components/content-container/content-container";
 import { HomeModel, HomeService } from "./home.service";
 import { classMap } from "lit/directives/class-map.js";
+import { initializeSentry } from "./services/sentry.service";
 
 @customElement("bnn-home")
 export class Home extends DefaultComponent {
@@ -37,6 +38,7 @@ export class Home extends DefaultComponent {
   }
 
   override afterComponentInitialized(): void {
+    initializeSentry(this.config)
     this.homeService = new HomeService(this.config);
     this.homeService.getHome().then((home: HomeModel) => {
       this.home = home;

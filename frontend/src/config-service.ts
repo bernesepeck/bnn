@@ -1,11 +1,13 @@
 export type AppConfig = {
   apiUrl: string;
+  environment: string;
 };
 
 declare var process: {
   env: {
     NODE_ENV: string;
     PARCEL_API_URL?: string;
+    ENV?: string;
   };
 };
 
@@ -35,6 +37,7 @@ export class ConfigService {
     if (process.env.NODE_ENV === "development") {
       this.config = {
         apiUrl: process.env.PARCEL_API_URL || "",
+        environment: process.env.ENV || "",
       };
     } else {
       try {
@@ -42,6 +45,7 @@ export class ConfigService {
         const responseJson = await response.json();
         this.config = {
           apiUrl: responseJson.apiUrl || "",
+          environment: responseJson.environment || "",
         };
       } catch (error) {
         console.error("Failed to load config:", error);

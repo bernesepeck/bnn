@@ -118,3 +118,4 @@ jobs:
           region: 'europe-west3'
           env_vars: |
             API_URL=${{ steps.get_backend_url.outputs.backend_service_url }}
+            ENV=${{ inputs.environment }}
