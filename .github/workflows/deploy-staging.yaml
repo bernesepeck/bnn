@@ -12,7 +12,7 @@ jobs:
       environment: staging
       frontend_service_name: 'bnn-frontend-staging'
       directus_service_name: 'bnn-directus-staging'
-      frontend_url: 'https://bnn-frontend-staging-g5zcbtf63q-oa.a.run.app'
+      frontend_url: 'https://bnn-frontend-staging-g5zcbtf63q-ey.a.run.app'
       gcs_upload_directory: './uploads-staging'
     secrets: inherit
 
