@@ -70,7 +70,7 @@ jobs:
       - name: Deploy directus to Google Cloud Run
         uses: google-github-actions/deploy-cloudrun@v2
         with:
-          region: 'europe-west6'
+          region: 'europe-west3'
           service: ${{ inputs.directus_service_name }}
           image: j0hngnn0n/bnn-directus:${{ github.sha }}
           flags: '--add-cloudsql-instances=bnn-app-413420:europe-west6:bnn-database'
@@ -106,7 +106,7 @@ jobs:
       - name: Get Directus Service URL
         id: get_backend_url
         run: |
-          BACKEND_SERVICE_URL=$(gcloud run services describe ${{ inputs.directus_service_name }} --platform managed --region europe-west6 --format 'value(status.url)')
+          BACKEND_SERVICE_URL=$(gcloud run services describe ${{ inputs.directus_service_name }} --platform managed --region europe-west3 --format 'value(status.url)')
           echo "BACKEND_SERVICE_URL=$BACKEND_SERVICE_URL" 
           echo "::set-output name=backend_service_url::$BACKEND_SERVICE_URL"
 
@@ -115,6 +115,6 @@ jobs:
         with:
           service: ${{ inputs.frontend_service_name }}
           image: 'j0hngnn0n/bnn-frontend:${{ github.sha }}'
-          region: 'europe-west6'
+          region: 'europe-west3'
           env_vars: |
             API_URL=${{ steps.get_backend_url.outputs.backend_service_url }}
