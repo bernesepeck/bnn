@@ -13,6 +13,7 @@ jobs:
       frontend_service_name: 'bnn-frontend-staging'
       directus_service_name: 'bnn-directus-staging'
       frontend_url: 'https://staging.beimnamennennen.ch'
+      backend_url: 'https://api.staging.beimnamennennen.ch'
       gcs_upload_directory: './uploads-staging'
     secrets: inherit
 

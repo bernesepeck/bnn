@@ -15,6 +15,9 @@ on:
       frontend_url:
         required: true
         type: string
+      backend_url:
+        required: false
+        type: string
       gcs_upload_directory:
         required: true
         type: string
@@ -95,7 +98,7 @@ jobs:
           image: j0hngnn0n/bnn-directus:${{ github.sha }}
           flags: '--add-cloudsql-instances=bnn-app-413420:europe-west6:bnn-database'
           env_vars: |
-            PUBLIC_URL=https://api.staging.beimnamennennen.ch
+            PUBLIC_URL=${{ inputs.backend_url }}
             KEY=${{ secrets.DIRECTUS_KEY }}
             SECRET=${{ secrets.DIRECTUS_SECRET }}
             APPLY_SNAPSHOT=true
@@ -124,13 +127,6 @@ jobs:
             STORAGE_GCS_BUCKET=directus-uploads
             PRESSURE_LIMITER_ENABLED=false
 
-      - name: Get Directus Service URL
-        id: get_backend_url
-        run: |
-          BACKEND_SERVICE_URL=$(gcloud run services describe ${{ inputs.directus_service_name }} --platform managed --region europe-west3 --format 'value(status.url)')
-          echo "BACKEND_SERVICE_URL=$BACKEND_SERVICE_URL" 
-          echo "::set-output name=backend_service_url::$BACKEND_SERVICE_URL"
-
       - name: 'Deploy frontend to Google Cloud Run'
         uses: 'google-github-actions/deploy-cloudrun@v2'
         with:
@@ -138,5 +134,5 @@ jobs:
           image: 'j0hngnn0n/bnn-frontend:${{ github.sha }}'
           region: 'europe-west3'
           env_vars: |
-            API_URL=${{ steps.get_backend_url.outputs.backend_service_url }}
+            API_URL=${{ inputs.backend_url }}
             ENV=${{ inputs.environment }}
