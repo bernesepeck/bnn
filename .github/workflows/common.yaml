@@ -46,6 +46,26 @@ jobs:
             j0hngnn0n/bnn-frontend:${{ github.sha }}
             j0hngnn0n/bnn-frontend:latest
       
+      - uses: shrink/actions-docker-extract@v3
+        id: extract
+        with:
+          image: j0hngnn0n/bnn-frontend:${{ github.sha }}
+          path: /usr/share/nginx/html
+          destination: dist
+
+      - name: Extract and Upload Source Maps to Sentry
+        run: |
+          SENTRY_AUTH_TOKEN=${{ secrets.SENTRY_AUTH_TOKEN }}
+          VERSION=${{ github.sha }}
+          curl -sL https://sentry.io/get-cli/ | bash
+          ls -la
+          cd ./dist
+          # Upload source maps to Sentry
+          sentry-cli sourcemaps --org ${{ secrets.SENTRY_ORG }} --project ${{ secrets.SENTRY_PROJECT }} inject .
+          sentry-cli sourcemaps --org ${{ secrets.SENTRY_ORG }} --project ${{ secrets.SENTRY_PROJECT }} upload .
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+      
       - name: Build and push Directus custom Docker image
         uses: docker/build-push-action@v2
         with:
