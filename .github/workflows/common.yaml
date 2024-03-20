@@ -95,6 +95,7 @@ jobs:
           image: j0hngnn0n/bnn-directus:${{ github.sha }}
           flags: '--add-cloudsql-instances=bnn-app-413420:europe-west6:bnn-database'
           env_vars: |
+            PUBLIC_URL=https://api.staging.beimnamennennen.ch
             KEY=${{ secrets.DIRECTUS_KEY }}
             SECRET=${{ secrets.DIRECTUS_SECRET }}
             APPLY_SNAPSHOT=true
