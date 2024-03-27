@@ -123,6 +123,7 @@ export class NavMenu extends DefaultComponent {
           opacity: 1;
           visibility: visible;
           transition: opacity 0.5s;
+          margin-top: 0;
         }
         .hamburger-menu {
           display: flex;
