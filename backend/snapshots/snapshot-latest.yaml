@@ -790,7 +790,11 @@ fields:
       sort: 7
       special: null
       translations: null
-      validation: null
+      validation:
+        _and:
+          - link:
+              _regex: >-
+                ^(https?:\/\/)?([\\da-z\.-]+)\.([a-z\.]{2,6})(:[0-9]{1,5})?(\/[^\s]*)?$
       validation_message: null
       width: full
     schema:

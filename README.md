@@ -31,6 +31,11 @@
 docker-compose exec directus npx directus schema snapshot ./snapshots/snapshot-latest.yaml
 ```
 
+## Apply directus schema snapshot
+```bash
+docker-compose exec directus npx directus schema apply ./snapshots/snapshot-latest.yaml
+```
+
 ## Fix Image Permissions
 
 This corrects permissions issues locally. THese often occure if the host permissions overwrite the docker permissions in mounted volumes.
