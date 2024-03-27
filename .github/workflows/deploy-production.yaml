@@ -13,5 +13,6 @@ jobs:
       frontend_service_name: 'bnn-frontend'
       directus_service_name: 'bnn-directus'
       frontend_url: 'https://bnn-frontend-g5zcbtf63q-ey.a.run.app'
+      backend_url: 'https://bnn-directus-g5zcbtf63q-ey.a.run.app'
       gcs_upload_directory: './uploads'
     secrets: inherit
