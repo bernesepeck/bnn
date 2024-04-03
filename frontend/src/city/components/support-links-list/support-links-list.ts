@@ -11,18 +11,18 @@ export class SupportLinksList extends DefaultComponent {
 
   static get componentStyles() {
     return css`
-        .support-links {
-            display: grid;
-            gap: var(--gutter-m);
-            grid-template-columns: repeat( auto-fit, minmax(200px, 1fr) );
-        }
-    `
+      .support-links {
+        display: grid;
+        gap: var(--gutter-m);
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      }
+    `;
   }
 
   render() {
     return html`
       <bnn-content-container .backgroundColor="${"grey"}">
-        <h2>${this.t('volunteer')}</h2>
+        <h2>${this.t("volunteer")}</h2>
         <div class="support-links">
           ${this.supportLinks?.map((e) => this.renderSupportLink(e))}
         </div>
@@ -34,7 +34,8 @@ export class SupportLinksList extends DefaultComponent {
     return html`
       <div class="support-link">
         <h3>${link.title}</h3>
-        <a href="${link.link}">${link.linkText}</a>
+        <p>${link.description}</p>
+        <a target="_blank" href="${link.link}">${link.linkText}</a>
       </div>
     `;
   }
