@@ -3740,7 +3740,7 @@ fields:
       field: sponsors
       group: null
       hidden: false
-      interface: input-multiline
+      interface: input-rich-text-html
       note: null
       options: null
       readonly: false
