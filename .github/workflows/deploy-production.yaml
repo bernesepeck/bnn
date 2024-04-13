@@ -12,7 +12,7 @@ jobs:
       environment: production
       frontend_service_name: 'bnn-frontend'
       directus_service_name: 'bnn-directus'
-      frontend_url: 'https://bnn-frontend-g5zcbtf63q-ey.a.run.app'
-      backend_url: 'https://bnn-directus-g5zcbtf63q-ey.a.run.app'
+      frontend_url: 'https://beimnamennennen.ch'
+      backend_url: 'https://api.beimnamennennen.ch'
       gcs_upload_directory: './uploads'
     secrets: inherit
