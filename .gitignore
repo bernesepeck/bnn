@@ -4,3 +4,6 @@ frontend/.parcel-cache
 frontend/dist
 .env
 uploads/
+directus_db_prod.sql
+directus_db.sql
+uploads.zip
