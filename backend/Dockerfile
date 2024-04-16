@@ -1,4 +1,4 @@
-FROM directus/directus:10.9
+FROM directus/directus:10.10
 
 COPY ./extensions /directus/extensions
 
