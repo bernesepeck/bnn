@@ -86,7 +86,7 @@ export default css`
       --gutter-s: 8px;
       --gutter-m: 16px;
       --font-size-l: 1.5rem;
-      --font-size-xl: 4rem;
+      --font-size-xl: 3rem;
       --content-padding: 16px;
     }
   }
