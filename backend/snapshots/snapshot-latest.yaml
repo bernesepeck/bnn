@@ -1,5 +1,5 @@
 version: 1
-directus: 10.10.5
+directus: 10.9.3
 vendor: postgres
 collections:
   - collection: CustomSections
@@ -4199,6 +4199,186 @@ fields:
       has_auto_increment: false
       foreign_key_table: null
       foreign_key_column: null
+  - collection: directus_extensions
+    field: id
+    type: uuid
+    meta: null
+    schema:
+      name: id
+      table: directus_extensions
+      data_type: uuid
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: true
+      is_primary_key: true
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: directus_extensions
+    field: folder
+    type: string
+    meta: null
+    schema:
+      name: folder
+      table: directus_extensions
+      data_type: character varying
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: directus_extensions
+    field: source
+    type: string
+    meta: null
+    schema:
+      name: source
+      table: directus_extensions
+      data_type: character varying
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: directus_extensions
+    field: bundle
+    type: uuid
+    meta: null
+    schema:
+      name: bundle
+      table: directus_extensions
+      data_type: uuid
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: directus_settings
+    field: report_error_url
+    type: string
+    meta: null
+    schema:
+      name: report_error_url
+      table: directus_settings
+      data_type: character varying
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: directus_settings
+    field: report_bug_url
+    type: string
+    meta: null
+    schema:
+      name: report_bug_url
+      table: directus_settings
+      data_type: character varying
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: directus_settings
+    field: report_feature_url
+    type: string
+    meta: null
+    schema:
+      name: report_feature_url
+      table: directus_settings
+      data_type: character varying
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: directus_webhooks
+    field: was_active_before_deprecation
+    type: boolean
+    meta: null
+    schema:
+      name: was_active_before_deprecation
+      table: directus_webhooks
+      data_type: boolean
+      default_value: false
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: directus_webhooks
+    field: migrated_flow
+    type: uuid
+    meta: null
+    schema:
+      name: migrated_flow
+      table: directus_webhooks
+      data_type: uuid
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: directus_flows
+      foreign_key_column: id
   - collection: event
     field: id
     type: integer
