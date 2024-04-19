@@ -109,6 +109,7 @@ jobs:
             CORS_METHODS=GET,POST,PATCH,DELETE
             CORS_ALLOWED_HEADERS=Content-Type,Authorization
             CORS_EXPOSED_HEADERS=Content-Range
+            CONTENT_SECURITY_POLICY_DIRECTIVES__FRAME_SRC=${{ inputs.frontend_url }}
             EMAIL_TRANSPORT=smtp
             EMAIL_SMTP_HOST=mail.infomaniak.com
             EMAIL_SMTP_PORT=465
