@@ -58,7 +58,7 @@ docker compose exec -u root directus chown -R node:node /directus/database /dire
 Create dump of prod DB.
 ```bash
 export DB_PASSWORD='YourPasswordHere'
-pg_dump "sslmode=disable host=34.65.121.69 dbname=directus user=directus password=$DB_PASSWORD" --no-acl --no-owner -f backend/directus_db_prod.sql
+pg_dump "sslmode=disable host=34.65.121.69 dbname=directus user=directus password=$DB_PASSWORD" --no-acl --no-owner -f directus_db_prod.sql
 ```
 
 #### Drop all connections to staging db
@@ -85,5 +85,5 @@ psql "sslmode=disable host=34.65.121.69 dbname=postgres user=directus-staging pa
 
 Ensure the database is created before attempting a restore.
 ```bash
-cat backend/directus_db_prod.sql | psql "sslmode=disable host=34.65.121.69 dbname=directus-staging user=directus-staging password=$DB_PASSWORD"
+cat directus_db_prod.sql | psql "sslmode=disable host=34.65.121.69 dbname=directus-staging user=directus-staging password=$DB_PASSWORD"
 ```
