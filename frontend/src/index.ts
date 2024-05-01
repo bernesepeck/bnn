@@ -71,7 +71,6 @@ export class Home extends DefaultComponent {
           })}
         </div>
       </bnn-content-container>
-      <bnn-footer></bnn-footer>
     `;
   }
 }
