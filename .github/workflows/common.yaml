@@ -105,7 +105,7 @@ jobs:
             ADMIN_EMAIL=gannonline90@gmail.com
             ADMIN_PASSWORD=${{ secrets.DIRECTUS_ADMIN_PASSWORD }}
             CORS_ENABLED=true
-            CORS_ORIGIN=${{ inputs.frontend_url }}
+            CORS_ORIGIN=${{ inputs.frontend_url }},https://www.lesnommerparleurnom.ch
             CORS_METHODS=GET,POST,PATCH,DELETE
             CORS_ALLOWED_HEADERS=Content-Type,Authorization
             CORS_EXPOSED_HEADERS=Content-Range
