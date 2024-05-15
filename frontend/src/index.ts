@@ -66,10 +66,14 @@ export class Home extends DefaultComponent {
 
     // Create and append the new script
     const script = document.createElement("script");
-    const scriptSrc = language === "fr" 
-      ? "https://widget.proca.app/d/beim_namen_nennen_fr/beim_namen_nennen_fr"
-      : "https://widget.proca.app/d/beim_namen_nennen/beim_namen_nennen";
-
+    let scriptSrc = ""
+    const languageCode = sessionStorage.getItem("selectedLanguage") || "fr";
+    if (languageCode == "fr") {
+      scriptSrc = `https://widget.proca.app/d/beim_namen_nennen/beim_namen_nennen/fr`
+    } else {
+      scriptSrc = `https://widget.proca.app/d/beim_namen_nennen/beim_namen_nennen/`
+    }
+    
     script.src = scriptSrc;
     script.async = true;
     script.onload = () => {
