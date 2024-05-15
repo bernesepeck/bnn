@@ -19,39 +19,16 @@ body {
     font-size: var(--font-size-m);
     display: flex;
     justify-content: center;
-    & .max-content {
-        max-width: 1200px;
-    }
-    & h2 {
-        color: #a3151a;
-        font-weight: normal;
-        font-size: var(--font-size-l);
-    }
-    & .proca-MuiButton-fullWidth {
-        background-color: var(--color-primary);
-    }
-
-    & .proca-MuiLinearProgress-colorPrimary {
-        background-color: var(--color-highlight);
-    }
-
-    & .proca-MuiLinearProgress-barColorPrimary {
-        background-color: var(--color-secondary);
-    }
 }
 
-.proca-MuiFab-primary {
-    --color-primary: #a3151a;
-    background-color: var(--color-primary) !important;
+.proca-widget-wrapper .max-content {
+    max-width: 1200px;
 }
-
-
 
 @media screen and (max-width: 768px) {
     .proca-widget-wrapper {
         --content-padding: 16px;
         --font-size-l: 1.5rem;
         --padding-top: 0;
-  
     }
-  }
+}
