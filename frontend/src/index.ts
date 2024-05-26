@@ -94,15 +94,19 @@ export class Home extends DefaultComponent {
     const style = document.createElement('style');
     style.textContent = `
       .proca-MuiButton-fullWidth {
+          --color-primary: #a3151a;
           background-color: var(--color-primary) !important;
       }
       .proca-MuiLinearProgress-colorPrimary {
+          --color-primary: #a3151a;
           background-color: var(--color-highlight) !important;
       }
       .proca-MuiLinearProgress-barColorPrimary {
+          --color-secondary: #14173F;
           background-color: var(--color-secondary) !important;
       }
       .proca-MuiFab-primary {
+          --color-primary: #a3151a;
           background-color: var(--color-primary) !important;
       }
     `;
@@ -140,7 +144,6 @@ export class Home extends DefaultComponent {
           })}
         </div>
       </bnn-content-container>
-      <bnn-footer></bnn-footer>
     `;
   }
 }
