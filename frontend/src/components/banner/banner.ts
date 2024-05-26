@@ -10,10 +10,16 @@ import "../language/language-selector";
 @customElement("bnn-banner")
 export class Banner extends DefaultComponent {
   @property({ type: String })
-  cityname?: string;
+  title?: string;
 
   @property({ type: String })
-  description?: string;
+  subtitle1?: string;
+
+  @property({ type: String })
+  subtitle2?: string;
+  
+  @property({ type: Boolean })
+  isHome: boolean = false;
 
   @property({ type: Array })
   sections: Section[] = [];
@@ -21,8 +27,8 @@ export class Banner extends DefaultComponent {
   static get componentStyles() {
     return css`
       .header-wrapper {
-        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(30, 33, 72, 0.6)), url(/bnn-banner.webp);
-          url(/bnn-banner.webp);
+        background-image: url(/bnn-banner.png);
+          url(/bnn-banner.png);
         height: min-content;
         padding: 0px var(--content-padding);
         padding-top: 16px;
@@ -34,13 +40,29 @@ export class Banner extends DefaultComponent {
       .has-description {
         --header-size: 650px;
         --font-size-xl: 40px;
-        & h1 {
-          background-color: var(--color-primary)
-        }
         & p {
           color: white;
           font-size: var(--font-size-l);
         }
+      }
+
+      .home {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        margin-top: 2em;
+        gap: 0 2em;
+        & h1 {
+          grid-row: span 2;
+          font-size: 90px;
+          margin-top: 0;
+        }
+      }
+
+      .home .subtitle-1, .home .subtitle-2 {
+        color: var(--color-white);
+        font-size: var(--font-size-xl);
+        width: 75%;
       }
 
       .max-content {
@@ -54,7 +76,6 @@ export class Banner extends DefaultComponent {
         display: flex;
         justify-content: space-between;
         width: 100%;
-        height: 50px;
         gap: 16px;
       }
 
@@ -124,6 +145,25 @@ export class Banner extends DefaultComponent {
         50% { background-color: rgba(255, 255, 255, 0.5); }
         100% { background-color: rgba(255, 255, 255, 0.3); }
       }
+
+      @media screen and (max-width: 768px) {
+        .home {
+          grid-template-columns: 1fr;
+          grid-template-rows: auto auto auto;
+          gap: 1em 0;
+        }
+  
+        .home .home-title {
+          grid-row: 1;
+          font-size: 60px;
+          margin-top: 0;
+        }
+  
+        .home .subtitle-1, .home .subtitle-2 {
+          width: 100%;
+          font-size: var(--font-size-l);
+        }
+      }
     `;
   }
 
@@ -132,7 +172,7 @@ export class Banner extends DefaultComponent {
       <div
         class="${classMap({
           "header-wrapper": true,
-          "has-description": !!this.description?.length,
+          "has-description": this.isHome,
         })}"
       >
         <div class="max-content">
@@ -141,9 +181,15 @@ export class Banner extends DefaultComponent {
             <bnn-nav-menu></bnn-nav-menu>
             <bnn-language-selector></bnn-language-selector>
           </div>
-          ${this.cityname ? html`<h1>${this.cityname}</h1>` : html`<h1 class="placeholder"></h1>`}
-          ${this.description?.length ? html`<p>${this.description}</p>` : html``}
-          ${this.sections.length > 0 || this.cityname
+          ${this.isHome ? html`
+          <div class="home">
+            <span class="subtitle-1">${this.subtitle1}</span>
+            <h1 class="home-title">${this.title}</h1>
+            <span class="subtitle-2">${this.subtitle2}</span>
+          </div>
+          ` : this.title ? html`<h1>${this.title}</h1>` : html`<h1 class="placeholder"></h1>`}
+
+          ${this.sections.length > 0 || this.title
             ? html`<ul class="sections-list">
                 ${this.sections.map((section) =>
                   section.fileId

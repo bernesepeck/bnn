@@ -22,7 +22,7 @@ export default css`
     --max-content: 1200px;
   }
   * {
-    font-family: 'Libre Franklin', sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 18px;
   }
   h1,

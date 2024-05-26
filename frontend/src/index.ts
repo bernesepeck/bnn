@@ -119,8 +119,10 @@ export class Home extends DefaultComponent {
   public render() {
     return html`
       <bnn-banner
-        .cityname="${this.home?.titel}"
-        .description="${this.home?.description}"
+        .title="${this.home?.titel}"
+        .subtitle1="${this.home?.subtitle1}"
+        .subtitle2="${this.home?.subtitle2}"
+        .isHome="${true}"
       ></bnn-banner>
       <bnn-content-container>
         <div class="grid-container">

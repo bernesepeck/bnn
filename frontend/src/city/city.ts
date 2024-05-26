@@ -129,7 +129,7 @@ export class City extends DefaultComponent {
 
     return html`
       <bnn-banner
-        .cityname="${this.city?.name}"
+        .title="${this.city?.name}"
         .sections="${sections}"
         .isLoading="${this.isLoading}"
       ></bnn-banner>

@@ -7,6 +7,8 @@ import { AppConfig } from "./config";
 
 export interface HomeModel {
   titel: string;
+  subtitle1: string;
+  subtitle2: string;
   description: string;
   contentbox: { title: string; description: string; width: 1 | 0.5 }[];
 }
@@ -39,6 +41,8 @@ export class HomeService {
     const translatedResult = response.translations[0];
     const home:HomeModel = {
         titel: translatedResult.titel,
+        subtitle1: translatedResult.subtitle1,
+        subtitle2: translatedResult.subtitle2,
         description: translatedResult.description,
         contentbox: translatedResult.contentbox?.map((content:any) => ({
             title: content.title,
