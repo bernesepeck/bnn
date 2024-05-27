@@ -55,12 +55,17 @@ export class LanguageSelector extends DefaultComponent {
     }
 
     getInitialLanguage(): string {
+        // Return selectedLanguage if in storage
         const storedLanguage = sessionStorage.getItem('selectedLanguage');
         if (storedLanguage) {
             return storedLanguage;
         }
-
+        
+        // Get browser language, if its de or fr store that as selectedLanguage, else default to de
         const browserLanguage = navigator.language.slice(0, 2);
-        return browserLanguage === 'de' || browserLanguage === 'fr' ? browserLanguage : 'de';
+        const selectedLanguage = (browserLanguage === 'de' || browserLanguage === 'fr') ? browserLanguage : 'de';
+        sessionStorage.setItem('selectedLanguage', selectedLanguage);
+
+        return selectedLanguage;
     }
 }
