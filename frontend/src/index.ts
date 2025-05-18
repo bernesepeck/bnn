@@ -34,11 +34,6 @@ export class Home extends DefaultComponent {
           grid-column: span 2;
         }
       }
-      .proca-widget-wrapper {
-        display: flex;
-        justify-content: center;
-        margin-top: 20px;
-      }
       .max-content {
         max-width: 800px;
         width: 100%;
@@ -59,58 +54,52 @@ export class Home extends DefaultComponent {
 
   private loadPetitionForm(language: string = "de") {
     // Remove existing script if any
-    const existingScript = document.querySelector("script[src^='https://widget.proca.app/d/']");
+    const existingScript = document.querySelector("#controlsfhift-embed-sign-form-script");
     if (existingScript) {
       existingScript.remove();
     }
 
     // Create and append the new script
     const script = document.createElement("script");
-    let scriptSrc = ""
-    const languageCode = sessionStorage.getItem("selectedLanguage") || "de";
-    if (languageCode == "fr") {
-      scriptSrc = `https://widget.proca.app/d/beim_namen_nennen/beim_namen_nennen/fr`
-    } else {
-      scriptSrc = `https://widget.proca.app/d/beim_namen_nennen/beim_namen_nennen/`
-    }
-    
-    script.src = scriptSrc;
+    script.id = "controlsfhift-embed-sign-form-script";
+    script.src = "https://act.campax.org/assets/embed_sign_form.js";
     script.async = true;
     script.onload = () => {
-      console.log('Petition form script loaded successfully');
-      this.applyStylesToProcaWidget();
+      this.applyStylesToPetitionWidget();
     };
-    script.onerror = () => console.error('Failed to load the petition form script');
-    
-    const procaWidgetDiv = document.querySelector('.proca-widget');
-    if (procaWidgetDiv) {
-      procaWidgetDiv.appendChild(script);
+
+    // Set the petition URL based on the selected language
+    const languageCode = sessionStorage.getItem("selectedLanguage") || "de";
+    if (languageCode === "fr") {
+      script.setAttribute(
+        "data-petition-url",
+        "https://act.campax.org/petitions/convention-des-droits-de-l-enfant-de-l-onu/embed?source=partner-homepage&bucket=partner-org"
+      );
     } else {
-      console.error('proca-widget div not found');
+      script.setAttribute(
+        "data-petition-url",
+        "https://act.campax.org/petitions/uno-kinderrechtskonvention/embed?source=partner-homepage&bucket=partner-org"
+      );
+    }
+
+    script.onerror = () => console.error("Failed to load the petition form script");
+
+    const petitionWidgetDiv = document.querySelector(".petition-widget");
+    if (petitionWidgetDiv) {
+      petitionWidgetDiv.appendChild(script);
+    } else {
+      console.error("petition-widget div not found");
     }
   }
 
-  private applyStylesToProcaWidget() {
+  private applyStylesToPetitionWidget() {
     const style = document.createElement('style');
     style.textContent = `
-      .proca-MuiButton-fullWidth {
-          --color-primary: #a3151a;
-          background-color: var(--color-primary) !important;
-      }
-      .proca-MuiLinearProgress-colorPrimary {
-          --color-primary: #a3151a;
-          background-color: var(--color-highlight) !important;
-      }
-      .proca-MuiLinearProgress-barColorPrimary {
-          --color-secondary: #14173F;
-          background-color: var(--color-secondary) !important;
-      }
-      .proca-MuiFab-primary {
-          --color-primary: #a3151a;
-          background-color: var(--color-primary) !important;
+      .petition-widget iframe {
+        width: 100%;
       }
     `;
-    const procaWidgetDiv = document.querySelector('.proca-widget');
+    const procaWidgetDiv = document.querySelector('.petition-widget');
     if (procaWidgetDiv) {
       procaWidgetDiv.appendChild(style);
     }
