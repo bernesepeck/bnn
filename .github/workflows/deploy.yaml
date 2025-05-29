@@ -1,0 +1,91 @@
+# .github/workflows/deploy.yml
+name: Deploy to Fly.io
+
+on:
+  workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
+      frontend_app:
+        required: true
+        type: string
+      backend_app:
+        required: true
+        type: string
+      frontend_url:
+        required: true
+        type: string
+      backend_url:
+        required: true
+        type: string
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: superfly/flyctl-actions/setup-flyctl@master
+
+      - name: Set Fly.io Secrets (Backend)
+        run: |
+          flyctl secrets set \
+            DB_HOST="bnn-staging-db.flycast" \
+            DB_DATABASE="bnn_directus_staging" \
+            DB_USER="bnn_directus_staging" \
+            DB_PASSWORD="${{ secrets.DB_PASSWORD }}" \
+            DB_SSLMODE="disable" \
+            DB_PORT="5432" \
+            KEY="${{ secrets.DIRECTUS_KEY }}" \
+            SECRET="${{ secrets.DIRECTUS_SECRET }}" \
+            ADMIN_EMAIL="gannonline90@gmail.com" \
+            ADMIN_PASSWORD="${{ secrets.DIRECTUS_ADMIN_PASSWORD }}" \
+            PUBLIC_URL="${{ inputs.backend_url }}" \
+            CORS_ENABLED="true" \
+            CORS_ORIGIN="${{ inputs.frontend_url }}" \
+            EMAIL_TRANSPORT="smtp" \
+            EMAIL_SMTP_HOST="mail.infomaniak.com" \
+            EMAIL_SMTP_PORT="465" \
+            EMAIL_SMTP_SECURE="true" \
+            EMAIL_SMTP_AUTH="true" \
+            EMAIL_SMTP_USER="info@beimnamennennen.ch" \
+            EMAIL_SMTP_PASSWORD="${{ secrets.DIRECTUS_SMTP_PASSWORD }}" \
+            EMAIL_FROM="info@beimnamennennen.ch" \
+            STORAGE_LOCATIONS="gcs" \
+            STORAGE_GCS_DRIVER="gcs" \
+            STORAGE_GCS_BUCKET="directus-uploads" \
+            STORAGE_GCS_ROOT="uploads-staging" \
+            STORAGE_GOOGLE_CREDENTIALS__PRIVATE_KEY="${{ secrets.GCP_SA_PRIVATE_KEY }}" \
+            STORAGE_GOOGLE_CREDENTIALS__CLIENT_EMAIL="${{ secrets.GCS_SA_CLIENT_EMAIL }}" \
+            PRESSURE_LIMITER_ENABLED="false" \
+            APPLY_SNAPSHOT="true" \
+            DB_CLIENT="pg" \
+            -a ${{ inputs.backend_app }}
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+
+      - name: Set Fly.io Secrets (Frontend)
+        run: |
+          flyctl secrets set \
+            API_URL="${{ inputs.backend_url }}" \
+            ENV="${{ inputs.environment }}" \
+            PARCEL_API_URL="${{ inputs.backend_url }}" \
+            -a ${{ inputs.frontend_app }}
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+
+      - name: Deploy Backend
+        working-directory: ./backend
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+        run: |
+          flyctl deploy --remote-only --app ${{ inputs.backend_app }}
+
+      - name: Deploy Frontend
+        working-directory: ./frontend
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+        run: |
+          flyctl deploy --remote-only --app ${{ inputs.frontend_app }}
