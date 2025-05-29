@@ -3281,6 +3281,7 @@ fields:
       interface: select-dropdown
       note: null
       options:
+        allowNone: true
         choices:
           - text: Deutschland
             value: de
