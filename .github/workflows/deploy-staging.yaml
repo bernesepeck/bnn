@@ -3,18 +3,15 @@ name: Deploy to Staging
 on:
   push:
     branches:
-      - 'develop'
+      - feature/fly-deployment
 
 jobs:
-  build-and-push-staging:
-    uses: ./.github/workflows/common.yaml
+  deploy-staging:
+    uses: ./.github/workflows/deploy.yaml
     with:
       environment: staging
-      frontend_service_name: 'bnn-frontend-staging'
-      directus_service_name: 'bnn-directus-staging'
-      frontend_url: 'https://staging.beimnamennennen.ch'
-      backend_url: 'https://api.staging.beimnamennennen.ch'
-      gcs_upload_directory: './uploads-staging'
+      frontend_app: bnn-frontend-staging
+      backend_app: bnn-directus-staging
+      frontend_url: https://bnn-frontend-staging.fly.dev
+      backend_url: https://bnn-directus-staging.fly.dev
     secrets: inherit
-
-    
