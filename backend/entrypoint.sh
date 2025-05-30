@@ -7,11 +7,12 @@ directus_pid=$!
 # Wait for Directus to finish bootstrapping
 wait $directus_pid
 
-# Now apply Directus schema snapshot if needed
+# Determine if we should apply snapshot
 if [ "$APPLY_SNAPSHOT" = "true" ]; then
-  echo "Downloading and applying schema snapshot..."
-  wget -O snapshot-latest.yaml https://storage.googleapis.com/bnn-directus-snapshots/snapshot-latest.yaml
-  npx directus schema apply --yes ./snapshot-latest.yaml
+  echo "Applying schema snapshot..."
+  npx directus schema apply --yes ./snapshots/snapshot-latest.yaml
+else
+  echo "Skipping snapshot apply (APPLY_SNAPSHOT=$APPLY_SNAPSHOT)"
 fi
 
 # Continue to run Directus in the foreground

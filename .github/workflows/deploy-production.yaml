@@ -1,9 +1,13 @@
 name: Deploy to Production
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
+    inputs:
+      apply_snapshot:
+        description: "Apply the Directus schema snapshot?"
+        required: true
+        default: false
+        type: boolean
 
 jobs:
   deploy-production:
@@ -15,4 +19,5 @@ jobs:
       db_app: bnn-db-prod
       frontend_url: https://bnn-frontend-prod.fly.dev
       backend_url: https://bnn-directus-prod.fly.dev
+      apply_snapshot: ${{ inputs.apply_snapshot }}
     secrets: inherit

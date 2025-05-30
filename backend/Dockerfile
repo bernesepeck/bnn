@@ -1,6 +1,7 @@
 FROM directus/directus:10.9
 
 COPY ./extensions /directus/extensions
+COPY ./snapshots /snapshots
 
 USER root
 COPY entrypoint.sh /entrypoint.sh
