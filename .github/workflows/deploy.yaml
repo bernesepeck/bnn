@@ -13,6 +13,9 @@ on:
       backend_app:
         required: true
         type: string
+      db_app:
+        required: true
+        type: string
       frontend_url:
         required: true
         type: string
@@ -29,15 +32,29 @@ jobs:
 
       - uses: superfly/flyctl-actions/setup-flyctl@master
 
+      - name: Setup Fly.io PostgreSQL Database
+        run: |
+          flyctl postgres create ${{ inputs.db_app }} --name ${{ inputs.db_app }} --region fra --vm-size shared-cpu-1x --initial-cluster-size 1  --volume-size 10 || echo "Frontend app already exists"
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+
+      - name: Setup Fly.io Apps
+        run: |
+          flyctl apps create ${{ inputs.frontend_app }} || echo "Frontend app already exists"
+          flyctl apps create ${{ inputs.backend_app }} || echo "Backend app already exists"
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+
+      - name: Attach DB to backend
+        run: |
+          flyctl postgres attach ${{ inputs.db_app }} -a ${{ inputs.backend_app }} --variable-name DB_CONNECTION_STRING || echo "Backend already connected to DB"
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+
+          
       - name: Set Fly.io Secrets (Backend)
         run: |
           flyctl secrets set \
-            DB_HOST="bnn-staging-db.flycast" \
-            DB_DATABASE="bnn_directus_staging" \
-            DB_USER="bnn_directus_staging" \
-            DB_PASSWORD="${{ secrets.DB_PASSWORD }}" \
-            DB_SSLMODE="disable" \
-            DB_PORT="5432" \
             KEY="${{ secrets.DIRECTUS_KEY }}" \
             SECRET="${{ secrets.DIRECTUS_SECRET }}" \
             ADMIN_EMAIL="gannonline90@gmail.com" \
