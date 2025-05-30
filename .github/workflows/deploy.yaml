@@ -98,11 +98,11 @@ jobs:
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
         run: |
-          flyctl deploy --remote-only --app ${{ inputs.backend_app }}
+          flyctl deploy --remote-only --config fly.${{ inputs.environment }}.toml --app ${{ inputs.backend_app }}
 
       - name: Deploy Frontend
         working-directory: ./frontend
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
         run: |
-          flyctl deploy --remote-only --app ${{ inputs.frontend_app }}
+          flyctl deploy --remote-only --config fly.${{ inputs.environment }}.toml --app ${{ inputs.frontend_app }}

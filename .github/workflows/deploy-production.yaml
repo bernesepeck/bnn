@@ -9,9 +9,10 @@ jobs:
   deploy-production:
     uses: ./.github/workflows/deploy.yaml
     with:
-      environment: production
+      environment: prod
       frontend_app: bnn-frontend-prod
       backend_app: bnn-directus-prod
-      frontend_url: https://www.beimnamennennen.ch
-      backend_url: https://api.beimnamennennen.ch
+      db_app: bnn-db-prod
+      frontend_url: https://bnn-frontend-prod.fly.dev
+      backend_url: https://bnn-directus-prod.fly.dev
     secrets: inherit
