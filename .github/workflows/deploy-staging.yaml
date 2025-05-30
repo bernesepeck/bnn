@@ -12,6 +12,7 @@ jobs:
       environment: staging
       frontend_app: bnn-frontend-staging
       backend_app: bnn-directus-staging
+      db_app: bnn-db-staging
       frontend_url: https://bnn-frontend-staging.fly.dev
       backend_url: https://bnn-directus-staging.fly.dev
     secrets: inherit
