@@ -103,17 +103,21 @@ export class NavMenu extends DefaultComponent {
           position: fixed;
           top: 0;
           left: 0;
-          width: 100%;
-          height: 100%;
+          width: 100vw;
+          height: 100vh;
           background-color: var(--color-primary);
           display: flex;
-          justify-content: center;
-          align-items: center;
           flex-direction: column;
+          justify-content: center;      /* vertical centering */
+          align-items: center;          /* horizontal centeri        .menu-items {
+          
+        }ng */
+          overflow-y: auto;             /* allow vertical scroll if needed */
+          max-height: 100vh;            /* ensure does not exceed viewport */
           opacity: 0;
           visibility: hidden;
           z-index: 1000;
-          transition: opacity 0.5s, visibility 0s linear 0.5s;
+          transition: opacity 0.5s, visibility 0s linear 0.5s; /* delay visibility change */
           & .submenu {
             position: unset;
           }
@@ -124,6 +128,7 @@ export class NavMenu extends DefaultComponent {
           visibility: visible;
           transition: opacity 0.5s;
           margin-top: 0;
+          height: 100%;
         }
         .hamburger-menu {
           display: flex;
@@ -180,13 +185,14 @@ export class NavMenu extends DefaultComponent {
             class="menu"
             class="${classMap({ open: this.isMenuOpen, menu: true })}"
           >
-            ${this.menuItems.map((item) =>
-              item.submenu
-                ? this.renderMenuItemWithSubmenu(item)
-                : html`<a class="main-link" href="${item.link}"
-                    >${this.t(item.translationKey!)}</a
-                  >`
-            )}
+          ${this.menuItems.map((item) =>
+            item.submenu
+              ? this.renderMenuItemWithSubmenu(item)
+              : html`<a class="main-link" href="${item.link}"
+                  >${this.t(item.translationKey!)}</a
+                >`
+          )}
+            
           <bnn-language-selector .darkMode=${true}></bnn-language-selector>
           </menu>
           <button
@@ -210,7 +216,7 @@ export class NavMenu extends DefaultComponent {
         })}"
       >
         ${this.t(item.translationKey!)}
-        ${item.submenu && (item.submenuVisible || this.isMenuOpen)
+        ${item.submenu && (item.submenuVisible)
           ? html`
               <div class="submenu">
                 ${item.submenuSlotName === "bnn-city-selector"
