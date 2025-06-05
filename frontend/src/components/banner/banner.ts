@@ -141,7 +141,7 @@ export class Banner extends DefaultComponent {
         100% { background-color: rgba(255, 255, 255, 0.3); }
       }
 
-      @media screen and (max-width: 768px) {
+      @media screen and (max-width: 1440px) {
         .home {
           grid-template-columns: 1fr;
           grid-template-rows: auto auto auto;
