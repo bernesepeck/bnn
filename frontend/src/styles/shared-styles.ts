@@ -80,7 +80,7 @@ export default css`
     //variables for mobile
 
   }
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1440px) {
     :host {
       --header-size: auto;
       --gutter-s: 8px;
