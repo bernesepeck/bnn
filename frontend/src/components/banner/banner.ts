@@ -84,6 +84,7 @@ export class Banner extends DefaultComponent {
       }
 
       bnn-nav-menu {
+        position: relative;
         margin-left: auto;
       }
 
@@ -119,12 +120,6 @@ export class Banner extends DefaultComponent {
         }
       }
 
-      bnn-language-selector {
-        position: absolute;
-        right: 16px;
-        top: 16px;
-      }
-
       .placeholder {
         background-color: rgba(255, 255, 255, 0.3);
         height: 24px;
@@ -146,7 +141,7 @@ export class Banner extends DefaultComponent {
         100% { background-color: rgba(255, 255, 255, 0.3); }
       }
 
-      @media screen and (max-width: 768px) {
+      @media screen and (max-width: 1440px) {
         .home {
           grid-template-columns: 1fr;
           grid-template-rows: auto auto auto;
@@ -179,7 +174,6 @@ export class Banner extends DefaultComponent {
           <div class="logo-nav-container">
             <img src="/logo.webp" alt="Beimnamennennen Logo">
             <bnn-nav-menu></bnn-nav-menu>
-            <bnn-language-selector></bnn-language-selector>
           </div>
           ${this.isHome ? html`
           <div class="home">

@@ -98,22 +98,24 @@ export class NavMenu extends DefaultComponent {
           animation: slideDownFadeIn 0.2s ease-out forwards; /* Apply the animation */
         }
       }
-      @media screen and (max-width: 820px) {
+      @media screen and (max-width: 1440px) {
         .menu {
           position: fixed;
           top: 0;
           left: 0;
-          width: 100%;
-          height: 100%;
+          width: 100vw;
+          height: 100vh;
           background-color: var(--color-primary);
           display: flex;
-          justify-content: center;
-          align-items: center;
           flex-direction: column;
+          justify-content: center;      /* vertical centering */
+          align-items: center;          /* horizontal centering */
+          overflow-y: auto;             /* allow vertical scroll if needed */
+          max-height: 100vh;            /* ensure does not exceed viewport */
           opacity: 0;
           visibility: hidden;
           z-index: 1000;
-          transition: opacity 0.5s, visibility 0s linear 0.5s;
+          transition: opacity 0.5s, visibility 0s linear 0.5s; /* delay visibility change */
           & .submenu {
             position: unset;
           }
@@ -124,6 +126,7 @@ export class NavMenu extends DefaultComponent {
           visibility: visible;
           transition: opacity 0.5s;
           margin-top: 0;
+          height: 100%;
         }
         .hamburger-menu {
           display: flex;
@@ -139,23 +142,32 @@ export class NavMenu extends DefaultComponent {
             background-color: white;
           }
         }
-        bnn-language-selector {
-          display: block;
+        .desktop-lang {
+          display: none !important;
+        }
+        .mobile-lang {
+          display: block !important;
+          padding: 10px;
           position: fixed;
-          top: 36px;
+          top: 0;
           left: 0;
-          z-index: 1000;
         }
       }
-      @media screen and (min-width: 821px) {
+      @media screen and (min-width: 1440px) {
         .menu {
           display: flex;
         }
         .hamburger-menu {
           display: none;
         }
-        bnn-language-selector {
-          display: none;
+        .mobile-lang {
+          display: none !important;
+        }
+        .desktop-lang {
+          display: block !important;
+          position: absolute;
+          top: 0;
+          right: -10vw;
         }
       }
     `;
@@ -180,15 +192,16 @@ export class NavMenu extends DefaultComponent {
             class="menu"
             class="${classMap({ open: this.isMenuOpen, menu: true })}"
           >
-            ${this.menuItems.map((item) =>
-              item.submenu
-                ? this.renderMenuItemWithSubmenu(item)
-                : html`<a class="main-link" href="${item.link}"
-                    >${this.t(item.translationKey!)}</a
-                  >`
-            )}
-          <bnn-language-selector .darkMode=${true}></bnn-language-selector>
+          ${this.menuItems.map((item) =>
+            item.submenu
+              ? this.renderMenuItemWithSubmenu(item)
+              : html`<a class="main-link" href="${item.link}"
+                  >${this.t(item.translationKey!)}</a
+                >`
+          )}
+            <bnn-language-selector class="mobile-lang" .darkMode=${true}></bnn-language-selector>
           </menu>
+          <bnn-language-selector class="desktop-lang"></bnn-language-selector>
           <button
             class="hamburger-menu"
             @click="${() => (this.isMenuOpen = !this.isMenuOpen)}"
@@ -210,7 +223,7 @@ export class NavMenu extends DefaultComponent {
         })}"
       >
         ${this.t(item.translationKey!)}
-        ${item.submenu && (item.submenuVisible || this.isMenuOpen)
+        ${item.submenu && (item.submenuVisible)
           ? html`
               <div class="submenu">
                 ${item.submenuSlotName === "bnn-city-selector"

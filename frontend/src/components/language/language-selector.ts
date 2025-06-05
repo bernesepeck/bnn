@@ -20,7 +20,7 @@ export class LanguageSelector extends DefaultComponent {
         return css`
             .language-wrapper {
                 display: flex;
-                gap: 8px;
+                gap: 12px;
                 color: var(--color-white);
                 text-transform: uppercase;
                 list-style-type: none;
@@ -28,6 +28,8 @@ export class LanguageSelector extends DefaultComponent {
                     background-color: var(--color-primary);
                 }
                 & li {
+                    font-size: var(--font-size-l);
+                    padding: 8px 12px;
                     cursor: pointer;
                 }
             }
