@@ -109,9 +109,7 @@ export class NavMenu extends DefaultComponent {
           display: flex;
           flex-direction: column;
           justify-content: center;      /* vertical centering */
-          align-items: center;          /* horizontal centeri        .menu-items {
-          
-        }ng */
+          align-items: center;          /* horizontal centering */
           overflow-y: auto;             /* allow vertical scroll if needed */
           max-height: 100vh;            /* ensure does not exceed viewport */
           opacity: 0;
@@ -144,12 +142,15 @@ export class NavMenu extends DefaultComponent {
             background-color: white;
           }
         }
-        bnn-language-selector {
-          display: block;
+        .desktop-lang {
+          display: none !important;
+        }
+        .mobile-lang {
+          display: block !important;
+          padding: 20px;
           position: fixed;
-          top: 36px;
+          top: 0;
           left: 0;
-          z-index: 1000;
         }
       }
       @media screen and (min-width: 821px) {
@@ -159,8 +160,14 @@ export class NavMenu extends DefaultComponent {
         .hamburger-menu {
           display: none;
         }
-        bnn-language-selector {
-          display: none;
+        .mobile-lang {
+          display: none !important;
+        }
+        .desktop-lang {
+          display: block !important;
+          position: absolute;
+          top: 0;
+          right: -10vw;
         }
       }
     `;
@@ -192,9 +199,9 @@ export class NavMenu extends DefaultComponent {
                   >${this.t(item.translationKey!)}</a
                 >`
           )}
-            
-          <bnn-language-selector .darkMode=${true}></bnn-language-selector>
+            <bnn-language-selector class="mobile-lang" .darkMode=${true}></bnn-language-selector>
           </menu>
+          <bnn-language-selector class="desktop-lang"></bnn-language-selector>
           <button
             class="hamburger-menu"
             @click="${() => (this.isMenuOpen = !this.isMenuOpen)}"

@@ -84,6 +84,7 @@ export class Banner extends DefaultComponent {
       }
 
       bnn-nav-menu {
+        position: relative;
         margin-left: auto;
       }
 
@@ -117,12 +118,6 @@ export class Banner extends DefaultComponent {
         &:hover {
           background-color: var(--color-primary);
         }
-      }
-
-      bnn-language-selector {
-        position: absolute;
-        right: 16px;
-        top: 16px;
       }
 
       .placeholder {
@@ -179,7 +174,6 @@ export class Banner extends DefaultComponent {
           <div class="logo-nav-container">
             <img src="/logo.webp" alt="Beimnamennennen Logo">
             <bnn-nav-menu></bnn-nav-menu>
-            <bnn-language-selector></bnn-language-selector>
           </div>
           ${this.isHome ? html`
           <div class="home">
