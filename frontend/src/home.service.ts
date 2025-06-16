@@ -19,6 +19,9 @@ export class HomeService {
 
   constructor(config: AppConfig) {
     this.client = createDirectus(config.apiUrl).with(rest());
+  }
+
+  async getHome(): Promise<HomeModel> {
     const languageCode = sessionStorage.getItem("selectedLanguage") || "de";
     this.langFilter = {
       translations: {
@@ -27,9 +30,6 @@ export class HomeService {
         },
       },
     };
-  }
-
-  async getHome(): Promise<HomeModel> {
     const response = await this.client.request(
       readSingleton("home", {
         fields: ["translations.*"],

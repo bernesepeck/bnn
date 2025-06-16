@@ -14,6 +14,9 @@ export class CityService {
 
   constructor(config: AppConfig) {
     this.client = createDirectus(config.apiUrl).with(rest());
+  }
+
+  async getCity(cityId: number): Promise<CityModel> {
     const languageCode = sessionStorage.getItem("selectedLanguage") || "de";
     this.langFilter = {
       translations: {
@@ -22,13 +25,18 @@ export class CityService {
         },
       },
     };
-  }
-
-  async getCity(cityId: number): Promise<CityModel> {
     return this.fetchCity({ id: cityId }, true);
   }
 
   async getCityByName(cityName: string): Promise<CityModel> {
+    const languageCode = sessionStorage.getItem("selectedLanguage") || "de";
+      this.langFilter = {
+        translations: {
+          _filter: {
+            languages_code: { _eq: languageCode },
+          },
+        },
+      };
     return this.fetchCity({ name: cityName }, true);
   }
 

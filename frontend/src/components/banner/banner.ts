@@ -5,7 +5,6 @@ import "../menu/nav-menu";
 import { classMap } from "lit/directives/class-map";
 import { Section } from "../../types/types";
 import { City } from "../../city/city";
-import "../language/language-selector";
 
 @customElement("bnn-banner")
 export class Banner extends DefaultComponent {

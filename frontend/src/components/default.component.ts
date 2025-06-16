@@ -20,6 +20,20 @@ export class DefaultComponent extends LitElement {
   connectedCallback() {
     super.connectedCallback();
     this.initializeComponent().then(() => this.afterComponentInitialized());
+    window.addEventListener('refetch-data', this.handleRefetchData);
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    window.removeEventListener('refetch-data', this.handleRefetchData);
+  }
+
+  private handleRefetchData = async () => {
+    console.log("Re-fetching general translations...");
+    // Call fetchTranslations with forceRefetch set to true
+    await this.translationService.fetchTranslations(true);
+    this.translations = this.translationService.getTranslations();
+    this.requestUpdate();
   }
 
   async initializeComponent() {
@@ -30,38 +44,23 @@ export class DefaultComponent extends LitElement {
     } catch (error) {
       console.error("Error initializing component:", error);
     }
-    return true;
   }
 
-  /**
-   * Gets the config which is needed for all the API requests
-   */
   async initializeConfig() {
     this.configService = ConfigService.getInstance();
     await this.configService.fetchConfig();
     this.config = this.configService.getConfig();
   }
 
-  /**
-   * Gets the translations
-   */
   async initializeTranslations() {
     this.translationService = TranslationService.getInstance(this.config);
     await this.translationService.fetchTranslations();
     this.translations = this.translationService.getTranslations();
   }
 
-  /**
-   * Returns translation of a given key from the general translations
-   * @param key of needed translation
-   * @returns the translation
-   */
   t(key: string) {
     return this.translationService?.getTranslation(key);
   }
 
-  /**
-   * Is called when config and translations are fetched. So any requets to apis should be done in this lifecycle hook. 
-   */
   afterComponentInitialized() {}
 }

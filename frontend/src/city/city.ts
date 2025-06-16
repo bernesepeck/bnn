@@ -63,6 +63,9 @@ export class City extends DefaultComponent {
     document.addEventListener(City.SCROLL_INTO_VIEW_EVENT, (event) =>
       this.scrollSectionIntoView((event as CustomEvent).detail)
     );
+    window.addEventListener('refetch-data', () => {
+      this.fetchCityData();
+    });
   }
 
   initializeSelectedCityFromURL() {

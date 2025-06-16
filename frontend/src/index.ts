@@ -41,32 +41,87 @@ export class Home extends DefaultComponent {
     `;
   }
 
+  override connectedCallback(): void {
+    super.connectedCallback();
+    // Add the event listener when the component is connected to the DOM
+    window.addEventListener('refetch-data', this.handleRefetchWidget);
+  }
+
+  override disconnectedCallback(): void {
+    super.disconnectedCallback();
+    // Clean up the event listener when the component is removed
+    window.removeEventListener('refetch-data', this.handleRefetchWidget);
+  }
+
+  /**
+   * Handles the global data refetch event.
+   */
+  private handleRefetchWidget = () => {
+    console.log("Refetching home content and petition widget...");
+    this.fetchHome();
+    this.loadPetitionForm();
+  };
+
   override afterComponentInitialized(): void {
     initializeSentry(this.config);
+    this.fetchHome();
+  }
+
+  private fetchHome() {
     this.homeService = new HomeService(this.config);
     this.homeService.getHome().then((home: HomeModel) => {
       this.home = home;
     }).catch((error: any) => {
       console.error("Failed to fetch home data", error);
     });
-    this.requestUpdate();
   }
 
-  private loadPetitionForm(language: string = "de") {
-    // Remove existing script if any
-    const existingScript = document.querySelector("#controlsfhift-embed-sign-form-script");
-    if (existingScript) {
-      existingScript.remove();
+  /**
+   * Injects CSS into the page to style the dynamically loaded iframe.
+   * This is called after the script has successfully loaded.
+   */
+  private applyStylesToPetitionWidget() {
+    // This style tag will be appended to the widget's container div.
+    const style = document.createElement('style');
+    style.textContent = `
+      .petition-widget iframe {
+        width: 100%;
+        border: none;
+        min-height: 600px; /* Adjust as needed */
+      }
+    `;
+    const petitionWidgetDiv = document.querySelector('.petition-widget');
+    if (petitionWidgetDiv) {
+      // Append styles directly to the container to ensure they apply
+      // to the iframe created by the script.
+      petitionWidgetDiv.appendChild(style);
     }
+  }
+
+  /**
+   * Loads the third-party petition form script into a container outside the component.
+   * It cleans up any existing widget before loading the new one.
+   */
+  private async loadPetitionForm() {
+    // Wait for the component's update cycle to complete before manipulating the DOM.
+    // @ts-ignore: updateComplete is available on LitElement
+    await (this as any).updateComplete;
+
+    // Find the container div in the global document, not the shadowRoot.
+    const petitionWidgetDiv = document.querySelector(".petition-widget");
+    if (!petitionWidgetDiv) {
+      console.error(".petition-widget div not found in document. Cannot load form.");
+      return;
+    }
+
+    // Clear any old content (script, iframe, style tags, etc.) to ensure a clean reload.
+    petitionWidgetDiv.innerHTML = '';
 
     // Create and append the new script
     const script = document.createElement("script");
     script.id = "controlsfhift-embed-sign-form-script";
     script.src = "https://act.campax.org/assets/embed_sign_form.js";
     script.async = true;
-    script.onload = () => {
-      this.applyStylesToPetitionWidget();
-    };
 
     // Set the petition URL based on the selected language
     const languageCode = sessionStorage.getItem("selectedLanguage") || "de";
@@ -81,32 +136,19 @@ export class Home extends DefaultComponent {
         "https://act.campax.org/petitions/uno-kinderrechtskonvention/embed?source=partner-homepage&bucket=partner-org"
       );
     }
+    
+    // When the script loads, apply the necessary styles.
+    script.onload = () => {
+      this.applyStylesToPetitionWidget();
+    };
+    
+    script.onerror = () => console.error("Failed to load the petition form script.");
 
-    script.onerror = () => console.error("Failed to load the petition form script");
-
-    const petitionWidgetDiv = document.querySelector(".petition-widget");
-    if (petitionWidgetDiv) {
-      petitionWidgetDiv.appendChild(script);
-    } else {
-      console.error("petition-widget div not found");
-    }
-  }
-
-  private applyStylesToPetitionWidget() {
-    const style = document.createElement('style');
-    style.textContent = `
-      .petition-widget iframe {
-        width: 100%;
-      }
-    `;
-    const procaWidgetDiv = document.querySelector('.petition-widget');
-    if (procaWidgetDiv) {
-      procaWidgetDiv.appendChild(style);
-    }
+    petitionWidgetDiv.appendChild(script);
   }
 
   override firstUpdated() {
-    this.loadPetitionForm();  // Load the default language script initially
+    this.loadPetitionForm();
   }
 
   public render() {
