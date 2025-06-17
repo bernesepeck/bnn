@@ -15,6 +15,7 @@ RUN npm install
 # Copy project files
 COPY src ./src
 
+ENV NODE_ENV=production
 # Build the application
 RUN npm run build
 
