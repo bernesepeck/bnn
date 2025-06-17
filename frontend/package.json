@@ -2,7 +2,7 @@
   "scripts": {
     "copy-assets": "cp -r src/assets/* dist",
     "start": "npm run build && npm run copy-assets && parcel src/index.html src/city/index.html",
-    "build": "npm run build-img && parcel build src/index.html src/city/index.html",
+    "build": "npm run build-img && NODE_ENV=production parcel build src/index.html src/city/index.html",
     "build-img": "parcel build src/assets/* --no-cache"
   },
   "dependencies": {
