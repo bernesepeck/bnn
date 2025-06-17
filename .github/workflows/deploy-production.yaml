@@ -4,6 +4,13 @@ on:
   push:
     branches:
       - 'main'
+  workflow_dispatch:
+    inputs:
+      apply_snapshot:
+        description: 'Apply Directus schema snapshot?'
+        required: true
+        type: boolean
+        default: false
 
 jobs:
   build-and-push-production:
@@ -15,4 +22,5 @@ jobs:
       frontend_url: https://www.beimnamennennen.ch
       backend_url: 'https://api.beimnamennennen.ch'
       gcs_upload_directory: './uploads'
+      apply_snapshot: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.apply_snapshot || false }}
     secrets: inherit

@@ -12,6 +12,8 @@ if [ "$APPLY_SNAPSHOT" = "true" ]; then
   echo "Downloading and applying schema snapshot..."
   wget -O snapshot-latest.yaml https://storage.googleapis.com/bnn-directus-snapshots/snapshot-latest.yaml
   npx directus schema apply --yes ./snapshot-latest.yaml
+else
+  echo "APPLY_SNAPSHOT is not 'true'. Skipping schema snapshot."
 fi
 
 # Continue to run Directus in the foreground
