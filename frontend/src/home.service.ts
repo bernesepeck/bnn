@@ -22,7 +22,7 @@ export class HomeService {
   }
 
   async getHome(): Promise<HomeModel> {
-    const languageCode = sessionStorage.getItem("selectedLanguage") || "de";
+    const languageCode = sessionStorage.getItem("selectedLanguage") || navigator.language;
     this.langFilter = {
       translations: {
         _filter: {

@@ -39,7 +39,7 @@ export class TranslationService {
   }
 
   private async loadTranslations() {
-    const languageCode = sessionStorage.getItem("selectedLanguage") || "de";
+    const languageCode = sessionStorage.getItem("selectedLanguage") || navigator.language;
     this.langFilter = {
       translations: {
         _filter: {

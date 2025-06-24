@@ -17,7 +17,7 @@ export class CityService {
   }
 
   async getCity(cityId: number): Promise<CityModel> {
-    const languageCode = sessionStorage.getItem("selectedLanguage") || "de";
+    const languageCode = sessionStorage.getItem("selectedLanguage") || navigator.language;
     this.langFilter = {
       translations: {
         _filter: {
@@ -29,7 +29,7 @@ export class CityService {
   }
 
   async getCityByName(cityName: string): Promise<CityModel> {
-    const languageCode = sessionStorage.getItem("selectedLanguage") || "de";
+    const languageCode = sessionStorage.getItem("selectedLanguage") || navigator.language;
       this.langFilter = {
         translations: {
           _filter: {

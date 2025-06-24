@@ -124,7 +124,7 @@ export class Home extends DefaultComponent {
     script.async = true;
 
     // Set the petition URL based on the selected language
-    const languageCode = sessionStorage.getItem("selectedLanguage") || "de";
+    const languageCode = sessionStorage.getItem("selectedLanguage") || navigator.language;
     if (languageCode === "fr") {
       script.setAttribute(
         "data-petition-url",
