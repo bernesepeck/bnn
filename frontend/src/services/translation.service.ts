@@ -15,14 +15,6 @@ export class TranslationService {
 
   constructor(config: AppConfig) {
     this.client = createDirectus(config.apiUrl).with(rest());
-    const languageCode = sessionStorage.getItem("selectedLanguage") || "de";
-    this.langFilter = {
-      translations: {
-        _filter: {
-          languages_code: { _eq: languageCode },
-        },
-      },
-    };
   }
 
   public static getInstance(config: AppConfig): TranslationService {
@@ -32,34 +24,47 @@ export class TranslationService {
     return TranslationService.instance;
   }
 
-  public async fetchTranslations() {
-    if (this.translations) {
-      return;
+  public async fetchTranslations(forceRefetch = false) {
+    if (forceRefetch) {
+      this.fetchPromise = null;
+      this.translations = undefined;
     }
-    if (!this.fetchPromise) {
-      this.fetchPromise = this.loadTranslations();
+
+    if (this.fetchPromise) {
+      return this.fetchPromise;
     }
+    
+    this.fetchPromise = this.loadTranslations();
     await this.fetchPromise;
   }
 
   private async loadTranslations() {
+    const languageCode = sessionStorage.getItem("selectedLanguage") || navigator.language;
+    this.langFilter = {
+      translations: {
+        _filter: {
+          languages_code: { _eq: languageCode },
+        },
+      },
+    };
     try {
-      const response = await this.client
-      .request(
+      console.log("Loading general strings...");
+      const response = await this.client.request(
         readItems("GeneralTranslations", {
           fields: ["key", "translations.text"],
           deep: {
             ...this.langFilter,
           },
         })
-      )
+      );
       this.translations = response.map((t) => ({
         key: t.key,
         text: t.translations[0]?.text,
       }));
-    } 
-    catch (error) {
+    } catch (error) {
       console.error("Failed to load translations:", error);
+      // In case of an error, reset the promise to allow for a retry.
+      this.fetchPromise = null; 
     }
   }
 
@@ -68,15 +73,11 @@ export class TranslationService {
   }
 
   getTranslation(key: string): string {
-    if (!this.translations?.length) {
-      return "";
-    }
-    const translation = this.translations.find((t) => t.key === key);
+    const translation = this.translations?.find((t) => t.key === key);
     if (translation) {
       return translation.text;
     } else {
-      console.error("translation doesnt exist");
-      return "";
+      return ""; 
     }
   }
 }

@@ -3,17 +3,10 @@ export type AppConfig = {
   environment: string;
 };
 
-declare var process: {
-  env: {
-    NODE_ENV: string;
-    PARCEL_API_URL?: string;
-    ENV?: string;
-  };
-};
 
 export class ConfigService {
   private static instance: ConfigService;
-  private config!: AppConfig;
+  private config: AppConfig | null = null;
   private fetchPromise: Promise<void> | null = null;
 
   public static getInstance(): ConfigService {
@@ -23,38 +16,48 @@ export class ConfigService {
     return ConfigService.instance;
   }
 
-  public async fetchConfig() {
+  public async fetchConfig(): Promise<void> {
+    // If config is already fetched, do nothing.
     if (this.config) {
       return;
     }
-    if (!this.fetchPromise) {
-      this.fetchPromise = this.loadConfig();
+
+    // If a fetch is already in progress, wait for it to complete.
+    if (this.fetchPromise) {
+      return this.fetchPromise;
     }
+
+    // Start the fetch operation.
+    this.fetchPromise = this.loadConfig();
     await this.fetchPromise;
   }
 
-  private async loadConfig() {
-    if (process.env.NODE_ENV === "development") {
-      this.config = {
-        apiUrl: process.env.PARCEL_API_URL || "",
-        environment: process.env.ENV || "",
-      };
-    } else {
-      try {
-        const response = await fetch("/config.json");
-        const responseJson = await response.json();
-        this.config = {
-          apiUrl: responseJson.apiUrl || "",
-          environment: responseJson.environment || "",
-        };
-      } catch (error) {
-        console.error("Failed to load config:", error);
+  private async loadConfig(): Promise<void> {
+    try {
+      const response = await fetch("/config.json");
+      if (!response.ok) {
+        throw new Error(`Failed to fetch config: ${response.statusText}`);
       }
+      const responseJson = await response.json();
+      this.config = {
+        apiUrl: responseJson.apiUrl || "",
+        environment: responseJson.environment || "",
+      };
+    } catch (error) {
+      console.error("Failed to load config.json:", error);
+      // Set a default/fallback config to prevent the app from crashing
+      this.config = {
+        apiUrl: "localhost:8055", // Default API URL
+        environment: "development", // Default environment
+      };
     }
   }
 
   public getConfig(): AppConfig {
+    if (!this.config) {
+        console.warn("Config not loaded yet. Returning fallback empty config.");
+        return { apiUrl: "", environment: "" };
+    }
     return this.config;
   }
 }
-

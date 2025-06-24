@@ -1,3 +1,5 @@
+# .github/workflows/common.yaml
+
 name: Build and Deploy Common Workflow
 
 on:
@@ -21,6 +23,10 @@ on:
       gcs_upload_directory:
         required: true
         type: string
+      apply_snapshot:
+        required: false
+        type: boolean
+        default: false
 
 jobs:
   deploy:
@@ -101,7 +107,7 @@ jobs:
             PUBLIC_URL=${{ inputs.backend_url }}
             KEY=${{ secrets.DIRECTUS_KEY }}
             SECRET=${{ secrets.DIRECTUS_SECRET }}
-            APPLY_SNAPSHOT=true
+            APPLY_SNAPSHOT=${{ inputs.apply_snapshot }}
             ADMIN_EMAIL=gannonline90@gmail.com
             ADMIN_PASSWORD=${{ secrets.DIRECTUS_ADMIN_PASSWORD }}
             CORS_ENABLED=true

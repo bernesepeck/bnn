@@ -44,16 +44,20 @@ export class LanguageSelector extends DefaultComponent {
     render() {
         return html`
             <ul class="${classMap({'language-wrapper': true, 'dark-mode': this.darkMode})}">
-                <li class="${classMap({selected: this.language === 'de'})}" @click="${() => this.handleLanguageChange('de')}">DE</li>
-                <li class="${classMap({selected: this.language === 'fr'})}" @click="${() => this.handleLanguageChange('fr')}">FR</li>
+                <li class="${classMap({selected: this.language === 'de'})}" @click="${() => this.setLanguage('de')}">DE</li>
+                <li class="${classMap({selected: this.language === 'fr'})}" @click="${() => this.setLanguage('fr')}">FR</li>
             </ul>
         `;
     }
 
-    handleLanguageChange(value: 'de' | 'fr') {
+    setLanguage(value: 'de' | 'fr') {
         this.language = value;
-        sessionStorage.setItem('selectedLanguage', this.language);
-        location.reload()
+        sessionStorage.setItem('selectedLanguage', value);
+        dispatchEvent(new CustomEvent('refetch-data', {
+            detail: { language: value },
+            bubbles: true,
+            composed: true
+        }));
     }
 
     getInitialLanguage(): string {

@@ -2,20 +2,20 @@
   "scripts": {
     "copy-assets": "cp -r src/assets/* dist",
     "start": "npm run build && npm run copy-assets && parcel src/index.html src/city/index.html",
-    "build": "npm run build-img && parcel build src/index.html src/city/index.html",
+    "build": "npm run build-img && NODE_ENV=production parcel build src/index.html src/city/index.html",
     "build-img": "parcel build src/assets/* --no-cache"
   },
   "dependencies": {
-    "@directus/sdk": "^14.0.0",
-    "@sentry/browser": "^7.107.0",
-    "lit": "^3.1.1"
+    "@directus/sdk": "^19.1.0",
+    "@sentry/browser": "^9.25.0",
+    "lit": "^3.3.0"
   },
   "devDependencies": {
-    "@parcel/packager-xml": "^2.11.0",
-    "@parcel/config-default": "^2.11.0",
-    "@parcel/transformer-xml": "^2.11.0",
-    "parcel": "^2.11.0",
+    "@parcel/packager-xml": "^2.15.2",
+    "@parcel/config-default": "^2.15.2",
+    "@parcel/transformer-xml": "^2.15.2",
+    "parcel": "^2.15.2",
     "process": "^0.11.10",
-    "typescript": "^5.3.3"
+    "typescript": "^5.8.3"
   }
 }
