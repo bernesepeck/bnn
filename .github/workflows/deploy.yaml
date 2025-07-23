@@ -22,6 +22,10 @@ on:
       backend_url:
         required: true
         type: string
+      apply_snapshot:
+        required: false
+        type: boolean
+        default: false
 
 jobs:
   deploy:
