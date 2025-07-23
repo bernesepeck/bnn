@@ -3,7 +3,7 @@ name: Deploy to Production
 on:
   push:
     branches:
-      - 'main'
+      - main
   workflow_dispatch:
     inputs:
       apply_snapshot:
@@ -13,14 +13,15 @@ on:
         default: false
 
 jobs:
-  build-and-push-production:
-    uses: ./.github/workflows/common.yaml
+  deploy-production:
+    uses: ./.github/workflows/deploy.yaml
     with:
-      environment: production
-      frontend_service_name: 'bnn-frontend'
-      directus_service_name: 'bnn-directus'
+      environment: prod
+      frontend_app: bnn-frontend-prod
+      backend_app: bnn-directus-prod
+      db_app: bnn-db-prod
       frontend_url: https://www.beimnamennennen.ch
       backend_url: 'https://api.beimnamennennen.ch'
-      gcs_upload_directory: './uploads'
       apply_snapshot: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.apply_snapshot || false }}
     secrets: inherit
+

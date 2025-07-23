@@ -1,0 +1,110 @@
+# .github/workflows/deploy.yml
+name: Deploy to Fly.io
+
+on:
+  workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
+      frontend_app:
+        required: true
+        type: string
+      backend_app:
+        required: true
+        type: string
+      db_app:
+        required: true
+        type: string
+      frontend_url:
+        required: true
+        type: string
+      backend_url:
+        required: true
+        type: string
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: superfly/flyctl-actions/setup-flyctl@master
+
+      - name: Setup Fly.io PostgreSQL Database
+        run: |
+          flyctl postgres create ${{ inputs.db_app }} --name ${{ inputs.db_app }} --region fra --vm-size shared-cpu-1x --initial-cluster-size 1  --volume-size 10 || echo "Frontend app already exists"
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+
+      - name: Setup Fly.io Apps
+        run: |
+          flyctl apps create ${{ inputs.frontend_app }} || echo "Frontend app already exists"
+          flyctl apps create ${{ inputs.backend_app }} || echo "Backend app already exists"
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+
+      - name: Attach DB to backend
+        run: |
+          flyctl postgres attach ${{ inputs.db_app }} -a ${{ inputs.backend_app }} --variable-name DB_CONNECTION_STRING || echo "Backend already connected to DB"
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+
+          
+      - name: Set Fly.io Secrets (Backend)
+        run: |
+          flyctl secrets set \
+            KEY="${{ secrets.DIRECTUS_KEY }}" \
+            SECRET="${{ secrets.DIRECTUS_SECRET }}" \
+            ADMIN_EMAIL="gannonline90@gmail.com" \
+            ADMIN_PASSWORD="${{ secrets.DIRECTUS_ADMIN_PASSWORD }}" \
+            PUBLIC_URL="${{ inputs.backend_url }}" \
+            CORS_ENABLED="true" \
+            CORS_ORIGIN="${{ inputs.frontend_url }}" \
+            EMAIL_TRANSPORT="smtp" \
+            EMAIL_SMTP_HOST="mail.infomaniak.com" \
+            EMAIL_SMTP_PORT="465" \
+            EMAIL_SMTP_SECURE="true" \
+            EMAIL_SMTP_AUTH="true" \
+            EMAIL_SMTP_USER="info@beimnamennennen.ch" \
+            EMAIL_SMTP_PASSWORD="${{ secrets.DIRECTUS_SMTP_PASSWORD }}" \
+            EMAIL_FROM="info@beimnamennennen.ch" \
+            STORAGE_LOCATIONS="s3" \
+            STORAGE_S3_DRIVER="s3" \
+            STORAGE_S3_KEY="${{ secrets.DIRECTUS_STORAGE_S3_KEY }}" \
+            STORAGE_S3_SECRET="${{ secrets.DIRECTUS_STORAGE_S3_SECRET }}" \
+            STORAGE_S3_BUCKET="bnn-assets-${{ inputs.environment }}" \
+            STORAGE_S3_REGION="auto" \
+            STORAGE_S3_ENDPOINT="https://fly.storage.tigris.dev" \
+            STORAGE_S3_ROOT="directus-files" \
+            PRESSURE_LIMITER_ENABLED="false" \
+            APPLY_SNAPSHOT="true" \
+            DB_CLIENT="pg" \
+            -a ${{ inputs.backend_app }}
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+
+      - name: Set Fly.io Secrets (Frontend)
+        run: |
+          flyctl secrets set \
+            API_URL="${{ inputs.backend_url }}" \
+            ENV="${{ inputs.environment }}" \
+            PARCEL_API_URL="${{ inputs.backend_url }}" \
+            -a ${{ inputs.frontend_app }}
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+
+      - name: Deploy Backend
+        working-directory: ./backend
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+        run: |
+          flyctl deploy --remote-only --config fly.${{ inputs.environment }}.toml --app ${{ inputs.backend_app }}
+
+      - name: Deploy Frontend
+        working-directory: ./frontend
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+        run: |
+          flyctl deploy --remote-only --config fly.${{ inputs.environment }}.toml --app ${{ inputs.frontend_app }}
