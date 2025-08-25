@@ -3,7 +3,7 @@ name: Deploy to Staging
 on:
   push:
     branches:
-      - 'develop'
+      - develop
   workflow_dispatch:
     inputs:
       apply_snapshot:
@@ -13,16 +13,14 @@ on:
         default: false
 
 jobs:
-  build-and-push-staging:
-    uses: ./.github/workflows/common.yaml
+  deploy-staging:
+    uses: ./.github/workflows/deploy.yaml
     with:
       environment: staging
-      frontend_service_name: 'bnn-frontend-staging'
-      directus_service_name: 'bnn-directus-staging'
-      frontend_url: 'https://staging.beimnamennennen.ch'
-      backend_url: 'https://api.staging.beimnamennennen.ch'
-      gcs_upload_directory: './uploads-staging'
+      frontend_app: bnn-frontend-staging
+      backend_app: bnn-directus-staging
+      db_app: bnn-db-staging
+      frontend_url: https://staging.beimnamennennen.ch/
+      backend_url: https://api.staging.beimnamennennen.ch/
       apply_snapshot: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.apply_snapshot || false }}
     secrets: inherit
-
-    
