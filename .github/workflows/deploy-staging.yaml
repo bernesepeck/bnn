@@ -20,7 +20,7 @@ jobs:
       frontend_app: bnn-frontend-staging
       backend_app: bnn-directus-staging
       db_app: bnn-db-staging
-      frontend_url: https://staging.beimnamennennen.ch/
+      frontend_url: https://staging.beimnamennennen.ch
       backend_url: https://api.staging.beimnamennennen.ch/
       apply_snapshot: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.apply_snapshot || false }}
     secrets: inherit
