@@ -78,7 +78,7 @@ jobs:
             STORAGE_S3_DRIVER="s3" \
             STORAGE_S3_KEY="${{ secrets.DIRECTUS_STORAGE_S3_KEY }}" \
             STORAGE_S3_SECRET="${{ secrets.DIRECTUS_STORAGE_S3_SECRET }}" \
-            STORAGE_S3_BUCKET="bnn-assets-${{ inputs.environment }}" \
+            STORAGE_S3_BUCKET="bnn-${{ inputs.environment }}" \
             STORAGE_S3_REGION="auto" \
             STORAGE_S3_ENDPOINT="https://fly.storage.tigris.dev" \
             STORAGE_S3_ROOT="directus-files" \
