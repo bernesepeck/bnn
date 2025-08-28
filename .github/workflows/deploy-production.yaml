@@ -20,8 +20,8 @@ jobs:
       frontend_app: bnn-frontend-prod
       backend_app: bnn-directus-prod
       db_app: bnn-db-prod
-      frontend_urls: https://www.beimnamennennen.ch,https://www.lesnommerparleurnom.ch,https://bnn-frontend-prod.fly.dev/
-      backend_urls: https://api.beimnamennennen.ch,https://api.lesnommerparleurnom.ch,https://bnn-directus-prod.fly.dev/
+      frontend_urls: https://www.beimnamennennen.ch,https://www.lesnommerparleurnom.ch,https://bnn-frontend-prod.fly.dev
+      backend_urls: https://api.beimnamennennen.ch,https://api.lesnommerparleurnom.ch,https://bnn-directus-prod.fly.dev
       apply_snapshot: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.apply_snapshot || false }}
     secrets: inherit
 
