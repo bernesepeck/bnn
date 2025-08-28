@@ -67,13 +67,30 @@ export class Home extends DefaultComponent {
     this.fetchHome();
   }
 
-  private fetchHome() {
-    this.homeService = new HomeService(this.config);
-    this.homeService.getHome().then((home: HomeModel) => {
-      this.home = home;
-    }).catch((error: any) => {
+  private async fetchHome() {
+    try {
+      // Ensure config is properly loaded
+      if (!this.config || !this.config.apiUrl) {
+        console.warn("Config not ready, retrying...");
+        await this.configService.fetchConfig();
+        this.config = this.configService.getConfig();
+      }
+
+      if (!this.config.apiUrl) {
+        throw new Error("API URL not available in config");
+      }
+
+      console.log("Fetching home data with API URL:", this.config.apiUrl);
+      this.homeService = new HomeService(this.config);
+      this.home = await this.homeService.getHome();
+      this.requestUpdate();
+    } catch (error: any) {
       console.error("Failed to fetch home data", error);
-    });
+      // Retry after a short delay
+      setTimeout(() => {
+        this.fetchHome();
+      }, 1000);
+    }
   }
 
   /**

@@ -36,15 +36,19 @@ export class ConfigService {
 
   private async loadConfig(): Promise<void> {
     try {
+      console.log("Loading config.json...");
       const response = await fetch("/config.json");
       if (!response.ok) {
         throw new Error(`Failed to fetch config: ${response.statusText}`);
       }
       const responseJson = await response.json();
+      console.log("Raw config.json response:", responseJson);
       
       // Parse backend and frontend URLs from comma-separated strings
       const backendUrls = responseJson.backendUrls ? responseJson.backendUrls.split(',').map((url: string) => url.trim()) : [];
       const frontendUrls = responseJson.frontendUrls ? responseJson.frontendUrls.split(',').map((url: string) => url.trim()) : [];
+      
+      console.log("Parsed URLs:", { backendUrls, frontendUrls });
       
       // Determine the appropriate backend URL based on current domain
       const currentDomain = window.location.origin;
@@ -56,6 +60,8 @@ export class ConfigService {
         backendUrls: backendUrls,
         frontendUrls: frontendUrls,
       };
+      
+      console.log("Final config:", this.config);
     } catch (error) {
       console.error("Failed to load config.json:", error);
       // Set a default/fallback config to prevent the app from crashing
@@ -63,6 +69,7 @@ export class ConfigService {
         apiUrl: "https://api.beimnamennennen.ch", // Default API URL
         environment: "production", // Default environment
       };
+      console.log("Using fallback config:", this.config);
     }
   }
 
