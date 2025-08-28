@@ -16,12 +16,14 @@ on:
       db_app:
         required: true
         type: string
-      frontend_url:
+      frontend_urls:
         required: true
         type: string
-      backend_url:
+        description: 'Comma-separated list of frontend URLs'
+      backend_urls:
         required: true
         type: string
+        description: 'Comma-separated list of backend URLs'
       apply_snapshot:
         required: false
         type: boolean
@@ -58,14 +60,17 @@ jobs:
           
       - name: Set Fly.io Secrets (Backend)
         run: |
+          # Split the URLs and get the primary backend URL (first one)
+          PRIMARY_BACKEND_URL=$(echo "${{ inputs.backend_urls }}" | cut -d',' -f1)
+          
           flyctl secrets set \
             KEY="${{ secrets.DIRECTUS_KEY }}" \
             SECRET="${{ secrets.DIRECTUS_SECRET }}" \
             ADMIN_EMAIL="gannonline90@gmail.com" \
             ADMIN_PASSWORD="${{ secrets.DIRECTUS_ADMIN_PASSWORD }}" \
-            PUBLIC_URL="${{ inputs.backend_url }}" \
+            PUBLIC_URL="${PRIMARY_BACKEND_URL}" \
             CORS_ENABLED="true" \
-            CORS_ORIGIN="${{ inputs.frontend_url }}" \
+            CORS_ORIGIN="${{ inputs.frontend_urls }}" \
             EMAIL_TRANSPORT="smtp" \
             EMAIL_SMTP_HOST="mail.infomaniak.com" \
             EMAIL_SMTP_PORT="465" \
@@ -91,10 +96,13 @@ jobs:
 
       - name: Set Fly.io Secrets (Frontend)
         run: |
+          # Split the URLs and get the primary backend URL (first one)
+          PRIMARY_BACKEND_URL=$(echo "${{ inputs.backend_urls }}" | cut -d',' -f1)
+          
           flyctl secrets set \
-            API_URL="${{ inputs.backend_url }}" \
+            API_URL="${PRIMARY_BACKEND_URL}" \
             ENV="${{ inputs.environment }}" \
-            PARCEL_API_URL="${{ inputs.backend_url }}" \
+            PARCEL_API_URL="${PRIMARY_BACKEND_URL}" \
             -a ${{ inputs.frontend_app }}
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
