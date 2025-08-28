@@ -27,6 +27,7 @@ primary_region = "fra"
   PORT = "8055"
 
 [[checks]]
+  name = "directus-health"
   grace_period = "30s"
   interval = "30s"
   method = "get"
