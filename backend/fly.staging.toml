@@ -1,12 +1,36 @@
 app = "bnn-directus-staging"
 primary_region = "fra"
 
+[deploy]
+  strategy = "immediate"
+
 [http_service]
   internal_port = 8055
   force_https = true
   auto_stop_machines = true
   auto_start_machines = true
   min_machines_running = 0
+  max_machines_running = 1
+
+[http_service.concurrency]
+  type = "requests"
+  hard_limit = 50
+  soft_limit = 40
 
 [[vm]]
   memory = "512mb"
+  cpu_kind = "shared"
+  cpus = 1
+
+[env]
+  NODE_ENV = "staging"
+  PORT = "8055"
+
+[[checks]]
+  grace_period = "45s"
+  interval = "60s"
+  method = "get"
+  path = "/server/ping"
+  port = 8055
+  timeout = "15s"
+  type = "http"
