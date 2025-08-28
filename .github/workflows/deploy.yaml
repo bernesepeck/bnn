@@ -63,7 +63,8 @@ jobs:
           # Split the URLs and get the primary backend URL (first one)
           PRIMARY_BACKEND_URL=$(echo "${{ inputs.backend_urls }}" | cut -d',' -f1)
           
-          # Debug: Check secret lengths
+          # Debug: Check environment and secret lengths
+          echo "Environment: ${{ inputs.environment }}"
           echo "DIRECTUS_STORAGE_S3_KEY length: ${#DIRECTUS_STORAGE_S3_KEY}"
           echo "DIRECTUS_STORAGE_S3_SECRET length: ${#DIRECTUS_STORAGE_S3_SECRET}"
           echo "DIRECTUS_STORAGE_S3_KEY starts with: ${DIRECTUS_STORAGE_S3_KEY:0:10}..."
