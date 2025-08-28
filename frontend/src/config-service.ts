@@ -60,8 +60,8 @@ export class ConfigService {
       console.error("Failed to load config.json:", error);
       // Set a default/fallback config to prevent the app from crashing
       this.config = {
-        apiUrl: "http://localhost:8055", // Default API URL
-        environment: "development", // Default environment
+        apiUrl: "https://api.beimnamennennen.ch", // Default API URL
+        environment: "production", // Default environment
       };
     }
   }
@@ -72,23 +72,38 @@ export class ConfigService {
     // If no URLs provided, use fallback
     if (!frontendUrls.length || !backendUrls.length) {
       console.log('Using fallback URL (no URLs provided)');
-      return backendUrls[0] || "http://localhost:8055";
+      return backendUrls[0] || "https://api.beimnamennennen.ch";
     }
 
-    // Find the index of the current domain in frontend URLs
+    // Find exact match first
     const domainIndex = frontendUrls.findIndex(url => url === currentDomain);
-    console.log('Domain index:', domainIndex);
+    console.log('Exact domain index:', domainIndex);
     
-    // If current domain is found and corresponding backend exists, use it
     if (domainIndex !== -1 && domainIndex < backendUrls.length) {
       const selectedUrl = backendUrls[domainIndex];
-      console.log('Selected backend URL by index:', selectedUrl);
+      console.log('Selected backend URL by exact match:', selectedUrl);
       return selectedUrl;
+    }
+    
+    // Try to find a partial match for the domain name
+    const currentHost = new URL(currentDomain).hostname;
+    console.log('Current hostname:', currentHost);
+    
+    for (let i = 0; i < frontendUrls.length; i++) {
+      const frontendHost = new URL(frontendUrls[i]).hostname;
+      // Remove www prefix for comparison
+      const normalizedCurrent = currentHost.replace(/^www\./, '');
+      const normalizedFrontend = frontendHost.replace(/^www\./, '');
+      
+      if (normalizedCurrent === normalizedFrontend && i < backendUrls.length) {
+        const selectedUrl = backendUrls[i];
+        console.log('Selected backend URL by hostname match:', selectedUrl);
+        return selectedUrl;
+      }
     }
     
     // Special handling for Fly.dev domains
     if (currentDomain.includes('.fly.dev')) {
-      // Look for corresponding fly.dev backend URL
       const flyBackend = backendUrls.find(url => url.includes('.fly.dev'));
       if (flyBackend) {
         console.log('Selected fly.dev backend URL:', flyBackend);
@@ -96,8 +111,21 @@ export class ConfigService {
       }
     }
     
-    // Fallback to first backend URL
-    const fallbackUrl = backendUrls[0] || "http://localhost:8055";
+    // Domain-specific fallbacks
+    if (currentHost.includes('beimnamennennen') || currentHost.includes('lesnommerparleurnom')) {
+      // For production domains, prefer the API subdomain
+      const productionBackend = backendUrls.find(url => 
+        url.includes('api.beimnamennennen') || url.includes('api.lesnommerparleurnom')
+      );
+      if (productionBackend) {
+        console.log('Selected production backend URL:', productionBackend);
+        return productionBackend;
+      }
+    }
+    
+    // Fallback to first backend URL, but prefer HTTPS
+    const httpsBackend = backendUrls.find(url => url.startsWith('https://')) || backendUrls[0];
+    const fallbackUrl = httpsBackend || "https://api.beimnamennennen.ch";
     console.log('Using fallback URL (no match found):', fallbackUrl);
     return fallbackUrl;
   }
