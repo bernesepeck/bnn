@@ -78,8 +78,8 @@ jobs:
             ADMIN_PASSWORD="${{ secrets.DIRECTUS_ADMIN_PASSWORD }}" \
             PUBLIC_URL="${PRIMARY_BACKEND_URL}" \
             CORS_ENABLED="true" \
-            CORS_ORIGIN="*" \
-            CORS_CREDENTIALS="false" \
+            CORS_ORIGIN="${{ inputs.frontend_urls }}" \
+            CORS_CREDENTIALS="true" \
             CORS_METHODS="GET,POST,PATCH,PUT,DELETE,OPTIONS" \
             CORS_ALLOWED_HEADERS="Content-Type,Authorization,X-Requested-With" \
             CORS_EXPOSED_HEADERS="Content-Range,X-Content-Range" \
@@ -110,13 +110,12 @@ jobs:
 
       - name: Set Fly.io Secrets (Frontend)
         run: |
-          # Split the URLs and get the primary backend URL (first one)
-          PRIMARY_BACKEND_URL=$(echo "${{ inputs.backend_urls }}" | cut -d',' -f1)
+          # Pass all backend URLs and frontend URLs to the frontend for dynamic selection
           
           flyctl secrets set \
-            API_URL="${PRIMARY_BACKEND_URL}" \
+            BACKEND_URLS="${{ inputs.backend_urls }}" \
+            FRONTEND_URLS="${{ inputs.frontend_urls }}" \
             ENV="${{ inputs.environment }}" \
-            PARCEL_API_URL="${PRIMARY_BACKEND_URL}" \
             -a ${{ inputs.frontend_app }}
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}

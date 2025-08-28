@@ -1,8 +1,9 @@
 #!/bin/sh
 
-# Generate config.json
+# Generate config.json with all available backend URLs for dynamic selection
 echo "{
-  \"apiUrl\": \"$API_URL\",
+  \"backendUrls\": \"$BACKEND_URLS\",
+  \"frontendUrls\": \"$FRONTEND_URLS\",
   \"environment\": \"$ENV\"
 }" > /usr/share/nginx/html/config.json
 
