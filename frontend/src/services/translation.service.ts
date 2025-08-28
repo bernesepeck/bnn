@@ -1,5 +1,5 @@
 import { createDirectus, readItems, rest } from "@directus/sdk";
-import { AppConfig } from "../config";
+import { AppConfig } from "../config-service";
 
 export interface TranslationModel {
   key: string;
@@ -39,7 +39,9 @@ export class TranslationService {
   }
 
   private async loadTranslations() {
-    const languageCode = sessionStorage.getItem("selectedLanguage") || navigator.language;
+    const languageCode = this.getValidLanguageCode();
+    console.log("Loading translations with language code:", languageCode);
+    
     this.langFilter = {
       translations: {
         _filter: {
@@ -66,6 +68,23 @@ export class TranslationService {
       // In case of an error, reset the promise to allow for a retry.
       this.fetchPromise = null; 
     }
+  }
+
+  private getValidLanguageCode(): string {
+    // Return selectedLanguage if in storage
+    const storedLanguage = sessionStorage.getItem('selectedLanguage');
+    if (storedLanguage && (storedLanguage === 'de' || storedLanguage === 'fr')) {
+      return storedLanguage;
+    }
+    
+    // Get browser language, if its de or fr use that, else default to de
+    const browserLanguage = navigator.language.slice(0, 2);
+    const selectedLanguage = (browserLanguage === 'de' || browserLanguage === 'fr') ? browserLanguage : 'de';
+    
+    // Store the determined language so it's consistent across services
+    sessionStorage.setItem('selectedLanguage', selectedLanguage);
+    
+    return selectedLanguage;
   }
 
   getTranslations(): TranslationModel[] {

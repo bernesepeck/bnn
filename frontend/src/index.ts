@@ -67,6 +67,9 @@ export class Home extends DefaultComponent {
     this.fetchHome();
   }
 
+  private retryCount = 0;
+  private maxRetries = 3;
+
   private async fetchHome() {
     try {
       // Ensure config is properly loaded
@@ -83,13 +86,22 @@ export class Home extends DefaultComponent {
       console.log("Fetching home data with API URL:", this.config.apiUrl);
       this.homeService = new HomeService(this.config);
       this.home = await this.homeService.getHome();
+      this.retryCount = 0; // Reset retry count on success
       this.requestUpdate();
     } catch (error: any) {
-      console.error("Failed to fetch home data", error);
-      // Retry after a short delay
-      setTimeout(() => {
-        this.fetchHome();
-      }, 1000);
+      console.error(`Failed to fetch home data (attempt ${this.retryCount + 1}):`, error);
+      
+      if (this.retryCount < this.maxRetries) {
+        this.retryCount++;
+        const delay = this.retryCount * 2000; // Exponential backoff: 2s, 4s, 6s
+        console.log(`Retrying in ${delay}ms...`);
+        setTimeout(() => {
+          this.fetchHome();
+        }, delay);
+      } else {
+        console.error("Max retries reached. Giving up on fetching home data.");
+        // You could set a default/error state here
+      }
     }
   }
 

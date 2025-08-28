@@ -1,4 +1,4 @@
-import { AppConfig } from "../config";
+import { AppConfig } from "../config-service";
 import { CityModel } from "./city.models";
 import { createDirectus, readItem, readItems, rest } from "@directus/sdk";
 
@@ -17,7 +17,7 @@ export class CityService {
   }
 
   async getCity(cityId: number): Promise<CityModel> {
-    const languageCode = sessionStorage.getItem("selectedLanguage") || navigator.language;
+    const languageCode = this.getValidLanguageCode();
     this.langFilter = {
       translations: {
         _filter: {
@@ -29,7 +29,7 @@ export class CityService {
   }
 
   async getCityByName(cityName: string): Promise<CityModel> {
-    const languageCode = sessionStorage.getItem("selectedLanguage") || navigator.language;
+    const languageCode = this.getValidLanguageCode();
       this.langFilter = {
         translations: {
           _filter: {
@@ -164,4 +164,21 @@ export class CityService {
 
     return city as CityModel;
   };
+
+  private getValidLanguageCode(): string {
+    // Return selectedLanguage if in storage
+    const storedLanguage = sessionStorage.getItem('selectedLanguage');
+    if (storedLanguage && (storedLanguage === 'de' || storedLanguage === 'fr')) {
+      return storedLanguage;
+    }
+    
+    // Get browser language, if its de or fr use that, else default to de
+    const browserLanguage = navigator.language.slice(0, 2);
+    const selectedLanguage = (browserLanguage === 'de' || browserLanguage === 'fr') ? browserLanguage : 'de';
+    
+    // Store the determined language so it's consistent across services
+    sessionStorage.setItem('selectedLanguage', selectedLanguage);
+    
+    return selectedLanguage;
+  }
 }
