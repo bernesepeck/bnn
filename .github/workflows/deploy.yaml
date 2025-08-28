@@ -63,6 +63,12 @@ jobs:
           # Split the URLs and get the primary backend URL (first one)
           PRIMARY_BACKEND_URL=$(echo "${{ inputs.backend_urls }}" | cut -d',' -f1)
           
+          # Debug: Check secret lengths
+          echo "DIRECTUS_STORAGE_S3_KEY length: ${#DIRECTUS_STORAGE_S3_KEY}"
+          echo "DIRECTUS_STORAGE_S3_SECRET length: ${#DIRECTUS_STORAGE_S3_SECRET}"
+          echo "DIRECTUS_STORAGE_S3_KEY starts with: ${DIRECTUS_STORAGE_S3_KEY:0:10}..."
+          echo "DIRECTUS_STORAGE_S3_SECRET starts with: ${DIRECTUS_STORAGE_S3_SECRET:0:10}..."
+          
           flyctl secrets set \
             KEY="${{ secrets.DIRECTUS_KEY }}" \
             SECRET="${{ secrets.DIRECTUS_SECRET }}" \
@@ -93,6 +99,8 @@ jobs:
             -a ${{ inputs.backend_app }}
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+          DIRECTUS_STORAGE_S3_KEY: ${{ secrets.DIRECTUS_STORAGE_S3_KEY }}
+          DIRECTUS_STORAGE_S3_SECRET: ${{ secrets.DIRECTUS_STORAGE_S3_SECRET }}
 
       - name: Set Fly.io Secrets (Frontend)
         run: |
