@@ -65,6 +65,7 @@ jobs:
           
           # Debug: Check environment and secret lengths
           echo "Environment: ${{ inputs.environment }}"
+          echo "Frontend URLs for CORS: ${{ inputs.frontend_urls }}"
           echo "DIRECTUS_STORAGE_S3_KEY length: ${#DIRECTUS_STORAGE_S3_KEY}"
           echo "DIRECTUS_STORAGE_S3_SECRET length: ${#DIRECTUS_STORAGE_S3_SECRET}"
           echo "DIRECTUS_STORAGE_S3_KEY starts with: ${DIRECTUS_STORAGE_S3_KEY:0:10}..."
@@ -77,8 +78,8 @@ jobs:
             ADMIN_PASSWORD="${{ secrets.DIRECTUS_ADMIN_PASSWORD }}" \
             PUBLIC_URL="${PRIMARY_BACKEND_URL}" \
             CORS_ENABLED="true" \
-            CORS_ORIGIN="${{ inputs.frontend_urls }}" \
-            CORS_CREDENTIALS="true" \
+            CORS_ORIGIN="*" \
+            CORS_CREDENTIALS="false" \
             CORS_METHODS="GET,POST,PATCH,PUT,DELETE,OPTIONS" \
             CORS_ALLOWED_HEADERS="Content-Type,Authorization,X-Requested-With" \
             CORS_EXPOSED_HEADERS="Content-Range,X-Content-Range" \
